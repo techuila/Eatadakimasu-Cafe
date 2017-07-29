@@ -1,22 +1,27 @@
 $primary-color: #fff;
 
-@font-face {
-  font-family: 'Blacksword';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Blacksword'), url(https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf) format('opentype');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+@mixin font-face($font-family, $source, $format){
+    @font-face{
+        font-family: $font-family;
+        font-style: normal;
+        font-weight: 400;
+        src:  local($font-family), url($source) format($format);
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+    }
 }
+@include font-face('Blacksword', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
+@include font-face('MinionPro-Regular', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
+
 
 html, body{
-    font-family: 'Blacksword';
+    font-family: 'Blackswrd';
     font-size: 16px;
     line-height: 1.6em;
     margin: auto;
     position: relative;
 }
 
-header{
+header{    
     z-index: 10;
     position: absolute;
     width: 100%;
