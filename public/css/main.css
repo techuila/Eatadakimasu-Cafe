@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Merriweather';
+  font-family: 'Blacksword';
   font-style: normal;
   font-weight: 400;
-  src: url(https://firebasestorage.googleapis.com/v0/b/cafe-98e24.appspot.com/o/fonts%2FRFda8w1V0eDZheqfcyQ4EK-j2U0lmluP9RWlSytm3ho.woff2?alt=media&token=63820bdc-ad04-45f1-911a-8632478b0a86) format("woff2");
+  src: local("Blacksword"), url(https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf) format("opentype");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
 html, body {
-  font-family: 'Merriweather';
+  font-family: 'Blacksword';
   font-size: 16px;
   line-height: 1.6em;
   margin: auto;
