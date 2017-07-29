@@ -1,20 +1,22 @@
 $primary-color: #fff;
 
-@mixin font-face($font-family, $source, $format){
+@mixin font-face($font-family,$custom-name, $source, $format){
     @font-face{
-        font-family: $font-family;
+        font-family: $custom-name;
         font-style: normal;
         font-weight: 400;
         src:  local($font-family), url($source) format($format);
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
     }
 }
-@include font-face('Blacksword', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
-@include font-face('MinionPro-Regular', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
+@include font-face('Blacksword','Blacksword', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
+@include font-face('MinionPro-Regular','MinionPro', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/MinionPro-Regular.otf','opentype');
+@include font-face('Gobold Regular','Gobold Reg', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Regular.ttf','truetype');
+@include font-face('Gobold Hollow','Gobold Hol', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
 
 
 html, body{
-    font-family: 'Blackswrd';
+    font-family: 'MinionPro';
     font-size: 16px;
     line-height: 1.6em;
     margin: auto;
@@ -49,7 +51,7 @@ nav{
     height: inherit;
     width: 100px;
     background-color: $primary-color;
-    font-family: 'Gobold Regular';  
+    font-family: 'Gobold Reg';  
     font-size: 16px;  
     border-style: none;
     border: 0;
@@ -100,7 +102,7 @@ nav{
 }
 
 .mainan{
-    font-family: 'Gobold Regular';
+    font-family: 'Gobold Reg';
     font-size: 1.3em;
     letter-spacing: 0.65em;
     color: #000;
