@@ -1,0 +1,8 @@
+{
+  "database": {
+    "rules": "db.json"
+  },
+  "hosting": {
+    "public": "public"
+  }
+}
