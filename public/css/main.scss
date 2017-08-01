@@ -11,11 +11,11 @@ $nav-hover-color: #3498db;
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
     }
 }
+
 @include font-face('Blacksword','Blacksword', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
 @include font-face('MinionPro-Regular','MinionPro', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/MinionPro-Regular.otf','opentype');
 @include font-face('Gobold Regular','Gobold Reg', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Regular.ttf','truetype');
 @include font-face('Gobold Hollow','Gobold Hol', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
-
 
 html, body{
     font-family: 'MinionPro';
@@ -162,7 +162,7 @@ nav{
 
     .pimg1{
         .mainCapbg{
-            height: 
+            height: 200px;
             .main{
                 font-size: 2.7em;
             }
