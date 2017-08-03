@@ -53,7 +53,7 @@ nav{
     height: inherit;
     width: 100px;
     background-color: transparent;
-    font-family: 'Gobold Reg';  
+    font-family: 'Gobold Regular';  
     font-size: 16px;  
     border-style: none;
     border: 0;
@@ -65,8 +65,8 @@ nav{
     cursor: pointer;
 }
 
-.pimg1, .pimg2, .pimg3{
-    height: 1000px;
+.bg{
+    height: 1100px;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; 
@@ -79,7 +79,6 @@ nav{
 
 .pimg2{
     background-image: url('https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/bdf09439/public/img/02.jpg'), url('../img/02.jpg');
-    margin:0;
 }
 
 .pimg3{
@@ -103,7 +102,7 @@ nav{
 }
 
 .mainan{
-    font-family: 'Gobold Reg';
+    font-family:'Gobold Regular';
     font-size: 1.3em;
     letter-spacing: 0.65em;
     color: #000;
@@ -142,16 +141,19 @@ nav{
 
 @media only screen and (max-width: 914px){
     header{
-        height: 100px;
+        height: 100px;  
     }
 
     nav{
         display: flex;
         justify-content: space-around;
-        
         height: 50px;
         width: 100%;
         margin: 10px auto;
+    }
+
+    .bg{
+        background-attachment: scroll;
     }
 
     .title{
@@ -164,7 +166,54 @@ nav{
         .mainCapbg{
             height: 200px;
             .main{
-                font-size: 2.7em;
+                font-size: 4em;
+                margin-bottom: 30px;
+            }
+            .mainan{
+                font-size: 1em;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 395px){
+    header{
+        height: 80px;
+    }
+
+    nav{
+        height: 30px;
+    }
+
+    .title{
+        font-size: 1.5em;
+    }
+
+    .nav{
+        font-size: .7em;
+    }
+
+    .pimg1{
+        .mainCapbg{
+            top: 270px;
+            height: 100px;
+            .main{
+                font-size: 1.5em;
+                margin: 20px 0 10px 0;
+            }
+            .mainan{
+                font-size: .5em;
+            }
+        }
+    }
+
+    .pimg2{
+        .container-story{
+            .sub{
+                margin: 45px 0 30px 0;
+            }
+            .subnan{
+                line-height: 1.1em;
             }
         }
     }
