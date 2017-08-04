@@ -6,8 +6,26 @@
         <title>Register | Eatadakimasu Cafe</title>
 
         <style>
+
+             body{
+                background: url('./img/bg.png');
+                background-size: cover;
+                background-repeat: no-repeat;
+                font-family: 'roboto';
+                margin: 100px auto;
+            }
             .billing-address{
                 display: none;
+            }
+
+            fieldset{
+                width: 500px;
+                margin: auto;
+            }
+
+            input{
+                display: block;
+                margin: auto;
             }
 
             .drop-down{
@@ -46,16 +64,18 @@
         <form action="" method="post">
             <fieldset>
                 <legend>Register</legend>
-                Name: 
+                <center>
+                <span>Name: </span>
                 <input type="text" name="customer-name"><br>   
-                Username:
+                <span>Username:</span>
                 <input type="text" name="username"><br>
-                Password:
+                <span>Password:</span>
                 <input type="text" name="password"><br>
-                Confirm Password:
+                <span>Confirm Password:</span>
                 <input type="text" name="confirm-password"><br>
                 <br>
-                Address: <div class="drop-down" onclick="dropdown_clicked();" id="dropdown"></div>    
+                <span style="color: blue;">Address:</span> 
+                <div class="drop-down" onclick="dropdown_clicked();" id="dropdown"></div>    
                 <br>    
                 <div class="billing-address" id="billing-address">
                     <br>
@@ -74,10 +94,12 @@
                     Mobile/ Telephone #:
                     <input type="text" name="mobile"><br>  
                 </div>
-
+                </center>
                 <br> 
-                <button type="submit">Login</button>
-                <button type="button">Cancel</button>
+                <center>
+                    <button type="submit">Register</button>
+                    <button type="button">Cancel</button>
+                </center>
             </fieldset>
         </form>
     </body>
