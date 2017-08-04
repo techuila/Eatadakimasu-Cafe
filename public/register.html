@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Register | Eatadakimasu Cafe</title>
+
+        <style>
+            .billing-address{
+                display: none;
+            }
+
+            .drop-down{
+                display: inline-block;
+                height: 20px;
+                width: 20px;
+                background: url('./img/60995.png'); 
+                background-size: 100% 100%; 
+                background-repeat: no-repeat;
+                cursor: pointer;
+            }
+        </style>
+
+        <script>
+            var degr = 0;     
+            
+            function dropdown_clicked(){
+                const bg = document.getElementById('dropdown');
+                const ba = document.getElementById('billing-address');
+                if(degr == 0){
+                    degr = 1;
+                    bg.style.transform = "rotate(180deg)";
+                    ba.style.display = "block";
+                } 
+                else{
+                    degr = 0;                    
+                    bg.style.transform = "rotate(0deg)";
+                    ba.style.display = "none";
+                }
+            }
+        </script>
+    </head>
+    <body>
+
+        <!--LOGIN FORM  -->
+        <form action="" method="post">
+            <fieldset>
+                <legend>Register</legend>
+                Name: 
+                <input type="text" name="customer-name"><br>   
+                Username:
+                <input type="text" name="username"><br>
+                Password:
+                <input type="text" name="password"><br>
+                Confirm Password:
+                <input type="text" name="confirm-password"><br>
+                <br>
+                Address: <div class="drop-down" onclick="dropdown_clicked();" id="dropdown"></div>    
+                <br>    
+                <div class="billing-address" id="billing-address">
+                    <br>
+                    Company:
+                    <input type="text" name="company"><br>
+                    Email:
+                    <input type="text" name="email"><br>
+                    Unit #/ Floor/ House #:
+                    <input type="text" name="UFH"><br>
+                    Building:
+                    <input type="text" name="building"><br> 
+                    Street: 
+                    <input type="text" name="street"><br>
+                    Barangay/ Subdivision:
+                    <input type="text" name="barangay"><br>
+                    Mobile/ Telephone #:
+                    <input type="text" name="mobile"><br>  
+                </div>
+
+                <br> 
+                <button type="submit">Login</button>
+                <button type="button">Cancel</button>
+            </fieldset>
+        </form>
+    </body>
+</html>

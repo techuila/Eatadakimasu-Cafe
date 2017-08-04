@@ -1,6 +1,7 @@
 $text-color: #fff;
 $primary-color: #e74c3c;
 $nav-hover-color: #3498db;
+$header-height: 60px;
 
 @mixin font-face($font-family,$custom-name, $source, $format){
     @font-face{
@@ -30,8 +31,9 @@ header{
     position: absolute;
     width: 100%;
     box-shadow: 0 4px 5px rgba(0,0,0,0.4);
-    height: 60px;
+    height: $header-height;
     background-color: #fff;
+    overflow: hidden;
 }
 
 .title{
@@ -46,21 +48,31 @@ nav{
     display: inline-block;
     float: right;
     height: inherit;
-    margin: 0 5% 0 0;
+    margin: 0 80px 0 0;
+
+    ul{
+        height: $header-height;
+        margin: 18px 0 0 0;
+        li{
+            display: inline-block;
+            height: inherit;
+            width: 100px;
+            a{
+                font-family: 'Gobold Reg';  
+                font-size: 16px;  
+                text-decoration: none;
+                color: #333;
+                height: inherit;
+                width: 100px;
+                padding: 20px 35px 20px 35px;
+                border: 0;
+            }
+        }
+
+    }
 }
 
-.nav{
-    height: inherit;
-    width: 100px;
-    background-color: transparent;
-    font-family: 'Gobold Regular';  
-    font-size: 16px;  
-    border-style: none;
-    border: 0;
-    margin: 0;
-}
-
-.nav:hover{
+a:hover{
     background-color: $nav-hover-color;
     cursor: pointer;
 }
@@ -70,7 +82,7 @@ nav{
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; 
-
+    filter: blur(20px);
 }
 
 .pimg1{
@@ -83,6 +95,7 @@ nav{
 
 .pimg3{
     background-image: url('https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/bdf09439/public/img/03.jpg'), url('../img/03.jpg');
+    height: 750px;
 }
 
 .mainCapbg{
@@ -102,7 +115,7 @@ nav{
 }
 
 .mainan{
-    font-family:'Gobold Regular';
+    font-family:'Gobold Reg';
     font-size: 1.3em;
     letter-spacing: 0.65em;
     color: #000;
@@ -129,6 +142,11 @@ nav{
     margin: 90px 0 80px 0;
 }
 
+.sub2{
+    @extend .sub;
+    margin-top: 250px;
+}
+
 .back{
     text-align: center;
 }
@@ -141,7 +159,7 @@ nav{
 
 @media only screen and (max-width: 914px){
     header{
-        height: 100px;  
+        height: $header-height + 40;  
     }
 
     nav{
@@ -178,7 +196,7 @@ nav{
 
 @media only screen and (max-width: 395px){
     header{
-        height: 80px;
+        height: $header-height + 20;
     }
 
     nav{

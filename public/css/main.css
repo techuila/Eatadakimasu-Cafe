@@ -45,6 +45,7 @@ header {
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.4);
   height: 60px;
   background-color: #fff;
+  overflow: hidden;
 }
 
 .title {
@@ -59,21 +60,32 @@ nav {
   display: inline-block;
   float: right;
   height: inherit;
-  margin: 0 5% 0 0;
+  margin: 0 80px 0 0;
 }
 
-.nav {
+nav ul {
+  height: 60px;
+  margin: 18px 0 0 0;
+}
+
+nav ul li {
+  display: inline-block;
   height: inherit;
   width: 100px;
-  background-color: transparent;
-  font-family: 'Gobold Regular';
-  font-size: 16px;
-  border-style: none;
-  border: 0;
-  margin: 0;
 }
 
-.nav:hover {
+nav ul li a {
+  font-family: 'Gobold Reg';
+  font-size: 16px;
+  text-decoration: none;
+  color: #333;
+  height: inherit;
+  width: 100px;
+  padding: 20px 35px 20px 35px;
+  border: 0;
+}
+
+a:hover {
   background-color: #3498db;
   cursor: pointer;
 }
@@ -83,6 +95,7 @@ nav {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  filter: blur(20px);
 }
 
 .pimg1 {
@@ -95,6 +108,7 @@ nav {
 
 .pimg3 {
   background-image: url("https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/bdf09439/public/img/03.jpg"), url("../img/03.jpg");
+  height: 750px;
 }
 
 .mainCapbg {
@@ -114,7 +128,7 @@ nav {
 }
 
 .mainan {
-  font-family: 'Gobold Regular';
+  font-family: 'Gobold Reg';
   font-size: 1.3em;
   letter-spacing: 0.65em;
   color: #000;
@@ -132,12 +146,16 @@ nav {
   margin: auto;
 }
 
-.sub {
+.sub, .sub2 {
   font-family: 'Blacksword';
   font-size: 4em;
   color: #fff;
   text-shadow: 2px 6px 7px black;
   margin: 90px 0 80px 0;
+}
+
+.sub2 {
+  margin-top: 250px;
 }
 
 .back {
@@ -205,7 +223,7 @@ nav {
   .pimg1 .mainCapbg .mainan {
     font-size: .5em;
   }
-  .pimg2 .container-story .sub {
+  .pimg2 .container-story .sub, .pimg2 .container-story .sub2 {
     margin: 45px 0 30px 0;
   }
   .pimg2 .container-story .subnan {
