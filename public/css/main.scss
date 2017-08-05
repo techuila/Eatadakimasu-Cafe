@@ -82,7 +82,6 @@ a:hover{
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed; 
-    filter: blur(20px);
 }
 
 .pimg1{
@@ -94,7 +93,7 @@ a:hover{
 }
 
 .pimg3{
-    background-image: url('https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/bdf09439/public/img/03.jpg'), url('../img/03.jpg');
+    background-image: url('https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/bdf09439/public/img/05.jpg'), url('../img/04blur.jpg');
     height: 750px;
 }
 
@@ -156,6 +155,11 @@ a:hover{
     color: $text-color;
     line-height: 2.8em;
 }
+
+.container-menu{
+    @extend .container-story;
+}
+
 
 @media only screen and (max-width: 914px){
     header{
