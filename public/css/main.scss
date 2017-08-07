@@ -1,7 +1,11 @@
 $text-color: #fff;
 $primary-color: #e74c3c;
 $nav-hover-color: #3498db;
+$flat-green: #27ae60;
 $header-height: 60px;
+$desc-font: 13px;
+$food-title-size: 2em;
+$title-size: 5em;
 
 @mixin font-face($font-family,$custom-name, $source, $format){
     @font-face{
@@ -94,7 +98,6 @@ a:hover{
 
 .pimg3{
     background-image: url('https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/bdf09439/public/img/05.jpg'), url('../img/04blur.jpg');
-    height: 750px;
 }
 
 .mainCapbg{
@@ -107,7 +110,7 @@ a:hover{
 
 .main{  
     font-family: 'Blacksword';
-    font-size: 5em; 
+    font-size: $title-size; 
     color: $text-color;
     text-shadow: 2px 6px 7px rgba(0,0,0,1);
     margin: 52px 0 50px 0;
@@ -135,10 +138,10 @@ a:hover{
 
 .sub{
     font-family: 'Blacksword';
-    font-size: 4em;
+    font-size: $title-size;
     color: $text-color;
     text-shadow: 2px 6px 7px rgba(0,0,0,1);
-    margin: 90px 0 80px 0;
+    margin: 100px 0 80px 0;
 }
 
 .sub2{
@@ -158,7 +161,155 @@ a:hover{
 
 .container-menu{
     @extend .container-story;
+    padding-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    .container-food{
+        height: 270px;
+        width: 240px;
+        margin: 0 0 150px 0;
+        position: relative;
+        
+        .frame-food{
+            background-color: black;
+            height: 180px;
+            width: 180px;
+            border-radius: 100%;
+            border-style: solid;
+            border-color: #fff;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+            display: block;
+            margin: 0 auto;
+            overflow: hidden;
+
+            .food{
+                position: absolute;
+                height: inherit;
+                width: inherit;
+                background-size: cover;
+                background-repeat: no-repeat;
+                border-radius: inherit;
+            }
+
+            // BACKGROUND IMAGES 
+            .curry{
+                background-image: url('../img/menu/curry.jpg');
+                background-position-x: -60px;            
+            }
+
+            .donburi{
+                background-image: url('../img/menu/donburi.jpg');
+                background-position-x: -68px;
+            }
+
+            .cakey{
+                background-image: url('../img/menu/japanesecake.jpg');
+                background-position-x: -40px;
+            }
+
+            .karaage{
+                background-image: url('../img/menu/karaage.jpg');
+                background-position-x: -30px;
+            }
+
+            .omurice{
+                background-image: url('../img/menu/omurice.jpg');
+                background-position-x: -40px;
+            }
+
+            .onigiri{
+                background-image: url('../img/menu/onigiri.jpg');
+                background-position-x: -55px;
+            }
+
+            .ramen{
+                background-image: url('../img/menu/ramen.jpg');
+                background-position-x: -30px;
+            }
+
+            .sushi{
+                background-image: url('../img/menu/sushi.jpg');
+                background-position-y: -50px;
+            }
+
+            .tempura{
+                background-image: url('../img/menu/tempura.jpg');
+                background-position-x: -60px;
+            }
+
+            .tonkatsu{
+                background-image: url('../img/menu/tonkatsu.jpg');
+                background-position-x: -45px;
+            }
+
+            .food-desc{
+                display: none;
+                margin-top: 35px;
+                width: 150px;
+                height: 85px;
+                color: #fff;
+                font-size: 14px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .click-food{
+                display: none;
+                margin: 20px 0 0 -35px;
+                height: 150px;
+                width: 250px;
+                background-color: $flat-green;
+                border-radius: 100%;
+                position: relative;
+                z-index: 2;
+                
+                span{
+                    font-size: $desc-font - 1;
+                    color: #fff;
+                }
+            }
+        }
+
+        p{
+            font-family: 'Blacksword';
+            font-size: $food-title-size;
+            color: #fff;
+            text-shadow: 0px 3px 4px rgba(0,0,0,1);
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+
+    .frame-food:hover{
+
+        .food{
+            opacity: 0.5;
+        }
+
+        .food-desc{
+            display: inline-block;
+        }
+
+        .click-food{
+            display: block;
+            cursor: pointer;
+        }
+
+        .click-food:hover{
+            background-color: lighten($flat-green, 10%);
+        }
+
+        .click-food:active{
+            background-color: $flat-green;
+        }
+    }
 }
+
 
 
 @media only screen and (max-width: 914px){

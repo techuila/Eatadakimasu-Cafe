@@ -107,7 +107,6 @@ a:hover {
 
 .pimg3 {
   background-image: url("https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/bdf09439/public/img/05.jpg"), url("../img/04blur.jpg");
-  height: 750px;
 }
 
 .mainCapbg {
@@ -147,10 +146,10 @@ a:hover {
 
 .sub, .sub2 {
   font-family: 'Blacksword';
-  font-size: 4em;
+  font-size: 5em;
   color: #fff;
   text-shadow: 2px 6px 7px black;
-  margin: 90px 0 80px 0;
+  margin: 100px 0 80px 0;
 }
 
 .sub2 {
@@ -165,6 +164,152 @@ a:hover {
   font-size: 1.3em;
   color: #fff;
   line-height: 2.8em;
+}
+
+.container-menu {
+  padding-top: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.container-menu .container-food {
+  height: 270px;
+  width: 240px;
+  margin: 0 0 150px 0;
+  position: relative;
+}
+
+.container-menu .container-food .frame-food {
+  background-color: black;
+  height: 180px;
+  width: 180px;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.container-menu .container-food .frame-food .food {
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+}
+
+.container-menu .container-food .frame-food .curry {
+  background-image: url("../img/menu/curry.jpg");
+  background-position-x: -60px;
+}
+
+.container-menu .container-food .frame-food .donburi {
+  background-image: url("../img/menu/donburi.jpg");
+  background-position-x: -68px;
+}
+
+.container-menu .container-food .frame-food .cakey {
+  background-image: url("../img/menu/japanesecake.jpg");
+  background-position-x: -40px;
+}
+
+.container-menu .container-food .frame-food .karaage {
+  background-image: url("../img/menu/karaage.jpg");
+  background-position-x: -30px;
+}
+
+.container-menu .container-food .frame-food .omurice {
+  background-image: url("../img/menu/omurice.jpg");
+  background-position-x: -40px;
+}
+
+.container-menu .container-food .frame-food .onigiri {
+  background-image: url("../img/menu/onigiri.jpg");
+  background-position-x: -55px;
+}
+
+.container-menu .container-food .frame-food .ramen {
+  background-image: url("../img/menu/ramen.jpg");
+  background-position-x: -30px;
+}
+
+.container-menu .container-food .frame-food .sushi {
+  background-image: url("../img/menu/sushi.jpg");
+  background-position-y: -50px;
+}
+
+.container-menu .container-food .frame-food .tempura {
+  background-image: url("../img/menu/tempura.jpg");
+  background-position-x: -60px;
+}
+
+.container-menu .container-food .frame-food .tonkatsu {
+  background-image: url("../img/menu/tonkatsu.jpg");
+  background-position-x: -45px;
+}
+
+.container-menu .container-food .frame-food .food-desc {
+  display: none;
+  margin-top: 35px;
+  width: 150px;
+  height: 85px;
+  color: #fff;
+  font-size: 14px;
+  position: relative;
+  z-index: 2;
+}
+
+.container-menu .container-food .frame-food .click-food {
+  display: none;
+  margin: 20px 0 0 -35px;
+  height: 150px;
+  width: 250px;
+  background-color: #27ae60;
+  border-radius: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.container-menu .container-food .frame-food .click-food span {
+  font-size: 12px;
+  color: #fff;
+}
+
+.container-menu .container-food p {
+  font-family: 'Blacksword';
+  font-size: 2em;
+  color: #fff;
+  text-shadow: 0px 3px 4px black;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.container-menu .frame-food:hover .food {
+  opacity: 0.5;
+}
+
+.container-menu .frame-food:hover .food-desc {
+  display: inline-block;
+}
+
+.container-menu .frame-food:hover .click-food {
+  display: block;
+  cursor: pointer;
+}
+
+.container-menu .frame-food:hover .click-food:hover {
+  background-color: #36d278;
+}
+
+.container-menu .frame-food:hover .click-food:active {
+  background-color: #27ae60;
 }
 
 @media only screen and (max-width: 914px) {
