@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-         <link rel="stylesheet" href="./css/main.css">  
+        <link rel="stylesheet" href="./css/main.css">  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="./js/app.js"></script>
         <title>Eatadakimasu Cafe | Welcome</title>
     </head>
 
@@ -44,14 +46,14 @@
                     <!--1 CURRY RICE  -->
 
                     <div class="container-food">
-                        <div class="frame-food ">
+                        <div class="frame foods">
                             <div class="food curry"></div>
                             <center>
                                 <span class="food-desc">
                                     Curry sauce is served on top of cooked rice to make
                                     curry rice.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" id="curry">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -62,7 +64,7 @@
                     <!--2 DONBURI  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food donburi"></div>
                             <center>
                                 <span class="food-desc">
@@ -79,7 +81,7 @@
                     <!--3 JAPANESE CAKEY  -->
 
                     <div class="container-food">
-                            <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food cakey"></div>
                             <center>
                                 <span class="food-desc">
@@ -96,7 +98,7 @@
                     <!--4 KARAAGEEEEE  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food karaage"></div>
                             <center>
                                 <span class="food-desc">
@@ -114,7 +116,7 @@
                     <!--5 OMURICEUUUUUUU!  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food omurice"></div>
                             <center>
                                 <span class="food-desc">
@@ -132,7 +134,7 @@
                     <!--6 RAMEEEEEN OR LAAAMEEEEEN!  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food ramen"></div>
                             <center>
                                 <span class="food-desc">
@@ -150,7 +152,7 @@
                     <!--7 SUSHIIII  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food sushi"></div>
                             <center>
                                 <span class="food-desc">
@@ -168,7 +170,7 @@
                     <!--8 TONKATSU NO JUTSU!  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food tonkatsu"></div>
                             <center>
                                 <span class="food-desc">
@@ -186,7 +188,7 @@
                     <!--9 TEMPURA MASARAP MALINAMNAN!!  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food tempura"></div>
                             <center>
                                 <span class="food-desc">
@@ -204,7 +206,7 @@
                     <!--10 ONIGIRI (ZORO SKILL)  -->
 
                     <div class="container-food">
-                        <div class="frame-food">
+                        <div class="frame foods">
                             <div class="food onigiri"></div>
                             <center>
                                 <span class="food-desc">
@@ -219,6 +221,25 @@
                     </div>
 
                 </div>       
+            </div>
+
+            <!--ORDER SECTION  -->
+
+            <div class="pimg4 bg">
+                <div class="container-order">
+                    <div id="food-order"></div>
+                    <p class="sub cap">Order</p>
+                    <div class="left">
+                        <div class="container-food">
+                            <div class="frame order">
+                                <div class="food curry"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+
+                    </div>
+                </div>
             </div>
             <footer>
             </footer>    
