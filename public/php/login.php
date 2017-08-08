@@ -1,5 +1,5 @@
 <?php
-// include("loginserv.php"); // Include loginserv for checking username and password
+include("loginserv.php"); // Include loginserv for checking username and password
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 
         <style>
             body{
-                background-image: url('./img/bg.png');
+                background-image: url('../img/bg.png');
                 background-repeat: no-repeat;
                 background-size: cover;
                 font-family: 'roboto';
