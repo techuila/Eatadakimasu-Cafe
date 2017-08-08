@@ -1,5 +1,8 @@
+<?php
+include("loginserv.php"); // Include loginserv for checking username and password
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <title> Login | Eatadakimasu Cafe</title>
         <meta charset="UTF-8">
@@ -29,13 +32,17 @@
         <fieldset>
             <legend>Login</legend>
             <center>
+                <form action="" method="post">
                 <span>Username:</span>
-                <input type="text" name="username" value=""><br>
+                <input type="text" name="user" value=""><br>
                 <span>Password:</span>
-                <input type="text" name="password" value=""><br><br>
-                <button type="submit">Login</button>
+                <input type="text" name="pass" value=""><br><br>
+                <button type="submit" name="submit">Login</button>
                 <button type="button">Cancel</button>
+                <!-- Error Message -->
+            <span><?php echo $error; ?></span>
             </center>
         </fieldset>
+        
     </body>
 </html>
