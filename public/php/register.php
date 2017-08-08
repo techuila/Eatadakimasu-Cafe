@@ -1,3 +1,7 @@
+<?php
+include("registerserv.php"); // Include loginserv for checking username and password
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -65,6 +69,7 @@
             <fieldset>
                 <legend>Register</legend>
                 <center>
+                <span><?php echo $error; ?></span>
                 <span>Name: </span>
                 <input type="text" name="customer-name"><br>   
                 <span>Username:</span>
@@ -83,22 +88,17 @@
                     <input type="text" name="company"><br>
                     Email:
                     <input type="text" name="email"><br>
-                    Unit #/ Floor/ House #:
-                    <input type="text" name="UFH"><br>
-                    Building:
-                    <input type="text" name="building"><br> 
-                    Street: 
-                    <input type="text" name="street"><br>
-                    Barangay/ Subdivision:
-                    <input type="text" name="barangay"><br>
+                    Address:
+                    <input type="text" name="address"><br>
                     Mobile/ Telephone #:
                     <input type="text" name="mobile"><br>  
                 </div>
                 </center>
                 <br> 
                 <center>
-                    <button type="submit">Register</button>
+                    <button type="submit" name="register">Register</button>
                     <button type="button">Cancel</button>
+                    <span><?php echo $error; ?></span>
                 </center>
             </fieldset>
         </form>
