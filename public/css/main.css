@@ -50,6 +50,7 @@ header {
 }
 
 .containers {
+  display: none;
   position: fixed;
   z-index: 2;
   width: 600px;
