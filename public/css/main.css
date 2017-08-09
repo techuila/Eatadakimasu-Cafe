@@ -36,16 +36,95 @@ html, body {
   line-height: 1.6em;
   margin: 0 auto;
   position: relative;
+  background-color: black;
 }
 
 header {
-  z-index: 10;
+  z-index: 1;
   position: absolute;
   width: 100%;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.4);
   height: 60px;
   background-color: #fff;
   overflow: hidden;
+}
+
+.con {
+  display: none;
+  width: 100%;
+  position: fixed;
+  height: 100%;
+  z-index: 2;
+}
+
+.con .containers {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  border-radius: 5px;
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.5);
+  margin: 50px auto;
+  background-color: #ecf0f1;
+  padding-top: 20px;
+}
+
+.con .containers .exit {
+  background-image: url("../img/error.png");
+  background-size: cover;
+  filter: opacity(0.6);
+  position: absolute;
+  top: 10;
+  right: 10;
+  height: 25px;
+  width: 25px;
+}
+
+.con .containers .exit:hover {
+  filter: opacity(0.8);
+  cursor: pointer;
+}
+
+.con .containers .frame-foods {
+  height: 150px;
+  width: 150px;
+  background-color: black;
+  border-radius: 100%;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.con .containers .foods {
+  background-image: url("../img/menu/donburi.jpg");
+  width: inherit;
+  height: inherit;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+  background-position-x: -57px;
+}
+
+.con .containers .food-name {
+  font-family: 'Blacksword';
+  font-size: 2em;
+}
+
+.con .containers .qty {
+  width: 50px;
+  border-radius: 5px;
+}
+
+.con .containers .okay {
+  background-color: #2ecc71;
+  border: solid 0px;
+  width: 80px;
+  height: 30px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .title {
@@ -267,7 +346,7 @@ a:hover {
   color: #fff;
   font-size: 14px;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .container-food .frame .click-food {
@@ -275,10 +354,10 @@ a:hover {
   margin: 20px 0 0 -35px;
   height: 150px;
   width: 250px;
-  background-color: #27ae60;
+  background-color: #2ecc71;
   border-radius: 100%;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .container-food .frame .click-food span {
@@ -298,6 +377,14 @@ a:hover {
   left: 0;
 }
 
+.container-food .click-food:hover, .containers .okay:hover {
+  background-color: #54d98c;
+}
+
+.container-food .click-food:active, .containers .okay:active {
+  background-color: #2ecc71;
+}
+
 .frame:hover .food {
   opacity: 0.5;
 }
@@ -309,14 +396,6 @@ a:hover {
 .frame:hover .click-food {
   display: block;
   cursor: pointer;
-}
-
-.frame:hover .click-food:hover {
-  background-color: #36d278;
-}
-
-.frame:hover .click-food:active {
-  background-color: #27ae60;
 }
 
 .container-order {

@@ -3,25 +3,43 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="./css/main.css">  
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="./js/app.js"></script>
         <title>Eatadakimasu Cafe | Welcome</title>
+
     </head>
 
     <body>
-        <header>
-            <span class="title">Eatadakimasu! Cafe</span>
-            <nav>
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">MENU</a></li>
-                    <li><a href="#">ORDER</a></li>
-                    <li><a href="#">CONTACT</a></li>
-                </ul>
-            </nav>
-        </header>
-
+        <div class="con" id="food-order" onclick="cancelFood();">
+            <div class="containers">
+                <div class="exit"></div>
+                <center>
+                    <div class="frame-foods">
+                        <div class="foods"></div>
+                    </div>
+                    <p class="food-name">Donburi</p>
+                    <p class-"qty-label">Quantity</p>
+                    <input type="number" name="quantity" value="" class="qty"><br>
+                    <p>Special instructions:</p>
+                    <textarea rows="8" cols="40" name="instructions"></textarea><br><br>
+                    <input type="file"><br><br>
+                    <input type="submit" class="okay">
+                </center> 
+            </div>
+        </div>
+        
         <div class="container"> 
+
+            <header>
+                <span class="title">Eatadakimasu! Cafe</span>
+                <nav>
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">MENU</a></li>
+                        <li><a href="#">ORDER</a></li>
+                        <li><a href="#">CONTACT</a></li>
+                    </ul>
+                </nav>
+            </header>
 
             <div class="pimg1 bg">
                 <div class="mainCapbg">
@@ -53,7 +71,7 @@
                                     Curry sauce is served on top of cooked rice to make
                                     curry rice.
                                 </span>
-                                <div class="click-food" id="curry">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -70,7 +88,7 @@
                                 <span class="food-desc">
                                     Fish, meat, vegetables or other ingredients simmered together and served over rice.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -87,7 +105,7 @@
                                 <span class="food-desc">
                                     Japanese sponge cake made of sugar, flour, eggs, and starch syrup. 
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -105,7 +123,7 @@
                                     Seasoned with garlic and ginger along with soy sauce, 
                                     coated lightly with flour, and deep fried.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -123,7 +141,7 @@
                                     Omelette made with fried 
                                     rice and usually topped with ketchup.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -141,7 +159,7 @@
                                     Yellowish broth made with plenty of 
                                     salt and any combination of chicken, vegetables, and seaweed.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -159,7 +177,7 @@
                                     Cold cooked rice shaped in small cakes and topped with 
                                     strips of raw fish, and sliced into pieces.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -177,7 +195,7 @@
                                     Breaded, deep-fried pork cutlet served in bite-sized 
                                     pieces and accompanied by shredded cabbage.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -195,7 +213,7 @@
                                     Seafood that have been battered and deep fried.
                                     Accompanied by shredded cabbage and sauce.
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -212,7 +230,7 @@
                                 <span class="food-desc">
                                     Rice formed into triangular or oval shapes and usually wrapped in nori (seaweed).
                                 </span>
-                                <div class="click-food">
+                                <div class="click-food" onclick="loadHtml();">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -227,7 +245,6 @@
 
             <div class="pimg4 bg">
                 <div class="container-order">
-                    <div id="food-order"></div>
                     <p class="sub cap">Order</p>
                     <div class="left">
                         <div class="container-food">
