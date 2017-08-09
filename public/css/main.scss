@@ -45,84 +45,82 @@ header{
 
 // ORDER
 
-.con{
-    display: none;
-    width: 100%;
+
+
+.containers{
     position: fixed;
-    height: 100%;
     z-index: 2;
+    width: 600px;
+    height: 600px;
+    border-radius: 5px;
+    box-shadow: 5px 10px 10px rgba(0,0,0,0.5);
+    margin: 50px auto;
+    background-color: #ecf0f1;
+    padding-top: 20px;      
+    left: 0;
+    right: 0;
 
-    .containers{
-        position:relative;
-        width: 600px;
-        height: 600px;
-        border-radius: 5px;
-        box-shadow: 5px 10px 10px rgba(0,0,0,0.5);
-        margin: 50px auto;
-        background-color: #ecf0f1;
-        padding-top: 20px;      
-
-        .exit{
-            background-image: url('../img/error.png');
-            background-size: cover;
-            filter: opacity(0.6);
-            position: absolute;
-            top: 10;
-            right: 10;
-            height: 25px;
-            width: 25px;
-        }
-
-        .exit:hover{
-            filter: opacity(0.8);
-            cursor: pointer;
-        }
-
-        .frame-foods{
-            height: 150px;
-            width: 150px;
-            background-color: black;
-            border-radius: 100%;
-            border-style: solid;
-            border-color: #fff;
-            box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-            display: block;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .foods{
-            background-image: url('../img/menu/donburi.jpg');
-            width: inherit;
-            height: inherit;
-            background-size: cover;
-            background-repeat: no-repeat;
-            border-radius: inherit;
-            background-position-x: -57px;
-        }
-
-        .food-name{
-            font-family: 'Blacksword';
-            font-size: 2em;
-        }
-
-        .qty{
-            width: 50px;
-            border-radius: 5px;
-        }
-
-        .okay{
-            background-color: $flat-green;
-            border: solid 0px;
-            width: 80px;
-            height: 30px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            border-radius: 5px;
-            cursor: pointer;
-        }   
+    .exit{
+        background-image: url('../img/error.png');
+        background-size: cover;
+        filter: opacity(0.6);
+        position: absolute;
+        top: 10;
+        right: 10;
+        height: 25px;
+        width: 25px;
     }
-    
+
+    .exit:hover{
+        filter: opacity(0.8);
+        cursor: pointer;
+    }
+
+    .frame-foods{
+        height: 150px;
+        width: 150px;
+        background-color: black;
+        border-radius: 100%;
+        border-style: solid;
+        border-color: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .foods{
+        background-image: url('../img/menu/donburi.jpg');
+        width: inherit;
+        height: inherit;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: inherit;
+        background-position-x: -57px;
+    }
+
+    .food-name{
+        font-family: 'Blacksword';
+        font-size: 2em;
+    }
+
+    .qty{
+        width: 50px;
+        border-radius: 5px;
+    }
+
+    .okay{
+        background-color: $flat-green;
+        border: solid 0px;
+        width: 80px;
+        height: 30px;
+        box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        border-radius: 5px;
+        cursor: pointer;
+    }   
 }
+    
+
 
 .title{
     display: inline-block;

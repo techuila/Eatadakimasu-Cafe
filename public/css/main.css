@@ -49,16 +49,9 @@ header {
   overflow: hidden;
 }
 
-.con {
-  display: none;
-  width: 100%;
+.containers {
   position: fixed;
-  height: 100%;
   z-index: 2;
-}
-
-.con .containers {
-  position: relative;
   width: 600px;
   height: 600px;
   border-radius: 5px;
@@ -66,9 +59,11 @@ header {
   margin: 50px auto;
   background-color: #ecf0f1;
   padding-top: 20px;
+  left: 0;
+  right: 0;
 }
 
-.con .containers .exit {
+.containers .exit {
   background-image: url("../img/error.png");
   background-size: cover;
   filter: opacity(0.6);
@@ -79,12 +74,12 @@ header {
   width: 25px;
 }
 
-.con .containers .exit:hover {
+.containers .exit:hover {
   filter: opacity(0.8);
   cursor: pointer;
 }
 
-.con .containers .frame-foods {
+.containers .frame-foods {
   height: 150px;
   width: 150px;
   background-color: black;
@@ -97,7 +92,7 @@ header {
   overflow: hidden;
 }
 
-.con .containers .foods {
+.containers .foods {
   background-image: url("../img/menu/donburi.jpg");
   width: inherit;
   height: inherit;
@@ -107,17 +102,17 @@ header {
   background-position-x: -57px;
 }
 
-.con .containers .food-name {
+.containers .food-name {
   font-family: 'Blacksword';
   font-size: 2em;
 }
 
-.con .containers .qty {
+.containers .qty {
   width: 50px;
   border-radius: 5px;
 }
 
-.con .containers .okay {
+.containers .okay {
   background-color: #2ecc71;
   border: solid 0px;
   width: 80px;

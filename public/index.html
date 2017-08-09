@@ -9,25 +9,24 @@
     </head>
 
     <body>
-        <div class="con" id="food-order" onclick="cancelFood();">
-            <div class="containers">
-                <div class="exit"></div>
-                <center>
-                    <div class="frame-foods">
-                        <div class="foods"></div>
-                    </div>
-                    <p class="food-name">Donburi</p>
-                    <p class-"qty-label">Quantity</p>
-                    <input type="number" name="quantity" value="" class="qty"><br>
-                    <p>Special instructions:</p>
-                    <textarea rows="8" cols="40" name="instructions"></textarea><br><br>
-                    <input type="file"><br><br>
-                    <input type="submit" class="okay">
-                </center> 
-            </div>
+        <div class="containers" id="food-order">
+            <div class="exit" onclick="cancelFood();"></div>
+            <center>
+                <div class="frame-foods">
+                    <div class="foods"></div>
+                </div>
+                <p class="food-name">Donburi</p>
+                <p class-"qty-label">Quantity</p>
+                <input type="number" name="quantity" value="" class="qty"><br>
+                <p>Special instructions:</p>
+                <textarea rows="8" cols="40" name="instructions"></textarea><br><br>
+                <input type="file"><br><br>
+                <input type="submit" class="okay">
+            </center> 
         </div>
         
-        <div class="container"> 
+        
+        <div class="container" onclick="cancelFood();"> 
 
             <header>
                 <span class="title">Eatadakimasu! Cafe</span>
