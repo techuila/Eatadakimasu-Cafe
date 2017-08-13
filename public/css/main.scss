@@ -2,6 +2,7 @@ $text-color: #fff;
 $primary-color: #e74c3c;
 $nav-hover-color: #3498db;
 $flat-green: #2ecc71;
+$flat-red: #e84a5f;
 $header-height: 60px;
 $desc-font: 13px;
 $food-title-size: 2em;
@@ -120,8 +121,27 @@ header{
         cursor: pointer;
     }   
 }
-    
 
+//BACK TO TOP BUTTON
+
+#back-to-top{
+    background-image: url('../img/back-to-top-arrow.png');
+    background-size: cover;
+    background-color: $flat-red;
+    border-radius: 100%;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+    border: none;
+    position: fixed;
+    bottom: 20; right: 20;
+    height: 55px;
+    width: 55px;
+    z-index: 2;
+}
+
+#back-to-top:hover{
+    background-color: lighten($flat-red, 5%);
+    cursor: pointer;
+}
 
 .title{
     display: inline-block;
