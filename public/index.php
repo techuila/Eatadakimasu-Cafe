@@ -28,40 +28,6 @@
     </div>
 
     <div class="container" id="container-body">
-
-        <header id="asd">
-            <span class="title">Eatadakimasu! Cafe</span>
-            <nav>
-                <ul>
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">MENU</a></li>
-                    <li><a href="#">ORDER</a></li>
-                    <li><a href="#">CONTACT</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <button id="back-to-top"></button>
-
-        <div class="pimg1 bg">
-            <div class="mainCapbg">
-                <p class="main Cap">Every Dish is a Specialty</p>
-                <p class="mainan Cap">A UNIQUE EXPERIENCE IN JAPAN DINING</p>
-            </div>
-        </div>
-        <p class="food-name">Donburi</p>
-        <p class- "qty-label">Quantity</p>
-        <input type="number" name="quantity" value="" class="qty"><br>
-        <p>Special instructions:</p>
-        <textarea rows="8" cols="40" name="instructions"></textarea><br><br>
-        <input type="file"><br><br>
-        <input type="submit" class="okay">
-        </center>
-    </div>
-
-
-    <div class="container" id="container-body">
-
         <header>
             <span class="title">Eatadakimasu! Cafe</span>
             <nav>
@@ -107,9 +73,9 @@
                         <div class="food curry"></div>
                         <center>
                             <span class="food-desc">
-                                    Curry sauce is served on top of cooked rice to make
-                                    curry rice.
-                                </span>
+                                Curry sauce is served on top of cooked rice to make
+                                curry rice.
+                            </span>
                             <div class="click-food" id="curry">
                                 <span>CLICK TO ORDER</span>
                             </div>
@@ -127,206 +93,181 @@
                         <div class="food donburi"></div>
                         <center>
                             <span class="food-desc">
-                                    Fish, meat, vegetables or other ingredients simmered together and served over rice.
-                                </span>
-                            <<<<<<< HEAD <div class="click-food" id="donuri">
+                                Fish, meat, vegetables or other ingredients simmered together and served over rice.
+                            </span>
+                            <div class="click-food" id="donburi">
                                 <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                    </center>
-                    =======
-                    <div class="click-food" id="donburi">
-                        <span>CLICK TO ORDER</span>
-                    </div>
+                    <center>
+                        <p>Donburi</p>
                     </center>
                 </div>
-                <center>
-                    <p>Donburi</p>
-                </center>
-                >>>>>>> 40adad6475a3b1d671e34e0c2107d60f4b007f45
-            </div>
-            <center>
-                <p>Donburi</p>
-            </center>
-        </div>
 
-        <!--3 JAPANESE CAKEY  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food cakey"></div>
-                <center>
-                    <span class="food-desc">
-                                    Japanese sponge cake made of sugar, flour, eggs, and starch syrup. 
-                                </span>
-                    <div class="click-food" id="japanese">
-                        <span>CLICK TO ORDER</span>
+                <!--3 JAPANESE CAKEY  -->
+
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food cakey"></div>
+                        <center>
+                            <span class="food-desc">
+                                Japanese sponge cake made of sugar, flour, eggs, and starch syrup. 
+                            </span>
+                            <div class="click-food" id="japanese">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Japanese Cakey</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Japanese Cakey</p>
+                    </center>
+                </div>
 
-        <!--4 KARAAGEEEEE  -->
+                <!--4 KARAAGEEEEE  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food karaage"></div>
-                <center>
-                    <span class="food-desc">
-                                    Seasoned with garlic and ginger along with soy sauce, 
-                                    coated lightly with flour, and deep fried.
-                                </span>
-                    <div class="click-food" id="karaage">
-                        <span>CLICK TO ORDER</span>
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food karaage"></div>
+                        <center>
+                            <span class="food-desc">
+                                Seasoned with garlic and ginger along with soy sauce, 
+                                coated lightly with flour, and deep fried.
+                            </span>
+                            <div class="click-food" id="karaage">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Karaage</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Karaage</p>
+                    </center>
+                </div>
 
-        <!--5 OMURICEUUUUUUU!  -->
+                <!--5 OMURICEUUUUUUU!  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food omurice"></div>
-                <center>
-                    <span class="food-desc">
-                                    Omelette made with fried 
-                                    rice and usually topped with ketchup.
-                                </span>
-                    <div class="click-food" id="omurice">
-                        <span>CLICK TO ORDER</span>
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food omurice"></div>
+                        <center>
+                            <span class="food-desc">
+                                Omelette made with fried 
+                                rice and usually topped with ketchup.
+                            </span>
+                            <div class="click-food" id="omurice">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Omurice</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Omurice</p>
+                    </center>
+                </div>
 
-        <!--6 RAMEEEEEN OR LAAAMEEEEEN!  -->
+                <!--6 RAMEEEEEN OR LAAAMEEEEEN!  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food ramen"></div>
-                <center>
-                    <span class="food-desc">
-                                    Yellowish broth made with plenty of 
-                                    salt and any combination of chicken, vegetables, and seaweed.
-                                </span>
-                    <div class="click-food" id="ramen">
-                        <span>CLICK TO ORDER</span>
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food ramen"></div>
+                        <center>
+                            <span class="food-desc">
+                                Yellowish broth made with plenty of 
+                                salt and any combination of chicken, vegetables, and seaweed.
+                            </span>
+                            <div class="click-food" id="ramen">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Ramen</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Ramen</p>
+                    </center>
+                </div>
 
-        <!--7 SUSHIIII  -->
+                <!--7 SUSHIIII  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food sushi"></div>
-                <center>
-                    <span class="food-desc">
-                                    Cold cooked rice shaped in small cakes and topped with 
-                                    strips of raw fish, and sliced into pieces.
-                                </span>
-                    <div class="click-food" id="sushi">
-                        <span>CLICK TO ORDER</span>
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food sushi"></div>
+                        <center>
+                            <span class="food-desc">
+                                Cold cooked rice shaped in small cakes and topped with 
+                                strips of raw fish, and sliced into pieces.
+                            </span>
+                            <div class="click-food" id="sushi">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Sushi</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Sushi</p>
+                    </center>
+                </div>
 
-        <!--8 TONKATSU NO JUTSU!  -->
+                <!--8 TONKATSU NO JUTSU!  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food tonkatsu"></div>
-                <center>
-                    <span class="food-desc">
-                                    Breaded, deep-fried pork cutlet served in bite-sized 
-                                    pieces and accompanied by shredded cabbage.
-                                </span>
-                    <div class="click-food" id="tonkatsu">
-                        <span>CLICK TO ORDER</span>
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food tonkatsu"></div>
+                        <center>
+                            <span class="food-desc">
+                                Breaded, deep-fried pork cutlet served in bite-sized 
+                                pieces and accompanied by shredded cabbage.
+                            </span>
+                            <div class="click-food" id="tonkatsu">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Tonkatsu</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Tonkatsu</p>
+                    </center>
+                </div>
 
-        <!--9 TEMPURA MASARAP MALINAMNAN!!  -->
+                <!--9 TEMPURA MASARAP MALINAMNAN!!  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food tempura"></div>
-                <center>
-                    <span class="food-desc">
-                                    Seafood that have been battered and deep fried.
-                                    Accompanied by shredded cabbage and sauce.
-                                </span>
-                    <div class="click-food" id="tempura">
-                        <span>CLICK TO ORDER</span>
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food tempura"></div>
+                        <center>
+                            <span class="food-desc">
+                                Seafood that have been battered and deep fried.
+                                Accompanied by shredded cabbage and sauce.
+                            </span>
+                            <div class="click-food" id="tempura">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Tempura</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Tempura</p>
+                    </center>
+                </div>
 
-        <!--10 ONIGIRI (ZORO SKILL)  -->
+                <!--10 ONIGIRI (ZORO SKILL)  -->
 
-        <div class="container-food">
-            <div class="frame foods">
-                <div class="food onigiri"></div>
-                <center>
-                    <span class="food-desc">
-                                    Rice formed into triangular or oval shapes and usually wrapped in nori (seaweed).
-                                </span>
-                    <div class="click-food" id="onigiri">
-                        <span>CLICK TO ORDER</span>
+                <div class="container-food">
+                    <div class="frame foods">
+                        <div class="food onigiri"></div>
+                        <center>
+                            <span class="food-desc">
+                                Rice formed into triangular or oval shapes and usually wrapped in nori (seaweed).
+                            </span>
+                            <div class="click-food" id="onigiri">
+                                <span>CLICK TO ORDER</span>
+                            </div>
+                        </center>
                     </div>
-                </center>
-            </div>
-            <center>
-                <p>Onigiri</p>
-            </center>
-        </div>
+                    <center>
+                        <p>Onigiri</p>
+                    </center>
+                </div>
 
-    </div>
-    </div>
+            </div>
+        </div>
 
     <!--ORDER SECTION  -->
-
-    <<<<<<< HEAD <div class="pimg4 bg">
-        <div class="container-order">
-            <p class="sub cap">Order</p>
-            <div class="left">
-                <div class="container-food">
-                    <div class="frame order">
-                        <div class="food curry"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="right">
-
-            </div>
-        </div>
-        =======
         <div class="pimg4 bg">
             <p class="sub cap">Order</p>
             <div class="container-order">
@@ -444,11 +385,6 @@
 
         <footer>
         </footer>
-        >>>>>>> 40adad6475a3b1d671e34e0c2107d60f4b007f45
-        </div>
-        <footer>
-        </footer>
-        </div>
 </body>
 
 </html>
