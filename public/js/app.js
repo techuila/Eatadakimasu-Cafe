@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     var order = false;
     //ARRAY VARIABLES AKI SAKA!!!
     var food_names = new Array();
@@ -82,6 +83,12 @@ $(document).ready(function(){
         console.log("food names: " + food_names + "\n food qty: " + food_qty + "\n food price: " + food_price);
         
         cancelFood();
+    });
+
+    //CHECK OUT EVENT HANDLER
+    $("#checkout").click("onclick", function(){
+        // alert("BUSTY LATINA");
+        
     });
 
 

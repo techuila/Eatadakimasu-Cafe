@@ -1,3 +1,4 @@
+
 <!DOCTYPE>
 <html>
     <head>
@@ -337,10 +338,11 @@
 
                 <div class="right">
                     <center>
+                        <form action="test.php" method="post">
                         <table id="cart-table">
                             <thead>
-                                <th>Food Name</th>
-                                <th>Quantity</th>
+                                <th><input type="hidden" name="fname[]" value="curry rice">Food Name </th>
+                                <th><input type="hidden" name="fname[]" value="donburi">Quantity</th>
                                 <th>Price</th>
                             </thead>
                             <tbody id="add-to-cart">
@@ -348,8 +350,9 @@
                             </tbody>    
                         </table>
                         <div class="actions-container">
-                            <button type="submit" class="okay" id="checkout">Checkout</button>
+                            <input type="submit" class="okay" id="checkout" value="Checkout">
                         </div>
+                        </form>
                     </center>
                 </div>
 
