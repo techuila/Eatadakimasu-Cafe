@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     var order = false;
 
 
@@ -137,6 +138,12 @@ $(document).ready(function(){
 
         
         cancelFood();
+    });
+
+    //CHECK OUT EVENT HANDLER
+    $("#checkout").click("onclick", function(){
+        // alert("BUSTY LATINA");
+        
     });
 
 
