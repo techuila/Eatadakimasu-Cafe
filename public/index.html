@@ -2,30 +2,30 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <link rel="stylesheet" href="./css/main.css">  
+        <link rel="stylesheet" href="./css/main.min.css">  
+        <script src="./node_modules/jquery/dist/jquery.js"></script>
         <script src="./js/app.js"></script>
         <title>Eatadakimasu Cafe | Welcome</title>
-
     </head>
 
     <body>
         <div class="containers" id="food-order">
-            <div class="exit" onclick="cancelFood();"></div>
+            <div class="exit" id="exit-order"></div>
             <center>
                 <div class="frame-foods">
                     <div class="foods"></div>
                 </div>
                 <p class="food-name">Donburi</p>
                 <p class-"qty-label">Quantity</p>
-                <input type="number" name="quantity" value="" class="qty"><br>
+                <input type="number" name="quantity" value="" class="qty" id="qty"><br>
                 <p>Special instructions:</p>
                 <textarea rows="8" cols="40" name="instructions"></textarea><br><br>
                 <input type="file"><br><br>
-                <input type="submit" class="okay">
+                <input type="submit" class="okay" value="Add to Cart" id="addtocart">
             </center> 
         </div>     
         
-        <div class="container" onclick="cancelFood();"> 
+        <div class="container" id="container-body"> 
 
             <header id="asd">
                 <span class="title">Eatadakimasu! Cafe</span>
@@ -39,7 +39,7 @@
                 </nav>
             </header>
 
-            <button id="back-to-top" onclick="backTop();"></button>   
+            <button id="back-to-top"></button>   
 
             <div class="pimg1 bg">
                 <div class="mainCapbg">
@@ -71,7 +71,7 @@
                                     Curry sauce is served on top of cooked rice to make
                                     curry rice.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="curry">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -88,7 +88,7 @@
                                 <span class="food-desc">
                                     Fish, meat, vegetables or other ingredients simmered together and served over rice.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="donburi">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -105,7 +105,7 @@
                                 <span class="food-desc">
                                     Japanese sponge cake made of sugar, flour, eggs, and starch syrup. 
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="japanese">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -123,7 +123,7 @@
                                     Seasoned with garlic and ginger along with soy sauce, 
                                     coated lightly with flour, and deep fried.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="karaage">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -141,7 +141,7 @@
                                     Omelette made with fried 
                                     rice and usually topped with ketchup.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="omurice">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -159,7 +159,7 @@
                                     Yellowish broth made with plenty of 
                                     salt and any combination of chicken, vegetables, and seaweed.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="ramen">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -177,7 +177,7 @@
                                     Cold cooked rice shaped in small cakes and topped with 
                                     strips of raw fish, and sliced into pieces.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="sushi">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -195,7 +195,7 @@
                                     Breaded, deep-fried pork cutlet served in bite-sized 
                                     pieces and accompanied by shredded cabbage.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="tonkatsu">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -213,7 +213,7 @@
                                     Seafood that have been battered and deep fried.
                                     Accompanied by shredded cabbage and sauce.
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="tempura">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -230,7 +230,7 @@
                                 <span class="food-desc">
                                     Rice formed into triangular or oval shapes and usually wrapped in nori (seaweed).
                                 </span>
-                                <div class="click-food" onclick="loadHtml();">
+                                <div class="click-food" id="onigiri">
                                     <span>CLICK TO ORDER</span>
                                 </div>
                             </center>
@@ -244,20 +244,118 @@
             <!--ORDER SECTION  -->
 
             <div class="pimg4 bg">
+                <p class="sub cap">Order</p>
                 <div class="container-order">
-                    <p class="sub cap">Order</p>
+                    
+
                     <div class="left">
+
                         <div class="container-food">
-                            <div class="frame order">
-                                <div class="food curry"></div>
+                            
+                            <!--1 CURRY RRICE  -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-curry"></div>
+                                </div>
+                                <span>Curry Rice  • • • • • • • • • • • • • • </span><span class="price">P80</span>
                             </div>
+
+                            <!--2 DONBURI  -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-donburi"></div>
+                                </div>
+                                <span>Donburi  • • • • • • • • • • • • • • • </span><span class="price">P70</span>
+                            </div>
+                            
+                            <!--3 JAPANESE CAKEY -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-japanese"></div>
+                                </div>
+                                <span>Japanese Cakey  • • • • • • • • • • P30</span>
+                            </div>
+
+                            <!--4 KARAAGE -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-karaage"></div>
+                                </div>
+                                <span>Karaage  • • • • • • • • • • • • • P70</span>
+                            </div>
+                            
+                            <!--5 OMURICE -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-omurice"></div>
+                                </div>
+                                <span>Omurice  • • • • • • • • • • • • • P40</span>
+                            </div>
+                            
+                            <!--6 RAMEN -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-ramen"></div>
+                                </div>
+                                <span>Ramen  • • • • • • • • • • • • • P80</span>
+                            </div>
+                            
+                            <!--7 SUSHII -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-sushi"></div>
+                                </div>
+                                <span>Sushi  • • • • • • • • • • • • • P200</span>
+                            </div>
+                            
+                            <!--8 TONKATSU -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-tonkatsu"></div>
+                                </div>
+                                <span>Tonkatsu  • • • • • • • • • • • • • P100</span>
+                            </div>
+                            
+                            <!--9 TEMPURA -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-tempura"></div>
+                                </div>
+                                <span>Tempura  • • • • • • • • • • • • • P50</span>
+                            </div>
+                            
+                            <!--10 ONIGIRI -->
+                            <div class="foodspan">
+                                <div class="frame order">
+                                    <div class="food add" id="add-onigiri"></div>
+                                </div>
+                                <span>Onigiri  • • • • • • • • • • • • • P30</span>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="right">
 
-                    </div>
+                <div class="right">
+                    <center>
+                        <table id="cart-table">
+                            <thead>
+                                <th>Food Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </thead>
+                            <tbody id="add-to-cart">
+                                
+                            </tbody>    
+                        </table>
+                        <div class="actions-container">
+                            <button type="submit" class="okay" id="checkout">Checkout</button>
+                        </div>
+                    </center>
+                </div>
+
                 </div>
             </div>
+            
             <footer>
             </footer>    
         </div>

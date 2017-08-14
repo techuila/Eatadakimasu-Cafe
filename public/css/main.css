@@ -113,7 +113,7 @@ header {
   border-radius: 5px;
 }
 
-.containers .okay {
+.okay {
   background-color: #2ecc71;
   border: solid 0px;
   width: 80px;
@@ -141,6 +141,10 @@ header {
 #back-to-top:hover {
   background-color: #eb6173;
   cursor: pointer;
+}
+
+#back-to-top:focus {
+  outline: 0;
 }
 
 .title {
@@ -243,7 +247,7 @@ a:hover {
   margin: auto;
 }
 
-.sub, .sub2 {
+.sub, .sub2, .container-order .left .foodspan span {
   font-family: 'Blacksword';
   font-size: 5em;
   color: #fff;
@@ -417,26 +421,63 @@ a:hover {
 .container-order {
   display: flex;
   align-items: stretch;
-  height: inherit;
-  display: block;
-}
-
-.container-order .order {
-  height: 100px;
-  width: 100px;
-}
-
-.container-order .order .curry {
-  background-position-x: -40px;
+  height: 845px;
 }
 
 .container-order .left {
-  margin: 50px 0 0 0;
   width: 100%;
+  padding: 0;
+}
+
+.container-order .left .foodspan {
+  height: 80px;
+  width: 668px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.container-order .left .foodspan .frame {
+  margin: 10px 0 10px 10px;
+}
+
+.container-order .left .foodspan .order {
+  height: 60px;
+  width: 60px;
+  display: inline-block;
+}
+
+.container-order .left .foodspan .order .add {
+  background-image: url("../img/plus.png");
+  background-size: cover;
+  background-color: #fff;
+}
+
+.container-order .left .foodspan .order .add:hover {
+  cursor: pointer;
+}
+
+.container-order .left .foodspan span {
+  margin: 0 0 0 10px;
+  font-size: 2em;
 }
 
 .container-order .right {
-  width: 900px;
+  width: 990px;
+  background-color: lightblue;
+}
+
+.container-order .right #cart-table {
+  width: 500px;
+}
+
+.container-order .right #cart-table #qty {
+  width: 50px;
+}
+
+.container-order .right #checkout {
+  width: 80px;
+  right: 0;
 }
 
 @media only screen and (max-width: 914px) {
@@ -494,7 +535,7 @@ a:hover {
   .pimg1 .mainCapbg .mainan {
     font-size: .5em;
   }
-  .pimg2 .container-story .sub, .pimg2 .container-menu .sub, .pimg2 .container-order .sub, .pimg2 .container-story .sub2, .pimg2 .container-menu .sub2, .pimg2 .container-order .sub2 {
+  .pimg2 .container-story .sub, .pimg2 .container-menu .sub, .pimg2 .container-order .sub, .pimg2 .container-story .sub2, .pimg2 .container-menu .sub2, .pimg2 .container-order .sub2, .container-order .left .foodspan .pimg2 .container-story span, .container-order .left .foodspan .pimg2 .container-menu span, .pimg2 .container-order .left .foodspan span {
     margin: 45px 0 30px 0;
   }
   .pimg2 .container-story .subnan, .pimg2 .container-menu .subnan, .pimg2 .container-order .subnan {
