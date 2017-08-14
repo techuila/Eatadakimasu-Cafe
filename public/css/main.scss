@@ -2,10 +2,14 @@ $text-color: #fff;
 $primary-color: #e74c3c;
 $nav-hover-color: #3498db;
 $flat-green: #2ecc71;
+$flat-red: #e84a5f;
 $header-height: 60px;
 $desc-font: 13px;
 $food-title-size: 2em;
 $title-size: 5em;
+
+$food-width: 180px;
+$food-height: 180px;
 
 @mixin font-face($font-family,$custom-name, $source, $format){
     @font-face{
@@ -109,19 +113,43 @@ header{
         width: 50px;
         border-radius: 5px;
     }
-
-    .okay{
-        background-color: $flat-green;
-        border: solid 0px;
-        width: 80px;
-        height: 30px;
-        box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        border-radius: 5px;
-        cursor: pointer;
-    }   
 }
-    
 
+.okay{
+    background-color: $flat-green;
+    border: solid 0px;
+    width: 80px;
+    height: 30px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    cursor: pointer;
+} 
+  
+
+//BACK TO TOP BUTTON
+
+#back-to-top{
+    background-image: url('../img/back-to-top-arrow.png');
+    background-size: cover;
+    background-color: $flat-red;
+    border-radius: 100%;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+    border: none;
+    position: fixed;
+    bottom: 20; right: 20;
+    height: 55px;
+    width: 55px;
+    z-index: 2;
+}
+
+#back-to-top:hover{
+    background-color: lighten($flat-red, 5%);
+    cursor: pointer;
+}
+
+#back-to-top:focus{
+    outline: 0;
+}
 
 .title{
     display: inline-block;
@@ -261,8 +289,8 @@ a:hover{
     position: relative;
 
     .foods{
-        width: 180px;
-        height: 180px;
+        width: $food-width;
+        height: $food-height;
     }
 
     .frame{
@@ -406,25 +434,67 @@ a:hover{
     @extend .container-story;
     display: flex;
     align-items: stretch;
-    height: inherit;
-    display: block;
-    
-    .order{
-        height: 100px;
-        width: 100px;
+    height: 845px;
 
-        .curry{
-            background-position-x: -40px;
+    .left{
+        width: 100%;
+        padding: 0;
+
+        .foodspan{
+            height: 80px;
+            width: 668px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            // background-color: lightblue;
+            
+            .frame{
+                margin: 10px 0 10px 10px;
+            }
+            
+            .order{
+                height: 60px;
+                width: 60px;
+                display: inline-block;
+
+                .add{
+                    background-image: url('../img/plus.png');
+                    background-size: cover;
+                    background-color: #fff;
+                }
+                .add:hover{
+                    cursor: pointer;
+                }
+            }
+
+            span{
+                @extend .sub;             
+                margin: 0 0 0 10px;   
+                font-size: 2em;
+                // background-color: blue;
+            }
+
+            .price{
+                // background-color: white;    
+            }
         }
     }
 
-    .left{
-        margin: 50px 0 0 0;
-        width: 100%;
-    }
-
     .right{
-        width: 900px;
+        width: 990px;
+        background-color: lightblue;
+
+        #cart-table{
+            width: 500px;
+
+            #qty{
+                width: 50px;
+            }
+        }
+        #checkout{
+            width: 80px;
+            right: 0;
+        }
     }
 }
 

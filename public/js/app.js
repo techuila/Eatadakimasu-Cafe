@@ -1,44 +1,48 @@
 $(document).ready(function(){
     var order = false;
+    //ARRAY VARIABLES AKI SAKA!!!
+    var food_names = new Array();
+    var food_qty = new Array();
+    var food_price = new Array();
 
-    $("#curry").click("onclick", function(){
-        displayFoodOrder("curry", "Curry Rice")
+    $("#curry, #add-curry").click("onclick", function(){
+        displayFoodOrder("curry", "Curry Rice");
     });
 
-    $("#donburi").click("onclick", function(){
-        displayFoodOrder("donburi", "Donburi")
+    $("#donburi, #add-donburi").click("onclick", function(){
+        displayFoodOrder("donburi", "Donburi");
     });
 
-    $("#japanese").click("onclick", function(){
-        displayFoodOrder("japanesecake", "Japanese Cakey")
+    $("#japanese, #add-japanese").click("onclick", function(){
+        displayFoodOrder("japanesecake", "Japanese Cakey");
     });
 
-    $("#karaage").click("onclick", function(){
-        displayFoodOrder("karaage", "Karaage")
+    $("#karaage, #add-karaage").click("onclick", function(){
+        displayFoodOrder("karaage", "Karaage");
     });
 
-    $("#omurice").click("onclick", function(){
-        displayFoodOrder("omurice", "Omurice")
+    $("#omurice, #add-omurice").click("onclick", function(){
+        displayFoodOrder("omurice", "Omurice");
     });
 
-    $("#onigiri").click("onclick", function(){
-        displayFoodOrder("onigiri", "Onigiri")
+    $("#onigiri, #add-onigiri").click("onclick", function(){
+        displayFoodOrder("onigiri", "Onigiri");
     });
 
-    $("#ramen").click("onclick", function(){
-        displayFoodOrder("ramen", "Ramen")
+    $("#ramen, #add-ramen").click("onclick", function(){
+        displayFoodOrder("ramen", "Ramen");
     });
 
-    $("#sushi").click("onclick", function(){
-        displayFoodOrder("sushi", "Sushi")
+    $("#sushi, #add-sushi").click("onclick", function(){
+        displayFoodOrder("sushi", "Sushi");
     });
 
-    $("#tempura").click("onclick", function(){
-        displayFoodOrder("tempura", "Tempura")
+    $("#tempura, #add-tempura").click("onclick", function(){
+        displayFoodOrder("tempura", "Tempura");
     });
 
-    $("#tonkatsu").click("onclick", function(){
-        displayFoodOrder("tonkatsu", "Curry Rice")
+    $("#tonkatsu, #add-tonkatsu").click("onclick", function(){
+        displayFoodOrder("tonkatsu", "Curry Rice");
     });
 
     $("#exit-order").click("onclick", function(){
@@ -49,8 +53,40 @@ $(document).ready(function(){
         cancelFood();
     });
 
+    //BACK TO TOP BUTTON PRESSED
+    $("#back-to-top").click("onclick", function(){
+        document.body.scrollTop = 0;
+    });
+
+    //ORDER FOOD FORM AKI SAKA MGA VALUES STABA CART!!!!!!
+    $("#addtocart").click("onclick", function(){
+        var tbody = document.getElementById("add-to-cart");
+        var tr = document.createElement("tr");
+        var fooditem = document.createElement("th");
+        var qty = document.createElement("td");
+        console.log(qty);
+        var price = document.createElement("td");
+        var foodname = document.getElementsByClassName("food-name").item(0).innerHTML;
+        qty.appendChild(document.createTextNode(document.getElementById("qty").value));
+        fooditem.appendChild(document.createTextNode(foodname));
+        price.appendChild(document.createTextNode(document.getElementById("qty").value * 70));
+        tr.appendChild(fooditem);
+        tr.appendChild(qty);
+        tr.appendChild(price)
+        tbody.appendChild(tr);
+
+        //ADD VALUES TO ARRAY
+        food_names.push(foodname);
+        food_qty.push(document.getElementById("qty").value);
+        food_price.push(document.getElementById("qty").value * 70);
+        console.log("food names: " + food_names + "\n food qty: " + food_qty + "\n food price: " + food_price);
+        
+        cancelFood();
+    });
+
 
     function displayFoodOrder(food, foodname){
+        console.log("display food order clicked");
         order = true;
         document.getElementById("food-order").style = "display: initial;";
         document.getElementsByClassName("container").item(0).style = "filter: blur(10px);opacity: 0.6;";
