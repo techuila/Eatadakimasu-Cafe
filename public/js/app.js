@@ -1,9 +1,6 @@
 $(document).ready(function(){
     var order = false;
-    //ARRAY VARIABLES AKI SAKA!!!
-    var food_names = new Array();
-    var food_qty = new Array();
-    var food_price = new Array();
+
 
     $("#curry, #add-curry").click("onclick", function(){
         displayFoodOrder("curry", "Curry Rice");
@@ -61,25 +58,83 @@ $(document).ready(function(){
     //ORDER FOOD FORM AKI SAKA MGA VALUES STABA CART!!!!!!
     $("#addtocart").click("onclick", function(){
         var tbody = document.getElementById("add-to-cart");
-        var tr = document.createElement("tr");
+        var foodname = document.getElementsByClassName("food-name").item(0).innerHTML;        
+
+        //ADD TO TABLES
+        var new_row = document.createElement("tr");
         var fooditem = document.createElement("th");
         var qty = document.createElement("td");
-        console.log(qty);
         var price = document.createElement("td");
-        var foodname = document.getElementsByClassName("food-name").item(0).innerHTML;
-        qty.appendChild(document.createTextNode(document.getElementById("qty").value));
-        fooditem.appendChild(document.createTextNode(foodname));
-        price.appendChild(document.createTextNode(document.getElementById("qty").value * 70));
-        tr.appendChild(fooditem);
-        tr.appendChild(qty);
-        tr.appendChild(price)
-        tbody.appendChild(tr);
+        
 
-        //ADD VALUES TO ARRAY
-        food_names.push(foodname);
-        food_qty.push(document.getElementById("qty").value);
-        food_price.push(document.getElementById("qty").value * 70);
-        console.log("food names: " + food_names + "\n food qty: " + food_qty + "\n food price: " + food_price);
+        //ADD INPUT BUT HIDDEN
+        var input_fooditem = document.createElement("input");
+        var input_qty = document.createElement("input");
+        var input_price = document.createElement("input");
+        
+
+        //ADD ATTRIBUTES OF INPUT
+        //ADD ATTRIBUTE TYPE
+        var type_food = document.createAttribute("type");
+        var type_qty = document.createAttribute("type");
+        var type_price = document.createAttribute("type");
+
+        //SET TYPE TO HIDDEN
+        type_food.value = "hidden";
+        type_qty.value = "hidden";
+        type_price.value = "hidden";
+
+        //SET ATTRIBUTE TYPE TO INPUT
+        input_fooditem.setAttributeNode(type_food);
+        input_qty.setAttributeNode(type_qty);
+        input_price.setAttributeNode(type_price);
+
+        //ADD ATTRIBUTE NAME OF INPUT
+        var name_food = document.createAttribute("name");
+        var name_qty = document.createAttribute("name");
+        var name_price = document.createAttribute("name");
+
+        //SET ATTRIBUTE NAME OF INPUT
+        name_food.value = "fname[]";
+        name_qty.value = "qty[]";
+        name_price.value = "price[]";
+
+        input_fooditem.setAttributeNode(name_food);
+        input_qty.setAttributeNode(name_qty);
+        input_price.setAttributeNode(name_price);
+
+        //CREATE ATTRIBUTE VALUES OF INPUT
+        var food_val = document.createAttribute("value");
+        var qty_val = document.createAttribute("value");
+        var price_val = document.createAttribute("value");
+
+        //SET ATTRIBUTE VALUES OF INPUT
+        food_val.value = foodname;
+        qty_val.value = document.getElementById("qty").value;
+        price_val.value = document.getElementById("qty").value * 70;
+
+        //SET ATTRIBUTE NODE OF INPUT
+        input_fooditem.setAttributeNode(food_val);
+        input_qty.setAttributeNode(qty_val);
+        input_price.setAttributeNode(price_val);
+
+        //SHOW VALUES TO TABLES
+        fooditem.appendChild(document.createTextNode(foodname));        
+        qty.appendChild(document.createTextNode(document.getElementById("qty").value));
+        price.appendChild(document.createTextNode(document.getElementById("qty").value * 70));
+
+        //APPEND HIDDEN INPUT TO TABLES
+        fooditem.appendChild(input_fooditem);
+        qty.appendChild(input_qty);
+        price.appendChild(input_price);
+
+        //APPEND NEW ROW TO TABLE
+        new_row.appendChild(fooditem);
+        new_row.appendChild(qty);
+        new_row.appendChild(price)
+
+        tbody.appendChild(new_row);
+
         
         cancelFood();
     });
