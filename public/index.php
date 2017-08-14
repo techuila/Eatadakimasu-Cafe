@@ -362,11 +362,11 @@
 
                 <div class="right">
                     <center>
-                        <form action="test.php" method="post">
+                        <form action="test.php" target="_blank" method="post">
                         <table id="cart-table">
                             <thead>
-                                <th><input type="hidden" name="fname[]" value="curry rice">Food Name </th>
-                                <th><input type="hidden" name="fname[]" value="donburi">Quantity</th>
+                                <th>Food Name </th>
+                                <th>Quantity</th>
                                 <th>Price</th>
                             </thead>
                             <tbody id="add-to-cart">
