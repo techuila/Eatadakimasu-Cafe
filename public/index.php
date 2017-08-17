@@ -1,4 +1,3 @@
-
 <!DOCTYPE>
 <html>
 
@@ -6,11 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.min.css">
     <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./js/test.js"></script>
     <script src="./js/app.js"></script>
     <title>Eatadakimasu Cafe | Welcome</title>
+
+    <script>
+        var app = angular.module('app', []);
+
+
+        app.directive('addToCart', function($compile){
+            return{
+                link: function(li, element){
+                    element.bind("click", function(){
+                        var foodname = document.getElementsByClassName("food-name").item(0).innerHTML;        
+                        var qty = document.getElementById("qty").value;
+                        var price = document.getElementById("qty").value * 70;
+                        var bod = angular.element('#add-to-cart');
+                        var childNode = $compile('<tr><th colspan="2"><input type="hidden" name="' + 'fname[]' + '" value="' + foodname + '">'+ foodname + '</th>'+
+                                    '<td><input type="hidden" name="' + 'qty[]' + '" value="' + qty + '">'+ qty + '</td>' + 
+                                    '<td><input type="hidden" name="' + 'price[]' + '" value="' + price + '">'+ price + '</td></tr>')(li)
+                        bod.parent().append(childNode);
+                    });
+                }
+            }
+        });
+    </script>
 </head>
 
-<body>
+<body ng-app="app">
     <div class="containers" id="food-order">
         <div class="exit" id="exit-order"></div>
         <center>
@@ -18,15 +41,15 @@
                 <div class="foods"></div>
             </div>
             <p class="food-name">Donburi</p>
-            <p class- "qty-label">Quantity</p>
-            <input type="number" name="quantity" value="" class="qty" id="qty"><br>
+            <p class="qty-label">Quantity</p>
+            <input type="number" ng-model="boom" name="quantity" value="" class="qty" id="qty"><br> 
             <p>Special instructions:</p>
             <textarea rows="8" cols="40" name="instructions"></textarea><br><br>
             <input type="file"><br><br>
-            <input type="submit" class="okay" value="Add to Cart" id="addtocart">
+            <input type="submit" class="okay" value="Add to Cart" id="addtocart" add-To-Cart>
         </center>
     </div>
-
+   
     <div class="container" id="container-body">
         <header>
             <span class="title">Eatadakimasu! Cafe</span>
@@ -362,21 +385,19 @@
 
                 <div class="right">
                     <center>
-                        <form action="test.php" target="_blank" method="post">
-                        <table id="cart-table">
-                            <thead>
-                                <th>Food Name </th>
+                        <!-- <form action="test.php" target="_blank" method="post"> -->
+                        <table id="cart-table" border="2">
+                            <thead >
+                                <th colspan="2">Food Name</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
                             </thead>
                             <tbody id="add-to-cart">
-
                             </tbody>
                         </table>
                         <div class="actions-container">
-                            <input type="submit" class="okay" id="checkout" value="Checkout">
-                        </div>
-                        </form>
+                            <input type="submit" class="okay" id="checkout" value="Checkout"> </div>
+                        <!-- </form> -->
                     </center>
                 </div>
 
