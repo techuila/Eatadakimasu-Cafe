@@ -49,8 +49,6 @@ header{
 
 // ORDER
 
-
-
 .containers{
     display: none;
     position: fixed;
@@ -113,6 +111,10 @@ header{
         width: 50px;
         border-radius: 5px;
     }
+}
+
+.check{
+    display: inline-block;
 }
 
 .okay{

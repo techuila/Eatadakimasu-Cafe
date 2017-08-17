@@ -113,6 +113,10 @@ header {
   border-radius: 5px;
 }
 
+.check {
+  display: inline-block;
+}
+
 .okay {
   background-color: #2ecc71;
   border: solid 0px;

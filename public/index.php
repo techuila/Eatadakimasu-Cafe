@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="stylesheet" href="./css/main.css">
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./js/test.js"></script>
@@ -12,20 +12,59 @@
 
     <script>
         var app = angular.module('app', []);
-
-
+        var c = 0;
+        app.controller('myCtrl', function($scope){
+            $scope.showMe = false;
+            $scope.showInst = function(){
+                $scope.showMe = !$scope.showMe;
+            };
+        });
         app.directive('addToCart', function($compile){
             return{
                 link: function(li, element){
                     element.bind("click", function(){
-                        var foodname = document.getElementsByClassName("food-name").item(0).innerHTML;        
-                        var qty = document.getElementById("qty").value;
-                        var price = document.getElementById("qty").value * 70;
+                        var foodname = document.getElementsByClassName("food-name").item(0).innerHTML;   
+                        var qty = document.getElementsByClassName("qty");
+                        
+                        //VALUE OF ADD ONS
+                        var japan = document.getElementById("japan").checked;
+                        var pudding = document.getElementById("pudding").checked;
+                        var lipton = document.getElementById("lipton").checked;
+                        var iced = document.getElementById("iced").checked;
+
+                        var addons = '';
+
                         var bod = angular.element('#add-to-cart');
-                        var childNode = $compile('<tr><th colspan="2"><input type="hidden" name="' + 'fname[]' + '" value="' + foodname + '">'+ foodname + '</th>'+
-                                    '<td><input type="hidden" name="' + 'qty[]' + '" value="' + qty + '">'+ qty + '</td>' + 
-                                    '<td><input type="hidden" name="' + 'price[]' + '" value="' + price + '">'+ price + '</td></tr>')(li)
+                        var childNode = $compile('<tr><th align="left"><input type="hidden" name="' + 'order[][]' + '" value="' + foodname + '">'+ foodname + '</th>'+
+                                        '<td><input type="hidden" name="' + 'order[][]' + '" value="' + qty.item(0).value + '">'+ qty.item(0).value + '</td>' + 
+                                        '<td><input type="hidden" name="' + 'order[][]' + '" value="' + qty.item(0).value * 70 + '">'+ qty.item(0).value * 70 + '</td></tr>' + addItem())(li)
                         bod.parent().append(childNode);
+
+
+                        function addItem(){
+                            if (japan == true || pudding == true || lipton == true || iced == true){
+                                addons += '<tr><td style="padding-left: 20px;">Add ons:</td></tr>';
+                                
+                                if(japan == true || pudding == true){
+                                    if(japan == true)
+                                        addons += '<tr><td style="padding-left: 50px;"><input type="hidden" name="' + 'addons[][]' + '" value="Japanese Cakey">'+'-Japanese Cakey</td><td><input type="hidden" name="' + 'qty_add[][]' + '" value="' + qty.item(1).value + '">'+ qty.item(1).value + '</td><td><input type="hidden" name="' + 'price_add[][]' + '" value="' + qty.item(1).value * 15+ '">'+ qty.item(1).value * 15+'</td></tr>';
+                                    if(pudding == true)
+                                        addons += '<tr><td style="padding-left: 50px;"><input type="hidden" name="' + 'addons[][]' + '" value="Pudding">'+'-Pudding</td><td><input type="hidden" name="' + 'qty_add[][]' + '" value="' + qty.item(2).value + '">'+ qty.item(2).value + '</td><td><input type="hidden" name="' + 'price_add[][]' + '" value="' + qty.item(2).value * 15+ '">'+ qty.item(2).value * 15+'</td></tr>' ;
+                                }
+                                
+                                if(lipton == true || iced == true){
+                                    if(lipton == true)
+                                        addons += '<tr><td style="padding-left: 50px;"><input type="hidden" name="' + 'addons[][]' + '" value="Lipton Green Tea">-Lipton Green Tea</td><td><input type="hidden" name="' + 'qty_add[][]' + '" value="' + qty.item(3).value + '">'+qty.item(1).value+'</td><td><input type="hidden" name="' + 'price_add[][]' + '" value="' + qty.item(3).value * 15 + '">'+qty.item(3).value * 15+'</td></tr>';
+                                    if(iced == true)
+                                        addons += '<tr><td style="padding-left: 50px;"><input type="hidden" name="' + 'addons[][]' + '" value="Iced Tea">-Iced Tea</td><td><input type="hidden" name="' + 'qty_add[][]' + '" value="' + qty.item(4).value + '">'+qty.item(4).value+'</td><td><input type="hidden" name="' + 'price_add[][]' + '" value="' + qty.item(4).value * 15+ '">'+qty.item(4).value * 15+'</td></tr>' ;
+                                }
+
+                                return addons;
+                            }
+                        }
+
+                        // console.log(document.getElementById('lipton').value);
+                        var japan = document.getElementById("japan").checked;
                     });
                 }
             }
@@ -33,18 +72,35 @@
     </script>
 </head>
 
-<body ng-app="app">
+<body ng-app="app" ng-controller="myCtrl">
     <div class="containers" id="food-order">
         <div class="exit" id="exit-order"></div>
+        
         <center>
             <div class="frame-foods">
                 <div class="foods"></div>
             </div>
             <p class="food-name">Donburi</p>
             <p class="qty-label">Quantity</p>
-            <input type="number" ng-model="boom" name="quantity" value="" class="qty" id="qty"><br> 
-            <p>Special instructions:</p>
-            <textarea rows="8" cols="40" name="instructions"></textarea><br><br>
+            <input type="number" ng-model="boom" name="quantity" value="" class="qty"><br> 
+            <p><h3>Add ons:</h3></p>
+            <span><Strong>Side dish:</Strong></span> 
+
+            <input type="checkbox" id="japan" value="true">Japanese Cakey
+            <input type="number" name="" value="" class="qty">
+            <input type="checkbox" id="pudding" value="true">Pudding
+            <input type="number" name="" value="" class="qty"><br>
+
+            <spanp><Strong>Drinks:</Strong></span> 
+
+            <input type="checkbox" id="lipton" value="lipton">Lipton Green Tea
+            <input type="number" name="" value="" class="qty">
+            <input type="checkbox" id="iced" value="iced">Iced Tea
+            <input type="number" name="" value="" class="qty"><br>
+
+            <span>Special instructions:</span> 
+            <input type="checkbox" id="" value="" ng-click="showInst()"><br>
+            <textarea rows="3" cols="40" name="instructions" ng-show="showMe"></textarea><br>
             <input type="file"><br><br>
             <input type="submit" class="okay" value="Add to Cart" id="addtocart" add-To-Cart>
         </center>
@@ -385,19 +441,56 @@
 
                 <div class="right">
                     <center>
-                        <!-- <form action="test.php" target="_blank" method="post"> -->
-                        <table id="cart-table" border="2">
-                            <thead >
-                                <th colspan="2">Food Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                            </thead>
-                            <tbody id="add-to-cart">
-                            </tbody>
-                        </table>
-                        <div class="actions-container">
-                            <input type="submit" class="okay" id="checkout" value="Checkout"> </div>
-                        <!-- </form> -->
+                        <form action="test.php" target="_blank" method="post"> 
+                            <table id="cart-table" border=2>
+                                <thead >
+                                    <th>Food Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </thead>
+                                <tbody id="add-to-cart">
+                                    <!-- <tr>
+                                        <td>asdasd</td>
+                                        <td>asdasd</td>
+                                        <td>asdasd</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 20px;">Add ons:</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 30px;">•Side Dish</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding-left: 50px;">-Japanese Cakey</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 50px;">-Pudding</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding-left: 30px;">•Drinks</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td style="padding-left: 50px;">-Lipton Green Tea</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 50px;">-Iced Tea</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                            <div class="actions-container">
+                                <input type="submit" class="okay" id="checkout" value="Checkout"> </div>
+                        </form> 
                     </center>
                 </div>
 
