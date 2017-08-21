@@ -1,0 +1,446 @@
+/* ====================================
+            GLOBAL COLORS
+====================================*/
+$flat-blue: #00a8ff;
+$dark-gray: #34495e;
+$custom-white: #ecf0f1;
+$flat-red: #f06953;
+$flat-green: #2ecc71;
+
+
+
+
+/* ====================================
+                FONTS 
+====================================*/
+@mixin font-face($font-family,$custom-name, $source, $format){
+    @font-face{
+        font-family: $custom-name;
+        font-style: normal;
+        font-weight: 400;
+        src:  local($font-family), url($source) format($format);
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+    }
+}
+
+@include font-face('Blacksword','Blacksword', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
+@include font-face('MinionPro-Regular','MinionPro', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/MinionPro-Regular.otf','opentype');
+@include font-face('Gobold Regular','Gobold Reg', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Regular.ttf','truetype');
+@include font-face('Gobold Hollow','Gobold Hol', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
+
+
+
+/* ====================================
+              KEYFRAMES
+====================================*/
+
+
+@keyframes in-loc-nav{
+    from{
+        color: $dark-gray;
+    }
+    to{
+        color: $flat-blue;
+    }
+}
+
+@keyframes out-loc-nav{
+    from{
+        color: $flat-blue;
+    }
+    to{
+        color: $dark-gray;
+    }
+}
+
+@keyframes animateBottom{
+    from{
+        top: -300px;
+    }
+
+    to{
+        top: 0;
+        background-color: #fff;
+    }
+}
+
+@keyframes fade-in{
+        from{
+            background-color: $flat-blue;
+        }
+        to{
+            background-color: lighten($flat-blue, 10%);
+        }
+}
+
+@keyframes animateTop{
+    from{
+        background-color: #fff;
+    }
+
+    to{
+        background: none;
+    }
+}
+
+
+/* ====================================
+               GLOBAL 
+====================================*/
+.container{
+    width: 90%;
+    margin: auto;
+}
+
+.bg{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+}
+
+section{
+    .art-bg{
+        position: absolute;
+        top: 45%; 
+        text-align: center;
+        width: 100%;
+    }
+}
+
+p{
+    color: lighten($dark-gray,15%);
+}
+
+
+
+
+
+/* ====================================
+                HTML
+====================================*/
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Minion Pro";
+    font-size: 14px;
+    color: $dark-gray;
+    background-color: #fefefe;
+}
+
+h1, p{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* ====================================
+                BODY
+             NAVIGATION 
+====================================*/
+
+.animate-scroll-bottom{
+    box-shadow: 0 3px 5px rgba(0,0,0,0.4);
+    animation: animateBottom 0.5s forwards;
+    
+}
+
+.animate-scroll-top{
+    animation: animateTop 0.5s;
+}
+
+header{
+    text-transform: uppercase;
+    font-family: "Roboto";
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+
+    .container{
+        
+        h1{
+            float: left;
+            color: $dark-gray;
+            margin-top: 5px;
+            span{
+                color: darken($custom-white,10%);
+            }
+        }
+
+        nav{
+            float: right;
+            ul{
+                text-decoration: none;
+                li{
+                    display: inline-block;
+                    text-decoration: none;                    
+                    a{
+                        text-decoration: none;
+                        color: $dark-gray;
+                        padding: 10px 15px;
+                    }
+                    .sign-in{
+                        background-color: $flat-blue;
+                        border-radius: 2px;
+                        color: #fff;
+                    }
+                    .sign-in:hover{
+                        animation: fade-in 0.3s forwards;                      
+                        color: #fff;
+                    }
+                    // ANIMATION COLOR FADE IN IN SIGN IN
+                    
+                    a:hover{
+                        color: $flat-blue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* ====================================
+             HOME SECTION  
+====================================*/
+section#home{
+    .home-background{
+        background-image: url('../../img/01.jpg');
+        min-height: 100%;
+        opacity: 0.8;
+    }
+    
+    .art-bg{  
+        h1{
+            font-family: 'Blacksword';
+            font-size: 70px;
+            color: #fff;
+            letter-spacing: 5px;
+            text-shadow: 3px 5px 7px rgba(0,0,0,0.8);
+        }
+        hr{
+            width: 65%;
+        }
+        p{
+            font-family: "Minion Pro";
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            text-shadow: 2px 2px 1px rgba(255,255,255,1);
+        }
+    }
+}
+
+
+/* ====================================
+             ABOUT SECTION
+====================================*/
+
+section#about{
+    padding: 10% 0;
+    width: 80%;
+    img{
+        margin-right: 50px;
+        height: 650px;
+        float: left;
+        opacity: 0.8;
+    }
+    img:hover{
+        opacity: 1;
+    }
+    article.about{
+        h1{
+            text-align: center; 
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+        p{
+            font-size: 18px;
+            line-height: 1.5em;
+        }
+    }
+}
+
+section#menu{
+    clear: both;
+}
+
+/* ====================================
+             MENU SECTION
+====================================*/
+
+section#menu{
+    position: relative;
+    .menu-background{
+        background-image: url('../../img/04.jpg');
+        height: 80%;
+        opacity: 0.9;
+    }
+
+    .art-bg{
+        h1{
+            font-family: "Open Sans";
+            font-size: 70px;
+            color: $flat-blue;
+            // letter-spacing: 5px;
+            span{
+                color: #fff;
+                border-bottom: 7px solid #fff;
+            }
+        }
+    }
+}
+
+
+/* ====================================
+         MENU LANG TE SIEMPRE
+====================================*/
+
+
+section.container{
+    padding: 10% 0;
+    text-align: center;
+
+    article.menu{
+        h1{
+            font-size: 38px;
+        }
+
+        p{
+            font-size: 22px;
+        }
+    }
+    .box-container{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 30px;
+
+        /* ====================================================
+             FOOOOOOOOOOD WADAFAK NUMA MAN BUYUNG BUNANI
+        ====================================================*/
+        .curry{
+            background-image: url('../../img/menu/curry.jpg');
+        }
+        .donburi{
+            background-image: url('../../img/menu/donburi.jpg');
+        }
+        .cakey{
+            background-image: url('../../img/menu/japanesecake.jpg');
+        }
+        .karaage{
+            background-image: url('../../img/menu/karaage.jpg');
+        }
+        .omurice{
+            background-image: url('../../img/menu/omurice.jpg');
+        }
+        .onigiri{
+            background-image: url('../../img/menu/onigiri.jpg');
+        }
+        .ramen{
+            background-image: url('../../img/menu/ramen.jpg');
+        }
+        .sushi{
+            background-image: url('../../img/menu/sushi.jpg');
+        }
+        .tempura{
+            background-image: url('../../img/menu/tempura.jpg');
+        }
+        .tonkatsu{
+            background-image: url('../../img/menu/tonkatsu.jpg');
+        }
+        /* ====================================================
+                         END OF FOODSSSSS
+        ====================================================*/
+
+        .box{
+            position: relative;
+            height: 300px;
+            width: 280px;
+            height: 300px;
+            margin: 5% 1% 1% 0;
+            border: 2px solid darken($custom-white,1%);
+            transition: border-color 0.5s ease;
+        }
+
+        .frame{
+            position: absolute;
+            height: 100px;
+            width: 100px;
+            margin: auto;
+            top: 60px;
+            right: 0; left: 0;
+            border: 5px solid #fff;
+            border-radius: 100%;
+            box-shadow: 0 0 2px rgba(0,0,0,1);
+            transition: top 0.3s ease;
+            background-position-x: -40px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        article{
+            font-family: "Open Sans";
+            margin: auto;
+            margin-top: 180px;
+            width: 95%;
+            transition: margin-top 0.3s ease;
+            p{
+                margin-top: 15px;
+                display: hidden;
+                opacity: 0;
+                transition: visibility 0s, opacity 0.3s ease;
+            }
+        }
+        .button-cart-container{
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            width: 90%;
+            margin: auto;
+            left: 0; bottom: 5; right: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+            h1{
+                margin-top: 10px;
+                float: left;
+                color: $flat-red;
+                
+            }
+            button{
+                float: right;
+                height: 40px;
+                border: none;
+                border-radius: 4px;
+                background-color: $flat-green;
+                transition: background-color 0.3s ease;
+            }
+            button:hover{
+                cursor: pointer;
+                background-color: lighten($flat-green, 10%);
+            }
+        }
+
+        /*============================================== 
+                        BOX HOVER
+        ==============================================*/
+        .box:hover{
+            border-color: $flat-blue;
+            .frame{
+                top: -40px;
+            }
+            article{
+                margin-top: 100px;
+                p{
+                    display: visible;
+                    opacity: 1;
+                }
+            }
+            .button-cart-container{
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+    }   
+}

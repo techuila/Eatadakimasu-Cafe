@@ -39,14 +39,52 @@ html, body {
   background-color: white;
 }
 
-header {
+.container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.on-top {
   z-index: 1;
-  position: absolute;
+  position: fixed;
   width: 100%;
+  overflow: hidden;
+}
+
+.on-scroll {
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.4);
   height: 60px;
   background-color: #fff;
   overflow: hidden;
+}
+
+.animate-scroll-top {
+  animation: animateTop 0.5s;
+}
+
+.animate-scroll-bottom {
+  animation: animateBottom 0.5s;
+}
+
+@keyframes animateTop {
+  from {
+    top: -300px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+@keyframes animateBottom {
+  from {
+    background-color: #fff;
+  }
+  to {
+    background-color: none;
+  }
 }
 
 .containers {
@@ -154,7 +192,7 @@ header {
 .title {
   display: inline-block;
   margin: 15px 0 0 5%;
-  font-family: 'BIG JOHN';
+  font-family: 'Big John';
   font-size: 2em;
   color: #e74c3c;
 }
@@ -194,13 +232,15 @@ a:hover {
 }
 
 .bg {
-  height: 1100px;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
 
 .pimg1 {
+  margin-top: 0;
+  padding-top: 20%;
+  min-height: 100%;
   background-image: url("../img/01.jpg");
 }
 
@@ -221,7 +261,6 @@ a:hover {
   width: inherit;
   height: 200px;
   position: relative;
-  top: 400px;
 }
 
 .main {
@@ -236,8 +275,8 @@ a:hover {
   font-family: 'Gobold Reg';
   font-size: 1.3em;
   letter-spacing: 0.65em;
-  color: #000;
-  text-shadow: 0 0 10px white;
+  color: #fff;
+  text-shadow: 3px 4px 5px black;
 }
 
 .Cap {
