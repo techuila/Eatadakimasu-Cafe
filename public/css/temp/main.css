@@ -85,6 +85,15 @@
   }
 }
 
+@keyframes come-out {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* ====================================
                GLOBAL 
 ====================================*/
@@ -93,7 +102,7 @@
   margin: auto;
 }
 
-.bg {
+.bg, #food-order .frame {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -109,6 +118,117 @@ section .art-bg {
 
 p {
   color: #4f6f8f;
+}
+
+/* ====================================
+              ORDER FORM
+====================================*/
+#food-order {
+  display: none;
+  width: 50%;
+  background-color: #fff;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.6);
+  min-height: 75%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 5%;
+  position: fixed;
+  z-index: 2;
+  padding: 30px 0 20px 0;
+  border-radius: 5px;
+}
+
+#food-order .exit {
+  background-image: url("../../img/error.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 20;
+  right: 20;
+  opacity: 0.4;
+}
+
+#food-order .exit:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+#food-order h1, #food-order h2, #food-order h3 {
+  font-family: "roboto";
+  text-align: center;
+  margin: 0;
+}
+
+#food-order .special {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#food-order button {
+  color: #fff;
+  background-color: #2ecc71;
+  border: none;
+}
+
+#food-order .add-to-cart {
+  height: 35px;
+  border-radius: 4px;
+}
+
+#food-order textarea {
+  margin-bottom: 20px;
+}
+
+#food-order .minus, #food-order .plus {
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  background-color: #2ecc71;
+  border: none;
+}
+
+#food-order .minus {
+  background-color: #f06953;
+}
+
+#food-order .minus:hover {
+  background-color: #f49282;
+}
+
+#food-order button:hover {
+  cursor: pointer;
+  background-color: #54d98c;
+}
+
+#food-order .container-qty button, #food-order .container-qty h3 {
+  display: inline;
+  margin: 10px;
+}
+
+#food-order .qty-label {
+  margin-top: 10px;
+}
+
+#food-order .qty {
+  margin-top: 0;
+  text-align: center;
+}
+
+#food-order .food-name {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#food-order .frame {
+  margin: auto;
+  height: 130px;
+  width: 130px;
+  border: 5px solid #fff;
+  border-radius: 100%;
+  box-shadow: 0 0 3px black;
 }
 
 /* ====================================
@@ -242,6 +362,10 @@ section#about img:hover {
   opacity: 1;
 }
 
+section#about article.about {
+  font-family: "Minion Pro";
+}
+
 section#about article.about h1 {
   text-align: center;
   font-size: 38px;
@@ -287,6 +411,7 @@ section#menu .art-bg h1 span {
 section.container {
   padding: 10% 0;
   text-align: center;
+  font-family: "Minion Pro";
 }
 
 section.container article.menu h1 {
@@ -297,12 +422,17 @@ section.container article.menu p {
   font-size: 22px;
 }
 
+section.container article.menu hr {
+  width: 35%;
+}
+
 section.container .box-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
   margin-top: 30px;
+  font-family: "Open Sans";
   /* ====================================================
              FOOOOOOOOOOD WADAFAK NUMA MAN BUYUNG BUNANI
         ====================================================*/
@@ -316,14 +446,17 @@ section.container .box-container {
 
 section.container .box-container .curry {
   background-image: url("../../img/menu/curry.jpg");
+  background-position-x: -10px;
 }
 
 section.container .box-container .donburi {
   background-image: url("../../img/menu/donburi.jpg");
+  background-position-x: -32px;
 }
 
 section.container .box-container .cakey {
   background-image: url("../../img/menu/japanesecake.jpg");
+  background-position-x: -10px;
 }
 
 section.container .box-container .karaage {
@@ -332,6 +465,7 @@ section.container .box-container .karaage {
 
 section.container .box-container .omurice {
   background-image: url("../../img/menu/omurice.jpg");
+  background-position-x: -30px;
 }
 
 section.container .box-container .onigiri {
@@ -340,18 +474,17 @@ section.container .box-container .onigiri {
 
 section.container .box-container .ramen {
   background-image: url("../../img/menu/ramen.jpg");
-}
-
-section.container .box-container .sushi {
-  background-image: url("../../img/menu/sushi.jpg");
+  background-position-x: -15px;
 }
 
 section.container .box-container .tempura {
   background-image: url("../../img/menu/tempura.jpg");
+  background-position-x: -50px;
 }
 
 section.container .box-container .tonkatsu {
   background-image: url("../../img/menu/tonkatsu.jpg");
+  background-position-x: -33px;
 }
 
 section.container .box-container .box {
@@ -376,13 +509,11 @@ section.container .box-container .frame {
   border-radius: 100%;
   box-shadow: 0 0 2px black;
   transition: top 0.3s ease;
-  background-position-x: -40px;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 section.container .box-container article {
-  font-family: "Open Sans";
   margin: auto;
   margin-top: 180px;
   width: 95%;
@@ -414,7 +545,7 @@ section.container .box-container .button-cart-container h1 {
   color: #f06953;
 }
 
-section.container .box-container .button-cart-container button {
+section.container .box-container button {
   float: right;
   height: 40px;
   border: none;
@@ -423,7 +554,7 @@ section.container .box-container .button-cart-container button {
   transition: background-color 0.3s ease;
 }
 
-section.container .box-container .button-cart-container button:hover {
+section.container .box-container button:hover {
   cursor: pointer;
   background-color: #54d98c;
 }
@@ -448,4 +579,155 @@ section.container .box-container .box:hover article p {
 section.container .box-container .box:hover .button-cart-container {
   visibility: visible;
   opacity: 1;
+}
+
+/* ====================================
+            ORDER SECTION 
+====================================*/
+section#order {
+  position: relative;
+}
+
+section#order .order-background {
+  background-image: url("../../img/reservation-seat.jpg");
+  height: 80%;
+  opacity: 0.75;
+}
+
+section#order article {
+  position: absolute;
+  margin: auto;
+  top: 35%;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
+
+section#order article h1 {
+  font-family: "Open Sans";
+  font-size: 70px;
+  color: #00a8ff;
+}
+
+section#order article h1 span {
+  color: #fff;
+  border-bottom: 7px solid #fff;
+}
+
+/* ====================================
+       ORDER LANG TE SIEMPRE LOKO! 
+====================================*/
+section.order {
+  padding-bottom: 30%;
+  /* ====================================
+                   CART 
+    ====================================*/
+}
+
+section.order .order-location {
+  float: left;
+  width: 50%;
+}
+
+section.order .order-location div#sample {
+  text-align: left;
+  width: 500px;
+  margin-left: 42px;
+  margin-bottom: 20px;
+  font-family: "Open Sans";
+}
+
+section.order .order-location div#sample h1, section.order .order-location div#sample p {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: none;
+}
+
+section.order .order-location div#sample h1 {
+  text-transform: uppercase;
+  font-size: 24px;
+  color: #34495e;
+}
+
+section.order .order-location .form-container {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  width: 100%;
+}
+
+section.order .order-location .form-container input {
+  padding-left: 15px;
+  margin-top: 10px;
+  margin-left: 20px;
+  height: 50px;
+  width: 260px;
+}
+
+section.order .order-location .button-container button {
+  height: 55px;
+  width: 150px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+}
+
+section.order .order-location .button-container .in, section.order .order-location .button-container .up {
+  margin-right: 20px;
+}
+
+section.order .order-location .button-container .in {
+  border: 3px solid #00a8ff;
+  color: #00a8ff;
+}
+
+section.order .order-location .button-container .up {
+  border: 3px solid #f06953;
+  color: #f06953;
+}
+
+section.order .order-location .button-container .guest {
+  margin-top: 30px;
+  border: 3px solid #e67e22;
+  color: #e67e22;
+}
+
+section.order .order-location .button-container button:hover {
+  cursor: pointer;
+  color: white;
+}
+
+section.order .order-location .button-container .in:hover {
+  background-color: #00a8ff;
+}
+
+section.order .order-location .button-container .up:hover {
+  background-color: #f06953;
+}
+
+section.order .order-location .button-container .guest:hover {
+  background-color: #e67e22;
+}
+
+section.order aside {
+  float: right;
+  width: 50%;
+  font-family: "Open Sans";
+}
+
+section.order aside ul {
+  list-style-type: none;
+}
+
+/* ====================================
+        FOOTER SECTION MUDA FUKA
+====================================*/
+footer {
+  clear: both;
+  min-height: 15%;
+  background-color: #34495e;
+  color: #ecf0f1;
+  text-align: center;
+  padding-top: 3%;
 }

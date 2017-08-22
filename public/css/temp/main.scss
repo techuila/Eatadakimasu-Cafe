@@ -83,6 +83,16 @@ $flat-green: #2ecc71;
     }
 }
 
+@keyframes come-out{
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
 
 /* ====================================
                GLOBAL 
@@ -112,8 +122,102 @@ p{
     color: lighten($dark-gray,15%);
 }
 
+/* ====================================
+              ORDER FORM
+====================================*/
 
-
+#food-order{
+    display: none;
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 3px 5px 5px rgba(0,0,0,0.6);
+    min-height: 75%;
+    margin: auto;
+    left: 0; right: 0; top: 5%;
+    position: fixed;
+    z-index: 2;
+    padding: 30px 0 20px 0;
+    border-radius: 5px;
+    .exit{
+        background-image: url('../../img/error.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        top: 20; right: 20;
+        opacity: 0.4;
+    }
+    .exit:hover{
+        cursor: pointer;
+        opacity: 0.8;
+    }
+    h1,h2,h3{
+        font-family: "roboto";
+        text-align: center;
+        margin:0;
+    }
+    .special{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    button{
+        color: #fff;
+        background-color: $flat-green;
+        border: none;
+    }
+    .add-to-cart{
+        height: 35px;
+        border-radius: 4px;
+    }
+    textarea{
+        margin-bottom: 20px;
+    }
+    
+    .minus,.plus,{
+        height: 25px;
+        width: 25px;
+        border-radius: 100%;
+        background-color: $flat-green;
+        border: none;
+    }
+    .minus{
+        background-color: $flat-red;
+    }
+    .minus:hover{
+        background-color: lighten($flat-red, 10%);
+    }
+    button:hover{
+        cursor: pointer;
+        background-color: lighten($flat-green,10%);
+    }
+    .container-qty{
+        button, h3{
+            display: inline;
+            margin: 10px;
+        }
+    }
+    .qty-label{
+        margin-top: 10px;
+    }
+    .qty{
+        margin-top: 0;
+        text-align: center;
+    }
+    .food-name{
+        margin-top: 20px;
+        text-align: center;
+    }
+    .frame{
+        margin: auto;
+        @extend .bg;
+        height: 130px;
+        width: 130px;
+        border: 5px solid #fff;
+        border-radius: 100%;
+        box-shadow: 0 0 3px rgba(0,0,0,1);
+    }
+}
 
 
 /* ====================================
@@ -251,6 +355,7 @@ section#about{
         opacity: 1;
     }
     article.about{
+        font-family: "Minion Pro";
         h1{
             text-align: center; 
             font-size: 38px;
@@ -302,14 +407,16 @@ section#menu{
 section.container{
     padding: 10% 0;
     text-align: center;
-
+    font-family: "Minion Pro";
     article.menu{
         h1{
             font-size: 38px;
         }
-
         p{
             font-size: 22px;
+        }
+        hr{
+            width: 35%;
         }
     }
     .box-container{
@@ -318,40 +425,60 @@ section.container{
         flex-wrap: wrap;
         align-items: center;
         margin-top: 30px;
+        font-family: "Open Sans";
+        
 
         /* ====================================================
              FOOOOOOOOOOD WADAFAK NUMA MAN BUYUNG BUNANI
         ====================================================*/
         .curry{
             background-image: url('../../img/menu/curry.jpg');
+            background-position-x: -10px;
         }
         .donburi{
             background-image: url('../../img/menu/donburi.jpg');
+            background-position-x: -32px;
         }
         .cakey{
             background-image: url('../../img/menu/japanesecake.jpg');
+            background-position-x: -10px;
         }
         .karaage{
             background-image: url('../../img/menu/karaage.jpg');
         }
         .omurice{
             background-image: url('../../img/menu/omurice.jpg');
+            background-position-x: -30px;
         }
         .onigiri{
             background-image: url('../../img/menu/onigiri.jpg');
         }
         .ramen{
             background-image: url('../../img/menu/ramen.jpg');
+            background-position-x: -15px;
         }
-        .sushi{
-            background-image: url('../../img/menu/sushi.jpg');
-        }
+        // .pudding{
+        //     background-image: url('../../img/menu/sushi.jpg');
+        // }
         .tempura{
             background-image: url('../../img/menu/tempura.jpg');
+            background-position-x: -50px;
         }
         .tonkatsu{
             background-image: url('../../img/menu/tonkatsu.jpg');
+            background-position-x: -33px;
         }
+
+        // DRINKS
+
+        // .lipton{
+        //     background-image: url('../../img/menu/lipton.jpg');
+        //     background-position-x: -50px;
+        // }
+        // .iced{
+        //     background-image: url('../../img/menu/iced.jpg');
+        //     background-position-x: -33px;
+        // }
         /* ====================================================
                          END OF FOODSSSSS
         ====================================================*/
@@ -377,12 +504,10 @@ section.container{
             border-radius: 100%;
             box-shadow: 0 0 2px rgba(0,0,0,1);
             transition: top 0.3s ease;
-            background-position-x: -40px;
             background-size: cover;
             background-repeat: no-repeat;
         }
         article{
-            font-family: "Open Sans";
             margin: auto;
             margin-top: 180px;
             width: 95%;
@@ -408,18 +533,20 @@ section.container{
                 color: $flat-red;
                 
             }
-            button{
-                float: right;
-                height: 40px;
-                border: none;
-                border-radius: 4px;
-                background-color: $flat-green;
-                transition: background-color 0.3s ease;
-            }
-            button:hover{
-                cursor: pointer;
-                background-color: lighten($flat-green, 10%);
-            }
+            
+        }
+
+        button{
+            float: right;
+            height: 40px;
+            border: none;
+            border-radius: 4px;
+            background-color: $flat-green;
+            transition: background-color 0.3s ease;
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: lighten($flat-green, 10%);
         }
 
         /*============================================== 
@@ -443,4 +570,140 @@ section.container{
             }
         }
     }   
+}
+
+/* ====================================
+            ORDER SECTION 
+====================================*/
+
+section#order{
+    position: relative;
+    .order-background{
+        background-image: url('../../img/reservation-seat.jpg');
+        height: 80%;
+        opacity: 0.75
+    }
+    article{
+        position: absolute;
+        margin: auto;
+        top: 35%; right: 0; left: 0;
+        text-align: center;
+        h1{
+            font-family: "Open Sans";
+            font-size: 70px;
+            color: $flat-blue;
+            // letter-spacing: 5px;
+            span{
+                color: #fff;
+                border-bottom: 7px solid #fff;
+            }
+        }
+    }
+}
+
+/* ====================================
+       ORDER LANG TE SIEMPRE LOKO! 
+====================================*/
+
+section.order{
+    padding-bottom: 30%;
+    .order-location{
+        float: left;
+        width: 50%;
+        div#sample{
+            text-align: left;
+            width: 500px;
+            margin-left: 42px;
+            margin-bottom: 20px;
+            font-family: "Open Sans";            
+            h1,p{
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                display: none;
+            }
+            h1{
+                text-transform: uppercase;
+                font-size: 24px;
+                color: $dark-gray;
+            }
+        }
+        .form-container{
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            width: 100%;
+            input{
+                padding-left: 15px;
+                margin-top: 10px;
+                margin-left: 20px;
+                height: 50px;
+                width: 260px;
+            }
+        }
+        .button-container{
+            button{
+                height: 55px;
+                width: 150px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                background: transparent;
+                color: #fff;
+            }
+            .in,.up{
+                margin-right: 20px;
+            }
+            .in{
+                border: 3px solid $flat-blue;
+                color: $flat-blue;
+            }
+            .up{
+                border: 3px solid $flat-red;
+                color: $flat-red;
+            }
+            .guest{
+                
+                margin-top: 30px;
+                border: 3px solid #e67e22;
+                color: #e67e22;
+            }
+            button:hover{
+                cursor: pointer;
+                color: white
+            }
+            .in:hover{
+                background-color: $flat-blue;
+            }
+            .up:hover{
+                background-color: $flat-red;
+            }
+            .guest:hover{
+                background-color: #e67e22;
+            }
+            
+        }
+    }
+    /* ====================================
+                   CART 
+    ====================================*/
+    aside{
+        float: right;
+        width: 50%;
+        font-family: "Open Sans";
+        ul{
+            list-style-type: none;
+        }
+    }
+}
+
+/* ====================================
+        FOOTER SECTION MUDA FUKA
+====================================*/
+
+footer{
+    clear: both;
+    min-height: 15%;
+    background-color: $dark-gray;
+    color: $custom-white;
+    text-align: center;
+    padding-top: 3%;
 }

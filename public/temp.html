@@ -10,7 +10,28 @@
 </head>
 <body>
 
+    <!--Order Form  -->
+    <div class="containers" id="food-order">
+        <center>
+            <div class="exit" id="exit-order"></div>
+            <div class="frame food"></div>
+            <h1 class="food-name">food</h1>
+            <h3 class="qty-label">QTY</h3>
+            <div class="container-qty">
+                <button class="minus">-</button>
+                <h3 class="qty" id="form-qty">0</h3>
+                <button class="plus">+</button>
+            </div>
+            <div class="special">
+            <span>Special Instruction: </span><input type="checkbox" name="" value=""><br>
+            </div>
+            <textarea rows="10" cols="60"></textarea><br>
+            <button class="add-to-cart">Add to Cart</button> 
+            </center>
+    </div>
+
     <!--Navigation Bar  -->
+    <div class="container-body">    
     <header>
         <div class="container">
             <h1>eatadakimasu<span>cafe</span></h1>
@@ -61,6 +82,7 @@
         <article class="menu">
             <h1>Our Menu</h1>
             <p>Have a some of japan's delicacies.</p>
+            <hr>
         </article>
         <div class="box-container">
             <div class="box">
@@ -74,7 +96,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱80</h1>
-                    <button>Add to Cart</button>
+                    <button id="curry" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
 
@@ -88,7 +110,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱100</h1>
-                    <button>Add to Cart</button>
+                    <button id="donburi" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -101,7 +123,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱30</h1>
-                    <button>Add to Cart</button>
+                    <button id="cakey" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -115,7 +137,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱70</h1>
-                    <button>Add to Cart</button>
+                    <button id="karaage" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -129,7 +151,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱50</h1>
-                    <button>Add to Cart</button>
+                    <button id="omurice" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -142,7 +164,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱50</h1>
-                    <button>Add to Cart</button>
+                    <button id="onigiri" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -156,13 +178,13 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱120</h1>
-                    <button>Add to Cart</button>
+                    <button id="ramen" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
-               <div class="frame sushi"></div>
+               <div class="frame pudding"></div>
                 <article>
-                    <h1>Sushi</h1>
+                    <h1>Pudding</h1>
                     <p>
                         Cold cooked rice shaped in small cakes and topped with 
                         strips of raw fish, and sliced into pieces.
@@ -170,7 +192,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱100</h1>
-                    <button>Add to Cart</button>
+                    <button id="pudding" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -184,7 +206,7 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱60</h1>
-                    <button>Add to Cart</button>
+                    <button id="tempura" class="add-to-cart">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -198,7 +220,43 @@
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱80</h1>
-                    <button>Add to Cart</button>
+                    <button id="tonkatsu" class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!--============================
+                          DRINKS
+            ================================-->
+            <article class="menu">
+                <h1>Drinks</h1>
+                <hr>
+            </article> 
+            <div class="box">
+               <div class="frame lipton-tea"></div>
+                <article>
+                    <h1>Lipton Green Tea</h1>
+                    <p>
+                        Breaded, deep-fried pork cutlet served in bite-sized 
+                        pieces and accompanied by shredded cabbage.
+                    </p>
+                </article> 
+                <div class="button-cart-container">
+                    <h1>₱80</h1>
+                    <button class="add-to-cart" id="lipton">Add to Cart</button>
+                </div>
+            </div>
+            <div class="box">
+               <div class="frame iced-tea"></div>
+                <article>
+                    <h1>Iced Tea</h1>
+                    <p>
+                        Breaded, deep-fried pork cutlet served in bite-sized 
+                        pieces and accompanied by shredded cabbage.
+                    </p>
+                </article> 
+                <div class="button-cart-container">
+                    <h1>₱80</h1>
+                    <button class="add-to-cart" id="iced">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -207,11 +265,33 @@
     <!--Order  -->
     <section id="order">
         <div class="order-background bg"></div>
-        <h1><span>ORDER</span>NOW</h1>
+        <article>
+            <h1><span>ORDER</span> NOW</h1>
+        </article>
     </section>
 
-    <section class="container">
-        <div class="order-location"></div>
+    <section class="container order">
+        <div class="order-location">
+            <div id="sample">
+                <h1 id="title-form">Personal Information</h1>
+                <p id="sub-title">Please fill up this form before ordering.</p>
+            </div> 
+            <div class="form-container">
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Middle Name">
+                <input type="text" placeholder="Last Name">
+                <input type="text" placeholder="Barangay"><br>
+                <input type="text" placeholder="Street">
+                <input type="text" placeholder="House No."><br>
+                <input type="email" placeholder="Email Address">
+                <input type="text" placeholder="Contact Number"><br>
+            </div>
+            <div class="button-container">
+                <button class="in">login</button>
+                <button class="up">register</button><br>
+                <button class="guest">login as guest</button>
+            </div>
+        </div>
 
         <!--CART  -->
         <aside>
@@ -240,8 +320,11 @@
 
 
     <!--Contract Us  -->
-    <footer class="container" id="contact">
-        Designed by ISIS, Copyright &copy; 2017
+    <footer id="contact">
+        <div class="container">
+            <p></p>Designed by ISIS, Copyright &copy; 2017</p>
+        </div>  
     </footer>
+    
 </body>
 </html>

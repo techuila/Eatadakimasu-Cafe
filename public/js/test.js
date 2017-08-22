@@ -1,8 +1,7 @@
 $(document).ready(()=>{
     
-
+    var qty = 0;
     scrollNavFunction(true);
-
 
     /*=============================================
                         EVENTS
@@ -12,20 +11,113 @@ $(document).ready(()=>{
         scrollNavFunction(false);
     });
 
+    // ORDER FORM   
 
+    $("#curry").click("onclick", function(){
+        displayFoodOrder("curry", "Curry Rice");
+    });
 
+    $("#donburi").click("onclick", function(){
+        displayFoodOrder("donburi", "Donburi");
+    });
+
+    $("#cakey").click("onclick", function(){
+        displayFoodOrder("japanesecake", "Japanese Cakey");
+    });
+
+    $("#karaage").click("onclick", function(){
+        displayFoodOrder("karaage", "Karaage");
+    });
+
+    $("#omurice").click("onclick", function(){
+        displayFoodOrder("omurice", "Omurice");
+    });
+
+    $("#onigiri").click("onclick", function(){
+        displayFoodOrder("onigiri", "Onigiri");
+    });
+
+    $("#ramen").click("onclick", function(){
+        displayFoodOrder("ramen", "Ramen");
+    });
+
+    $("#pudding").click("onclick", function(){
+        displayFoodOrder("sushi", "Pudding");
+    });
+
+    $("#tempura").click("onclick", function(){
+        displayFoodOrder("tempura", "Tempura");
+    });
+
+    $("#tonkatsu").click("onclick", function(){
+        displayFoodOrder("tonkatsu", "Curry Rice");
+    });
+
+    $("#lipton").click("onclick", function(){
+        displayFoodOrder("lipton", "Lipton Green Tea");
+    });
+
+    $("#iced").click("onclick", function(){
+        displayFoodOrder("iced", "Iced Tea");
+    });
+
+    $("#exit-order").click("onclick", function(){
+        cancelFood();
+    });
+
+    $("#container-body").click("onclick", function(){
+        cancelFood();
+    });
+
+    $(".minus").click(()=>{
+        if(qty != 0){   
+            qty -= 1;
+            console.log(qty);
+            document.getElementById("form-qty").innerHTML = qty;
+        }
+    });
+
+    $(".plus").click(()=>{
+        qty += 1;
+        console.log(qty);
+        document.getElementById("form-qty").innerHTML = qty;
+    });
+
+    /*=============================================
+                        FORM ORDER   
+    =============================================*/
+
+    $(".guest").click("onclick", function(){
+        document.getElementsByClassName('button-container').item(0).style = "display: none;";
+        document.getElementsByClassName('form-container').item(0).style = "display: initial; animation: come-out 0.5s ease forwards;";
+        document.getElementById('title-form').style = "display: block; animation: come-out 0.3s forwards;";
+        document.getElementById('sub-title').style = "display: initial; animation: come-out 0.3s forwards;";
+
+    });
 
 
     /*=============================================
                         FUNCTIONS   
     =============================================*/
 
+    function displayFoodOrder(food, foodname){
+        console.log("display food order clicked");
+        document.getElementById("food-order").style = "display: initial;";
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";
+        document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
+        document.getElementsByClassName("food").item(0).style.backgroundImage = "url('./img/menu/" + food + ".jpg')";
+    }
+
+    function cancelFood(){
+        document.getElementById("food-order").style = "display: none;";            
+        document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";
+    }
+
     function scrollNavFunction(onload){
         var aboutLoc = $('#about').offset().top;
         var menuLoc = $('#menu').offset().top;
         var orderLoc = $('#order').offset().top;
         var contactLoc = $('#contact').offset().top;
-        console.log(aboutLoc + " " + document.body.scrollTop + " " + menuLoc);
         var navbar = document.getElementsByTagName('header').item(0);
 
         /*=============================================
@@ -95,7 +187,7 @@ $(document).ready(()=>{
         }
 
         /*=============================================
-                NAVIGATION ON CONTACT FADE IN COLOR   
+                NAVIGATION ON CONTACT FADE IN CVOLOR   
         =============================================*/
         if((document.body.scrollTop > contactLoc) || 
         document.documentElement.scrollTop > contactLoc ){
