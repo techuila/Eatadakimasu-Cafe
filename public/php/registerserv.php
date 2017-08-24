@@ -7,12 +7,15 @@ $error = "Username or Password is Invalid";
 else
 {
 //Define $user and $pass
-$cusname=$_POST['customer-name'];
+$fname=$_POST['first-name'];
+$mname=$_POST['middle-name'];
+$lname=$_POST['last-name'];
 $username=$_POST['username'];
 $password=$_POST['password'];
-$company=$_POST['company'];
+$hno=$_POST['h-no'];
 $email=$_POST['email'];
-$address=$_POST['address'];
+$street=$_POST['street'];
+$barangay=$_POST['barangay'];
 $mobile=$_POST['mobile'];
 
 //Establishing Connection with server by passing server_name, user_id and pass as a patameter
@@ -28,8 +31,8 @@ echo "username already existing!";
 }
 else
 {
-mysqli_query($conn, "INSERT INTO `customerinfo`(`Username`, `Name`, `Company`, `Email`, `Address`, `MobileNum`) VALUES ('$username','$cusname','$company','$email','$address','$mobile')");
-mysqli_query($conn, "INSERT INTO `login`(`Username`, `Password`) VALUES ('$username','$password')");
+mysqli_query($conn, "INSERT INTO customer(fname,mname,lname,houseno,street,barangay,email,contact) VALUES ('$username','$fname','$mname','$lname','$hno', '$street','$barangay','$email','$mobile')");
+mysqli_query($conn, "INSERT INTO login(Username,Password) VALUES ('$username','$password')");
 echo "register success!";
 }
 mysqli_close($conn); // Closing connection

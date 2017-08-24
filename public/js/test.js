@@ -1,3 +1,10 @@
+var app = angular.module('myApp', []);
+app.controller('myController', function($scope){
+    $scope.name = 'sadad';
+});
+
+console.log(app);
+
 $(document).ready(()=>{
     
     var qty = 0;
@@ -9,6 +16,11 @@ $(document).ready(()=>{
 
     $(window).on("scroll", ()=>{
         scrollNavFunction(false);
+    });
+
+    //SIGN IN FORM
+    $("#sign-in").click("onclick", function(){
+        blur_bg('s-in');
     });
 
     // ORDER FORM   
@@ -62,11 +74,11 @@ $(document).ready(()=>{
     });
 
     $("#exit-order").click("onclick", function(){
-        cancelFood();
+        cancelFood("food-order","s-in");
     });
 
-    $("#container-body").click("onclick", function(){
-        cancelFood();
+    $(".exit").click("onclick", function(){
+        cancelFood("food-order","s-in");
     });
 
     $(".minus").click(()=>{
@@ -92,7 +104,6 @@ $(document).ready(()=>{
         document.getElementsByClassName('form-container').item(0).style = "display: initial; animation: come-out 0.5s ease forwards;";
         document.getElementById('title-form').style = "display: block; animation: come-out 0.3s forwards;";
         document.getElementById('sub-title').style = "display: initial; animation: come-out 0.3s forwards;";
-
     });
 
 
@@ -102,14 +113,20 @@ $(document).ready(()=>{
 
     function displayFoodOrder(food, foodname){
         console.log("display food order clicked");
-        document.getElementById("food-order").style = "display: initial;";
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";
-        document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
         document.getElementsByClassName("food").item(0).style.backgroundImage = "url('./img/menu/" + food + ".jpg')";
+        document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
+        blur_bg("food-order");
     }
 
-    function cancelFood(){
-        document.getElementById("food-order").style = "display: none;";            
+    function blur_bg($element){
+        document.getElementById($element).style = "display: initial;";
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";
+    }
+
+    function cancelFood($element,$element2){
+        console.log('asda');
+        document.getElementById($element).style = "display: none;";            
+        document.getElementById($element2).style = "display: none;";
         document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";
     }
 

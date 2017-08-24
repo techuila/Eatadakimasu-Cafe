@@ -1,14 +1,25 @@
+<?php
+include("./php/loginserv.php"); // Include loginserv for checking username and password
+?>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./node_modules/angular/angular.js"></script>
     <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="./js/test.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/temp/main.css">
     <title>Welcome | Eatadakimasu Cafe</title>
+
+    <!-- <script>
+        var app = angular.module('myApp', []);
+        app.controller('myController', function($scope){
+            $scope.name = "hello world";
+        });
+    </script> -->
 </head>
-<body>
+<body ng-app="myApp" ng-model="myController">
 
     <!--Order Form  -->
     <div class="containers" id="food-order">
@@ -27,7 +38,28 @@
             </div>
             <textarea rows="10" cols="60"></textarea><br>
             <button class="add-to-cart">Add to Cart</button> 
-            </center>
+        </center>
+    </div>
+
+    <!--Sign  -->
+    <div class="s-in" id="s-in">
+        <center>
+            <div class="c-in bg">
+                <form action="#" method="post">                    
+                    <div class="exit" id="exit-order"></div>
+                    <h3>USERNAME</h3>
+                    <input type="text" name="user">
+                    <h3>PASSWORD</h3>
+                    <input type="text" name="pass"><br><br>   
+                    <span><strong><?php echo $error; ?></strong></span>
+                    <div class="btn-container">
+                        <input type="submit" class="in" value="LOGIN" name="submit">
+                        <input onclick="window.location='./php/register.php'" type="button" class="up" value="REGISTER" ><br>
+                        <input type="button" class="guest" value="LOGIN AS GUEST">
+                    </div>
+                </form>                    
+            </div>
+        </center>
     </div>
 
     <!--Navigation Bar  -->
@@ -43,7 +75,7 @@
                         <li><a href="#" class="menu">menu</a></li>
                         <li><a href="#" class="order">order</a></li>
                         <li><a href="#" class="contact">contact</a></li>
-                        <li><a href="#" class="sign-in">sign in</a></li>
+                        <li><a href="" class="sign-in" id="sign-in">sign in</a></li>
                     </strong>
                 </ul>
             </nav>
@@ -81,7 +113,7 @@
     <section class="container">
         <article class="menu">
             <h1>Our Menu</h1>
-            <p>Have a some of japan's delicacies.</p>
+            <p>Have some of japan's delicacies.</p>
             <hr>
         </article>
         <div class="box-container">
@@ -271,7 +303,7 @@
     </section>
 
     <section class="container order">
-        <div class="order-location">
+        <!-- <div class="order-location">
             <div id="sample">
                 <h1 id="title-form">Personal Information</h1>
                 <p id="sub-title">Please fill up this form before ordering.</p>
@@ -291,13 +323,13 @@
                 <button class="up">register</button><br>
                 <button class="guest">login as guest</button>
             </div>
-        </div>
+        </div> -->
 
         <!--CART  -->
-        <aside>
+
             <ul>
                 <li class="row header">
-                    <span class="qty">QTY</span>
+                    <span class="qty">QTY{{ name }}</span>
                     <span class="item">ITEM</span>
                     <span class="price">QTY</span>
                 </li>
@@ -315,14 +347,14 @@
                     </span>
                 </li>
             </ul>
-        </aside>
+
     </section>
 
 
     <!--Contract Us  -->
     <footer id="contact">
         <div class="container">
-            <p></p>Designed by ISIS, Copyright &copy; 2017</p>
+            <p></p>Designed by <a style="color: white;" href="https://www.facebook.com/ZeddieSantos">ISIS</a>, Copyright &copy; 2017</p>
         </div>  
     </footer>
     

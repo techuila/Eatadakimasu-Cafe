@@ -19,6 +19,7 @@ $error = "";
 // //echo $fname." ".$mname." ".$lname." ".$hnum." ".$street." ".$barangay." ".$email.$contact;
 // session_start();
 // }
+
 if(isset($_POST['Order'])){
 if(empty($_POST['itemName']) || empty($_POST['qty']) || empty($_POST['price'])){
 $error = "fill up properly";
@@ -28,22 +29,32 @@ else
 $itemName = $_POST['itemName'];
 $qty = $_POST['qty'];
 $price = $_POST['price'];
+$count = 0;
 //Establishing Connection with server by passing server_name, user_id and pass as a patameter
 $conn = mysqli_connect("localhost", "root", "");
 //Selecting Database
-$db = mysqli_select_db($conn, "orderinfo");
-$db2 = mysqli_select_db($conn, "billinginfo");
-$count = 1;
-$test = 1;
+$db = mysqli_select_db($conn, "eatadakicafe");
+//$db2 = mysqli_select_db($conn, "billinginfo");
 //sql query to fetch information of registerd user and finds user match.
 session_start();
 $userid = $_SESSION['userid'];
-
-$add = "asd";
-mysqli_query($conn, "INSERT INTO `orderinfo`(`OrderID`, `CustID`, `FoodName`, `Qty`, `Price`) VALUES ($count,'$userid','$itemName',$qty,$price)");
-mysqli_query($conn, "INSERT INTO `billinginfo`(`BillingID`, `CustID`, `Address`, `OrderID') VALUES ('$count','$userid','$add','$count')");
-
+$orderid = 0;
+do{
+$orderid +=1;
+$sql = mysqli_query($conn, "SELECT orderID FROM orderinfo WHERE orderID = '$orderid'");
+$rows = mysqli_num_rows($sql);
+} while($rows >= 1);
+$billingid = 0;
+do{
+$billingid +=1;
+$sql = mysqli_query($conn, "SELECT `BillingID` FROM `billinginfo` WHERE `BillingID` = '$billingid'");
+$rows = mysqli_num_rows($sql);
+} while($rows >= 1);
+$add = "NOTHING";
+mysqli_query($conn, "INSERT INTO `orderinfo`(`orderID`, `CustID`, `foodName`, `qty`, `price`) VALUES ('$orderid','$userid','$itemName','$qty','$price')");
+mysqli_query($conn, "INSERT INTO `billinginfo`(`BillingID`, `CustomerID`, `OrderNo`, `BillingAddress`) VALUES ('$billingid','$userid','$orderid','$add')");
 mysqli_close($conn);
+$error = $billingid." ".$orderid;
 // //Establishing Connection with server by passing server_name, user_id and pass as a patameter
 // $conn = mysqli_connect("localhost", "root", "");
 // //Selecting Database

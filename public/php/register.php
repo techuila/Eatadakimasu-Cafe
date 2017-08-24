@@ -65,33 +65,40 @@ include("registerserv.php"); // Include loginserv for checking username and pass
     <body>
 
         <!--LOGIN FORM  -->
-        <form action="" method="post">
+        <form method="post">
             <fieldset>
                 <legend>Register</legend>
                 <center>
                 <span><?php echo $error; ?></span>
-                <span>Name: </span>
-                <input type="text" name="customer-name"><br>   
+                <span>First Name: </span>
+                <input type="text" name="first-name"><br>   
+                <span>Middle Name: </span>
+                <input type="text" name="middle-name"><br>
+                <span>Last Name: </span>
+                <input type="text" name="last-name"><br>
                 <span>Username:</span>
                 <input type="text" name="username"><br>
                 <span>Password:</span>
                 <input type="text" name="password"><br>
                 <span>Confirm Password:</span>
                 <input type="text" name="confirm-password"><br>
+                
                 <br>
                 <span style="color: blue;">Address:</span> 
                 <div class="drop-down" onclick="dropdown_clicked();" id="dropdown"></div>    
                 <br>    
                 <div class="billing-address" id="billing-address">
                     <br>
-                    Company:
-                    <input type="text" name="company"><br>
+                    House No:
+                    <input type="text" name="h-no"><br>
                     Email:
                     <input type="text" name="email"><br>
-                    Address:
-                    <input type="text" name="address"><br>
+                    Street:
+                    <input type="text" name="street"><br>
+                    Barangay:
+                    <input type="text" name="barangay"><br>
                     Mobile/ Telephone #:
-                    <input type="text" name="mobile"><br>  
+                    <input type="text" name="mobile"><br> 
                 </div>
                 </center>
                 <br> 

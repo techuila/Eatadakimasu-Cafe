@@ -109,6 +109,10 @@ $flat-green: #2ecc71;
     opacity: 0.8;
 }
 
+hr{
+    margin: 0 auto;
+}
+
 section{
     .art-bg{
         position: absolute;
@@ -121,6 +125,108 @@ section{
 p{
     color: lighten($dark-gray,15%);
 }
+
+.exit{
+    background-image: url('../../img/error.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 20; right: 20;
+    opacity: 0.4;
+}
+.exit:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* ====================================
+            SIGN IN FORM
+====================================*/
+
+.s-in{
+    display: none;
+    font-family: "Open Sans";
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 9px rgba(0,0,0,0.3);
+    opacity: 1;
+    height: 800px;
+    z-index: 2;
+    position: fixed;
+    left:0; right: 0;
+    width: 40%;
+    margin: 3% auto;
+    .c-in{
+        background-image: url('../../img/05.jpg');
+        background-size: auto auto;
+        background-position-x: 52%;
+        border-radius: 5px;
+        height: 100%;
+        padding: 10% 5%;
+        margin: auto;
+        span{
+            color: red;
+        }
+        h3{
+            margin-top: 30px;
+            color: $custom-white;
+        }
+        input[type="text"]{
+            background-color: transparent;              
+            border: 2px solid $custom-white;
+            border-radius: 3px;
+            text-align: center;
+            color: $custom-white;
+            font-size: 16px;
+            margin-top: 10px;
+            height: 40px;
+            width: 300px;
+            padding: 10px;
+        }
+        .btn-container{
+            margin-top: 30px;
+            input[type="button"],input[type='submit']{
+                background-color: transparent;
+                border-radius: 4px;
+                height: 55px;
+            }
+            input[type="button"]:hover,input[type='submit']:hover{
+                cursor: pointer;
+                color: white;
+            }
+            .in,.up{
+                margin-right: 20px;
+                width: 140px;
+            }
+            .in{
+                border: 3px solid $flat-blue;
+                color: $flat-blue;
+            }
+            .up{
+                border: 3px solid $flat-red;
+                color: $flat-red;
+            }
+            .guest{
+                width: 160px;
+                margin-top: 30px;
+                border: 3px solid #e67e22;
+                color: #e67e22;
+            }
+            .in:hover{
+                background-color: $flat-blue;
+            }
+            .up:hover{
+                background-color: $flat-red;
+            }
+            .guest:hover{
+                background-color: #e67e22;
+            }
+        }
+    }
+}
+
 
 /* ====================================
               ORDER FORM
@@ -138,20 +244,6 @@ p{
     z-index: 2;
     padding: 30px 0 20px 0;
     border-radius: 5px;
-    .exit{
-        background-image: url('../../img/error.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 20px;
-        width: 20px;
-        position: absolute;
-        top: 20; right: 20;
-        opacity: 0.4;
-    }
-    .exit:hover{
-        cursor: pointer;
-        opacity: 0.8;
-    }
     h1,h2,h3{
         font-family: "roboto";
         text-align: center;
@@ -232,9 +324,10 @@ body{
     background-color: #fefefe;
 }
 
-h1, p{
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 
@@ -275,6 +368,8 @@ header{
 
         nav{
             float: right;
+            margin-top: 15px;
+            height: 30px;
             ul{
                 text-decoration: none;
                 li{
@@ -287,7 +382,7 @@ header{
                     }
                     .sign-in{
                         background-color: $flat-blue;
-                        border-radius: 2px;
+                        border-radius: 4px;
                         color: #fff;
                     }
                     .sign-in:hover{
@@ -343,7 +438,7 @@ section#home{
 ====================================*/
 
 section#about{
-    padding: 10% 0;
+    padding-top: 10%;
     width: 80%;
     img{
         margin-right: 50px;
@@ -377,6 +472,7 @@ section#menu{
 ====================================*/
 
 section#menu{
+    margin-top: 10%;
     position: relative;
     .menu-background{
         background-image: url('../../img/04.jpg');
@@ -487,7 +583,6 @@ section.container{
             position: relative;
             height: 300px;
             width: 280px;
-            height: 300px;
             margin: 5% 1% 1% 0;
             border: 2px solid darken($custom-white,1%);
             transition: border-color 0.5s ease;
@@ -685,14 +780,12 @@ section.order{
     /* ====================================
                    CART 
     ====================================*/
-    aside{
-        float: right;
-        width: 50%;
-        font-family: "Open Sans";
-        ul{
-            list-style-type: none;
-        }
+    width: 70%;
+    font-family: "Open Sans";
+    ul{
+        list-style-type: none;
     }
+    
 }
 
 /* ====================================

@@ -1,3 +1,5 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+
 <?php
 $error=''; //Variable to Store error message;
 if(isset($_POST['submit'])){
@@ -25,7 +27,8 @@ if ($result->num_rows > 0) {
         $error = "<br> id: ". $row["userid"];
         session_start();
         $_SESSION["userid"] = $row["userid"];
-        header("Location: order.php");
+        echo '<script> alert("Login Successful") </script>';
+        // header("Location: order.php");
     }
 } else {
    $error = "Username and password is invalid";

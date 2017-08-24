@@ -109,6 +109,10 @@
   opacity: 0.8;
 }
 
+hr {
+  margin: 0 auto;
+}
+
 section .art-bg {
   position: absolute;
   top: 45%;
@@ -118,6 +122,123 @@ section .art-bg {
 
 p {
   color: #4f6f8f;
+}
+
+.exit {
+  background-image: url("../../img/error.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  top: 20;
+  right: 20;
+  opacity: 0.4;
+}
+
+.exit:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* ====================================
+            SIGN IN FORM
+====================================*/
+.s-in {
+  display: none;
+  font-family: "Open Sans";
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  height: 800px;
+  z-index: 2;
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 40%;
+  margin: 3% auto;
+}
+
+.s-in .c-in {
+  background-image: url("../../img/05.jpg");
+  background-size: auto auto;
+  background-position-x: 52%;
+  border-radius: 5px;
+  height: 100%;
+  padding: 10% 5%;
+  margin: auto;
+}
+
+.s-in .c-in span {
+  color: red;
+}
+
+.s-in .c-in h3 {
+  margin-top: 30px;
+  color: #ecf0f1;
+}
+
+.s-in .c-in input[type="text"] {
+  background-color: transparent;
+  border: 2px solid #ecf0f1;
+  border-radius: 3px;
+  text-align: center;
+  color: #ecf0f1;
+  font-size: 16px;
+  margin-top: 10px;
+  height: 40px;
+  width: 300px;
+  padding: 10px;
+}
+
+.s-in .c-in .btn-container {
+  margin-top: 30px;
+}
+
+.s-in .c-in .btn-container input[type="button"], .s-in .c-in .btn-container input[type='submit'] {
+  background-color: transparent;
+  border-radius: 4px;
+  height: 55px;
+}
+
+.s-in .c-in .btn-container input[type="button"]:hover, .s-in .c-in .btn-container input[type='submit']:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.s-in .c-in .btn-container .in, .s-in .c-in .btn-container .up {
+  margin-right: 20px;
+  width: 140px;
+}
+
+.s-in .c-in .btn-container .in {
+  border: 3px solid #00a8ff;
+  color: #00a8ff;
+}
+
+.s-in .c-in .btn-container .up {
+  border: 3px solid #f06953;
+  color: #f06953;
+}
+
+.s-in .c-in .btn-container .guest {
+  width: 160px;
+  margin-top: 30px;
+  border: 3px solid #e67e22;
+  color: #e67e22;
+}
+
+.s-in .c-in .btn-container .in:hover {
+  background-color: #00a8ff;
+}
+
+.s-in .c-in .btn-container .up:hover {
+  background-color: #f06953;
+}
+
+.s-in .c-in .btn-container .guest:hover {
+  background-color: #e67e22;
 }
 
 /* ====================================
@@ -137,23 +258,6 @@ p {
   z-index: 2;
   padding: 30px 0 20px 0;
   border-radius: 5px;
-}
-
-#food-order .exit {
-  background-image: url("../../img/error.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 20px;
-  width: 20px;
-  position: absolute;
-  top: 20;
-  right: 20;
-  opacity: 0.4;
-}
-
-#food-order .exit:hover {
-  cursor: pointer;
-  opacity: 0.8;
 }
 
 #food-order h1, #food-order h2, #food-order h3 {
@@ -243,9 +347,10 @@ body {
   background-color: #fefefe;
 }
 
-h1, p {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 /* ====================================
@@ -282,6 +387,8 @@ header .container h1 span {
 
 header .container nav {
   float: right;
+  margin-top: 15px;
+  height: 30px;
 }
 
 header .container nav ul {
@@ -301,7 +408,7 @@ header .container nav ul li a {
 
 header .container nav ul li .sign-in {
   background-color: #00a8ff;
-  border-radius: 2px;
+  border-radius: 4px;
   color: #fff;
 }
 
@@ -347,7 +454,7 @@ section#home .art-bg p {
              ABOUT SECTION
 ====================================*/
 section#about {
-  padding: 10% 0;
+  padding-top: 10%;
   width: 80%;
 }
 
@@ -385,6 +492,7 @@ section#menu {
              MENU SECTION
 ====================================*/
 section#menu {
+  margin-top: 10%;
   position: relative;
 }
 
@@ -491,7 +599,6 @@ section.container .box-container .box {
   position: relative;
   height: 300px;
   width: 280px;
-  height: 300px;
   margin: 5% 1% 1% 0;
   border: 2px solid #e9eeef;
   transition: border-color 0.5s ease;
@@ -622,6 +729,8 @@ section.order {
   /* ====================================
                    CART 
     ====================================*/
+  width: 70%;
+  font-family: "Open Sans";
 }
 
 section.order .order-location {
@@ -710,13 +819,7 @@ section.order .order-location .button-container .guest:hover {
   background-color: #e67e22;
 }
 
-section.order aside {
-  float: right;
-  width: 50%;
-  font-family: "Open Sans";
-}
-
-section.order aside ul {
+section.order ul {
   list-style-type: none;
 }
 
