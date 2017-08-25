@@ -151,7 +151,7 @@ p {
   border-radius: 5px;
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.3);
   opacity: 1;
-  height: 800px;
+  height: 80%;
   z-index: 2;
   position: fixed;
   left: 0;
@@ -164,8 +164,10 @@ p {
   background-image: url("../../img/05.jpg");
   background-size: auto auto;
   background-position-x: 52%;
+  font-size: 1em;
   border-radius: 5px;
   height: 100%;
+  width: 100%;
   padding: 10% 5%;
   margin: auto;
 }
@@ -179,16 +181,17 @@ p {
   color: #ecf0f1;
 }
 
-.s-in .c-in input[type="text"] {
+.s-in .c-in input[type="text"],
+.s-in .c-in input[type="password"] {
   background-color: transparent;
   border: 2px solid #ecf0f1;
   border-radius: 3px;
   text-align: center;
   color: #ecf0f1;
   font-size: 16px;
-  margin-top: 10px;
-  height: 40px;
-  width: 300px;
+  margin-top: 20px;
+  height: 60px;
+  width: 75%;
   padding: 10px;
 }
 
@@ -208,29 +211,30 @@ p {
 }
 
 .s-in .c-in .btn-container .in, .s-in .c-in .btn-container .up {
-  margin-right: 20px;
-  width: 140px;
+  min-width: 35%;
 }
 
 .s-in .c-in .btn-container .in {
-  border: 3px solid #00a8ff;
-  color: #00a8ff;
+  margin-right: 15px;
+  border: 3px solid #2ecc71;
+  color: #2ecc71;
 }
 
 .s-in .c-in .btn-container .up {
+  margin-left: 15px;
   border: 3px solid #f06953;
   color: #f06953;
 }
 
 .s-in .c-in .btn-container .guest {
-  width: 160px;
+  width: 75%;
   margin-top: 30px;
   border: 3px solid #e67e22;
   color: #e67e22;
 }
 
 .s-in .c-in .btn-container .in:hover {
-  background-color: #00a8ff;
+  background-color: #2ecc71;
 }
 
 .s-in .c-in .btn-container .up:hover {
@@ -344,7 +348,7 @@ body {
   font-family: "Minion Pro";
   font-size: 14px;
   color: #34495e;
-  background-color: #fefefe;
+  background-color: #ecf0f1;
 }
 
 * {
@@ -600,7 +604,7 @@ section.container .box-container .box {
   height: 300px;
   width: 280px;
   margin: 5% 1% 1% 0;
-  border: 2px solid #e9eeef;
+  border: 2px solid #e4e4e4;
   transition: border-color 0.5s ease;
 }
 
@@ -729,8 +733,6 @@ section.order {
   /* ====================================
                    CART 
     ====================================*/
-  width: 70%;
-  font-family: "Open Sans";
 }
 
 section.order .order-location {
@@ -819,8 +821,117 @@ section.order .order-location .button-container .guest:hover {
   background-color: #e67e22;
 }
 
-section.order ul {
+section.order .cart {
+  font-family: "Open Sans";
+  font-size: 22px;
   list-style-type: none;
+  width: 80%;
+  margin: 0 auto;
+  color: #587ca0;
+}
+
+section.order .cart .row {
+  padding-top: 18px;
+  height: 70px;
+  content: "";
+  clear: both;
+}
+
+section.order .cart .header {
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+section.order .cart .header .qty {
+  float: left;
+  margin-left: 35px;
+}
+
+section.order .cart .header .item {
+  float: left;
+  margin-left: 50px;
+}
+
+section.order .cart .header .price {
+  float: right;
+  margin-right: 100px;
+}
+
+section.order .cart .items {
+  background-color: #f5f6f9;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  position: relative;
+  margin: 10px 0;
+}
+
+section.order .cart .items .qty {
+  color: #0097e6;
+  margin-left: 45px;
+  float: left;
+}
+
+section.order .cart .items .item-name {
+  float: left;
+  margin-left: 60px;
+}
+
+section.order .cart .items .action {
+  background-image: url("../../img/60995.png");
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position-y: 20px;
+  background-position-x: 17px;
+  background-color: #e6edf3;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: inherit;
+  width: 55px;
+}
+
+section.order .cart .items .price {
+  color: #f06953;
+  float: right;
+  margin-right: 90px;
+}
+
+section.order .cart .footer {
+  margin: 60px 0;
+}
+
+section.order .cart .footer .total {
+  float: left;
+  margin-left: 30px;
+}
+
+section.order .cart .footer .total-price {
+  margin-left: 10px;
+  color: #f06953;
+  float: left;
+}
+
+section.order .cart .footer .order-button {
+  background-color: #f06953;
+  text-decoration: none;
+  color: #ecf0f1;
+  border-radius: 4px;
+  margin-top: -15px;
+  padding-top: 17px;
+  height: inherit;
+  float: right;
+  width: 120px;
+}
+
+section.order .cart .footer .order-button:hover {
+  background-color: #f27d6a;
+}
+
+section.order .cart hr {
+  margin-top: 60px;
+  content: "";
+  clear: both;
+  width: 95%;
 }
 
 /* ====================================

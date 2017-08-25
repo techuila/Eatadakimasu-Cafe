@@ -1,10 +1,3 @@
-var app = angular.module('myApp', []);
-app.controller('myController', function($scope){
-    $scope.name = 'sadad';
-});
-
-console.log(app);
-
 $(document).ready(()=>{
     
     var qty = 0;
@@ -23,7 +16,11 @@ $(document).ready(()=>{
         blur_bg('s-in');
     });
 
-    // ORDER FORM   
+    // ORDER FORM 
+    
+    $("#add-to-cart").click("onclick", function(){
+        cancelFood("food-order","s-in");
+    });
 
     $("#curry").click("onclick", function(){
         displayFoodOrder("curry", "Curry Rice");
@@ -217,3 +214,19 @@ $(document).ready(()=>{
         }
     }
 });
+(function() {
+    'use strict';
+ 
+    var app = angular.module("myApp",[]);
+    app.directive('addToCart', function($compile){
+        return{
+            link: function(li, element){
+                element.bind('click', function(){
+                    var newItem = $compile('<li class="row items"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action"></a><span class="price">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span></li>')(li)
+                    $("#cart").children('#add-item').prev().after(newItem);
+                });
+            }
+        }
+    });  
+    })();
+    

@@ -37,7 +37,7 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
             <span>Special Instruction: </span><input type="checkbox" name="" value=""><br>
             </div>
             <textarea rows="10" cols="60"></textarea><br>
-            <button class="add-to-cart">Add to Cart</button> 
+            <button class="add-to-cart" id="add-to-cart" add-To-Cart>Add to Cart</button> 
         </center>
     </div>
 
@@ -50,7 +50,7 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
                     <h3>USERNAME</h3>
                     <input type="text" name="user">
                     <h3>PASSWORD</h3>
-                    <input type="text" name="pass"><br><br>   
+                    <input type="password" name="pass"><br><br>   
                     <span><strong><?php echo $error; ?></strong></span>
                     <div class="btn-container">
                         <input type="submit" class="in" value="LOGIN" name="submit">
@@ -303,50 +303,22 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
     </section>
 
     <section class="container order">
-        <!-- <div class="order-location">
-            <div id="sample">
-                <h1 id="title-form">Personal Information</h1>
-                <p id="sub-title">Please fill up this form before ordering.</p>
-            </div> 
-            <div class="form-container">
-                <input type="text" placeholder="First Name">
-                <input type="text" placeholder="Middle Name">
-                <input type="text" placeholder="Last Name">
-                <input type="text" placeholder="Barangay"><br>
-                <input type="text" placeholder="Street">
-                <input type="text" placeholder="House No."><br>
-                <input type="email" placeholder="Email Address">
-                <input type="text" placeholder="Contact Number"><br>
-            </div>
-            <div class="button-container">
-                <button class="in">login</button>
-                <button class="up">register</button><br>
-                <button class="guest">login as guest</button>
-            </div>
-        </div> -->
-
-        <!--CART  -->
-
-            <ul>
-                <li class="row header">
-                    <span class="qty">QTY{{ name }}</span>
-                    <span class="item">ITEM</span>
-                    <span class="price">QTY</span>
-                </li>
-                <li class="row item">
-                    <span class="qty">2</span>
-                    <span class="item-name">Donburi</span>
-                    <span class="price">$56</span>
-                    <span class="action"></span>
-                </li>
-                <li class="row footer">
-                    <span class="total">Total:</span>
-                    <span class="total-price">$1623.23</span>
-                    <span class="order-button">
-                        <a href="#">ORDER</a>
-                    </span>
-                </li>
-            </ul>
+        <strong>
+        <ul class="cart" id="cart">
+            <li class="row header">
+                <span class="qty">QTY</span>
+                <span class="item">ITEM</span>
+                <span class="price">PRICE</span>
+            </li>
+            
+            <li class="row footer" id="add-item">
+                <span class="total">Total:</span>
+                <span class="total-price">$1623.23</span>
+                <a href="#" class="order-button">ORDER</a>
+            </li>
+            <hr>
+        </ul>
+        </strong>
 
     </section>
 
