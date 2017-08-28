@@ -809,38 +809,37 @@ section.container{
             margin: 5% 1% 1% 0;
             height: 300px;
             width: 280px;
+            .frame{
+                box-shadow: 0 0 2px rgba(0,0,0,1);
+                background-repeat: no-repeat;
+                transition: top 0.3s ease;
+                border: 5px solid #fff;
+                background-size: cover;
+                border-radius: 100%;
+                position: absolute;
+                right: 0; left: 0;
+                height: 100px;
+                margin: auto;
+                width: 100px;
+                top: 60px;
+            }
+            article{
+                transition: margin-top 0.3s ease;
+                font-family: "Minion Pro";
+                margin: 180px auto 0 auto;
+                width: 90%;
+                h1{
+                    font-size: 1.5em;
+                }
+                p{
+                    transition: visibility 0s, opacity 0.3s ease;
+                    margin-top: 15px;
+                    display: hidden;
+                    opacity: 0;
+                }
+            }
         }
 
-        .frame{
-            box-shadow: 0 0 2px rgba(0,0,0,1);
-            background-repeat: no-repeat;
-            transition: top 0.3s ease;
-            border: 5px solid #fff;
-            background-size: cover;
-            border-radius: 100%;
-            position: absolute;
-            right: 0; left: 0;
-            height: 100px;
-            margin: auto;
-            width: 100px;
-            top: 60px;
-        }
-        article{
-            transition: margin-top 0.3s ease;
-            font-family: "Minion Pro";
-            margin-top: 180px;
-            margin: auto;
-            width: 95%;
-            h1{
-                font-size: 1.5em;
-            }
-            p{
-                transition: visibility 0s, opacity 0.3s ease;
-                margin-top: 15px;
-                display: hidden;
-                opacity: 0;
-            }
-        }
         .button-cart-container{
             transition: visibility 0s, opacity 0.3s ease;
             left: 0; bottom: 5; right: 0;
