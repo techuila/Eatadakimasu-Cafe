@@ -9,6 +9,9 @@
       {  
            echo '<script>alert("Image Inserted into Database")</script>';  
       }  
+      else{
+          echo '<script>alert("There was a problem inserting the image")</script>';
+      }
  }  
  ?>  
 
@@ -39,7 +42,7 @@
                           <th>Image</th> 
                           
                      </tr>  
-                     
+                    
                 <?php  
                 $connect = mysqli_connect("localhost", "root", "", "eatadakicafe");  
                 $query = "SELECT * FROM images";  

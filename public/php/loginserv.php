@@ -1,39 +1,49 @@
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
-
 <?php
 $error=''; //Variable to Store error message;
 if(isset($_POST['submit'])){
 
 if(empty($_POST['user']) || empty($_POST['pass'])){
-$error = "Username or Password is Invalid";
+echo '<script>alert("Username or Password is Invalid")</script>';
 }
-else
-{
-//Define $user and $pass
+else{
 $user=$_POST['user'];
 $pass=$_POST['pass'];
+
 //Establishing Connection with server by passing server_name, user_id and pass as a patameter
-$conn = mysqli_connect("localhost", "root", "");
+$conn = mysqli_connect("localhost", "root", "") or die ("Not yet connected");
 //Selecting Database
-$db = mysqli_select_db($conn, "eatadakicafe");
+$db = mysqli_select_db($conn, "eatadakicafe") or die ("cannot select database");
 //sql query to fetch information of registerd user and finds user match.
-$query = mysqli_query($conn, "SELECT userid FROM login WHERE password='$pass' AND username='$user'");
+$query = mysqli_query($conn, "SELECT * FROM login WHERE password='$pass' AND username='$user'");
 
-$sql = "SELECT userid FROM login WHERE password='$pass' AND username='$user'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $error = "<br> id: ". $row["userid"];
+$rows = mysqli_num_rows($query);
+if($rows != 0){
+    while($row = mysqli_fetch_assoc($query)){
         session_start();
-        $_SESSION["userid"] = $row["userid"];
-        echo '<script> alert("Login Successful") </script>';
-        // header("Location: order.php");
+            $_SESSION['username'] = $user;
+            echo '<script type="text/javascript">alert("Welcome '.$user.'")</script>'; 
+            echo "<br/><a href='./php/logout.php'>logout</a>";
     }
-} else {
-   $error = "Username and password is invalid";
+}else{
+    echo '<script>alert("Username or Password is incorrect!")</script>';
+        }
+    }
 }
-}
-}
-?>
 
+
+// $result = $conn->query($sql);
+// if ($result->num_rows > 0) {
+//     // output data of each row
+//     while($row = $result->fetch_assoc()) {
+//         $error = "<br> id: ". $row["userid"];
+//         session_start();
+//         $_SESSION["userid"] = $row["userid"];
+//         echo '<script> alert("Login Successful") </script>';
+//         // header("Location: order.php");
+//     }
+// } else {
+//    $error = "Username and password is invalid";
+// }
+// }
+// }
+?>

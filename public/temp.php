@@ -1,5 +1,6 @@
 <?php
 include("./php/loginserv.php"); // Include loginserv for checking username and password
+include("./php/registerserv.php");
 ?>
 <html>
 <head>
@@ -66,7 +67,7 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
                         <div class="btn-container">
                             <input type="submit" class="in" value="LOGIN" name="submit">
                             <input type="button" class="up" value="REGISTER" ng-click="showLogin= true; showRegister = true"><br>
-                            <input type="button" class="guest" value="LOGIN AS GUEST">
+                            <input type="button" class="guest" value="LOGIN AS GUEST" name="submit2">
                         </div>
                     </div>  
                 </form>
@@ -102,19 +103,19 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
                             <div class="col-span-2">
                                 <div class="col-2">
                                     <h5>First Name</h5>
-                                    <input type="text" name="" value="">
+                                    <input type="text" name="first-name" value="">
                                 </div>
                                 <div class="col-2">
                                     <h5>Last Name</h5>
-                                    <input type="text">
+                                    <input type="text" name="last-name">
                                 </div>
                             </div>
                             <h5>Username</h5>
-                            <input type="text">
+                            <input type="text" name="username">
                             <h5>Password</h5>
-                            <input type="text">
+                            <input type="password" name="password">
                             <h5>Confirm Password</h5>
-                            <input type="text">
+                            <input type="password" name="cpassword">
                             <div class="col-span-3">
                                 <div class="col-3">
                                     <h5>Birthday</h5>
@@ -136,11 +137,11 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
                                 </div>
                                 <div class="col-3">
                                     <h5>Day</h5>    
-                                    <input type="text" placeholder="Day" class="day">
+                                    <input type="text" placeholder="Day" class="day" name="day">
                                 </div>
                                 <div class="col-3">
                                     <h5>Year</h5>    
-                                    <input type="text" placeholder="Year" class="year">
+                                    <input type="text" placeholder="Year" class="year" name="year">
                                 </div>
                             </div>
                             <h5>Gender</h5>
@@ -151,33 +152,34 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
                             </select> 
                             <button type="button" ng-click="showRegister = false; showBill = true;" class="btn btn-success">Next Step</button>
                         </div>
-
+                
                         <!--==============================================
                                     BILLING INFORMATION FORM  
                         ==============================================-->
+                    
                         <div class="bill-form" ng-show="showBill">
                             <h5>Barangay</h5>
-                            <input type="text">
+                            <input type="text" name="barangay">
 
                             <div class="col-span-2">
                                 <div class="col-2">
                                     <h5>Street</h5>
-                                    <input type="text">
+                                    <input type="text" name="street">
                                 </div>
                                 <div class="col-2">
                                     <h5>House No.</h5>
-                                    <input type="text">
+                                    <input type="text" name="h-no">
                                 </div>
                             </div>
 
                             <h5>Email</h5>
-                            <input type="text">
-                            <h5>Movile No.</h5>
-                            <input type="text">
+                            <input type="text" name="email">
+                            <h5>Mobile No.</h5>
+                            <input type="text" name="mobile">
                             <button type="button" ng-click="showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                             <button type="button" ng-click="showBill = false; showPayment = true;" class="btn btn-warning">Skip</button>
                         </div>
-
+                    </form>
                         <!--==============================================
                                     PAYMENT INFORMATION FORM  
                         ==============================================-->
@@ -210,7 +212,7 @@ include("./php/loginserv.php"); // Include loginserv for checking username and p
                                     <input type="date">
                                 </div>
                             </div>
-                            <input type="submit" ng-click="showLogin = false; showPayment = false;" class="save-info" value="Save Information">                            
+                            <input type="submit" ng-click="showLogin = false; showPayment = false;" class="save-info" value="Save Information" name="save">                            
                         </div>
                     </div>
                 </form>
