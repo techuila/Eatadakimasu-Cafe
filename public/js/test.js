@@ -13,70 +13,83 @@ $(document).ready(()=>{
 
     //SIGN IN FORM
     $("#sign-in").click("onclick", function(){
-        blur_bg('s-in');
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";
     });
 
     // ORDER FORM 
     
-    $("#add-to-cart").click("onclick", function(){
-        cancelFood("food-order","s-in");
-    });
-
     $("#curry").click("onclick", function(){
-        displayFoodOrder("curry", "Curry Rice");
+        displayFoodOrder("curry", "Curry Rice", -10);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#donburi").click("onclick", function(){
-        displayFoodOrder("donburi", "Donburi");
+        displayFoodOrder("donburi", "Donburi", -32);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#cakey").click("onclick", function(){
-        displayFoodOrder("japanesecake", "Japanese Cakey");
+        displayFoodOrder("japanesecake", "Japanese Cakey", -10);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#karaage").click("onclick", function(){
-        displayFoodOrder("karaage", "Karaage");
+        displayFoodOrder("karaage", "Karaage", 0);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#omurice").click("onclick", function(){
-        displayFoodOrder("omurice", "Omurice");
+        displayFoodOrder("omurice", "Omurice", -30);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#onigiri").click("onclick", function(){
-        displayFoodOrder("onigiri", "Onigiri");
+        displayFoodOrder("onigiri", "Onigiri", 0);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#ramen").click("onclick", function(){
-        displayFoodOrder("ramen", "Ramen");
+        displayFoodOrder("ramen", "Ramen", -15);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#pudding").click("onclick", function(){
-        displayFoodOrder("sushi", "Pudding");
+        displayFoodOrder("sushi", "Pudding", 0);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#tempura").click("onclick", function(){
-        displayFoodOrder("tempura", "Tempura");
+        displayFoodOrder("tempura", "Tempura", -50);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";    
     });
 
     $("#tonkatsu").click("onclick", function(){
-        displayFoodOrder("tonkatsu", "Curry Rice");
+        displayFoodOrder("tonkatsu", "Curry Rice", -33);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#lipton").click("onclick", function(){
-        displayFoodOrder("lipton", "Lipton Green Tea");
+        displayFoodOrder("lipton", "Lipton Green Tea", 0);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#iced").click("onclick", function(){
-        displayFoodOrder("iced", "Iced Tea");
+        displayFoodOrder("iced", "Iced Tea", 0);
+        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";        
     });
 
     $("#exit-order").click("onclick", function(){
-        cancelFood("food-order","s-in");
+        document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";
     });
 
-    $(".exit").click("onclick", function(){
-        cancelFood("food-order","s-in");
+    $("#s-exit").click("onclick", function(){
+        document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";
     });
+
+    $("#add-to-cart").click("onclick", function(){
+        document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";   
+    });
+
 
     $(".minus").click(()=>{
         if(qty != 0){   
@@ -108,24 +121,21 @@ $(document).ready(()=>{
                         FUNCTIONS   
     =============================================*/
 
-    function displayFoodOrder(food, foodname){
-        console.log("display food order clicked");
-        document.getElementsByClassName("food").item(0).style.backgroundImage = "url('./img/menu/" + food + ".jpg')";
+    function displayFoodOrder(food, foodname, x_pos){
+        document.getElementsByClassName("food").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px;";
         document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
-        blur_bg("food-order");
     }
 
-    function blur_bg($element){
-        document.getElementById($element).style = "display: initial;";
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";
-    }
+    // function blur_bg($element){
+    //     document.getElementById($element).style = "display: initial;";
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;background-color: black;";
+    // }
 
-    function cancelFood($element,$element2){
-        console.log('asda');
-        document.getElementById($element).style = "display: none;";            
-        document.getElementById($element2).style = "display: none;";
-        document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";
-    }
+    // function cancelFood($element){
+    //     console.log('asda');
+    //     document.getElementById($element).style = "display: none;";            
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";
+    // }
 
     function scrollNavFunction(onload){
         var aboutLoc = $('#about').offset().top;
@@ -216,17 +226,29 @@ $(document).ready(()=>{
 });
 (function() {
     'use strict';
- 
-    var app = angular.module("myApp",[]);
+    var totalPrice = 0;
+    var c = 0;
+    var app = angular.module("myApp",['ngAnimate']);
+    app.controller('myCtrl', function($scope){
+        $scope.showActions = [];
+        $scope.totalPricy = totalPrice;
+        $scope.addPrice = function(){
+            totalPrice = ( parseFloat(totalPrice) + (parseFloat($('#form-qty').text() * 30))).toFixed(2);
+            $scope.totalPricy = totalPrice;
+            $scope.showActions[c] = true;
+        };
+        $scope.clickAction = function(){
+            // $scope.showActions = true;
+        };
+    });
     app.directive('addToCart', function($compile){
         return{
             link: function(li, element){
                 element.bind('click', function(){
-                    var newItem = $compile('<li class="row items"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action"></a><span class="price">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span></li>')(li)
+                    var newItem = $compile('<li class="row items"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span class="price">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil"></span></a><a href=""><span class="glyphicon glyphicon-remove"></span></a></div></li>')(li)
                     $("#cart").children('#add-item').prev().after(newItem);
                 });
             }
         }
     });  
-    })();
-    
+})();

@@ -64,6 +64,28 @@ $flat-green: #2ecc71;
     }
 }
 
+@keyframes animateBottomIn{
+    from{
+        top: -900px;
+    }
+
+    to{
+        top: 0.4%;
+    }
+}
+
+@keyframes animateToTop{
+    from{
+        top: 0;
+        opacity: 1;
+    }
+
+    to{
+        top: -900px;
+        opacity: 0;
+    }
+}
+
 @keyframes fade-in{
         from{
             background-color: $flat-blue;
@@ -91,6 +113,20 @@ $flat-green: #2ecc71;
     to{
         opacity: 1;
     }
+}
+
+/* ====================================
+           AGULAR ANIMATION
+====================================*/
+
+#s-in.ng-hide-remove,
+#food-order.ng-hide-remove{
+    animation: 0.6s animateBottomIn ease-out;
+}
+
+#s-in.ng-hide-add,
+#food-order.ng-hide-add{
+    animation: 0.6s animateToTop ease-out;
 }
 
 
@@ -126,17 +162,31 @@ p{
     color: lighten($dark-gray,15%);
 }
 
+.top-action{
+    position: absolute;
+    width: 91%;
+    top: 15;
+}
 .exit{
     background-image: url('../../img/error.png');
     background-repeat: no-repeat;
     background-size: cover;
+    float: right;
     height: 20px;
-    width: 20px;
-    position: absolute;
-    top: 20; right: 20;
     opacity: 0.4;
+    width: 20px;
 }
 .exit:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+.back{
+    @extend .exit;
+    background-image: url('../../img/back.png');
+    float: left;
+    opacity: 1;
+}
+.back:hover{
     cursor: pointer;
     opacity: 0.8;
 }
@@ -146,86 +196,232 @@ p{
 ====================================*/
 
 .s-in{
-    display: none;
-    font-family: "Open Sans";
-    background-color: #fff;
-    border-radius: 5px;
     box-shadow: 5px 5px 9px rgba(0,0,0,0.3);
-    opacity: 1;
-    height: 80%;
-    z-index: 2;
-    position: fixed;
+    background-color: #fff;
+    font-family: "Open Sans";
+    border-radius: 5px;
     left:0; right: 0;
-    width: 40%;
     margin: 3% auto;
+    position: fixed;
+    height: 88%;
+    z-index: 2;
+    width: 40%;
     .c-in{
+
+        /*==============================================
+                         lOGIN FORM
+          ==============================================*/
+
         background-image: url('../../img/05.jpg');
         background-size: auto auto;
         background-position-x: 52%;
-        font-size: 1em;
         border-radius: 5px;
+        font-size: 1em;
         height: 100%;
         width: 100%;
         padding: 10% 5%;
         margin: auto;
-        span{
-            color: red;
-        }
-        h3{
-            margin-top: 30px;
-            color: $custom-white;
-        }
-        input[type="text"],
-        input[type="password"]{
-            background-color: transparent;              
-            border: 2px solid $custom-white;
-            border-radius: 3px;
-            text-align: center;
-            color: $custom-white;
-            font-size: 16px;
-            margin-top: 20px;
-            height: 60px;
-            width: 75%;
-            padding: 10px;
-        }
-        .btn-container{
-            margin-top: 30px;
-            input[type="button"],input[type='submit']{
-                background-color: transparent;
-                border-radius: 4px;
-                height: 55px;
+        .login-form{
+            span{
+                color: red;
             }
-            input[type="button"]:hover,input[type='submit']:hover{
-                cursor: pointer;
-                color: white;
+            h4{
+                margin-top: 15px;
+                color: $custom-white;
             }
-            .in,.up{
-                min-width: 35%;
+            input[type="text"],
+            input[type="password"]{
+                    box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+                    border: 1px solid darken($custom-white,20%);
+                    background-color: transparent;
+                    transition: all ease 0.2s;
+                    border-radius: 4px;
+                    text-align: center;
+                    padding: 5px 5px;
+                    color: #fff;
+                    width: 70%;
+                    height: 40px;
+                    margin: 0 0 20px 0;
             }
-            .in{
-                margin-right: 15px;
-                border: 3px solid $flat-green;
-                color: $flat-green;
+            input[type="text"]:focus, input[type="password"]:focus{
+                box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+                background-color:rgba(255,255,255,0.3);
+                margin-top: -5px;
+                color: #000;
+                outline: none;
             }
-            .up{
-                margin-left: 15px;
-                border: 3px solid $flat-red;
-                color: $flat-red;
-            }
-            .guest{
-                width: 75%;
+            .btn-container{
                 margin-top: 30px;
-                border: 3px solid #e67e22;
-                color: #e67e22;
+                input[type="button"],input[type='submit']{
+                    background-color: transparent;
+                    border-radius: 4px;
+                    height: 55px;
+                }
+                input[type="button"]:hover,input[type='submit']:hover{
+                    cursor: pointer;
+                    color: white;
+                }
+                .in,.up{
+                    min-width: 35%;
+                }
+                .in{
+                    margin-right: 15px;
+                    border: 3px solid $flat-green;
+                    color: $flat-green;
+                }
+                .up{
+                    margin-left: 15px;
+                    border: 3px solid $flat-red;
+                    color: $flat-red;
+                }
+                .guest{
+                    width: 75%;
+                    margin-top: 30px;
+                    border: 3px solid #e67e22;
+                    color: #e67e22;
+                }
+                .in:hover{
+                    background-color: $flat-green;
+                }
+                .up:hover{
+                    background-color: $flat-red;
+                }
+                .guest:hover{
+                    background-color: #e67e22;
+                }
             }
-            .in:hover{
-                background-color: $flat-green;
+        }
+
+        /*==============================================
+                           REGISTER FORM
+          ==============================================*/
+        .register-form{
+            position: relative;
+            width: 95%;
+            input, select{
+                box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+                border: 1px solid darken($custom-white,20%);
+                background-color: transparent;
+                transition: all ease 0.2s;
+                border-radius: 4px;
+                padding: 5px 5px;
+                color: #fff;
+                width: 100%;
+                margin: 0 0 20px 0;
+                option{
+                    color: #000;
+                }
             }
-            .up:hover{
-                background-color: $flat-red;
+            input:focus, select:focus{
+                box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+                background-color:rgba(255,255,255,0.3);
+                margin-top: -5px;
+                color: #000;
+                outline: none;
             }
-            .guest:hover{
-                background-color: #e67e22;
+            h5{
+                color: $custom-white;
+                margin: 0 0 5px 0;  
+            }
+            .col-span-2{
+                width: inherit;
+                height: 75px;
+            }
+            .col-2{
+                float: left;
+                width: 48%;
+            }                
+            .col-2:last-child{
+                float: right;
+            }
+            .col-span-3{
+                width: inherit;
+                height: 78px;
+            }
+            .col-3{
+                float: left;
+                width: 28%;
+            }
+            .col-3:nth-child(2){
+                width: 15%;
+                margin-left: 14%;
+            }
+            .col-3:last-child{
+                float: right;
+            }
+            .btn{
+                float: right;
+            }
+            .btn-success{
+                margin-left: 10px;
+            }
+            .reg-nav{
+                hr{
+                    margin-bottom: 15px;
+                }
+                .c-nav{
+                    width: 100%;
+                    position: absolute;
+                    top: -23;
+                    button{
+                        background-color: lighten($custom-white,10%);
+                        border: 1px solid #fff;
+                        margin: 0 auto;
+                        border-radius: 100%;
+                        color: $flat-blue;
+                        height: 28px;
+                        width: 28px;
+                    }
+                    button.invi{
+                        visibility: hidden;
+                        margin: 0 51px;
+                    }
+                    .nav-1{
+                        background-color: $flat-green;
+                        // border-color: $flat-green;
+                        color: #fff;
+                    }
+                    .nav-2{
+                        border-color: #2ecc71;
+                        color: $flat-green;
+                    }
+                }
+                h6.invi{
+                    visibility: hidden;
+                    margin: 0 18px;
+                }
+                span{
+                    text-align: center;
+                    h6{
+                        color: #fff;
+                        text-align: center;
+                        display: inline;
+                    }
+                }
+            }
+            .person-form{
+                margin-top: 20px;
+                text-align: left;
+            }
+            .bill-form{
+                @extend .person-form;
+            }
+            .payment-form{
+                @extend .person-form;
+                h5.invi{
+                    visibility: hidden;
+                }
+                .save-info{
+                    background-color: $flat-green;
+                    border: none;
+                    box-shadow: none;
+                    float: right;
+                    width: 140px;
+                }
+                .save-info:hover{
+                    cursor: pointer;
+                    background-color: lighten($flat-green,5%);
+                }
             }
         }
     }
@@ -237,21 +433,33 @@ p{
 ====================================*/
 
 #food-order{
-    display: none;
-    width: 50%;
-    background-color: #fff;
     box-shadow: 3px 5px 5px rgba(0,0,0,0.6);
+    left: 0; right: 0; top: 5%;
+    background-color: #fff;
+    padding: 30px 0 20px 0;
+    font-family: "roboto";
+    border-radius: 5px;
+    position: fixed;
     min-height: 75%;
     margin: auto;
-    left: 0; right: 0; top: 5%;
-    position: fixed;
+    width: 50%;
     z-index: 2;
-    padding: 30px 0 20px 0;
-    border-radius: 5px;
+    .frame{
+        box-shadow: 0 0 3px rgba(0,0,0,1);
+        background-repeat: no-repeat;
+        border: 5px solid #fff;
+        background-size: cover;
+        border-radius: 100%;
+        height: 130px;
+        margin: auto;
+        width: 130px;
+    }
     h1,h2,h3{
-        font-family: "roboto";
         text-align: center;
         margin:0;
+    }
+    h1{
+        font-size: 2em;
     }
     .special{
         margin-top: 20px;
@@ -259,6 +467,7 @@ p{
     }
     button{
         color: #fff;
+        width: 80px;
         background-color: $flat-green;
         border: none;
     }
@@ -292,6 +501,14 @@ p{
             display: inline;
             margin: 10px;
         }
+        h2{ 
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: $flat-red;
+        }
+        h3{
+            font-size: 1.17em;
+        }
     }
     .qty-label{
         margin-top: 10px;
@@ -303,15 +520,6 @@ p{
     .food-name{
         margin-top: 20px;
         text-align: center;
-    }
-    .frame{
-        margin: auto;
-        @extend .bg;
-        height: 130px;
-        width: 130px;
-        border: 5px solid #fff;
-        border-radius: 100%;
-        box-shadow: 0 0 3px rgba(0,0,0,1);
     }
 }
 
@@ -325,7 +533,7 @@ body{
     font-family: "Minion Pro";
     font-size: 14px;
     color: $dark-gray;
-    background-color: $custom-white;
+    background-color: #fff;
 }
 
 *{
@@ -354,13 +562,22 @@ body{
 header{
     text-transform: uppercase;
     font-family: "Roboto";
+    overflow: hidden;
     position: fixed;
     width: 100%;
-    overflow: hidden;
-    z-index: 1;
+    z-index: 2;
 
     .container{
         
+        .logo{
+            background-image: url('../../img/logo.png');
+            background-repeat: no-repeat;
+            background-position-y: -19px;
+            background-size: cover;
+            display: inline-block;
+            height: 49px;
+            width: 280px;
+        }
         h1{
             float: left;
             color: $dark-gray;
@@ -369,14 +586,14 @@ header{
                 color: darken($custom-white,10%);
             }
         }
-
         nav{
             float: right;
-            margin-top: 15px;
             height: 30px;
+            margin-top: 15px;
             ul{
                 text-decoration: none;
                 li{
+                    position: relative;
                     display: inline-block;
                     text-decoration: none;                    
                     a{
@@ -394,7 +611,6 @@ header{
                         color: #fff;
                     }
                     // ANIMATION COLOR FADE IN IN SIGN IN
-                    
                     a:hover{
                         color: $flat-blue;
                     }
@@ -611,6 +827,9 @@ section.container{
             margin-top: 180px;
             width: 95%;
             transition: margin-top 0.3s ease;
+            h1{
+                font-size: 1.5em;
+            }
             p{
                 margin-top: 15px;
                 display: hidden;
@@ -627,10 +846,10 @@ section.container{
             left: 0; bottom: 5; right: 0;
             transition: visibility 0s, opacity 0.3s ease;
             h1{
+                font-size: 2em;
                 margin-top: 10px;
                 float: left;
                 color: $flat-red;
-                
             }
             
         }
@@ -638,7 +857,9 @@ section.container{
         button{
             float: right;
             height: 40px;
+            width: 80px;
             border: none;
+            color: #fff;
             border-radius: 4px;
             background-color: $flat-green;
             transition: background-color 0.3s ease;
@@ -831,12 +1052,12 @@ section.order{
             }
             .action{
                 background-image: url('../../img/60995.png');
+                position: absolute; top: 0; right: 0;
                 background-repeat: no-repeat;
                 background-size: 20px 20px;
                 background-position-y: 20px;
                 background-position-x: 17px;
                 background-color: #e6edf3;
-                position: absolute; top: 0; right: 0;
                 height: inherit;
                 width: 55px;
             }
@@ -844,6 +1065,26 @@ section.order{
                 color: $flat-red;
                 float: right;
                 margin-right: 90px;
+            }
+            .action-item{
+                background-image: url('../../img/actionContainer.png');
+                background-repeat: no-repeat;
+                background-position-y: -17px;
+                background-position-x: 17px;
+                background-size: contain;
+                padding: 33px 15px 0 0;
+                top: 40; right: -55;
+                position: absolute;
+                height: 100px;
+                width: 150px; 
+                z-index: 1;
+                .glyphicon-remove{
+                    color: $flat-red;
+                    margin-left: 15px
+                }
+                .glyphicon-remove:hover{
+                    color: darken($flat-red,10%);
+                }
             }
         }
         .footer{
