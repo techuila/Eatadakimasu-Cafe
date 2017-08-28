@@ -1,11 +1,11 @@
 /* ====================================
             GLOBAL COLORS
 ====================================*/
-$flat-blue: #00a8ff;
-$dark-gray: #34495e;
 $custom-white: #ecf0f1;
-$flat-red: #f06953;
 $flat-green: #2ecc71;
+$dark-gray: #34495e;
+$flat-blue: #00a8ff;
+$flat-red: #f06953;
 
 
 
@@ -27,8 +27,8 @@ $flat-green: #2ecc71;
 @include font-face('MinionPro-Regular','MinionPro', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/MinionPro-Regular.otf','opentype');
 @include font-face('Gobold Regular','Gobold Reg', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Regular.ttf','truetype');
 @include font-face('Gobold Hollow','Gobold Hol', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
-@include font-face('Roboto-Regular','roboto', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/Roboto-Regular.ttf','truetype');
-@include font-face('OpenSans-Regular','Open Sans', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/OpenSans-Regular.ttf','truetype');
+@include font-face('Roboto','roboto', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/Roboto-Regular.ttf','truetype');
+@include font-face('Open Sans','Open Sans', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/OpenSans-Regular.ttf','truetype');
 
 
 
@@ -154,9 +154,9 @@ hr{
 section{
     .art-bg{
         position: absolute;
-        top: 45%; 
         text-align: center;
         width: 100%;
+        top: 45%; 
     }
 }
 
@@ -208,21 +208,19 @@ p{
     height: 88%;
     z-index: 2;
     width: 40%;
-    .c-in{
-
-        /*==============================================
+    /*==============================================
                          lOGIN FORM
           ==============================================*/
-
+    .c-in{
         background-image: url('../../img/05.jpg');
         background-size: auto auto;
         background-position-x: 52%;
         border-radius: 5px;
+        padding: 10% 5%;
         font-size: 1em;
         height: 100%;
-        width: 100%;
-        padding: 10% 5%;
         margin: auto;
+        width: 100%;
         .login-form{
             span{
                 color: red;
@@ -238,19 +236,19 @@ p{
                     background-color: transparent;
                     transition: all ease 0.2s;
                     border-radius: 4px;
+                    margin: 0 0 20px 0;
                     text-align: center;
                     padding: 5px 5px;
                     color: #fff;
-                    width: 70%;
                     height: 40px;
-                    margin: 0 0 20px 0;
+                    width: 70%;
             }
             input[type="text"]:focus, input[type="password"]:focus{
                 box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
                 background-color:rgba(255,255,255,0.3);
                 margin-top: -5px;
-                color: #000;
                 outline: none;
+                color: #000;
             }
             .btn-container{
                 margin-top: 30px;
@@ -267,20 +265,20 @@ p{
                     min-width: 35%;
                 }
                 .in{
-                    margin-right: 15px;
                     border: 3px solid $flat-green;
+                    margin-right: 15px;
                     color: $flat-green;
                 }
                 .up{
-                    margin-left: 15px;
                     border: 3px solid $flat-red;
+                    margin-left: 15px;
                     color: $flat-red;
                 }
                 .guest{
-                    width: 75%;
-                    margin-top: 30px;
                     border: 3px solid #e67e22;
+                    margin-top: 30px;
                     color: #e67e22;
+                    width: 75%;
                 }
                 .in:hover{
                     background-color: $flat-green;
@@ -306,10 +304,10 @@ p{
                 background-color: transparent;
                 transition: all ease 0.2s;
                 border-radius: 4px;
+                margin: 0 0 20px 0;
                 padding: 5px 5px;
                 color: #fff;
                 width: 100%;
-                margin: 0 0 20px 0;
                 option{
                     color: #000;
                 }
@@ -368,9 +366,9 @@ p{
                     button{
                         background-color: lighten($custom-white,10%);
                         border: 1px solid #fff;
-                        margin: 0 auto;
                         border-radius: 100%;
                         color: $flat-blue;
+                        margin: 0 auto;
                         height: 28px;
                         width: 28px;
                     }
@@ -395,9 +393,9 @@ p{
                 span{
                     text-align: center;
                     h6{
-                        color: #fff;
                         text-align: center;
                         display: inline;
+                        color: #fff;
                     }
                 }
             }
@@ -415,14 +413,14 @@ p{
                 }
                 .save-info{
                     background-color: $flat-green;
-                    border: none;
                     box-shadow: none;
+                    border: none;
                     float: right;
                     width: 140px;
                 }
                 .save-info:hover{
-                    cursor: pointer;
                     background-color: lighten($flat-green,5%);
+                    cursor: pointer;
                 }
             }
         }
@@ -446,6 +444,9 @@ p{
     margin: auto;
     width: 50%;
     z-index: 2;
+    .top-action{
+        width: 97%;
+    }
     .frame{
         box-shadow: 0 0 3px rgba(0,0,0,1);
         background-repeat: no-repeat;
@@ -464,29 +465,29 @@ p{
         font-size: 2em;
     }
     .special{
-        margin-top: 20px;
         margin-bottom: 20px;
+        margin-top: 20px;
     }
     button{
-        color: #fff;
-        width: 80px;
         background-color: $flat-green;
+        color: #fff;
         border: none;
+        width: 80px;
     }
     .add-to-cart{
-        height: 35px;
         border-radius: 4px;
+        height: 35px;
     }
     textarea{
         margin-bottom: 20px;
     }
     
     .minus,.plus,{
-        height: 25px;
-        width: 25px;
-        border-radius: 100%;
         background-color: $flat-green;
+        border-radius: 100%;
+        height: 25px;
         border: none;
+        width: 25px;
     }
     .minus{
         background-color: $flat-red;
@@ -505,8 +506,8 @@ p{
         }
         h2{ 
             font-size: 1.5em;
-            margin: 20px 0;
             color: $flat-red;
+            margin: 20px 0;
         }
         h3{
             font-size: 1.17em;
@@ -516,12 +517,12 @@ p{
         margin-top: 10px;
     }
     .qty{
-        margin-top: 0;
         text-align: center;
+        margin-top: 0;
     }
     .food-name{
-        margin-top: 20px;
         text-align: center;
+        margin-top: 20px;
     }
 }
 
@@ -530,18 +531,18 @@ p{
                 HTML
 ====================================*/
 body{
-    margin: 0;
-    padding: 0;
     font-family: "Minion Pro";
-    font-size: 14px;
-    color: $dark-gray;
     background-color: #fff;
+    color: $dark-gray;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
 }
 
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -589,19 +590,19 @@ header{
             }
         }
         nav{
-            float: right;
-            height: 30px;
             margin-top: 15px;
+            height: 30px;
+            float: right;
             ul{
                 text-decoration: none;
                 li{
-                    position: relative;
-                    display: inline-block;
                     text-decoration: none;                    
+                    display: inline-block;
+                    position: relative;
                     a{
                         text-decoration: none;
-                        color: $dark-gray;
                         padding: 10px 15px;
+                        color: $dark-gray;
                     }
                     .sign-in{
                         background-color: $flat-blue;
@@ -635,21 +636,21 @@ section#home{
     
     .art-bg{  
         h1{
+            text-shadow: 3px 5px 7px rgba(0,0,0,0.8);
             font-family: 'Blacksword';
+            letter-spacing: 5px;
             font-size: 70px;
             color: #fff;
-            letter-spacing: 5px;
-            text-shadow: 3px 5px 7px rgba(0,0,0,0.8);
         }
         hr{
             width: 65%;
         }
         p{
+            text-shadow: 2px 2px 1px rgba(255,255,255,1);
             font-family: "Minion Pro";
-            font-size: 24px;
             text-transform: uppercase;
             letter-spacing: 10px;
-            text-shadow: 2px 2px 1px rgba(255,255,255,1);
+            font-size: 24px;
         }
     }
 }
@@ -665,8 +666,8 @@ section#about{
     img{
         margin-right: 50px;
         height: 650px;
-        float: left;
         opacity: 0.8;
+        float: left;
     }
     img:hover{
         opacity: 1;
@@ -674,13 +675,13 @@ section#about{
     article.about{
         font-family: "Minion Pro";
         h1{
+            margin-bottom: 20px;
             text-align: center; 
             font-size: 38px;
-            margin-bottom: 20px;
         }
         p{
-            font-size: 18px;
             line-height: 1.5em;
+            font-size: 18px;
         }
     }
 }
@@ -694,23 +695,23 @@ section#menu{
 ====================================*/
 
 section#menu{
-    margin-top: 10%;
     position: relative;
+    margin-top: 10%;
     .menu-background{
         background-image: url('../../img/04.jpg');
-        height: 80%;
         opacity: 0.9;
+        height: 80%;
     }
 
     .art-bg{
         h1{
             font-family: "Open Sans";
-            font-size: 70px;
             color: $flat-blue;
+            font-size: 70px;
             // letter-spacing: 5px;
             span{
-                color: #fff;
                 border-bottom: 7px solid #fff;
+                color: #fff;
             }
         }
     }
@@ -723,9 +724,9 @@ section#menu{
 
 
 section.container{
-    padding: 10% 0;
-    text-align: center;
     font-family: "Minion Pro";
+    text-align: center;
+    padding: 10% 0;
     article.menu{
         h1{
             font-size: 38px;
@@ -738,12 +739,12 @@ section.container{
         }
     }
     .box-container{
-        display: flex;
         justify-content: space-around;
-        flex-wrap: wrap;
+        font-family: "Open Sans";
         align-items: center;
         margin-top: 30px;
-        font-family: "Open Sans";
+        flex-wrap: wrap;
+        display: flex;
         
 
         /* ====================================================
@@ -802,73 +803,74 @@ section.container{
         ====================================================*/
 
         .box{
+            transition: border-color 0.5s ease;
+            border: 2px solid #e4e4e4;
             position: relative;
+            margin: 5% 1% 1% 0;
             height: 300px;
             width: 280px;
-            margin: 5% 1% 1% 0;
-            border: 2px solid #e4e4e4;
-            transition: border-color 0.5s ease;
         }
 
         .frame{
-            position: absolute;
-            height: 100px;
-            width: 100px;
-            margin: auto;
-            top: 60px;
-            right: 0; left: 0;
-            border: 5px solid #fff;
-            border-radius: 100%;
             box-shadow: 0 0 2px rgba(0,0,0,1);
-            transition: top 0.3s ease;
-            background-size: cover;
             background-repeat: no-repeat;
+            transition: top 0.3s ease;
+            border: 5px solid #fff;
+            background-size: cover;
+            border-radius: 100%;
+            position: absolute;
+            right: 0; left: 0;
+            height: 100px;
+            margin: auto;
+            width: 100px;
+            top: 60px;
         }
         article{
-            margin: auto;
-            margin-top: 180px;
-            width: 95%;
             transition: margin-top 0.3s ease;
+            font-family: "Minion Pro";
+            margin-top: 180px;
+            margin: auto;
+            width: 95%;
             h1{
                 font-size: 1.5em;
             }
             p{
+                transition: visibility 0s, opacity 0.3s ease;
                 margin-top: 15px;
                 display: hidden;
                 opacity: 0;
-                transition: visibility 0s, opacity 0.3s ease;
             }
         }
         .button-cart-container{
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            width: 90%;
-            margin: auto;
-            left: 0; bottom: 5; right: 0;
             transition: visibility 0s, opacity 0.3s ease;
+            left: 0; bottom: 5; right: 0;
+            visibility: hidden;
+            position: absolute;
+            margin: auto;
+            opacity: 0;
+            width: 90%;
             h1{
-                font-size: 2em;
-                margin-top: 10px;
-                float: left;
                 color: $flat-red;
+                margin-top: 10px;
+                font-size: 2em;
+                float: left;
             }
             
         }
 
         button{
-            float: right;
-            height: 40px;
-            width: 80px;
-            border: none;
-            color: #fff;
-            border-radius: 4px;
-            background-color: $flat-green;
             transition: background-color 0.3s ease;
+            background-color: $flat-green;
+            border-radius: 4px;
+            color: #fff;
+            border: none;
+            height: 40px;
+            float: right;
+            width: 80px;
         }
         button:hover{
-            cursor: pointer;
             background-color: lighten($flat-green, 10%);
+            cursor: pointer;
         }
 
         /*============================================== 
@@ -902,18 +904,18 @@ section#order{
     position: relative;
     .order-background{
         background-image: url('../../img/reservation-seat.jpg');
+        opacity: 0.75;
         height: 80%;
-        opacity: 0.75
     }
     article{
-        position: absolute;
-        margin: auto;
         top: 35%; right: 0; left: 0;
         text-align: center;
+        position: absolute;
+        margin: auto;
         h1{
             font-family: "Open Sans";
-            font-size: 70px;
             color: $flat-blue;
+            font-size: 70px;
             // letter-spacing: 5px;
             span{
                 color: #fff;
@@ -933,43 +935,43 @@ section.order{
         float: left;
         width: 50%;
         div#sample{
+            font-family: "Open Sans";            
+            margin-bottom: 20px;
+            margin-left: 42px;
             text-align: left;
             width: 500px;
-            margin-left: 42px;
-            margin-bottom: 20px;
-            font-family: "Open Sans";            
             h1,p{
-                opacity: 0;
                 transition: opacity 0.3s ease;
                 display: none;
+                opacity: 0;
             }
             h1{
                 text-transform: uppercase;
-                font-size: 24px;
                 color: $dark-gray;
+                font-size: 24px;
             }
         }
         .form-container{
-            display: none;
-            opacity: 0;
             transition: opacity 0.3s ease;
+            display: none;
             width: 100%;
+            opacity: 0;
             input{
                 padding-left: 15px;
-                margin-top: 10px;
                 margin-left: 20px;
+                margin-top: 10px;
                 height: 50px;
                 width: 260px;
             }
         }
         .button-container{
             button{
-                height: 55px;
-                width: 150px;
-                border-radius: 4px;
                 text-transform: uppercase;
                 background: transparent;
+                border-radius: 4px;
                 color: #fff;
+                width: 150px;
+                height: 55px;
             }
             .in,.up{
                 margin-right: 20px;
@@ -983,9 +985,8 @@ section.order{
                 color: $flat-red;
             }
             .guest{
-                
-                margin-top: 30px;
                 border: 3px solid #e67e22;
+                margin-top: 30px;
                 color: #e67e22;
             }
             button:hover{
@@ -1022,24 +1023,24 @@ section.order{
             clear: both;
         }
         .header{
-            font-size: 18px;
             padding-bottom: 20px;
+            font-size: 18px;
             .qty{
-                float: left;
                 margin-left: 35px;
+                float: left;
             }   
             .item{
-                float: left;
                 margin-left: 50px;
+                float: left;
             }
             .price{
-                float: right;
                 margin-right: 100px;
+                float: right;
             }
         }
         .items{
-            background-color: #f5f6f9;
             box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            background-color: #f5f6f9;
             border-radius: 2px;
             position: relative;
             margin: 10px 0;
@@ -1049,24 +1050,24 @@ section.order{
                 float: left;
             }
             .item-name{
-                float: left;
                 margin-left: 60px;
+                float: left;
             }
             .action{
                 background-image: url('../../img/60995.png');
                 position: absolute; top: 0; right: 0;
                 background-repeat: no-repeat;
-                background-size: 20px 20px;
                 background-position-y: 20px;
                 background-position-x: 17px;
                 background-color: #e6edf3;
+                background-size: 20px 20px;
                 height: inherit;
                 width: 55px;
             }
             .price{
+                margin-right: 90px;
                 color: $flat-red;
                 float: right;
-                margin-right: 90px;
             }
             .action-item{
                 background-image: url('../../img/actionContainer.png');
@@ -1081,8 +1082,8 @@ section.order{
                 width: 150px; 
                 z-index: 1;
                 .glyphicon-remove{
+                    margin-left: 15px;
                     color: $flat-red;
-                    margin-left: 15px
                 }
                 .glyphicon-remove:hover{
                     color: darken($flat-red,10%);
@@ -1092,8 +1093,8 @@ section.order{
         .footer{
             margin: 60px 0;
             .total{
-                float: left;
                 margin-left: 30px;
+                float: left;
             }
             .total-price{
                 margin-left: 10px;
@@ -1105,8 +1106,8 @@ section.order{
                 text-decoration: none;
                 color: $custom-white;
                 border-radius: 4px;
-                margin-top: -15px;
                 padding-top: 17px;
+                margin-top: -15px;
                 height: inherit;
                 float: right;
                 width: 120px;
@@ -1130,10 +1131,10 @@ section.order{
 ====================================*/
 
 footer{
-    clear: both;
-    min-height: 15%;
     background-color: $dark-gray;
     color: $custom-white;
     text-align: center;
     padding-top: 3%;
+    min-height: 15%;
+    clear: both;
 }

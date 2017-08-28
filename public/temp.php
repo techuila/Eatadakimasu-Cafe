@@ -28,8 +28,10 @@ include("./php/registerserv.php");
     <!--Order Form  -->
     <div class="containers" id="food-order" ng-init="qty = 0" ng-show="showOrder">
         <center>
-            <div class="exit" id="exit-order" ng-click="showOrder = false"></div>
-            <div class="frame food"></div>` w
+            <div class="top-action">
+                <div class="exit" id="exit-order" ng-click="showOrder = false"></div>
+            </div>
+            <div class="frame food"></div>
             <h1 class="food-name">food</h1>
             <div class="container-qty">
                 <h2>₱{{ qty * 30 }}</h2>
