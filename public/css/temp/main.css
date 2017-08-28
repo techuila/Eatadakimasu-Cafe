@@ -776,20 +776,24 @@ section#menu .art-bg h1 span {
          MENU LANG TE SIEMPRE
 ====================================*/
 section.container {
-  font-family: "Minion Pro";
   text-align: center;
   padding: 10% 0;
 }
 
-section.container article.menu h1 {
+section.container article.menu-sub-title {
+  font-family: "Minion Pro";
+}
+
+section.container article.menu-sub-title h1.menu-title {
+  font-family: "Minion Pro";
   font-size: 38px;
 }
 
-section.container article.menu p {
+section.container article.menu-sub-title p.menu-sub {
   font-size: 22px;
 }
 
-section.container article.menu hr {
+section.container article.menu-sub-title hr {
   width: 35%;
 }
 
@@ -879,18 +883,18 @@ section.container .box-container .box .frame {
   top: 60px;
 }
 
-section.container .box-container .box article {
+section.container .box-container article {
   transition: margin-top 0.3s ease;
-  font-family: "Minion Pro";
+  font-family: "roboto";
   margin: 180px auto 0 auto;
   width: 90%;
 }
 
-section.container .box-container .box article h1 {
+section.container .box-container article h1 {
   font-size: 1.5em;
 }
 
-section.container .box-container .box article p {
+section.container .box-container article p {
   transition: visibility 0s, opacity 0.3s ease;
   margin-top: 15px;
   display: hidden;

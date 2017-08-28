@@ -43,7 +43,7 @@ include("./php/registerserv.php");
             <div class="special">
             <span>Special Instruction: </span><input type="checkbox" ng-model="showInst" name="" value=""><br>
             </div>
-            <textarea rows="10" cols="60" ng-show="showInst"></textarea><br>
+            <textarea rows="5" cols="60" ng-show="showInst"></textarea><br>
             <button class="add-to-cart" ng-click="addPrice(); showOrder = false" id="add-to-cart" add-To-Cart>Add to Cart</button> 
         </center>
     </div>
@@ -56,7 +56,7 @@ include("./php/registerserv.php");
                                     LOGIN FORM  
                   ==============================================-->
                 <div class="top-action">
-                    <div class="back" ng-click="showRegister = false; showLogin = false; showPayment = false" ng-show="showLogin"></div>
+                    <div class="back" ng-click="showRegister = false; showLogin = false; showBill = false; showPayment = false" ng-show="showLogin"></div>
                     <div class="exit" id="s-exit" ng-click="showIn = false; showLogin = false; showRegister = false; showBill = false; showPayment = false;"></div>
                 </div>
                 <form action="#" method="post">                
@@ -272,9 +272,9 @@ include("./php/registerserv.php");
     </section>
     
     <section class="container">
-        <article class="menu">
-            <h1>Our Menu</h1>
-            <p>Have some of japan's delicacies.</p>
+        <article class="menu-sub-title">
+            <h1 class="menu-title">Our Menu</h1>
+            <p class="menu-sub">Have some of japan's delicacies.</p>
             <hr>
         </article>
         <div class="box-container">
@@ -415,13 +415,14 @@ include("./php/registerserv.php");
                     <h1>₱80</h1>
                     <button id="tonkatsu" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
-            </div>
+            </div> 
 
             <!--============================
                           DRINKS
             ================================-->
-            <article class="menu">
-                <h1>Drinks</h1>
+            <article class="menu-sub-title">
+                <br>
+                <h1 class="menu-title">Drinks</h1>
                 <hr>
             </article> 
             <div class="box">

@@ -724,14 +724,15 @@ section#menu{
 
 
 section.container{
-    font-family: "Minion Pro";
     text-align: center;
     padding: 10% 0;
-    article.menu{
-        h1{
+    article.menu-sub-title{
+        font-family: "Minion Pro";
+        h1.menu-title{
+            font-family: "Minion Pro";        
             font-size: 38px;
         }
-        p{
+        p.menu-sub{
             font-size: 22px;
         }
         hr{
@@ -745,8 +746,6 @@ section.container{
         margin-top: 30px;
         flex-wrap: wrap;
         display: flex;
-        
-
         /* ====================================================
              FOOOOOOOOOOD WADAFAK NUMA MAN BUYUNG BUNANI
         ====================================================*/
@@ -801,7 +800,6 @@ section.container{
         /* ====================================================
                          END OF FOODSSSSS
         ====================================================*/
-
         .box{
             transition: border-color 0.5s ease;
             border: 2px solid #e4e4e4;
@@ -823,23 +821,22 @@ section.container{
                 width: 100px;
                 top: 60px;
             }
-            article{
-                transition: margin-top 0.3s ease;
-                font-family: "Minion Pro";
-                margin: 180px auto 0 auto;
-                width: 90%;
-                h1{
-                    font-size: 1.5em;
-                }
-                p{
-                    transition: visibility 0s, opacity 0.3s ease;
-                    margin-top: 15px;
-                    display: hidden;
-                    opacity: 0;
-                }
+        }
+        article{
+            transition: margin-top 0.3s ease;
+            font-family: "roboto";
+            margin: 180px auto 0 auto;
+            width: 90%;
+            h1{
+                font-size: 1.5em;
+            }
+            p{
+                transition: visibility 0s, opacity 0.3s ease;
+                margin-top: 15px;
+                display: hidden;
+                opacity: 0;
             }
         }
-
         .button-cart-container{
             transition: visibility 0s, opacity 0.3s ease;
             left: 0; bottom: 5; right: 0;
