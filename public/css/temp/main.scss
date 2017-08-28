@@ -27,8 +27,8 @@ $flat-green: #2ecc71;
 @include font-face('MinionPro-Regular','MinionPro', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/MinionPro-Regular.otf','opentype');
 @include font-face('Gobold Regular','Gobold Reg', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Regular.ttf','truetype');
 @include font-face('Gobold Hollow','Gobold Hol', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
-@include font-face('Roboto','roboto', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
-@include font-face('OpenSans-Regular','Open Sans', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
+@include font-face('Roboto-Regular','roboto', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/Roboto-Regular.ttf','truetype');
+@include font-face('OpenSans-Regular','Open Sans', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/OpenSans-Regular.ttf','truetype');
 
 
 
@@ -563,7 +563,7 @@ body{
 
 header{
     text-transform: uppercase;
-    font-family: "Roboto";
+    font-family: "roboto";
     overflow: hidden;
     position: fixed;
     width: 100%;
