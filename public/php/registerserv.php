@@ -1,12 +1,7 @@
 <?php
-
+header('Content-type: application/json'); 
 $error=''; //Variable to Store error message;
 
-if(isset($_POST['save'])){
-    if(empty($_POST['username']) || empty($_POST['password'])){
-        $error = "Username or Password is Invalid";
-    }
-    else{
     $username=$_POST['username'];
     $password=$_POST['password'];
     $fname=$_POST['first-name'];
@@ -36,15 +31,12 @@ if(isset($_POST['save'])){
                 echo '<script>alert("Registration Successful!")</script>';
         }else{
             echo '<script>alert("password not matched!")</script>';
-            }
+        }
          
     }else{
-        echo '<script>alert("Username Already Existing!")</script>';    }
-}else{
-    echo '<script>alert("Username only contains alpha numeric!")</script>';
-        }
+        echo '<script>alert("contains alphanumeric")</script>';    }
     }
-}
+
 
 
 // $fname=strip_tags($_POST['first-name']);

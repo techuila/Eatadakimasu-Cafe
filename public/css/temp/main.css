@@ -222,7 +222,7 @@ p {
   width: 40%;
   /*==============================================
                          lOGIN FORM
-          ==============================================*/
+    ==============================================*/
 }
 
 .s-in .c-in {
@@ -238,6 +238,17 @@ p {
   /*==============================================
                            REGISTER FORM
           ==============================================*/
+}
+
+.s-in .c-in .login-form .alert {
+  text-align: left;
+  opacity: 0.7;
+  width: 77%;
+}
+
+.s-in .c-in .login-form .glyphicon-ok,
+.s-in .c-in .login-form .glyphicon-ok-circle {
+  color: #2ecc71;
 }
 
 .s-in .c-in .login-form span {
@@ -261,7 +272,7 @@ p {
   padding: 5px 5px;
   color: #fff;
   height: 40px;
-  width: 70%;
+  width: 77%;
 }
 
 .s-in .c-in .login-form input[type="text"]:focus, .s-in .c-in .login-form input[type="password"]:focus {
@@ -307,7 +318,7 @@ p {
   border: 3px solid #e67e22;
   margin-top: 30px;
   color: #e67e22;
-  width: 75%;
+  width: 76%;
 }
 
 .s-in .c-in .login-form .btn-container .in:hover {
@@ -417,17 +428,16 @@ p {
   width: 28px;
 }
 
+.s-in .c-in .register-form .reg-nav .c-nav button:focus {
+  outline: none;
+}
+
 .s-in .c-in .register-form .reg-nav .c-nav button.invi {
   visibility: hidden;
   margin: 0 51px;
 }
 
 .s-in .c-in .register-form .reg-nav .c-nav .nav-1 {
-  background-color: #2ecc71;
-  color: #fff;
-}
-
-.s-in .c-in .register-form .reg-nav .c-nav .nav-2 {
   border-color: #2ecc71;
   color: #2ecc71;
 }
@@ -617,7 +627,6 @@ body {
 header {
   text-transform: uppercase;
   font-family: "roboto";
-  overflow: hidden;
   position: fixed;
   width: 100%;
   z-index: 2;
@@ -634,9 +643,9 @@ header .container .logo {
 }
 
 header .container h1 {
-  float: left;
   color: #34495e;
   margin-top: 5px;
+  float: left;
 }
 
 header .container h1 span {
@@ -665,6 +674,23 @@ header .container nav ul li a {
   color: #34495e;
 }
 
+header .container nav ul li .greetings {
+  margin-right: 10px;
+  font-size: 0.85em;
+}
+
+header .container nav ul li .user {
+  color: #ecf0f1;
+  margin-left: 15px;
+  text-transform: capitalize;
+  color: #006599;
+  font-size: 1.3em;
+}
+
+header .container nav ul li .o-user {
+  width: 300px;
+}
+
 header .container nav ul li .sign-in {
   background-color: #00a8ff;
   border-radius: 4px;
@@ -676,13 +702,13 @@ header .container nav ul li .sign-in:hover {
   color: #fff;
 }
 
-header .container nav ul li a:hover {
-  color: #00a8ff;
-}
-
 /* ====================================
              HOME SECTION  
 ====================================*/
+section#home {
+  position: relative;
+}
+
 section#home .home-background {
   background-image: url("../../img/01.jpg");
   min-height: 100%;

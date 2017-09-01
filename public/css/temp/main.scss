@@ -210,7 +210,7 @@ p{
     width: 40%;
     /*==============================================
                          lOGIN FORM
-          ==============================================*/
+    ==============================================*/
     .c-in{
         background-image: url('../../img/05.jpg');
         background-size: auto auto;
@@ -222,6 +222,15 @@ p{
         margin: auto;
         width: 100%;
         .login-form{
+            .alert{
+                text-align: left;
+                opacity: 0.7;
+                width: 77%;
+            }
+            .glyphicon-ok,
+            .glyphicon-ok-circle{
+                color: $flat-green;
+            }
             span{
                 color: red;
             }
@@ -241,7 +250,7 @@ p{
                     padding: 5px 5px;
                     color: #fff;
                     height: 40px;
-                    width: 70%;
+                    width: 77%;
             }
             input[type="text"]:focus, input[type="password"]:focus{
                 box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
@@ -278,7 +287,7 @@ p{
                     border: 3px solid #e67e22;
                     margin-top: 30px;
                     color: #e67e22;
-                    width: 75%;
+                    width: 76%;
                 }
                 .in:hover{
                     background-color: $flat-green;
@@ -372,16 +381,14 @@ p{
                         height: 28px;
                         width: 28px;
                     }
+                    button:focus{
+                        outline: none;
+                    }
                     button.invi{
                         visibility: hidden;
                         margin: 0 51px;
                     }
                     .nav-1{
-                        background-color: $flat-green;
-                        // border-color: $flat-green;
-                        color: #fff;
-                    }
-                    .nav-2{
                         border-color: #2ecc71;
                         color: $flat-green;
                     }
@@ -565,7 +572,6 @@ body{
 header{
     text-transform: uppercase;
     font-family: "roboto";
-    overflow: hidden;
     position: fixed;
     width: 100%;
     z-index: 2;
@@ -582,9 +588,9 @@ header{
             width: 280px;
         }
         h1{
-            float: left;
             color: $dark-gray;
             margin-top: 5px;
+            float: left;
             span{
                 color: darken($custom-white,10%);
             }
@@ -604,6 +610,20 @@ header{
                         padding: 10px 15px;
                         color: $dark-gray;
                     }
+                    .greetings{
+                        margin-right: 10px;
+                        font-size: 0.85em;
+                    }
+                    .user{
+                        color: $custom-white;
+                        margin-left: 15px; 
+                        text-transform: capitalize;
+                        color: darken($flat-blue, 20%);
+                        font-size: 1.3em;
+                    }
+                    .o-user{
+                        width: 300px;
+                    }
                     .sign-in{
                         background-color: $flat-blue;
                         border-radius: 4px;
@@ -614,9 +634,6 @@ header{
                         color: #fff;
                     }
                     // ANIMATION COLOR FADE IN IN SIGN IN
-                    a:hover{
-                        color: $flat-blue;
-                    }
                 }
             }
         }
@@ -628,6 +645,7 @@ header{
              HOME SECTION  
 ====================================*/
 section#home{
+    position: relative;
     .home-background{
         background-image: url('../../img/01.jpg');
         min-height: 100%;

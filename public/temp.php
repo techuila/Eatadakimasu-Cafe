@@ -1,6 +1,6 @@
 <?php
-include("./php/loginserv.php"); // Include loginserv for checking username and password
-include("./php/registerserv.php");
+// include("./php/loginserv.php"); // Include loginserv for checking username and password
+// include("./php/registerserv.php");
 ?>
 <html>
 <head>
@@ -23,13 +23,12 @@ include("./php/registerserv.php");
         });
     </script> -->
 </head>
-<body ng-app="myApp" ng-controller="myCtrl">
-
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="checkUser()">
     <!--Order Form  -->
     <div class="containers" id="food-order" ng-init="qty = 0" ng-show="showOrder">
         <center>
             <div class="top-action">
-                <div class="exit" id="exit-order" ng-click="showOrder = false"></div>
+                <div class="exit" id="exit-order" ng-click="exitForm(); showOrder = false"></div>
             </div>
             <div class="frame food"></div>
             <h1 class="food-name">food</h1>
@@ -56,39 +55,50 @@ include("./php/registerserv.php");
                                     LOGIN FORM  
                   ==============================================-->
                 <div class="top-action">
-                    <div class="back" ng-click="showRegister = false; showLogin = false; showBill = false; showPayment = false" ng-show="showLogin"></div>
-                    <div class="exit" id="s-exit" ng-click="showIn = false; showLogin = false; showRegister = false; showBill = false; showPayment = false;"></div>
+                    <div class="back" ng-click="showRegister = false; showLogin = false; showBill = false; showPayment = false; showBack = false" ng-show="showBack"></div>
+                    <div class="exit" id="s-exit" ng-click="showIn = false; showLogin = false; showRegister = false; showBill = false; showPayment = false; showBack = false; exitForm()"></div>
                 </div>
-                <form action="#" method="post">                
+                <form action="" method="post" id="form">                
                     <div class="login-form" ng-hide="showLogin">   
-                        <h4>USERNAME</h4>
+                        <h4>USERNAME</h4> 
                         <input type="text" name="user">
-                        <h4>PASSWORD</h4>
+                        <h4>PASSWORD</h4> 
                         <input type="password" name="pass"><br><br>   
-                        <span><strong><?php echo $error; ?></strong></span>
+                        <div class="alert alert-success" ng-show="loginSuccess">
+                            <center><strong><span class="glyphicon glyphicon-ok"></span> Login Successful! </strong> {{ welcome }}</center>
+                        </div>
+                        <div class="alert alert-danger" ng-show="loginFailed">
+                            <center><strong><span class="glyphicon glyphicon-remove"></span> Login Failed! </strong> Username / password is incorrect.</center>
+                        </div>
+                        <div class="alert alert-warning" ng-show="loginGuest">
+                            <center><strong><span class="glyphicon glyphicon-ok-circle"></span>  Logging in as Guest...</strong></center>
+                        </div>
                         <div class="btn-container">
-                            <input type="submit" class="in" value="LOGIN" name="submit">
-                            <input type="button" class="up" value="REGISTER" ng-click="showLogin= true; showRegister = true"><br>
-                            <input type="button" class="guest" value="LOGIN AS GUEST" name="submit2">
+                            <input type="submit" id="login" ng-click="sign_in()" class="in" value="LOGIN" name="submit">
+                            <input type="button" class="up" value="REGISTER" ng-click="showLogin= true; showRegister = true; showBack = true"><br>
+                            <input type="button" class="guest" ng-click="sign_guest()" value="LOGIN AS GUEST" name="submit2">
                         </div>
                     </div>  
                 </form>
                 <!--==============================================
                             PERSONAL INFORMATION FORM  
                   ==============================================-->
-                <form action="#" method="post">
+                <form action="" method="post" id="register">
                     <div class="register-form">
+                        <!--************************************
+                            NAVIGATION BAR FOR REGISTER FORM  
+                        **************************************-->
                         <div class="reg-nav" ng-show="showLogin">
                             <center>
                                 <hr>
                                 <div class="c-nav">
                                     <span>
                                         <strong>
-                                        <button type="button" class="nav-1" ng-click="showRegister = true; showBill = false; showPayment = false">1</button>
+                                        <button type="button" class="nav-form nav-1" ng-click="navLoc(1,'top'); showRegister = true; showBill = false; showPayment = false">1</button>
                                         <button class="invi"></button>
-                                        <button type="button" class="nav-2" ng-click="showRegister = false; showBill = true; showPayment = false">2</button>
+                                        <button type="button" class="nav-form nav-2" ng-click="navLoc(2,'top'); showRegister = false; showBill = true; showPayment = false">2</button>
                                         <button class="invi"></button>
-                                        <button type="button" class="nav-3" ng-click="showRegister = false; showBill = false; showPayment = true">3</button>
+                                        <button type="button" class="nav-form nav-3" ng-click="navLoc(3,'top'); showRegister = false; showBill = false; showPayment = true">3</button>
                                         </strong>
                                     </span>
                                 </div>
@@ -112,12 +122,14 @@ include("./php/registerserv.php");
                                     <input type="text" name="last-name">
                                 </div>
                             </div>
-                            <h5>Username</h5>
-                            <input type="text" name="username">
-                            <h5>Password</h5>
-                            <input type="password" name="password">
-                            <h5>Confirm Password</h5>
-                            <input type="password" name="cpassword">
+                            <div ng-hide="isGuest">
+                                <h5>Username</h5>
+                                <input type="text" name="username">
+                                <h5>Password</h5>
+                                <input type="password" name="password">
+                                <h5>Confirm Password</h5>
+                                <input type="password" name="cpassword">
+                            </div>
                             <div class="col-span-3">
                                 <div class="col-3">
                                     <h5>Birthday</h5>
@@ -152,7 +164,7 @@ include("./php/registerserv.php");
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select> 
-                            <button type="button" ng-click="showRegister = false; showBill = true;" class="btn btn-success">Next Step</button>
+                            <button type="button" ng-click="navLoc(2,'btn'); showRegister = false; showBill = true;" class="btn btn-success">Next Step</button>
                         </div>
                 
                         <!--==============================================
@@ -160,7 +172,7 @@ include("./php/registerserv.php");
                         ==============================================-->
                     
                         <div class="bill-form" ng-show="showBill">
-                            <h5>Barangay</h5>
+                            <h5>Barangay *</h5>
                             <input type="text" name="barangay">
 
                             <div class="col-span-2">
@@ -174,14 +186,13 @@ include("./php/registerserv.php");
                                 </div>
                             </div>
 
-                            <h5>Email</h5>
+                            <h5>Email *</h5>
                             <input type="text" name="email">
-                            <h5>Mobile No.</h5>
+                            <h5>Mobile No. *</h5>
                             <input type="text" name="mobile">
-                            <button type="button" ng-click="showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
-                            <button type="button" ng-click="showBill = false; showPayment = true;" class="btn btn-warning">Skip</button>
+                            <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-warning">Skip</button>
+                            <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                         </div>
-                    </form>
                         <!--==============================================
                                     PAYMENT INFORMATION FORM  
                         ==============================================-->
@@ -214,7 +225,7 @@ include("./php/registerserv.php");
                                     <input type="date">
                                 </div>
                             </div>
-                            <input type="submit" ng-click="showLogin = false; showPayment = false;" class="save-info" value="Save Information" name="save">                            
+                            <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save">                            
                         </div>
                     </div>
                 </form>
@@ -223,7 +234,7 @@ include("./php/registerserv.php");
     </div>
 
     <!--Navigation Bar  -->
-    <div class="container-body">    
+    <div class="container-body" id="bimbi">    
     <header>
         <div class="container">
             <!-- <h1>eatadakimasu<span>cafe</span></h1> -->
@@ -231,12 +242,19 @@ include("./php/registerserv.php");
             <nav>
                 <ul>
                     <strong>
-                        <li><a href="#" class="home">home</a></li>
-                        <li><a href="#" class="about">about us</a></li>
-                        <li><a href="#" class="menu">menu</a></li>
-                        <li><a href="#" class="order">order</a></li>
-                        <li><a href="#" class="contact">contact</a></li>
-                        <li><a href="" class="sign-in" id="sign-in" ng-click="showIn = true">sign in</a></li>
+                        <li><a href="" id="nav-home" class="home">home</a></li>
+                        <li><a href="#" id="nav-about" class="about">about us</a></li>
+                        <li><a href="#" id="nav-menu" class="menu">menu</a></li>
+                        <li><a href="#" id="nav-order" class="order">order</a></li>
+                        <li><a href="#" id="nav-contact" class="contact">contact</a></li>
+                        <li><a href="" class="sign-in" id="sign-in" ng-click="showIn = true" ng-hide="signedIn">sign in</a>
+                        <a href="" id="user" class="user dropdown-toggle" data-toggle="dropdown" ng-show="signedIn"><span class="greetings">Hello, </span>{{ user }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                <li><a href="" class="o-user">Edit Info</a></li><br>
+                                <hr> 
+                                <li><a href="./php/logout.php" ng-click="logout()" class="o-user" style="color: #f06953;">Logout</a></li>
+                            </ul>
+                        </li>
                     </strong>
                 </ul>
             </nav>
@@ -289,7 +307,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱80</h1>
-                    <button id="curry" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="curry" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
 
@@ -303,7 +321,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱100</h1>
-                    <button id="donburi" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="donburi" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -316,7 +334,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱30</h1>
-                    <button id="cakey" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="cakey" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -330,7 +348,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱70</h1>
-                    <button id="karaage" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="karaage" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -344,7 +362,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱50</h1>
-                    <button id="omurice" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="omurice" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -357,7 +375,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱50</h1>
-                    <button id="onigiri" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="onigiri" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -371,7 +389,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱120</h1>
-                    <button id="ramen" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="ramen" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -385,7 +403,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱100</h1>
-                    <button id="pudding" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="pudding" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -399,7 +417,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱60</h1>
-                    <button id="tempura" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="tempura" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -413,7 +431,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱80</h1>
-                    <button id="tonkatsu" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
+                    <button id="tonkatsu" ng-click="requireLogin()" class="add-to-cart" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div> 
 
@@ -436,7 +454,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱80</h1>
-                    <button class="add-to-cart" id="lipton" ng-click="showOrder = true">Add to Cart</button>
+                    <button class="add-to-cart" ng-click="requireLogin()" id="lipton" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
             <div class="box">
@@ -450,7 +468,7 @@ include("./php/registerserv.php");
                 </article> 
                 <div class="button-cart-container">
                     <h1>₱80</h1>
-                    <button class="add-to-cart" id="iced" ng-click="showOrder = true">Add to Cart</button>
+                    <button class="add-to-cart" ng-click="requireLogin()" id="iced" ng-click="showOrder = true">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -484,7 +502,7 @@ include("./php/registerserv.php");
             <li class="row footer" id="add-item">
                 <span class="total">Total:</span>
                 <span class="total-price">₱{{ totalPricy }}</span>
-                <a href="#" class="order-button">ORDER</a>
+                <a href="" id="order-btn" class="order-button" ng-click="order()">ORDER</a>
             </li>
             <hr>
         </ul>
