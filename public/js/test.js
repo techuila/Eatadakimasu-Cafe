@@ -268,6 +268,7 @@ $(document).ready(()=>{
     var c = 0;
     var guest = false;
     var complete1 = false, complete2 = false;    
+    var order = {};
     var app = angular.module("myApp",['ngAnimate']);
     app.controller('myCtrl', function($scope){
         $scope.showActions = [];
@@ -437,7 +438,7 @@ $(document).ready(()=>{
         return{
             link: function(li, element){
                 element.bind('click', function(){
-                    var newItem = $compile('<li class="row items"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span class="price">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil"></span></a><a href=""><span class="glyphicon glyphicon-remove"></span></a></div></li>')(li)
+                    var newItem = $compile('<li class="row items"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span class="price">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" ng-click="removeItem()"></span></a></div></li>')(li)
                     $("#cart").children('#add-item').prev().after(newItem);
                 });
             }
