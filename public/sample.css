@@ -1,0 +1,74 @@
+body{
+    margin: 0 auto;
+}
+
+*{
+    margin: 0;
+}
+
+span{
+    color: #00a8ff;
+}
+
+h1{
+    color: #f06953;
+}
+
+header{
+    background-color: #2ecc71;
+    width: 100%;
+    position: fixed;
+    margin: 0 auto;
+    height: 50px;
+}
+
+.header-container{
+    width: 90%;
+    padding: 10px 0 0 10px;
+    margin: 0 auto;
+}
+
+.logo{
+    background-image: url('./img/error.png');
+    background-size: contain;
+    height: 25px;
+    width: 25px;
+    float: left;
+    display: inline-block;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+ul{
+    list-style: none;
+    float: right;
+}
+
+li{
+    padding: 5px;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+li:hover{
+    border-style: none none solid none;
+    border-width: 2px;
+    border-color: white;
+    cursor: pointer;
+    border-color: blue;
+}
+
+li:last-child:hover{
+    border-color: violet;
+}
+
+.body-container{
+    background-image: url('./img/04.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 1100px;
+}

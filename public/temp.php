@@ -10,8 +10,8 @@
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./node_modules/angular-animate/angular-animate.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
+    <script src="./node_modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>  
+    <link rel="stylesheet" href="./node_modules/bootstrap-3.3.7-dist/css/bootstrap.min.css">    
     <link rel="stylesheet" type="text/css" href="./css/temp/main.css">
     <script src="./js/test.js"></script>
     <title>Welcome | Eatadakimasu Cafe</title>
@@ -23,7 +23,7 @@
         });
     </script> -->
 </head>
-<body ng-app="myApp" ng-controller="myCtrl" ng-init="checkUser()">
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="checkUser();">
     <!--Order Form  -->
     <div class="containers" id="food-order" ng-init="qty = 0" ng-show="showOrder">
         <center>
@@ -36,14 +36,13 @@
                 <h2>₱{{ qty * 30 }}</h2>
                 <h3 class="qty-label">QTY</h3> <br>
                 <button class="minus" ng-click="0<qty? qty = qty - 1: angular.noop()">-</button>
-                <h3 class="qty" id="form-qty">0</h3>
-                <button class="plus" ng-click="qty = qty + 1">+</button> <br>
+                <h3 class="qty" id="form-qty">{{ qty }}</h3>
+                <button class="plus" ng-click="qty = qty + 1">+</button>
+            </div><br>
+            <div class="alert alert-danger width" ng-show="empty">
+                <center><strong><span class="glyphicon glyphicon-remove"></span> Adding Failed! </strong> Please specify how many orders.</center>
             </div>
-            <div class="special">
-            <span>Special Instruction: </span><input type="checkbox" ng-model="showInst" name="" value=""><br>
-            </div>
-            <textarea rows="5" cols="60" ng-show="showInst"></textarea><br>
-            <button class="add-to-cart" ng-click="addPrice(); showOrder = false" id="add-to-cart" add-To-Cart>Add to Cart</button> 
+            <button add-To-Cart class="add-to-cart" ng-click="addPrice();" id="add-to-cart">Add to Cart</button> 
         </center>
     </div>
 
@@ -51,184 +50,233 @@
     <div class="s-in" id="s-in" ng-show="showIn">
         <center>
             <div class="c-in bg">
+                <div class="top-action">
+                    <div class="back" ng-click="showRegister = false; showLogin = false; showBill = false; showPayment = false; showBack = false" ng-show="showBack"></div>
+                    <div class="exit" id="s-exit" ng-click="exitForm(); showLogin = false; showRegister = false; showBill = false; showPayment = false; showBack = false;"></div>
+                </div>
+                <div class="s-container">
+                    <div class="p-order">
+                        <div class="bg-order">
+                            <h2>Order Preview</h2>
+                            <div class="bgg"></div>
+                        </div>
+                        <br><br><br>
+                        <ul id="p-order">
+                                <li class="row header">
+                                    <strong>
+                                        <span class="qty">QTY</span>
+                                        <span class="item">ITEM</span>
+                                        <span class="price">PRICE</span>
+                                    </strong>
+                                </li>
+
+                            <li class="row items">
+                                <span class="qty">2</span>
+                                <span class="item-name">Donburi</span>
+                                <span class="price">₱80.00</span>
+                            </li> 
+                            <li class="row boom" id="add-items">
+                                <strong>
+                                    <span class="total">TOTAL:</span>
+                                    <span class="total-price">₱ 201</span>
+                                </strong>
+                            </li>
+                            <hr>
+                        </ul>
+                    </div>
                 <!--==============================================
                                     LOGIN FORM  
                   ==============================================-->
-                <div class="top-action">
-                    <div class="back" ng-click="showRegister = false; showLogin = false; showBill = false; showPayment = false; showBack = false" ng-show="showBack"></div>
-                    <div class="exit" id="s-exit" ng-click="showIn = false; showLogin = false; showRegister = false; showBill = false; showPayment = false; showBack = false; exitForm()"></div>
-                </div>
-                <form action="" method="post" id="form">                
-                    <div class="login-form" ng-hide="showLogin">   
-                        <h4>USERNAME</h4> 
-                        <input type="text" name="user">
-                        <h4>PASSWORD</h4> 
-                        <input type="password" name="pass"><br><br>   
-                        <div class="alert alert-success" ng-show="loginSuccess">
-                            <center><strong><span class="glyphicon glyphicon-ok"></span> Login Successful! </strong> {{ welcome }}</center>
-                        </div>
-                        <div class="alert alert-danger" ng-show="loginFailed">
-                            <center><strong><span class="glyphicon glyphicon-remove"></span> Login Failed! </strong> Username / password is incorrect.</center>
-                        </div>
-                        <div class="alert alert-warning" ng-show="loginGuest">
-                            <center><strong><span class="glyphicon glyphicon-ok-circle"></span>  Logging in as Guest...</strong></center>
-                        </div>
-                        <div class="btn-container">
-                            <input type="submit" id="login" ng-click="sign_in()" class="in" value="LOGIN" name="submit">
-                            <input type="button" class="up" value="REGISTER" ng-click="showLogin= true; showRegister = true; showBack = true"><br>
-                            <input type="button" class="guest" ng-click="sign_guest()" value="LOGIN AS GUEST" name="submit2">
-                        </div>
-                    </div>  
-                </form>
-                <!--==============================================
-                            PERSONAL INFORMATION FORM  
-                  ==============================================-->
-                <form action="" method="post" id="register">
-                    <div class="register-form">
-                        <!--************************************
-                            NAVIGATION BAR FOR REGISTER FORM  
-                        **************************************-->
-                        <div class="reg-nav" ng-show="showLogin">
-                            <center>
-                                <hr>
-                                <div class="c-nav">
-                                    <span>
-                                        <strong>
-                                        <button type="button" class="nav-form nav-1" ng-click="navLoc(1,'top'); showRegister = true; showBill = false; showPayment = false">1</button>
-                                        <button class="invi"></button>
-                                        <button type="button" class="nav-form nav-2" ng-click="navLoc(2,'top'); showRegister = false; showBill = true; showPayment = false">2</button>
-                                        <button class="invi"></button>
-                                        <button type="button" class="nav-form nav-3" ng-click="navLoc(3,'top'); showRegister = false; showBill = false; showPayment = true">3</button>
-                                        </strong>
-                                    </span>
+                    <div class="right-side">
+                        <form action="" method="post" id="form">                
+                            <div class="login-form" ng-hide="showLogin">   
+                                <h4>USERNAME</h4> 
+                                <input type="text" name="user">
+                                <h4>PASSWORD</h4> 
+                                <input type="password" name="pass"><br><br>   
+                                <div class="alert alert-success" ng-show="loginSuccess">
+                                    <center><strong><span class="glyphicon glyphicon-ok"></span> Login Successful! </strong> {{ welcome }}</center>
                                 </div>
-                                <span>
-                                    <h6 class="person-info">Personal Information</h6>
-                                    <h6 class="invi">1</h6>
-                                    <h6 class="bill-info">Billing Information</h6>
-                                    <h6 class="invi">1</h6>
-                                    <h6 class="pay-info">Payment Information</h6>
-                                </span>
-                            </center>
-                        </div>
-                        <div class="person-form" ng-show="showRegister">
-                            <div class="col-span-2">
-                                <div class="col-2">
-                                    <h5>First Name</h5>
-                                    <input type="text" name="first-name" value="">
+                                <div class="alert alert-danger" ng-show="loginFailed">
+                                    <center><strong><span class="glyphicon glyphicon-remove"></span> Login Failed! </strong> Username / password is incorrect.</center>
                                 </div>
-                                <div class="col-2">
-                                    <h5>Last Name</h5>
-                                    <input type="text" name="last-name">
+                                <div class="alert alert-warning" ng-show="loginGuest">
+                                    <center><strong><span class="glyphicon glyphicon-ok-circle"></span>  Logging in as Guest...</strong></center>
                                 </div>
-                            </div>
-                            <div ng-hide="isGuest">
-                                <h5>Username</h5>
-                                <input type="text" name="username">
-                                <h5>Password</h5>
-                                <input type="password" name="password">
-                                <h5>Confirm Password</h5>
-                                <input type="password" name="cpassword">
-                            </div>
-                            <div class="col-span-3">
-                                <div class="col-3">
-                                    <h5>Birthday</h5>
-                                    <select name="month">
-                                        <option value="00">Month</option>
-                                        <option value="01">January</option>
-                                        <option value="02">February</option>
-                                        <option value="03">March</option>
-                                        <option value="04">April</option>
-                                        <option value="05">May</option>
-                                        <option value="06">June</option>
-                                        <option value="07">July</option>
-                                        <option value="08">August</option>
-                                        <option value="09">September</option>
-                                        <option value="10">October</option>
-                                        <option value="11">November</option>
-                                        <option value="12">December</option>
-                                    </select>   
+                                <div class="btn-container">
+                                    <input type="submit" id="login" ng-click="sign_in()" class="in" value="LOGIN" name="submit">
+                                    <input type="button" class="up" value="REGISTER" ng-click="showLogin= true; showRegister = true; showBack = true"><br>
+                                    <input type="button" class="guest" ng-click="sign_guest()" value="LOGIN AS GUEST" name="submit2">
                                 </div>
-                                <div class="col-3">
-                                    <h5>Day</h5>    
-                                    <input type="text" placeholder="Day" class="day" name="day">
-                                </div>
-                                <div class="col-3">
-                                    <h5>Year</h5>    
-                                    <input type="text" placeholder="Year" class="year" name="year">
-                                </div>
-                            </div>
-                            <h5>Gender</h5>
-                            <select name="gender">
-                                <option value="Gender">Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select> 
-                            <button type="button" ng-click="navLoc(2,'btn'); showRegister = false; showBill = true;" class="btn btn-success">Next Step</button>
-                        </div>
-                
+                            </div>  
+                        </form>
                         <!--==============================================
-                                    BILLING INFORMATION FORM  
+                                    PERSONAL INFORMATION FORM  
                         ==============================================-->
-                    
-                        <div class="bill-form" ng-show="showBill">
-                            <h5>Barangay *</h5>
-                            <input type="text" name="barangay">
-
-                            <div class="col-span-2">
-                                <div class="col-2">
-                                    <h5>Street</h5>
-                                    <input type="text" name="street">
+                        <form action="" method="post" id="register">
+                            <div class="register-form">
+                                <!--************************************
+                                    NAVIGATION BAR FOR REGISTER FORM  
+                                **************************************-->
+                                <div class="reg-nav" ng-show="showLogin">
+                                    <center>
+                                        <hr>
+                                        <div class="c-nav">
+                                            <span>
+                                                <strong>
+                                                <button type="button" class="nav-form nav-1" ng-click="navLoc(1,'top'); showRegister = true; showBill = false; showPayment = false">1</button>
+                                                <button class="invi"></button>
+                                                <button type="button" class="nav-form nav-2" ng-click="navLoc(2,'top'); showRegister = false; showBill = true; showPayment = false">2</button>
+                                                <button class="invi"></button>
+                                                <button type="button" class="nav-form nav-3" ng-click="navLoc(3,'top'); showRegister = false; showBill = false; showPayment = true">3</button>
+                                                </strong>
+                                            </span>
+                                        </div>
+                                        <span class="l-nav">
+                                            <h6 class="person-info">Personal Information</h6>
+                                            <h6 class="invi">1</h6>
+                                            <h6 class="bill-info">Billing Information</h6>
+                                            <h6 class="invi">1</h6>
+                                            <h6 class="pay-info">Payment Information</h6>
+                                        </span>
+                                    </center>
                                 </div>
-                                <div class="col-2">
-                                    <h5>House No.</h5>
-                                    <input type="text" name="h-no">
+                                <div class="person-form" ng-show="showRegister">
+                                    <div class="col-span-2">
+                                        <div class="col-2">
+                                            <h5>First Name*</h5>
+                                            <input type="text" name="first-name" value="">
+                                        </div>
+                                        <div class="col-2">
+                                            <h5>Last Name*</h5>
+                                            <input type="text" name="last-name">
+                                        </div>
+                                    </div>
+                                    <div ng-hide="isGuest">
+                                        <h5>Username*</h5>
+                                        <input type="text" name="username">
+                                        <h5>Password*</h5>
+                                        <input type="password" name="password">
+                                        <h5>Confirm Password*</h5>
+                                        <input type="password" name="password">
+                                    </div>
+                                    <div class="col-span-3">
+                                        <div class="col-3">
+                                            <h5>Birth Month*</h5>
+                                            <select name="month">
+                                                <option value="00" ng-hide="true">Month</option>
+                                                <option value="01">January</option>
+                                                <option value="02">February</option>
+                                                <option value="03">March</option>
+                                                <option value="04">April</option>
+                                                <option value="05">May</option>
+                                                <option value="06">June</option>
+                                                <option value="07">July</option>
+                                                <option value="08">August</option>
+                                                <option value="09">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>   
+                                        </div>
+                                        <div class="col-3">
+                                            <h5>Day*</h5>    
+                                            <input type="text" placeholder="Day" class="day" name="day">
+                                        </div>
+                                        <div class="col-3">
+                                            <h5>Year*</h5>    
+                                            <input type="text" placeholder="Year" class="year" name="year">
+                                        </div>
+                                    </div>
+                                    <h5>Gender</h5>
+                                    <select name="gender">
+                                        <option value="Gender" ng-hide="true">Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select> 
+                                    <button type="button" ng-click="navLoc(2,'btn'); showRegister = false; showBill = true;" class="btn btn-success">Next Step</button>
+                                </div>
+                        
+                                <!--==============================================
+                                            BILLING INFORMATION FORM  
+                                ==============================================-->
+                            
+                                <div class="bill-form" ng-show="showBill">
+                                    <h5>Barangay *</h5>
+                                    <input type="text" name="barangay">
+
+                                    <div class="col-span-2">
+                                        <div class="col-2">
+                                            <h5>Street</h5>
+                                            <input type="text" name="street">
+                                        </div>
+                                        <div class="col-2">
+                                            <h5>House No.</h5>
+                                            <input type="text" name="h-no">
+                                        </div>
+                                    </div>
+
+                                    <h5>Email *</h5>
+                                    <input type="text" name="email">
+                                    <h5>Mobile No. *</h5>
+                                    <input type="text" name="mobile">
+                                    <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" ng-hide="guest" class="btn btn-warning">Skip</button>
+                                    <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
+                                </div>
+                                <!--==============================================
+                                            PAYMENT INFORMATION FORM  
+                                ==============================================-->
+                                <div class="payment-form" ng-show="showPayment">
+                                    <h5 ng-show="guest">Payment Method</h5>
+                                    <select name="p-method" id="p_method" ng-show="guest" ng-click="check();">
+                                        <option value="card">Credit card / Debit Card</option>
+                                        <option value="cash">Cash on Delivery</option>
+                                    </select>
+
+                                    <div ng-show="cash">
+                                        <h5>Bring change for?</h5>
+                                        <input type="text" name="change">
+
+                                        <h5>Special request for your order?</h5>
+                                        <textarea rows="3" cols="5"></textarea>
+                                    </div>
+
+                                    <div ng-hide="cash">
+                                        <h5>Card Type</h5>
+                                        <select name="card">
+                                            <option value="MasterCard">MasterCard</option>
+                                            <option value="VisaCard">Visa Card</option>
+                                            <option value="PayPal">PayPal</option>
+                                        </select>
+
+                                        <div class="col-span-2">
+                                            <div class="col-2">
+                                                <h5>Credit Card Number</h5>
+                                                <input type="text" name = "c-num">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5>Security Code</h5>
+                                                <input type="text" name = "s-code">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-2">
+                                            <div class="col-2">
+                                                <h5>Expiration Date</h5>
+                                                <input type="date" name = "exp-start">
+                                            </div>
+                                            <div class="col-2">
+                                                <h5 class="invi">asd</h5>
+                                                <input type="date" name = "exp-end">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save">                            
                                 </div>
                             </div>
-
-                            <h5>Email *</h5>
-                            <input type="text" name="email">
-                            <h5>Mobile No. *</h5>
-                            <input type="text" name="mobile">
-                            <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-warning">Skip</button>
-                            <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
-                        </div>
-                        <!--==============================================
-                                    PAYMENT INFORMATION FORM  
-                        ==============================================-->
-                        <div class="payment-form" ng-show="showPayment">
-                            <h5>Card Type</h5>
-                            <select name="card">
-                                <option value="MasterCard">MasterCard</option>
-                                <option value="VisaCard">Visa Card</option>
-                                <option value="PayPal">PayPal</option>
-                            </select>
-
-                            <div class="col-span-2">
-                                <div class="col-2">
-                                    <h5>Credit Card Number</h5>
-                                    <input type="text">
-                                </div>
-                                <div class="col-2">
-                                    <h5>Security Code</h5>
-                                    <input type="text">
-                                </div>
-                            </div>
-
-                            <div class="col-span-2">
-                                <div class="col-2">
-                                    <h5>Expiration Date</h5>
-                                    <input type="date">
-                                </div>
-                                <div class="col-2">
-                                    <h5 class="invi">asd</h5>
-                                    <input type="date">
-                                </div>
-                            </div>
-                            <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save">                            
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </center>
     </div>
@@ -263,12 +311,50 @@
 
     <!--Home  -->
     <section id="home"> 
-        <div class="home-background bg"></div>
-        <article class="art-bg">
-            <h1>Every Dish is a Specialty</h1>
-            <hr>
-            <p>A unique experience in japan dining</p>
-        </article>
+        <div class="slider">
+            <img class="home-background bg" src="./img/01.jpg" ng-hide="one"></img>
+            <img class="home-background slider-1 bg" src="./img/menu/slider/slide1.jpg" ng-show="two"></img>
+            <img class="home-background slider-2 bg" src="./img/menu/slider/slide2.jpg" ng-show="three"></img>
+            <img class="home-background slider-3 bg" src="./img/menu/slider/slide3.jpg" ng-show="four"></img>
+            <article class="art-bg main-bg" ng-hide="one">
+                <h1>Every Dish is a Specialty</h1>
+                <hr>
+                <p>A unique experience in japan dining</p>
+            </article>
+            <article class="art-bg temp" ng-show="two">
+                <h1>Tempura</h1>
+                <p>
+                    Seafood that have been battered and deep <br> fried.
+                    Accompanied by shredded <br> cabbage and sauce.
+                </p>
+                <button type="button" id="temp"><span class="glyphicon glyphicon-shopping-cart icon-left"></span><span class="label-right"><strong>Order Now</strong></span></button>
+            </article>
+            <article class="art-bg pud" ng-show="three">
+                <h1>Chocolate Pudding</h1>
+                <p>
+                    Chocolate puddings are a class of desserts with chocolate flavors. <br>
+                    There are two main types: a boiled then chilled dessert, <br>
+                     texturally a custard set with starch.
+                </p>
+                <button type="button" id="pud"><span class="glyphicon glyphicon-shopping-cart icon-left"></span><span class="label-right"><strong>Order Now</strong></span></button>                
+            </article>
+            <article class="art-bg ton" ng-show="four">
+                <h1>Tonkatsu</h1>
+                <p>
+                    Breaded, deep-fried pork cutlet served in <br> bite-sized
+                    pieces and accompanied by <br> shredded cabbage.
+                </p>
+                <button type="button" id="ton"><span class="glyphicon glyphicon-shopping-cart icon-left"></span><span class="label-right"><strong>Order Now</strong></span></button>                
+            </article>
+            <div class="nav-container">
+                <center>
+                    <span class="circle" ng-click="slider(1,'click')"><span class="inner one" ng-hide="one"></span></span>
+                    <span class="circle" ng-click="slider(2,'click')"><span class="inner two" ng-show="two"></span></span>
+                    <span class="circle" ng-click="slider(3,'click')"><span class="inner three" ng-show="three"></span></span>
+                    <span class="circle" ng-click="slider(4,'click')"><span class="inner four" ng-show="four"></span></span>
+                </center>
+            </div>
+        </div>        
     </section>
 
     <!--About us  -->
@@ -295,8 +381,9 @@
             <p class="menu-sub">Have some of japan's delicacies.</p>
             <hr>
         </article>
-        <div class="box-container">
-            <div class="box">
+        <div class="box-container" id="asd">
+            {{ generate()    }}
+            <!-- <div class="box">
                 <div class="frame curry"></div>
                 <article>
                     <h1>Curry Rice</h1>
@@ -395,10 +482,10 @@
             <div class="box">
                <div class="frame pudding"></div>
                 <article>
-                    <h1>Pudding</h1>
+                    <h1>Chocolate Pudding</h1>
                     <p>
-                        Cold cooked rice shaped in small cakes and topped with 
-                        strips of raw fish, and sliced into pieces.
+                    Chocolate puddings are a class of desserts with chocolate flavors. There are two main types: 
+                    a boiled then chilled dessert, texturally a custard set with starch.
                     </p>
                 </article> 
                 <div class="button-cart-container">
@@ -435,15 +522,15 @@
                 </div>
             </div> 
 
-            <!--============================
+            ============================
                           DRINKS
-            ================================-->
-            <article class="menu-sub-title">
+            ================================
+           --><article class="menu-sub-title" id="drinks">
                 <br>
                 <h1 class="menu-title">Drinks</h1>
                 <hr>
-            </article> 
-            <div class="box">
+            </article>
+            <!-- <div class="box">
                <div class="frame lipton-tea"></div>
                 <article>
                     <h1>Lipton Green Tea</h1>
@@ -470,7 +557,7 @@
                     <h1>₱80</h1>
                     <button class="add-to-cart" ng-click="requireLogin()" id="iced" ng-click="showOrder = true">Add to Cart</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -483,30 +570,32 @@
     </section>
 
     <section class="container order">
-        <strong>
-        <ul class="cart" id="cart">
-            <li class="row header">
-                <span class="qty">QTY</span>
-                <span class="item">ITEM</span>
-                <span class="price">PRICE</span>
-            </li>
-
-            <!-- <li class="row items">
-                <span class="qty">2</span>
-                <span class="item-name">Donburi</span>
-                <a href="" class="action" ng-click="showActions = !showActions"></a>
-                <span class="price">₱80.00</span>
-                <div class="action-item" ng-show="showActions"><a href=""><span class="glyphicon glyphicon-pencil"></span></a><a href=""><span class="glyphicon glyphicon-remove"></span></a></div>
-            </li> -->
-            
-            <li class="row footer" id="add-item">
-                <span class="total">Total:</span>
-                <span class="total-price">₱{{ totalPricy }}</span>
-                <a href="" id="order-btn" class="order-button" ng-click="order()">ORDER</a>
-            </li>
-            <hr>
-        </ul>
-        </strong>
+        <form>                
+            <strong>
+                <ul class="cart" id="cart">
+                    <li class="row header">
+                        <span class="qty">QTY</span>
+                        <span class="item">ITEM</span>
+                        <span class="price">PRICE</span>
+                    </li>
+                    
+                    <!-- <li class="row items">
+                        <span class="qty">2</span>
+                        <span class="item-name">Donburi</span>
+                        <a href="" class="action" ng-click="showActions = !showActions"></a>
+                        <span class="price">₱80.00</span>
+                        <div class="action-item" ng-show="showActions"><a href=""><span class="glyphicon glyphicon-pencil"></span></a><a href=""><span class="glyphicon glyphicon-remove"></span></a></div>
+                    </li> -->
+                    
+                    <li class="row footer" id="add-item">
+                        <span class="total">Total:</span>
+                        <span class="total-price">₱{{ totalPricy }}</span>
+                        <input id="order-btn" type="submit" class="order-button" ng-click="order()" value="ORDER" order-Preview>
+                    </li>
+                    <hr>
+                </ul>
+            </strong>
+        </form>
 
     </section>
 

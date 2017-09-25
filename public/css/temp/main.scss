@@ -20,7 +20,7 @@ $flat-red: #f06953;
         font-weight: 400;
         src:  local($font-family), url($source) format($format);
         unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
-    }
+    }   
 }
 
 @include font-face('Blacksword','Blacksword', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
@@ -30,6 +30,43 @@ $flat-red: #f06953;
 @include font-face('Roboto','roboto', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/Roboto-Regular.ttf','truetype');
 @include font-face('Open Sans','Open Sans', 'https://cdn.rawgit.com/nerdcorez/nerdcorez.github.io/ddcffc06/public/fonts/OpenSans-Regular.ttf','truetype');
 
+
+@mixin article(){
+    h1{
+        font-family: "Open Sans";
+        letter-spacing: initial;
+        text-shadow: none;
+        color: $dark-gray;
+        font-size: 3em;
+    }
+    p{
+        font-family: "Roboto";
+        letter-spacing: initial;
+        text-transform: initial;
+        margin-top: 20px;
+        text-shadow: none;
+        color: $dark-gray;
+        font-size: 1.5em;
+    }
+    button{
+        font-family: "Open Sans";
+        background-color: transparent;
+        border: 2px solid $flat-green;
+        color: $flat-green;
+        border-radius: 5px;
+        margin-top: 35px;
+        height: 40px;
+        width: 120px; 
+        .icon-left{
+            margin-left: 10px;
+            float: left;
+        }
+        .label-right{
+            margin-right: 10px;
+            float: right;
+        }
+    }
+}
 
 
 /* ====================================
@@ -89,12 +126,12 @@ $flat-red: #f06953;
 }
 
 @keyframes fade-in{
-        from{
-            background-color: $flat-blue;
-        }
-        to{
-            background-color: lighten($flat-blue, 10%);
-        }
+    from{
+        background-color: $flat-blue;
+    }
+    to{
+        background-color: lighten($flat-blue, 10%);
+    }
 }
 
 @keyframes animateTop{
@@ -117,6 +154,127 @@ $flat-red: #f06953;
     }
 }
 
+@keyframes come-in{
+    from{
+        opacity: 1;
+    }
+
+    to{
+        opacity: 0;
+    }
+}
+
+@keyframes move-out{
+    from{
+        left: 1500;
+    }
+
+    to{
+        left: 0
+    }
+}
+
+@keyframes move-in{
+    from{
+        left: 0;
+    }
+
+    to{
+        left: -2000;
+
+    }
+}
+
+@keyframes article-left-in{
+    from{
+        left: -2000;
+    }
+
+    to{
+        left: 20;
+    }
+}
+
+@keyframes article-left-out{
+    from{
+        left: 30;
+    }
+
+    to{
+        left: -2000;
+    }
+}
+
+@keyframes article-right-in{
+    from{
+        right: -2000;
+    }
+
+    to{
+        right: 30;
+    }
+}
+
+@keyframes article-right-out{
+    from{
+        right: 30;
+    }
+
+    to{
+        right: -2000;
+    }
+}
+
+@keyframes article-main-in{
+    from{
+        right: -2000;
+    }
+
+    to{
+        right: 0;
+    }
+}
+
+@keyframes p-expand{
+    from{
+        // width: 40%;
+    }
+
+    to{
+        width: 70%;
+    }
+}
+
+@keyframes p-hide{
+    from{
+        width: 70%;
+    }
+
+    to{
+        width: 40%;
+    }
+}
+
+@keyframes right-side{
+    from{
+        from: 85%;
+    }
+    
+    to{
+        width: 50%;
+    }
+}
+
+@keyframes right-side-hide{
+    from{
+        width: 50%;
+    }
+    
+    to{
+        width: 85%;
+    }
+}
+
 /* ====================================
            AGULAR ANIMATION
 ====================================*/
@@ -131,7 +289,41 @@ $flat-red: #f06953;
     animation: 0.6s animateToTop ease-out;
 }
 
+.inner.ng-hide-remove{
+    animation: 0.6s come-out ease;
+}
 
+.inner.ng-hide-add{
+    animation: 0.6s come-in ease;
+}
+
+.home-background.ng-hide-remove{
+    animation: 1s move-out ease;
+}
+
+.home-background.ng-hide-add{
+    animation: 1s move-in ease;
+}
+
+.art-bg.ng-hide-add{
+    animation: 1s article-right-out ease;    
+}
+
+.art-bg.ng-hide-remove{
+    animation: 2s article-right-in ease;
+}
+
+.art-bg.temp.ng-hide-add{
+    animation: 1s article-left-out ease;    
+}
+
+.art-bg.temp.ng-hide-remove{
+    animation: 2s article-left-in ease;
+}
+
+.art-bg.main-bg.ng-hide-remove{
+    animation: 2s article-main-in ease;
+}
 /* ====================================
                GLOBAL 
 ====================================*/
@@ -206,228 +398,327 @@ p{
     margin: 3% auto;
     position: fixed;
     height: 88%;
-    z-index: 2;
     width: 40%;
+    z-index: 2;
     /*==============================================
-                         lOGIN FORM
+                        lOGIN FORM
     ==============================================*/
     .c-in{
         background-image: url('../../img/05.jpg');
         background-size: auto auto;
         background-position-x: 52%;
         border-radius: 5px;
-        padding: 10% 5%;
+        padding: 65px 2%;
         font-size: 1em;
+        margin: 0 auto;
         height: 100%;
-        margin: auto;
         width: 100%;
-        .login-form{
-            .alert{
-                text-align: left;
-                opacity: 0.7;
-                width: 77%;
+         /*==============================================
+                        PREVIEW ORDER
+        ==============================================*/
+        .s-container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .p-order{
+            font-family: "Open Sans";
+            visibility: hidden;
+            padding: 0 20px;
+            display: none;
+            .bg-order{
+                position: relative;
+                .bgg{
+                    float: left;
+                    background-color: white;    
+                    width: 100%;
+                    opacity: 0.5;
+                    height: 40px;
+                    border-radius: 5px;
+                    padding: 5px 25px;
+                }
+                h2{
+                    text-transform: uppercase;
+                    position: absolute;
+                    padding-top: 2px;
+                    color: $flat-red;
+                    width: 100%;
+                    z-index: 4;
+                    margin: 0;
+                }
             }
-            .glyphicon-ok,
-            .glyphicon-ok-circle{
-                color: $flat-green;
+            ul{
+                list-style: none;
+                clear: both;
+                width: 90%;
+                li.header{
+                    color: $dark-gray;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                    .qty{
+                        float: left;
+                    }
+                    .item{
+                        margin-left: 30px; 
+                        float: left;
+                    }
+                    .price{
+                        float: right;
+                    }
+                }
+                li.items{
+                    color: #f5f6f9;
+                    font-size: 16px;
+                    margin-bottom: 10px; 
+                    .qty{
+                        margin-left: 15px;
+                        float: left;
+                    }
+                    .item-name{
+                        margin-left: 40px;                         
+                        float: left;
+                    }
+                    .price{
+                        float: right;
+                    }
+                }
+                li.boom{
+                    color: white;
+                    font-size: 18px;
+                    margin-top: 20px;
+                    .total{
+                        color: $dark-gray;
+                        float: left;
+                    }
+                    .total-price{
+                        color: $flat-red;
+                        float: right;
+                    }
+                }
             }
-            span{
-                color: red;
+        }
+        .right-side{
+            display: inline-block;
+            margin: 0;
+            width: 85%;                
+            .login-form{
+                .alert{
+                    text-align: left;
+                    opacity: 0.7;
+                    width: 77%;
+                }
+                .glyphicon-ok,
+                .glyphicon-ok-circle{
+                    color: $flat-green;
+                }
+                span{
+                    color: red;
+                }
+                h4{
+                    margin-top: 15px;
+                    color: $custom-white;
+                }
+                input[type="text"],
+                input[type="password"]{
+                        box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+                        border: 1px solid darken($custom-white,20%);
+                        background-color: transparent;
+                        transition: all ease 0.2s;
+                        border-radius: 4px;
+                        margin: 0 0 20px 0;
+                        text-align: center;
+                        padding: 5px 5px;
+                        color: #fff;
+                        height: 40px;
+                        width: 77%;
+                }
+                input[type="text"]:focus, 
+                input[type="password"]:focus{
+                    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+                    background-color:rgba(255,255,255,0.3);
+                    margin-top: -5px;
+                    outline: none;
+                    color: #000;
+                }
+                .btn-container{
+                    margin-top: 30px;
+                    input[type="button"],
+                    input[type='submit']{
+                        background-color: transparent;
+                        border-radius: 4px;
+                        height: 55px;
+                    }
+                    input[type="button"]:hover,
+                    input[type='submit']:hover{
+                        cursor: pointer;
+                        color: white;
+                    }
+                    .in,.up{
+                        min-width: 35%;
+                    }
+                    .in{
+                        border: 3px solid $flat-green;
+                        margin-right: 15px;
+                        color: $flat-green;
+                    }
+                    .up{
+                        border: 3px solid $flat-red;
+                        margin-left: 15px;
+                        color: $flat-red;
+                    }
+                    .guest{
+                        border: 3px solid #e67e22;
+                        margin-top: 30px;
+                        color: #e67e22;
+                        width: 76%;
+                    }
+                    .in:hover{
+                        background-color: $flat-green;
+                    }
+                    .up:hover{
+                        background-color: $flat-red;
+                    }
+                    .guest:hover{
+                        background-color: #e67e22;
+                    }
+                }
             }
-            h4{
-                margin-top: 15px;
-                color: $custom-white;
-            }
-            input[type="text"],
-            input[type="password"]{
+
+            /*==============================================
+                            REGISTER FORM
+            ==============================================*/
+            .register-form{
+                position: relative;
+                width: 95%;
+                input, select, textarea{
                     box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
                     border: 1px solid darken($custom-white,20%);
                     background-color: transparent;
                     transition: all ease 0.2s;
                     border-radius: 4px;
                     margin: 0 0 20px 0;
-                    text-align: center;
                     padding: 5px 5px;
                     color: #fff;
-                    height: 40px;
-                    width: 77%;
-            }
-            input[type="text"]:focus, input[type="password"]:focus{
-                box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-                background-color:rgba(255,255,255,0.3);
-                margin-top: -5px;
-                outline: none;
-                color: #000;
-            }
-            .btn-container{
-                margin-top: 30px;
-                input[type="button"],input[type='submit']{
-                    background-color: transparent;
-                    border-radius: 4px;
-                    height: 55px;
-                }
-                input[type="button"]:hover,input[type='submit']:hover{
-                    cursor: pointer;
-                    color: white;
-                }
-                .in,.up{
-                    min-width: 35%;
-                }
-                .in{
-                    border: 3px solid $flat-green;
-                    margin-right: 15px;
-                    color: $flat-green;
-                }
-                .up{
-                    border: 3px solid $flat-red;
-                    margin-left: 15px;
-                    color: $flat-red;
-                }
-                .guest{
-                    border: 3px solid #e67e22;
-                    margin-top: 30px;
-                    color: #e67e22;
-                    width: 76%;
-                }
-                .in:hover{
-                    background-color: $flat-green;
-                }
-                .up:hover{
-                    background-color: $flat-red;
-                }
-                .guest:hover{
-                    background-color: #e67e22;
-                }
-            }
-        }
-
-        /*==============================================
-                           REGISTER FORM
-          ==============================================*/
-        .register-form{
-            position: relative;
-            width: 95%;
-            input, select{
-                box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
-                border: 1px solid darken($custom-white,20%);
-                background-color: transparent;
-                transition: all ease 0.2s;
-                border-radius: 4px;
-                margin: 0 0 20px 0;
-                padding: 5px 5px;
-                color: #fff;
-                width: 100%;
-                option{
-                    color: #000;
-                }
-            }
-            input:focus, select:focus{
-                box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-                background-color:rgba(255,255,255,0.3);
-                margin-top: -5px;
-                color: #000;
-                outline: none;
-            }
-            h5{
-                color: $custom-white;
-                margin: 0 0 5px 0;  
-            }
-            .col-span-2{
-                width: inherit;
-                height: 75px;
-            }
-            .col-2{
-                float: left;
-                width: 48%;
-            }                
-            .col-2:last-child{
-                float: right;
-            }
-            .col-span-3{
-                width: inherit;
-                height: 78px;
-            }
-            .col-3{
-                float: left;
-                width: 28%;
-            }
-            .col-3:nth-child(2){
-                width: 15%;
-                margin-left: 14%;
-            }
-            .col-3:last-child{
-                float: right;
-            }
-            .btn{
-                float: right;
-            }
-            .btn-success{
-                margin-left: 10px;
-            }
-            .reg-nav{
-                hr{
-                    margin-bottom: 15px;
-                }
-                .c-nav{
                     width: 100%;
-                    position: absolute;
-                    top: -23;
-                    button{
-                        background-color: lighten($custom-white,10%);
-                        border: 1px solid #fff;
-                        border-radius: 100%;
-                        color: $flat-blue;
-                        margin: 0 auto;
-                        height: 28px;
-                        width: 28px;
-                    }
-                    button:focus{
-                        outline: none;
-                    }
-                    button.invi{
-                        visibility: hidden;
-                        margin: 0 51px;
-                    }
-                    .nav-1{
-                        border-color: #2ecc71;
-                        color: $flat-green;
+                    option{
+                        color: #000;
                     }
                 }
-                h6.invi{
-                    visibility: hidden;
-                    margin: 0 18px;
+                input[type="text"]:not(focus){
+                    text-transform: capitalize;
                 }
-                span{
-                    text-align: center;
-                    h6{
-                        text-align: center;
-                        display: inline;
-                        color: #fff;
-                    }
+                input[name="username"]:not(focus){
+                    text-transform: lowercase;
                 }
-            }
-            .person-form{
-                margin-top: 20px;
-                text-align: left;
-            }
-            .bill-form{
-                @extend .person-form;
-            }
-            .payment-form{
-                @extend .person-form;
-                h5.invi{
-                    visibility: hidden;
+                input:focus, select:focus, textarea:focus{
+                    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+                    background-color:rgba(255,255,255,0.3);
+                    margin-top: -5px;
+                    color: #000;
+                    outline: none;
                 }
-                .save-info{
-                    background-color: $flat-green;
-                    box-shadow: none;
-                    border: none;
+                h5{
+                    color: $custom-white;
+                    margin: 0 0 5px 0;  
+                }
+                .col-span-2{
+                    width: inherit;
+                    height: 75px;
+                }
+                .col-2{
+                    float: left;
+                    width: 48%;
+                }                
+                .col-2:last-child{
                     float: right;
-                    width: 140px;
                 }
-                .save-info:hover{
-                    background-color: lighten($flat-green,5%);
-                    cursor: pointer;
+                .col-span-3{
+                    width: inherit;
+                    height: 78px;
+                }
+                .col-3{
+                    float: left;
+                    width: 28%;
+                }
+                .col-3:nth-child(2){
+                    width: 15%;
+                    margin-left: 14%;
+                }
+                .col-3:last-child{
+                    float: right;
+                }
+                .btn{
+                    float: right;
+                }
+                .btn-success{
+                    margin-left: 10px;
+                }
+                .reg-nav{
+                    hr{
+                        margin-bottom: 15px;
+                    }
+                    .c-nav{
+                        position: absolute;
+                        width: 100%;
+                        top: -23;
+                        button{
+                            background-color: lighten($custom-white,10%);
+                            border: 1px solid #fff;
+                            border-radius: 100%;
+                            color: $flat-blue;
+                            margin: 0 auto;
+                            height: 28px;
+                            width: 28px;
+                        }
+                        button:focus{
+                            outline: none;
+                        }
+                        button.invi{
+                            visibility: hidden;
+                            margin: 0 40px;
+                        }
+                        .nav-1{
+                            border-color: #2ecc71;
+                            color: $flat-green;
+                        }
+                    }
+                    h6.invi{
+                        visibility: hidden;
+                        margin: 0 5px;
+                    }
+                    span{
+                        text-align: left;
+                    }
+                    .l-nav{
+                        h6{
+                            display: inline;
+                            color: #fff;
+                        }
+                    }
+                }
+                .person-form{
+                    margin-top: 20px;
+                    text-align: left;
+                }
+                .bill-form{
+                    @extend .person-form;
+                }
+                .payment-form{
+                    @extend .person-form;
+                    h5.invi{
+                        visibility: hidden;
+                    }
+                    .save-info{
+                        background-color: $flat-green;
+                        box-shadow: none;
+                        border: none;
+                        float: right;
+                        width: 140px;
+                    }
+                    .save-info:hover{
+                        background-color: lighten($flat-green,5%);
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -442,7 +733,7 @@ p{
 #food-order{
     box-shadow: 3px 5px 5px rgba(0,0,0,0.6);
     left: 0; right: 0; top: 5%;
-    background-color: #fff;
+    background-color: #fafafa;
     padding: 30px 0 20px 0;
     font-family: "roboto";
     border-radius: 5px;
@@ -488,7 +779,9 @@ p{
     textarea{
         margin-bottom: 20px;
     }
-    
+    .width{
+        width: 60%;
+    }
     .minus,.plus,{
         background-color: $flat-green;
         border-radius: 100%;
@@ -505,6 +798,9 @@ p{
     button:hover{
         cursor: pointer;
         background-color: lighten($flat-green,10%);
+    }
+    button:active{
+        outline: none;
     }
     .container-qty{
         button, h3{
@@ -575,9 +871,7 @@ header{
     position: fixed;
     width: 100%;
     z-index: 2;
-
     .container{
-        
         .logo{
             background-image: url('../../img/logo.png');
             background-repeat: no-repeat;
@@ -609,6 +903,9 @@ header{
                         text-decoration: none;
                         padding: 10px 15px;
                         color: $dark-gray;
+                    }
+                    a:active{
+                        outline: none;
                     }
                     .greetings{
                         margin-right: 10px;
@@ -645,13 +942,46 @@ header{
              HOME SECTION  
 ====================================*/
 section#home{
+    // background-color: #000; 
     position: relative;
+    overflow: hidden;
+    min-height: 100%;
     .home-background{
-        background-image: url('../../img/01.jpg');
-        min-height: 100%;
-        opacity: 0.8;
+        position: absolute;
+        object-fit: cover;
+        opacity: 0.95;
+        height: 100%;
+        width: 100%;
+        top: 0;
     }
-    
+    .nav-container{
+        margin: 0 auto;
+        width: 50%;
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 50px;
+        .circle{
+            border: 2px solid #f6f6f6;
+            display: inline-block;
+            border-radius: 100%;
+            position: relative;
+            margin: 0 10px;
+            height: 20px;
+            width: 20px;
+            .inner{
+                background-color: #f6f6f6;
+                display: inline-block;
+                border-radius: 100%;
+                position: absolute;
+                right: 2; top: 2;
+                height: 12px;
+                width: 12px;
+            }
+        }
+        .circle:hover{
+            cursor: pointer;
+        }
+    }
     .art-bg{  
         h1{
             text-shadow: 3px 5px 7px rgba(0,0,0,0.8);
@@ -667,9 +997,25 @@ section#home{
             text-shadow: 2px 2px 1px rgba(255,255,255,1);
             font-family: "Minion Pro";
             text-transform: uppercase;
+            color: darken($dark-gray, 5%);
             letter-spacing: 10px;
             font-size: 24px;
         }
+    }
+    .temp{
+        @include article();
+        text-align: left;
+        left: 30; top: 170;
+    }
+    .pud{
+        @include article();
+        text-align: right;
+        right: 30; top: 240;
+    }
+    .ton{
+        @include article();
+        text-align: right;
+        right: 30; top: 180;
     }
 }
 
@@ -767,43 +1113,44 @@ section.container{
         /* ====================================================
              FOOOOOOOOOOD WADAFAK NUMA MAN BUYUNG BUNANI
         ====================================================*/
-        .curry{
-            background-image: url('../../img/menu/curry.jpg');
-            background-position-x: -10px;
-        }
-        .donburi{
-            background-image: url('../../img/menu/donburi.jpg');
-            background-position-x: -32px;
-        }
-        .cakey{
-            background-image: url('../../img/menu/japanesecake.jpg');
-            background-position-x: -10px;
-        }
-        .karaage{
-            background-image: url('../../img/menu/karaage.jpg');
-        }
-        .omurice{
-            background-image: url('../../img/menu/omurice.jpg');
-            background-position-x: -30px;
-        }
-        .onigiri{
-            background-image: url('../../img/menu/onigiri.jpg');
-        }
-        .ramen{
-            background-image: url('../../img/menu/ramen.jpg');
-            background-position-x: -15px;
-        }
-        // .pudding{
-        //     background-image: url('../../img/menu/sushi.jpg');
+        // .curry{
+        //     background-image: url('../../img/menu/curry.jpg');
+        //     background-position-x: -10px;
         // }
-        .tempura{
-            background-image: url('../../img/menu/tempura.jpg');
-            background-position-x: -50px;
-        }
-        .tonkatsu{
-            background-image: url('../../img/menu/tonkatsu.jpg');
-            background-position-x: -33px;
-        }
+        // .donburi{
+        //     background-image: url('../../img/menu/donburi.jpg');
+        //     background-position-x: -30px;
+        // }
+        // .cakey{
+        //     background-image: url('../../img/menu/japanesecake.jpg');
+        //     background-position-x: -10px;
+        // }
+        // .karaage{
+        //     background-image: url('../../img/menu/karaage.jpg');
+        // }
+        // .omurice{
+        //     background-image: url('../../img/menu/omurice.jpg');
+        //     background-position-x: -30px;
+        // }
+        // .onigiri{
+        //     background-image: url('../../img/menu/onigiri.jpg');
+        // }
+        // .ramen{
+        //     background-image: url('../../img/menu/ramen.jpg');
+        //     background-position-x: -15px;
+        // }
+        // .pudding{
+        //     background-image: url('../../img/menu/pudding.jpg');
+        //     background-position-x: -35px;
+        // }
+        // .tempura{
+        //     background-image: url('../../img/menu/tempura.jpg');
+        //     background-position-x: -50px;
+        // }
+        // .tonkatsu{
+        //     background-image: url('../../img/menu/tonkatsu.jpg');
+        //     background-position-x: -33px;
+        // }
 
         // DRINKS
 
@@ -893,6 +1240,8 @@ section.container{
         .box:hover{
             border-color: $flat-blue;
             .frame{
+                border-color: darken($flat-blue, 3%);
+                border-width: 2px;
                 top: -40px;
             }
             article{
@@ -916,9 +1265,10 @@ section.container{
 
 section#order{
     position: relative;
+    background-color: #000;
     .order-background{
         background-image: url('../../img/reservation-seat.jpg');
-        opacity: 0.75;
+        opacity: 0.9;
         height: 80%;
     }
     article{
@@ -1024,12 +1374,12 @@ section.order{
     ====================================*/
     
     .cart{
-        font-family: "Open Sans";
-        font-size: 22px;
-        list-style-type: none;
-        width: 80%;
-        margin: 0 auto;
         color: lighten($dark-gray,20%);
+        font-family: "Open Sans";
+        list-style-type: none;
+        font-size: 22px;
+        margin: 0 auto;
+        width: 80%;
         .row{
             padding-top: 18px;
             height: 70px;
@@ -1120,14 +1470,15 @@ section.order{
                 text-decoration: none;
                 color: $custom-white;
                 border-radius: 4px;
-                padding-top: 17px;
                 margin-top: -15px;
                 height: inherit;
+                border: none;
                 float: right;
                 width: 120px;
             }
             .order-button:hover{
                 background-color: lighten($flat-red,5%);
+                cursor: pointer;
             }
         }
         hr{

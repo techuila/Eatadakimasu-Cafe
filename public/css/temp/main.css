@@ -130,6 +130,113 @@
   }
 }
 
+@keyframes come-in {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes move-out {
+  from {
+    left: 1500;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes move-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: -2000;
+  }
+}
+
+@keyframes article-left-in {
+  from {
+    left: -2000;
+  }
+  to {
+    left: 20;
+  }
+}
+
+@keyframes article-left-out {
+  from {
+    left: 30;
+  }
+  to {
+    left: -2000;
+  }
+}
+
+@keyframes article-right-in {
+  from {
+    right: -2000;
+  }
+  to {
+    right: 30;
+  }
+}
+
+@keyframes article-right-out {
+  from {
+    right: 30;
+  }
+  to {
+    right: -2000;
+  }
+}
+
+@keyframes article-main-in {
+  from {
+    right: -2000;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes p-expand {
+  from {
+  }
+  to {
+    width: 70%;
+  }
+}
+
+@keyframes p-hide {
+  from {
+    width: 70%;
+  }
+  to {
+    width: 40%;
+  }
+}
+
+@keyframes right-side {
+  from {
+    from: 85%;
+  }
+  to {
+    width: 50%;
+  }
+}
+
+@keyframes right-side-hide {
+  from {
+    width: 50%;
+  }
+  to {
+    width: 85%;
+  }
+}
+
 /* ====================================
            AGULAR ANIMATION
 ====================================*/
@@ -141,6 +248,42 @@
 #s-in.ng-hide-add,
 #food-order.ng-hide-add {
   animation: 0.6s animateToTop ease-out;
+}
+
+.inner.ng-hide-remove {
+  animation: 0.6s come-out ease;
+}
+
+.inner.ng-hide-add {
+  animation: 0.6s come-in ease;
+}
+
+.home-background.ng-hide-remove {
+  animation: 1s move-out ease;
+}
+
+.home-background.ng-hide-add {
+  animation: 1s move-in ease;
+}
+
+.art-bg.ng-hide-add {
+  animation: 1s article-right-out ease;
+}
+
+.art-bg.ng-hide-remove {
+  animation: 2s article-right-in ease;
+}
+
+.art-bg.temp.ng-hide-add {
+  animation: 1s article-left-out ease;
+}
+
+.art-bg.temp.ng-hide-remove {
+  animation: 2s article-left-in ease;
+}
+
+.art-bg.main-bg.ng-hide-remove {
+  animation: 2s article-main-in ease;
 }
 
 /* ====================================
@@ -218,10 +361,10 @@ p {
   margin: 3% auto;
   position: fixed;
   height: 88%;
-  z-index: 2;
   width: 40%;
+  z-index: 2;
   /*==============================================
-                         lOGIN FORM
+                        lOGIN FORM
     ==============================================*/
 }
 
@@ -230,38 +373,145 @@ p {
   background-size: auto auto;
   background-position-x: 52%;
   border-radius: 5px;
-  padding: 10% 5%;
+  padding: 65px 2%;
   font-size: 1em;
+  margin: 0 auto;
   height: 100%;
-  margin: auto;
   width: 100%;
   /*==============================================
-                           REGISTER FORM
-          ==============================================*/
+                        PREVIEW ORDER
+        ==============================================*/
 }
 
-.s-in .c-in .login-form .alert {
+.s-in .c-in .s-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.s-in .c-in .p-order {
+  font-family: "Open Sans";
+  visibility: hidden;
+  padding: 0 20px;
+  display: none;
+}
+
+.s-in .c-in .p-order .bg-order {
+  position: relative;
+}
+
+.s-in .c-in .p-order .bg-order .bgg {
+  float: left;
+  background-color: white;
+  width: 100%;
+  opacity: 0.5;
+  height: 40px;
+  border-radius: 5px;
+  padding: 5px 25px;
+}
+
+.s-in .c-in .p-order .bg-order h2 {
+  text-transform: uppercase;
+  position: absolute;
+  padding-top: 2px;
+  color: #f06953;
+  width: 100%;
+  z-index: 4;
+  margin: 0;
+}
+
+.s-in .c-in .p-order ul {
+  list-style: none;
+  clear: both;
+  width: 90%;
+}
+
+.s-in .c-in .p-order ul li.header {
+  color: #34495e;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.s-in .c-in .p-order ul li.header .qty {
+  float: left;
+}
+
+.s-in .c-in .p-order ul li.header .item {
+  margin-left: 30px;
+  float: left;
+}
+
+.s-in .c-in .p-order ul li.header .price {
+  float: right;
+}
+
+.s-in .c-in .p-order ul li.items {
+  color: #f5f6f9;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.s-in .c-in .p-order ul li.items .qty {
+  margin-left: 15px;
+  float: left;
+}
+
+.s-in .c-in .p-order ul li.items .item-name {
+  margin-left: 40px;
+  float: left;
+}
+
+.s-in .c-in .p-order ul li.items .price {
+  float: right;
+}
+
+.s-in .c-in .p-order ul li.boom {
+  color: white;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.s-in .c-in .p-order ul li.boom .total {
+  color: #34495e;
+  float: left;
+}
+
+.s-in .c-in .p-order ul li.boom .total-price {
+  color: #f06953;
+  float: right;
+}
+
+.s-in .c-in .right-side {
+  display: inline-block;
+  margin: 0;
+  width: 85%;
+  /*==============================================
+                            REGISTER FORM
+            ==============================================*/
+}
+
+.s-in .c-in .right-side .login-form .alert {
   text-align: left;
   opacity: 0.7;
   width: 77%;
 }
 
-.s-in .c-in .login-form .glyphicon-ok,
-.s-in .c-in .login-form .glyphicon-ok-circle {
+.s-in .c-in .right-side .login-form .glyphicon-ok,
+.s-in .c-in .right-side .login-form .glyphicon-ok-circle {
   color: #2ecc71;
 }
 
-.s-in .c-in .login-form span {
+.s-in .c-in .right-side .login-form span {
   color: red;
 }
 
-.s-in .c-in .login-form h4 {
+.s-in .c-in .right-side .login-form h4 {
   margin-top: 15px;
   color: #ecf0f1;
 }
 
-.s-in .c-in .login-form input[type="text"],
-.s-in .c-in .login-form input[type="password"] {
+.s-in .c-in .right-side .login-form input[type="text"],
+.s-in .c-in .right-side .login-form input[type="password"] {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
   border: 1px solid #b1c2c6;
   background-color: transparent;
@@ -275,7 +525,8 @@ p {
   width: 77%;
 }
 
-.s-in .c-in .login-form input[type="text"]:focus, .s-in .c-in .login-form input[type="password"]:focus {
+.s-in .c-in .right-side .login-form input[type="text"]:focus,
+.s-in .c-in .right-side .login-form input[type="password"]:focus {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.3);
   margin-top: -5px;
@@ -283,62 +534,64 @@ p {
   color: #000;
 }
 
-.s-in .c-in .login-form .btn-container {
+.s-in .c-in .right-side .login-form .btn-container {
   margin-top: 30px;
 }
 
-.s-in .c-in .login-form .btn-container input[type="button"], .s-in .c-in .login-form .btn-container input[type='submit'] {
+.s-in .c-in .right-side .login-form .btn-container input[type="button"],
+.s-in .c-in .right-side .login-form .btn-container input[type='submit'] {
   background-color: transparent;
   border-radius: 4px;
   height: 55px;
 }
 
-.s-in .c-in .login-form .btn-container input[type="button"]:hover, .s-in .c-in .login-form .btn-container input[type='submit']:hover {
+.s-in .c-in .right-side .login-form .btn-container input[type="button"]:hover,
+.s-in .c-in .right-side .login-form .btn-container input[type='submit']:hover {
   cursor: pointer;
   color: white;
 }
 
-.s-in .c-in .login-form .btn-container .in, .s-in .c-in .login-form .btn-container .up {
+.s-in .c-in .right-side .login-form .btn-container .in, .s-in .c-in .right-side .login-form .btn-container .up {
   min-width: 35%;
 }
 
-.s-in .c-in .login-form .btn-container .in {
+.s-in .c-in .right-side .login-form .btn-container .in {
   border: 3px solid #2ecc71;
   margin-right: 15px;
   color: #2ecc71;
 }
 
-.s-in .c-in .login-form .btn-container .up {
+.s-in .c-in .right-side .login-form .btn-container .up {
   border: 3px solid #f06953;
   margin-left: 15px;
   color: #f06953;
 }
 
-.s-in .c-in .login-form .btn-container .guest {
+.s-in .c-in .right-side .login-form .btn-container .guest {
   border: 3px solid #e67e22;
   margin-top: 30px;
   color: #e67e22;
   width: 76%;
 }
 
-.s-in .c-in .login-form .btn-container .in:hover {
+.s-in .c-in .right-side .login-form .btn-container .in:hover {
   background-color: #2ecc71;
 }
 
-.s-in .c-in .login-form .btn-container .up:hover {
+.s-in .c-in .right-side .login-form .btn-container .up:hover {
   background-color: #f06953;
 }
 
-.s-in .c-in .login-form .btn-container .guest:hover {
+.s-in .c-in .right-side .login-form .btn-container .guest:hover {
   background-color: #e67e22;
 }
 
-.s-in .c-in .register-form {
+.s-in .c-in .right-side .register-form {
   position: relative;
   width: 95%;
 }
 
-.s-in .c-in .register-form input, .s-in .c-in .register-form select {
+.s-in .c-in .right-side .register-form input, .s-in .c-in .right-side .register-form select, .s-in .c-in .right-side .register-form textarea {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
   border: 1px solid #b1c2c6;
   background-color: transparent;
@@ -350,11 +603,19 @@ p {
   width: 100%;
 }
 
-.s-in .c-in .register-form input option, .s-in .c-in .register-form select option {
+.s-in .c-in .right-side .register-form input option, .s-in .c-in .right-side .register-form select option, .s-in .c-in .right-side .register-form textarea option {
   color: #000;
 }
 
-.s-in .c-in .register-form input:focus, .s-in .c-in .register-form select:focus {
+.s-in .c-in .right-side .register-form input[type="text"]:not(focus) {
+  text-transform: capitalize;
+}
+
+.s-in .c-in .right-side .register-form input[name="username"]:not(focus) {
+  text-transform: lowercase;
+}
+
+.s-in .c-in .right-side .register-form input:focus, .s-in .c-in .right-side .register-form select:focus, .s-in .c-in .right-side .register-form textarea:focus {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.3);
   margin-top: -5px;
@@ -362,63 +623,63 @@ p {
   outline: none;
 }
 
-.s-in .c-in .register-form h5 {
+.s-in .c-in .right-side .register-form h5 {
   color: #ecf0f1;
   margin: 0 0 5px 0;
 }
 
-.s-in .c-in .register-form .col-span-2 {
+.s-in .c-in .right-side .register-form .col-span-2 {
   width: inherit;
   height: 75px;
 }
 
-.s-in .c-in .register-form .col-2 {
+.s-in .c-in .right-side .register-form .col-2 {
   float: left;
   width: 48%;
 }
 
-.s-in .c-in .register-form .col-2:last-child {
+.s-in .c-in .right-side .register-form .col-2:last-child {
   float: right;
 }
 
-.s-in .c-in .register-form .col-span-3 {
+.s-in .c-in .right-side .register-form .col-span-3 {
   width: inherit;
   height: 78px;
 }
 
-.s-in .c-in .register-form .col-3 {
+.s-in .c-in .right-side .register-form .col-3 {
   float: left;
   width: 28%;
 }
 
-.s-in .c-in .register-form .col-3:nth-child(2) {
+.s-in .c-in .right-side .register-form .col-3:nth-child(2) {
   width: 15%;
   margin-left: 14%;
 }
 
-.s-in .c-in .register-form .col-3:last-child {
+.s-in .c-in .right-side .register-form .col-3:last-child {
   float: right;
 }
 
-.s-in .c-in .register-form .btn {
+.s-in .c-in .right-side .register-form .btn {
   float: right;
 }
 
-.s-in .c-in .register-form .btn-success {
+.s-in .c-in .right-side .register-form .btn-success {
   margin-left: 10px;
 }
 
-.s-in .c-in .register-form .reg-nav hr {
+.s-in .c-in .right-side .register-form .reg-nav hr {
   margin-bottom: 15px;
 }
 
-.s-in .c-in .register-form .reg-nav .c-nav {
-  width: 100%;
+.s-in .c-in .right-side .register-form .reg-nav .c-nav {
   position: absolute;
+  width: 100%;
   top: -23;
 }
 
-.s-in .c-in .register-form .reg-nav .c-nav button {
+.s-in .c-in .right-side .register-form .reg-nav .c-nav button {
   background-color: white;
   border: 1px solid #fff;
   border-radius: 100%;
@@ -428,45 +689,44 @@ p {
   width: 28px;
 }
 
-.s-in .c-in .register-form .reg-nav .c-nav button:focus {
+.s-in .c-in .right-side .register-form .reg-nav .c-nav button:focus {
   outline: none;
 }
 
-.s-in .c-in .register-form .reg-nav .c-nav button.invi {
+.s-in .c-in .right-side .register-form .reg-nav .c-nav button.invi {
   visibility: hidden;
-  margin: 0 51px;
+  margin: 0 40px;
 }
 
-.s-in .c-in .register-form .reg-nav .c-nav .nav-1 {
+.s-in .c-in .right-side .register-form .reg-nav .c-nav .nav-1 {
   border-color: #2ecc71;
   color: #2ecc71;
 }
 
-.s-in .c-in .register-form .reg-nav h6.invi {
+.s-in .c-in .right-side .register-form .reg-nav h6.invi {
   visibility: hidden;
-  margin: 0 18px;
+  margin: 0 5px;
 }
 
-.s-in .c-in .register-form .reg-nav span {
-  text-align: center;
+.s-in .c-in .right-side .register-form .reg-nav span {
+  text-align: left;
 }
 
-.s-in .c-in .register-form .reg-nav span h6 {
-  text-align: center;
+.s-in .c-in .right-side .register-form .reg-nav .l-nav h6 {
   display: inline;
   color: #fff;
 }
 
-.s-in .c-in .register-form .person-form, .s-in .c-in .register-form .bill-form, .s-in .c-in .register-form .payment-form {
+.s-in .c-in .right-side .register-form .person-form, .s-in .c-in .right-side .register-form .bill-form, .s-in .c-in .right-side .register-form .payment-form {
   margin-top: 20px;
   text-align: left;
 }
 
-.s-in .c-in .register-form .payment-form h5.invi {
+.s-in .c-in .right-side .register-form .payment-form h5.invi {
   visibility: hidden;
 }
 
-.s-in .c-in .register-form .payment-form .save-info {
+.s-in .c-in .right-side .register-form .payment-form .save-info {
   background-color: #2ecc71;
   box-shadow: none;
   border: none;
@@ -474,7 +734,7 @@ p {
   width: 140px;
 }
 
-.s-in .c-in .register-form .payment-form .save-info:hover {
+.s-in .c-in .right-side .register-form .payment-form .save-info:hover {
   background-color: #40d47e;
   cursor: pointer;
 }
@@ -487,7 +747,7 @@ p {
   left: 0;
   right: 0;
   top: 5%;
-  background-color: #fff;
+  background-color: #fafafa;
   padding: 30px 0 20px 0;
   font-family: "roboto";
   border-radius: 5px;
@@ -543,6 +803,10 @@ p {
   margin-bottom: 20px;
 }
 
+#food-order .width {
+  width: 60%;
+}
+
 #food-order .minus, #food-order .plus {
   background-color: #2ecc71;
   border-radius: 100%;
@@ -562,6 +826,10 @@ p {
 #food-order button:hover {
   cursor: pointer;
   background-color: #54d98c;
+}
+
+#food-order button:active {
+  outline: none;
 }
 
 #food-order .container-qty button, #food-order .container-qty h3 {
@@ -674,6 +942,10 @@ header .container nav ul li a {
   color: #34495e;
 }
 
+header .container nav ul li a:active {
+  outline: none;
+}
+
 header .container nav ul li .greetings {
   margin-right: 10px;
   font-size: 0.85em;
@@ -707,12 +979,52 @@ header .container nav ul li .sign-in:hover {
 ====================================*/
 section#home {
   position: relative;
+  overflow: hidden;
+  min-height: 100%;
 }
 
 section#home .home-background {
-  background-image: url("../../img/01.jpg");
-  min-height: 100%;
-  opacity: 0.8;
+  position: absolute;
+  object-fit: cover;
+  opacity: 0.95;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+section#home .nav-container {
+  margin: 0 auto;
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+section#home .nav-container .circle {
+  border: 2px solid #f6f6f6;
+  display: inline-block;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 10px;
+  height: 20px;
+  width: 20px;
+}
+
+section#home .nav-container .circle .inner {
+  background-color: #f6f6f6;
+  display: inline-block;
+  border-radius: 100%;
+  position: absolute;
+  right: 2;
+  top: 2;
+  height: 12px;
+  width: 12px;
+}
+
+section#home .nav-container .circle:hover {
+  cursor: pointer;
 }
 
 section#home .art-bg h1 {
@@ -731,8 +1043,144 @@ section#home .art-bg p {
   text-shadow: 2px 2px 1px white;
   font-family: "Minion Pro";
   text-transform: uppercase;
+  color: #2b3c4e;
   letter-spacing: 10px;
   font-size: 24px;
+}
+
+section#home .temp {
+  text-align: left;
+  left: 30;
+  top: 170;
+}
+
+section#home .temp h1 {
+  font-family: "Open Sans";
+  letter-spacing: initial;
+  text-shadow: none;
+  color: #34495e;
+  font-size: 3em;
+}
+
+section#home .temp p {
+  font-family: "Roboto";
+  letter-spacing: initial;
+  text-transform: initial;
+  margin-top: 20px;
+  text-shadow: none;
+  color: #34495e;
+  font-size: 1.5em;
+}
+
+section#home .temp button {
+  font-family: "Open Sans";
+  background-color: transparent;
+  border: 2px solid #2ecc71;
+  color: #2ecc71;
+  border-radius: 5px;
+  margin-top: 35px;
+  height: 40px;
+  width: 120px;
+}
+
+section#home .temp button .icon-left {
+  margin-left: 10px;
+  float: left;
+}
+
+section#home .temp button .label-right {
+  margin-right: 10px;
+  float: right;
+}
+
+section#home .pud {
+  text-align: right;
+  right: 30;
+  top: 240;
+}
+
+section#home .pud h1 {
+  font-family: "Open Sans";
+  letter-spacing: initial;
+  text-shadow: none;
+  color: #34495e;
+  font-size: 3em;
+}
+
+section#home .pud p {
+  font-family: "Roboto";
+  letter-spacing: initial;
+  text-transform: initial;
+  margin-top: 20px;
+  text-shadow: none;
+  color: #34495e;
+  font-size: 1.5em;
+}
+
+section#home .pud button {
+  font-family: "Open Sans";
+  background-color: transparent;
+  border: 2px solid #2ecc71;
+  color: #2ecc71;
+  border-radius: 5px;
+  margin-top: 35px;
+  height: 40px;
+  width: 120px;
+}
+
+section#home .pud button .icon-left {
+  margin-left: 10px;
+  float: left;
+}
+
+section#home .pud button .label-right {
+  margin-right: 10px;
+  float: right;
+}
+
+section#home .ton {
+  text-align: right;
+  right: 30;
+  top: 180;
+}
+
+section#home .ton h1 {
+  font-family: "Open Sans";
+  letter-spacing: initial;
+  text-shadow: none;
+  color: #34495e;
+  font-size: 3em;
+}
+
+section#home .ton p {
+  font-family: "Roboto";
+  letter-spacing: initial;
+  text-transform: initial;
+  margin-top: 20px;
+  text-shadow: none;
+  color: #34495e;
+  font-size: 1.5em;
+}
+
+section#home .ton button {
+  font-family: "Open Sans";
+  background-color: transparent;
+  border: 2px solid #2ecc71;
+  color: #2ecc71;
+  border-radius: 5px;
+  margin-top: 35px;
+  height: 40px;
+  width: 120px;
+}
+
+section#home .ton button .icon-left {
+  margin-left: 10px;
+  float: left;
+}
+
+section#home .ton button .label-right {
+  margin-right: 10px;
+  float: right;
 }
 
 /* ====================================
@@ -841,49 +1289,6 @@ section.container .box-container {
         ==============================================*/
 }
 
-section.container .box-container .curry {
-  background-image: url("../../img/menu/curry.jpg");
-  background-position-x: -10px;
-}
-
-section.container .box-container .donburi {
-  background-image: url("../../img/menu/donburi.jpg");
-  background-position-x: -32px;
-}
-
-section.container .box-container .cakey {
-  background-image: url("../../img/menu/japanesecake.jpg");
-  background-position-x: -10px;
-}
-
-section.container .box-container .karaage {
-  background-image: url("../../img/menu/karaage.jpg");
-}
-
-section.container .box-container .omurice {
-  background-image: url("../../img/menu/omurice.jpg");
-  background-position-x: -30px;
-}
-
-section.container .box-container .onigiri {
-  background-image: url("../../img/menu/onigiri.jpg");
-}
-
-section.container .box-container .ramen {
-  background-image: url("../../img/menu/ramen.jpg");
-  background-position-x: -15px;
-}
-
-section.container .box-container .tempura {
-  background-image: url("../../img/menu/tempura.jpg");
-  background-position-x: -50px;
-}
-
-section.container .box-container .tonkatsu {
-  background-image: url("../../img/menu/tonkatsu.jpg");
-  background-position-x: -33px;
-}
-
 section.container .box-container .box {
   transition: border-color 0.5s ease;
   border: 2px solid #e4e4e4;
@@ -967,6 +1372,8 @@ section.container .box-container .box:hover {
 }
 
 section.container .box-container .box:hover .frame {
+  border-color: #009ef0;
+  border-width: 2px;
   top: -40px;
 }
 
@@ -989,11 +1396,12 @@ section.container .box-container .box:hover .button-cart-container {
 ====================================*/
 section#order {
   position: relative;
+  background-color: #000;
 }
 
 section#order .order-background {
   background-image: url("../../img/reservation-seat.jpg");
-  opacity: 0.75;
+  opacity: 0.9;
   height: 80%;
 }
 
@@ -1114,12 +1522,12 @@ section.order .order-location .button-container .guest:hover {
 }
 
 section.order .cart {
-  font-family: "Open Sans";
-  font-size: 22px;
-  list-style-type: none;
-  width: 80%;
-  margin: 0 auto;
   color: #587ca0;
+  font-family: "Open Sans";
+  list-style-type: none;
+  font-size: 22px;
+  margin: 0 auto;
+  width: 80%;
 }
 
 section.order .cart .row {
@@ -1232,15 +1640,16 @@ section.order .cart .footer .order-button {
   text-decoration: none;
   color: #ecf0f1;
   border-radius: 4px;
-  padding-top: 17px;
   margin-top: -15px;
   height: inherit;
+  border: none;
   float: right;
   width: 120px;
 }
 
 section.order .cart .footer .order-button:hover {
   background-color: #f27d6a;
+  cursor: pointer;
 }
 
 section.order .cart hr {
