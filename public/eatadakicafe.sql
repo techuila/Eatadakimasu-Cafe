@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.1.6
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2017 at 12:27 AM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Sep 27, 2017 at 09:44 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `eatadakicafe`
@@ -28,13 +26,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `billinginfo`
 --
 
-CREATE TABLE `billinginfo` (
+CREATE TABLE IF NOT EXISTS `billinginfo` (
   `BillingID` varchar(20) NOT NULL,
   `CustomerID` varchar(20) NOT NULL,
   `OrderID` varchar(255) NOT NULL,
   `Barangay` varchar(255) NOT NULL,
   `Street` varchar(255) NOT NULL,
-  `House_No` varchar(255) NOT NULL
+  `House_No` varchar(255) NOT NULL,
+  PRIMARY KEY (`BillingID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -50,8 +49,8 @@ INSERT INTO `billinginfo` (`BillingID`, `CustomerID`, `OrderID`, `Barangay`, `St
 -- Table structure for table `customerinfo`
 --
 
-CREATE TABLE `customerinfo` (
-  `customerID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `customerinfo` (
+  `customerID` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `Firstname` varchar(255) NOT NULL,
   `Lastname` varchar(255) NOT NULL,
@@ -61,8 +60,9 @@ CREATE TABLE `customerinfo` (
   `Street` varchar(255) NOT NULL,
   `House_No` int(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Mobile_No` int(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Mobile_No` int(255) NOT NULL,
+  PRIMARY KEY (`customerID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `customerinfo`
@@ -77,15 +77,16 @@ INSERT INTO `customerinfo` (`customerID`, `username`, `Firstname`, `Lastname`, `
 -- Table structure for table `foodinfos`
 --
 
-CREATE TABLE `foodinfos` (
-  `id` int(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS `foodinfos` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `foodName` varchar(255) NOT NULL,
   `foodDesc` text NOT NULL,
   `foodPrice` varchar(255) NOT NULL,
   `foodImg` varchar(255) NOT NULL,
   `position_x` varchar(255) NOT NULL,
-  `class_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `class_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `foodinfos`
@@ -109,7 +110,7 @@ INSERT INTO `foodinfos` (`id`, `foodName`, `foodDesc`, `foodPrice`, `foodImg`, `
 -- Table structure for table `guestinfo`
 --
 
-CREATE TABLE `guestinfo` (
+CREATE TABLE IF NOT EXISTS `guestinfo` (
   `guestID` int(11) NOT NULL,
   `Firstname` varchar(255) NOT NULL,
   `Lastname` varchar(255) NOT NULL,
@@ -119,7 +120,8 @@ CREATE TABLE `guestinfo` (
   `Street` varchar(255) NOT NULL,
   `House_No` int(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Mobile_No` int(255) NOT NULL
+  `Mobile_No` int(255) NOT NULL,
+  PRIMARY KEY (`guestID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -131,7 +133,34 @@ INSERT INTO `guestinfo` (`guestID`, `Firstname`, `Lastname`, `Birthday`, `Gender
 (2, 'dsad', 'sad', '0232-09-23', 'Male', 'asdsad', '3223', 32232, 'dsadasd', 0),
 (3, 'asd', 'asdq', '0000-00-00', 'Gender', 'qwel', 'kalnd', 0, 'lkner', 0),
 (4, 'rqw', ',.', '0000-00-00', 'Gender', '', '', 0, '', 0),
-(5, 'lskdjf', 'kljsdf', '0000-00-00', 'Gender', '', '', 0, '', 0);
+(5, 'lskdjf', 'kljsdf', '0000-00-00', 'Gender', '', '', 0, '', 0),
+(6, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
+(7, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
+(8, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
+(9, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
+(10, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
+(11, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `img_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `img_name`) VALUES
+(1, '04.jpg'),
+(2, '04.jpg'),
+(3, '04.jpg');
 
 -- --------------------------------------------------------
 
@@ -139,9 +168,10 @@ INSERT INTO `guestinfo` (`guestID`, `Firstname`, `Lastname`, `Birthday`, `Gender
 -- Table structure for table `login`
 --
 
-CREATE TABLE `login` (
+CREATE TABLE IF NOT EXISTS `login` (
   `Username` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL
+  `Password` varchar(255) NOT NULL,
+  PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -157,14 +187,15 @@ INSERT INTO `login` (`Username`, `Password`) VALUES
 -- Table structure for table `orderinfo`
 --
 
-CREATE TABLE `orderinfo` (
-  `id` int(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS `orderinfo` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `orderid` varchar(255) NOT NULL,
   `customerID` varchar(255) NOT NULL,
   `foodName` varchar(255) NOT NULL,
   `quantity` varchar(255) NOT NULL,
-  `price` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `price` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `orderinfo`
@@ -177,7 +208,13 @@ INSERT INTO `orderinfo` (`id`, `orderid`, `customerID`, `foodName`, `quantity`, 
 (4, '2', '', '', '', ''),
 (5, '3', '3', '', '', ''),
 (6, '4', '4', '', '', ''),
-(7, '5', '5', '', '', '');
+(7, '5', '5', '', '', ''),
+(8, '6', '6', '', '', ''),
+(9, '7', '7', '', '', ''),
+(10, '8', '8', '', '', ''),
+(11, '9', '9', '', '', ''),
+(12, '10', '10', '', '', ''),
+(13, '11', '11', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -185,15 +222,16 @@ INSERT INTO `orderinfo` (`id`, `orderid`, `customerID`, `foodName`, `quantity`, 
 -- Table structure for table `paymentmethod`
 --
 
-CREATE TABLE `paymentmethod` (
-  `id` int(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS `paymentmethod` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `billingid` varchar(255) NOT NULL,
   `p_method` varchar(255) NOT NULL,
   `c_type` varchar(255) NOT NULL,
   `c_num` varchar(255) NOT NULL,
   `s_num` varchar(255) NOT NULL,
-  `exp_date` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `exp_date` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `paymentmethod`
@@ -204,78 +242,13 @@ INSERT INTO `paymentmethod` (`id`, `billingid`, `p_method`, `c_type`, `c_num`, `
 (5, '2', 'card', 'MasterCard', '2323', '3223', '2017-09-01-2017-09-20'),
 (6, '3', 'card', 'MasterCard', '', '', '-'),
 (7, '4', 'card', 'MasterCard', '', '', '-'),
-(8, '5', 'card', 'MasterCard', '', '', '-');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `billinginfo`
---
-ALTER TABLE `billinginfo`
-  ADD PRIMARY KEY (`BillingID`);
-
---
--- Indexes for table `customerinfo`
---
-ALTER TABLE `customerinfo`
-  ADD PRIMARY KEY (`customerID`);
-
---
--- Indexes for table `foodinfos`
---
-ALTER TABLE `foodinfos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `guestinfo`
---
-ALTER TABLE `guestinfo`
-  ADD PRIMARY KEY (`guestID`);
-
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`Username`);
-
---
--- Indexes for table `orderinfo`
---
-ALTER TABLE `orderinfo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `paymentmethod`
---
-ALTER TABLE `paymentmethod`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `customerinfo`
---
-ALTER TABLE `customerinfo`
-  MODIFY `customerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `foodinfos`
---
-ALTER TABLE `foodinfos`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `orderinfo`
---
-ALTER TABLE `orderinfo`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `paymentmethod`
---
-ALTER TABLE `paymentmethod`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;COMMIT;
+(8, '5', 'card', 'MasterCard', '', '', '-'),
+(9, '6', 'card', 'MasterCard', '', '', '-'),
+(10, '7', 'card', 'MasterCard', '', '', '-'),
+(11, '8', 'card', 'MasterCard', '', '', '-'),
+(12, '9', 'card', 'MasterCard', '', '', '-'),
+(13, '10', 'card', 'MasterCard', '', '', '-'),
+(14, '11', 'card', 'MasterCard', '', '', '-');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

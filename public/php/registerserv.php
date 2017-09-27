@@ -26,12 +26,18 @@ $error=''; //Variable to Store error message;
 
         if($rows == 0){
             if($_POST['password']==$_POST['cpassword']){
+                if(strpos($email, '@') !== false){
                 mysqli_query($conn, "INSERT INTO customerinfo(Username,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$username','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')"); 
                 mysqli_query($conn, "INSERT INTO login(Username,Password) VALUES('$username','$password')"); 
                 echo '<script>alert("Registration Successful!")</script>';
+            }else{
+                echo '<script>alert("Please enter a valid email address (e.g eatadaki@gmail.com)")</script>';
+            }
         }else{
             echo '<script>alert("password not matched!")</script>';
-        }
+    }else{
+        echo 'username already existing';
+    }
          
     }else{
         echo '<script>alert("contains alphanumeric")</script>';    }
