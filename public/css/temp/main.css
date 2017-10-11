@@ -615,6 +615,10 @@ p {
   text-transform: lowercase;
 }
 
+.s-in .c-in .right-side .register-form input[name="email"]:not(focus) {
+  text-transform: lowercase;
+}
+
 .s-in .c-in .right-side .register-form input:focus, .s-in .c-in .right-side .register-form select:focus, .s-in .c-in .right-side .register-form textarea:focus {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   background-color: rgba(255, 255, 255, 0.3);
@@ -895,6 +899,7 @@ body {
 header {
   text-transform: uppercase;
   font-family: "roboto";
+  height: 55px;
   position: fixed;
   width: 100%;
   z-index: 2;
@@ -906,8 +911,8 @@ header .container .logo {
   background-position-y: -19px;
   background-size: cover;
   display: inline-block;
-  height: 49px;
-  width: 280px;
+  height: 65px;
+  width: 315px;
 }
 
 header .container h1 {
@@ -921,55 +926,54 @@ header .container h1 span {
 }
 
 header .container nav {
-  margin-top: 15px;
-  height: 30px;
+  font-size: 1.2em;
   float: right;
 }
 
-header .container nav ul {
+header .container nav .basta-waitlang {
+  margin-top: 16.5px;
   text-decoration: none;
 }
 
-header .container nav ul li {
+header .container nav .basta-waitlang li {
   text-decoration: none;
   display: inline-block;
   position: relative;
 }
 
-header .container nav ul li a {
+header .container nav .basta-waitlang li a {
   text-decoration: none;
   padding: 10px 15px;
   color: #34495e;
 }
 
-header .container nav ul li a:active {
+header .container nav .basta-waitlang li a:active {
   outline: none;
 }
 
-header .container nav ul li .greetings {
+header .container nav .basta-waitlang li .greetings {
   margin-right: 10px;
-  font-size: 0.85em;
+  font-size: 0.80em;
 }
 
-header .container nav ul li .user {
-  color: #ecf0f1;
-  margin-left: 15px;
-  text-transform: capitalize;
+header .container nav .basta-waitlang li .user {
   color: #006599;
-  font-size: 1.3em;
+  text-transform: capitalize;
+  margin-left: 15px;
+  font-size: 1.2em;
 }
 
-header .container nav ul li .o-user {
+header .container nav .basta-waitlang li .o-user {
   width: 300px;
 }
 
-header .container nav ul li .sign-in {
+header .container nav .basta-waitlang li .sign-in {
   background-color: #00a8ff;
   border-radius: 4px;
   color: #fff;
 }
 
-header .container nav ul li .sign-in:hover {
+header .container nav .basta-waitlang li .sign-in:hover {
   animation: fade-in 0.3s forwards;
   color: #fff;
 }
@@ -1191,11 +1195,17 @@ section#about {
   width: 80%;
 }
 
-section#about img {
-  margin-right: 50px;
+section#about .something {
+  display: inline-block;
   height: 650px;
-  opacity: 0.8;
+  width: 433px;
   float: left;
+  margin-right: 50px;
+}
+
+section#about .something img {
+  height: 100%;
+  opacity: 0.8;
 }
 
 section#about img:hover {

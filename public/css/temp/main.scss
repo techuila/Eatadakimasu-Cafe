@@ -610,6 +610,9 @@ p{
                 input[name="username"]:not(focus){
                     text-transform: lowercase;
                 }
+                input[name="email"]:not(focus){
+                    text-transform: lowercase;
+                }
                 input:focus, select:focus, textarea:focus{
                     box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
                     background-color:rgba(255,255,255,0.3);
@@ -868,6 +871,7 @@ body{
 header{
     text-transform: uppercase;
     font-family: "roboto";
+    height: 55px;
     position: fixed;
     width: 100%;
     z-index: 2;
@@ -878,8 +882,8 @@ header{
             background-position-y: -19px;
             background-size: cover;
             display: inline-block;
-            height: 49px;
-            width: 280px;
+            height: 65px;
+            width: 315px;
         }
         h1{
             color: $dark-gray;
@@ -890,10 +894,10 @@ header{
             }
         }
         nav{
-            margin-top: 15px;
-            height: 30px;
+            font-size: 1.2em;
             float: right;
-            ul{
+            .basta-waitlang{
+                margin-top: 16.5px;
                 text-decoration: none;
                 li{
                     text-decoration: none;                    
@@ -909,14 +913,13 @@ header{
                     }
                     .greetings{
                         margin-right: 10px;
-                        font-size: 0.85em;
+                        font-size: 0.80em;
                     }
                     .user{
-                        color: $custom-white;
-                        margin-left: 15px; 
-                        text-transform: capitalize;
                         color: darken($flat-blue, 20%);
-                        font-size: 1.3em;
+                        text-transform: capitalize;
+                        margin-left: 15px; 
+                        font-size: 1.2em;
                     }
                     .o-user{
                         width: 300px;
@@ -1027,13 +1030,18 @@ section#home{
 section#about{
     padding-top: 10%;
     width: 80%;
-    img{
-        margin-right: 50px;
+    .something{
+        display: inline-block;
         height: 650px;
-        opacity: 0.8;
+        width: 433px;
         float: left;
+        margin-right: 50px;
+        img{
+            height: 100%;
+            opacity: 0.8;
+        }
     }
-    img:hover{
+        img:hover{
         opacity: 1;
     }
     article.about{

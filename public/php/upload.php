@@ -3,28 +3,35 @@
  $connect = mysqli_connect("localhost", "root", "", "eatadakicafe");  
  if(isset($_POST["insert_image"]))  
  {  
+
       // $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));  
     //   $name = $_POST["textname"];
       $fileDestination = "../img/menu/".basename($_FILES['image']['name']);
       $name = $_FILES['image']['name'];
-      $query = "INSERT INTO images(img_name) VALUES ('04.jpg')"; 
+      $query = "UPDATE `images` SET `img_name`='$name'"; 
       $filetmp = $_FILES['image']['tmp_name'];
      
       move_uploaded_file($filetmp,$fileDestination);
       
-      $query2 = mysqli_query($connect,"SELECT * FROM images WHERE img_name = '$name' ");
-      $rows = mysqli_num_rows($query2);
-      if ($rows == 0){
-        rename('../img/menu/04.jpg','../img/'. $name .'');
-        rename('../img/menu/'. $name,'../img/menu/04.jpg');
-        
+      $query2 = mysqli_query($connect,"SELECT * FROM images ");
+
+      $sql = "SELECT * FROM images";
+      $result = mysqli_query($connect,$sql);
+      $counter = 0;
+      if ($result->num_rows > 0) {
+          // output data of each row
+          while($row = $result->fetch_assoc()) {
+              $disp_img = "../img/menu/".$row['img_name'];
+          }    
+        }
+        // rename('../img/menu/'. $name,'../img/menu/04.jpg');
+        // unlink('../img/back-to-top-arrow.png');
+        // rename('../img/menu/04.jpg','../img/'. $name .'');
         if(mysqli_query($connect,$query)) 
         {  
           echo '<script>alert("Image Inserted into Database")</script>';  
-      
-   
-         
-    //        if (move_uploaded_file($_FILES["image"]["tmp_name"], $fileDestination)) {
+
+          //        if (move_uploaded_file($_FILES["image"]["tmp_name"], $fileDestination)) {
             
     //            echo "<script type='text/javascript'>alert('Image successfully uploaded!')</script>";
           
@@ -32,16 +39,10 @@
     //   else{
     //       echo '<script>alert("There was a problem inserting the image")</script>';
     //   }
-        
-
-
           }else {
   
                echo "<script type='text/javascript'>alert('Image failed to upload!')</script>";
           }
-            }else{
-              echo '<script>alert("Picture name is already used!")</script>';
-            }
           }
  ?>  
 
@@ -54,7 +55,7 @@
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
            <style>
              body{
-               background-image: url('../img/menu/04.jpg');
+               background-image: url(<?php echo $disp_img; ?>);
                background-repeat: no-repeat;
                background-size: cover;
                color: white;
@@ -111,7 +112,7 @@
       $('#insert').click(function(){  
            var image_name = $('#image').val();  
            if(image_name == '')  
-           {  
+           { 
                 alert("Please Select Image");  
                 return false;  
            }  

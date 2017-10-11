@@ -1,6 +1,5 @@
 <?php
 header('Content-type: application/json'); 
-$error=''; //Variable to Store error message;
 
     $username=$_POST['username'];
     $password=$_POST['password'];
@@ -14,7 +13,9 @@ $error=''; //Variable to Store error message;
     $email=$_POST['email'];
     $mobile=$_POST['mobile'];
 
-    if(!preg_match(("/[^[:alnum:]]/"), $username)){
+    
+
+    // if(!preg_match(("/[^[:alnum:]]/"), $username)){
 
         // Establishing Connection with server by passing server_name, user_id and pass as a patameter
         $conn = mysqli_connect("localhost", "root", "") or die ("Not yet Connected: " . mysql_error);
@@ -25,17 +26,20 @@ $error=''; //Variable to Store error message;
         $rows = mysqli_num_rows($query);
 
         if($rows == 0){
-            if($_POST['password']==$_POST['cpassword']){
-                mysqli_query($conn, "INSERT INTO customerinfo(Username,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$username','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')"); 
-                mysqli_query($conn, "INSERT INTO login(Username,Password) VALUES('$username','$password')"); 
-                echo '<script>alert("Registration Successful!")</script>';
+            mysqli_query($conn, "INSERT INTO customerinfo(username,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$username','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')"); 
+            mysqli_query($conn, "INSERT INTO login(Username,Password) VALUES('$username','$password')"); 
+            mysqli_close($conn);
+            $error['message'] = "Register Successful!";
+            $error['exist'] = false;
+            echo json_encode($error);            
         }else{
-            echo '<script>alert("password not matched!")</script>';
+            $error['message'] = "Username already existing";
+            $error['exist'] = true;
+            echo json_encode($error);
+            
         }
-         
-    }else{
-        echo '<script>alert("contains alphanumeric")</script>';    }
-    }
+    // else{
+    // }
 
 
 

@@ -4,14 +4,49 @@ $conn = mysqli_connect("localhost", "root", "") or die ("Not yet connected");
 $db = mysqli_select_db($conn, "testing") or die ("cannot select database");
 //sql query to fetch information of registerd user and finds user match.
 
-$sql = "SELECT * FROM test";
+//loaddisplay.php
+$banner = "";
+$aboutimg = "";
+$aboutheader ="";
+$aboutparagraph = "";
+$navigation = "";
+$sql = "SELECT * FROM loadDisplay";
 $result = mysqli_query($conn,$sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "vr1: " . $row["vr1"]. " - vr2: " . $row["vr2"]. "<br>";
+        if ($row["disp_section"] == "menubanner") {
+            $banner = $row["disp_img"];
+        }
+        if ($row["disp_section"] == "orderbanner") {
+            $banner = $row["disp_img"];
+        }
+        if ($row["disp_section"] == "about") {
+            $aboutimg = $row["disp_img"];
+            $aboutheader =$row["disp_header"];
+            $aboutparagraph = $row["disp_paragraph"];
+        }
+        if ($row["disp_section"] == "navigation") {
+            $navigation = $row["disp_img"];
+        }
     }
 }
+
+    //loadslider.php
+    $sql = "SELECT sliderimg,headerslider,paragraphslider FROM loadSlider";
+    $result = mysqli_query($conn,$sql);
+    $counter = 0;
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            $sliderimg[$counter]["sliderimg"] = $row["sliderimg"];
+            $sliderimg[$counter]["headslider"] = $row["headslider"];
+            $sliderimg[$counter]["paragrahpslider"] = $row["paragrahpslider"];
+
+        }    
+}
+
+
 /* $a = 0;
 while($a < 3) {
     $test[$a] = $a;
