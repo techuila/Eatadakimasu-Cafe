@@ -79,65 +79,65 @@ $(document).ready(()=>{
 
     // ORDER FORM 
     
-    $("#curry").click("onclick", function(){
-        displayFoodOrder("curry", "Curry Rice", -10);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#curry").click("onclick", function(){
+    //     displayFoodOrder("curry", "Curry Rice", -10);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#donburi").click("onclick", function(){
-        displayFoodOrder("donburi", "Donburi", -32);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#donburi").click("onclick", function(){
+    //     displayFoodOrder("donburi", "Donburi", -32);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#cakey").click("onclick", function(){
-        displayFoodOrder("japanesecake", "Japanese Cakey", -10);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#cakey").click("onclick", function(){
+    //     displayFoodOrder("japanesecake", "Japanese Cakey", -10);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#karaage").click("onclick", function(){
-        displayFoodOrder("karaage", "Karaage", 0);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#karaage").click("onclick", function(){
+    //     displayFoodOrder("karaage", "Karaage", 0);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#omurice").click("onclick", function(){
-        displayFoodOrder("omurice", "Omurice", -30);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#omurice").click("onclick", function(){
+    //     displayFoodOrder("omurice", "Omurice", -30);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#onigiri").click("onclick", function(){
-        displayFoodOrder("onigiri", "Onigiri", 0);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#onigiri").click("onclick", function(){
+    //     displayFoodOrder("onigiri", "Onigiri", 0);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#ramen").click("onclick", function(){
-        displayFoodOrder("ramen", "Ramen", -15);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#ramen").click("onclick", function(){
+    //     displayFoodOrder("ramen", "Ramen", -15);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#pudding").click("onclick", function(){
-        displayFoodOrder("pudding", "Chocolate Pudding", -35);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#pudding").click("onclick", function(){
+    //     displayFoodOrder("pudding", "Chocolate Pudding", -35);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#tempura").click("onclick", function(){
-        displayFoodOrder("tempura", "Tempura", -50);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";    
-    });
+    // $("#tempura").click("onclick", function(){
+    //     displayFoodOrder("tempura", "Tempura", -50);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";    
+    // });
 
-    $("#tonkatsu").click("onclick", function(){
-        displayFoodOrder("tonkatsu", "Curry Rice", -33);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#tonkatsu").click("onclick", function(){
+    //     displayFoodOrder("tonkatsu", "Curry Rice", -33);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#lipton").click("onclick", function(){
-        displayFoodOrder("lipton", "Lipton Green Tea", 0);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#lipton").click("onclick", function(){
+    //     displayFoodOrder("lipton", "Lipton Green Tea", 0);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
-    $("#iced").click("onclick", function(){
-        displayFoodOrder("iced", "Iced Tea", 0);
-        document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
-    });
+    // $("#iced").click("onclick", function(){
+    //     displayFoodOrder("iced", "Iced Tea", 0);
+    //     document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+    // });
 
     // $("#add-to-cart").click("onclick", function(){
     //     document.getElementsByClassName("container-body").item(0).style = "filter: none; opacity: none; background-color: white;";   
@@ -163,7 +163,6 @@ $(document).ready(()=>{
     =============================================*/
 
     $(".guest").click("onclick", function(){
-        document.getElementsByClassName('button-container').item(0).style = "display: none;";
         document.getElementsByClassName('form-container').item(0).style = "display: initial; animation: come-out 0.5s ease forwards;";
         document.getElementById('title-form').style = "display: block; animation: come-out 0.3s forwards;";
         document.getElementById('sub-title').style = "display: initial; animation: come-out 0.3s forwards;";
@@ -311,7 +310,9 @@ $(document).ready(()=>{
     var sec;
     var c = 0;
     var b = 0;
+    var items = 0;
     var app = angular.module("myApp",['ngAnimate']);
+    var orders = [[]];
     app.controller('myCtrl', function($scope,$compile){
         $scope.showActions = [];
         $scope.admin = false;
@@ -381,11 +382,14 @@ $(document).ready(()=>{
                 $(".container-body").css({"filter": "none", "opacity": "1", "background-color": "white"});        
                 setTimeout(function(){
                     $scope.qty = 0;
-                }, 1000);
+                }, 500);
             } else{
                 $scope.empty = true;
             }
+            orders.push([$('.food-name').text(),$('#form-qty').text(),($('#form-qty').text() * 30).toFixed(2)]);
             qty = $scope.qty;
+            items++;
+            console.log(orders);
         };
         $scope.sign_guest = function(){
             localStorage.setItem('guest', 'true');
@@ -399,12 +403,15 @@ $(document).ready(()=>{
                 $scope.$apply();
             }, 1800);
         };
-        $scope.requireLogin = function(){
+        $scope.requireLogin = function(class_name){
             if(localStorage.getItem('success') == 'true'||
-            localStorage.getItem('guest') == 'true'){ $scope.showOrder =  true; }
+            localStorage.getItem('guest') == 'true'){
+                displayfood(class_name);                
+                $scope.showOrder =  true; 
+                }
             else{ 
+                displayfood(class_name);
                 $scope.showIn = true; 
-                document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
             }
         };
         $scope.checkUser = function(){
@@ -439,9 +446,9 @@ $(document).ready(()=>{
                 cache: false,
                 success: function(data){
                     if(data.success == true){
-                        if(data.user == true){
-                            localStorage.setItem('user', data.user);
-                        }
+                        // if(data.user == true){
+                        //     localStorage.setItem('user', data.user);
+                        // }
                         localStorage.setItem('firstname', data.Firstname);
                         localStorage.setItem('success', data.success);
                         $scope.loginSuccess = true;
@@ -546,7 +553,7 @@ $(document).ready(()=>{
                 order = true;
                 showSignIn();
             }else{
-                    
+                $scope.notLoggedIn = true;
             }
         }
         $scope.check = function(){
@@ -567,9 +574,37 @@ $(document).ready(()=>{
         }
 
         //FUNCTIONS
+        function displayfood(foodname){
+            if(foodname == 'curry'){
+                displayFoodOrder("curry", "Curry Rice", -10);
+            }else if(foodname == 'donburi'){
+                displayFoodOrder("donburi", "Donburi", -32);
+            }else if(foodname == 'cakey'){
+                displayFoodOrder("japanesecake", "Japanese Cakey", -10);
+            }else if(foodname == 'karaage'){
+                displayFoodOrder("karaage", "Karaage", 0);
+            }else if(foodname == 'omurice'){
+                displayFoodOrder("omurice", "Omurice", -30);
+            }else if(foodname == 'onigiri'){
+                displayFoodOrder("onigiri", "Onigiri", 0);
+            }else if(foodname == 'ramen'){
+                displayFoodOrder("ramen", "Ramen", -15);
+            }else if(foodname == 'pudding'){
+                displayFoodOrder("pudding", "Chocolate Pudding", -35);
+            }else if(foodname == 'tempura'){
+                displayFoodOrder("tempura", "Tempura", -50);
+            }else if(foodname == 'tonkatsu'){
+                displayFoodOrder("tonkatsu", "Tonkatsu", -33);
+            }else if(foodname == 'lipton'){
+                displayFoodOrder("lipton", "Lipton Green Tea", 0);
+            } else if(foodname == 'iced'){
+                displayFoodOrder("iced", "Iced Tea", 0);
+            }
+        }
         function displayFoodOrder(food, foodname, x_pos){
             document.getElementsByClassName("food").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px;";
             document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
+            document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                    
         }
         function getData(param){
             dats = param;
@@ -584,7 +619,7 @@ $(document).ready(()=>{
                     "</article>"+
                     "<div class='button-cart-container'>"+
                         "<h1>₱"+ dats[x].foodPrice +"</h1>"+
-                        "<button id='"+ dats[x].class_name +"' ng-click='requireLogin()' class='add-to-cart' ng-click='showOrder = true'>Add to Cart</button>"+
+                        "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart' ng-click='showOrder = true'>Add to Cart</button>"+
                     "</div>"+
                     "</div>"+
                     "<style>"+
@@ -681,7 +716,7 @@ $(document).ready(()=>{
                 element.bind('click', function(){
                     console.log(qty);
                     if(qty != 0){
-                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * 30).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span class="price">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" remove-Item></span></a></div></li>')(li)
+                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * 30).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span id="price" class=price>₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" remove-Item></span></a></div></li>')(li)
                         $("#cart").children('#add-item').prev().after(newItem);
                     }
                 });
@@ -692,7 +727,9 @@ $(document).ready(()=>{
         return{
             link: function(li,element){
                 element.bind('click', function(event){
+                    items--;
                     event.preventDefault();
+                    console.log(element.parent().parent().parent().find(".price").text());
                     element.parent().parent().parent().remove();
                 });
             }
@@ -702,8 +739,10 @@ $(document).ready(()=>{
         return{
             link: function(li, element){
                 element.bind('click', function(){
-                    var newItem = $compile('<li class="row items"><span class="qty">2</span><span class="item-name">Donburi</span><span class="price">₱80.00</span></li>')(li)
-                    $("#p-order").children("#add-items").prev().after(newItem);
+                    for(var x = 0; x < items; x++){
+                        var newItem = $compile('<li class="row items"><span class="qty">2</span><span class="item-name">Donburi</span><span class="price">₱80.00</span></li>')(li)
+                        $("#p-order").children("#add-items").prev().after(newItem);
+                    }
                 });
             }
         }

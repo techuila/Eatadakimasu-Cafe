@@ -3,8 +3,7 @@ header('Content-type: application/json');
 // echo '<script>alert("Username or Password is incorrect!")</script>';
 $error=''; //Variable to Store error message;
 // if(isset($_POST['submit'])){
-if(empty($_POST['user']) || empty($_POST['pass'])){    
-}else{
+
     $user=$_POST['user'];
     $pass=$_POST['pass'];
     $cust_info = array();
@@ -16,28 +15,28 @@ if(empty($_POST['user']) || empty($_POST['pass'])){
     $db = mysqli_select_db($conn, "eatadakicafe") or die ("cannot select database");
     //sql query to fetch information of registerd user and finds user match.
 
-    $sql = "SELECT * FROM login,customerinfo WHERE login.username = customerinfo.username AND login.password='$pass' AND login.username='$user'";
+    $sql = "SELECT * FROM login,customerinfo WHERE customerinfo.username = '$user' AND login.password='$pass' AND login.username='$user'";
     $result = mysqli_query($conn,$sql);
 
 
     if(mysqli_num_rows($result) != 0){
         while($rows = mysqli_fetch_assoc($result)){
             $cust_info = array_merge($cust_info, $rows);
-            $usertype = $rows['usertype'];
+            // $usertype = $rows['usertype'];
         }    
         $cust_info['success'] = true;
-        if($usertype = "admin"){
-            $cust_info['user'] = true;
-        }
-
         echo json_encode($cust_info);
+        // if($usertype = "admin"){
+        //     $cust_info['user'] = true;
+        // }
+
         session_start();
         $_SESSION['username'] = $user;  
     }else{
         $cust_info['success'] = false;
         echo json_encode($cust_info);
     }
-}
+
 // }
 
 ?>
