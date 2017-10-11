@@ -716,7 +716,7 @@ $(document).ready(()=>{
                 element.bind('click', function(){
                     console.log(qty);
                     if(qty != 0){
-                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * 30).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span id="price" class=price>₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" remove-Item></span></a></div></li>')(li)
+                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * 30).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span id="price" class=price><a class="nonPrice">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</a></span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" remove-Item></span></a></div></li>')(li)
                         $("#cart").children('#add-item').prev().after(newItem);
                     }
                 });
@@ -729,7 +729,7 @@ $(document).ready(()=>{
                 element.bind('click', function(event){
                     items--;
                     event.preventDefault();
-                    console.log(element.parent().parent().parent().find(".price").text());
+                    console.log(element.parent().parent().parent().find("a").text());
                     element.parent().parent().parent().remove();
                 });
             }
