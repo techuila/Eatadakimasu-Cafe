@@ -45,7 +45,6 @@ $year=$_POST['year'];
 // $credcardnum=$_POST['c-num'];
 // $securitycode=$_POST['s-code'];
 // $expirationdate=$_POST['exp-start'] . "-" . $_POST['exp-end'];
-
     
         if(trim($fname == '') || trim($lname == '') || trim($month == '') || trim($day == '') || trim($year == '') || trim($barangay == '') || trim($email == '') || trim($mobile == '')){
             $error['message'] = "Please fill out all the required fields!";
@@ -73,5 +72,4 @@ $year=$_POST['year'];
             // //session_start();
             // $customer = "test";
             // mysqli_query($conn, "INSERT INTO `billinginfo`(`CustomerID`, `OrderID`, `Barangay`, `Street`, `House_No`) VALUES ('$guestid','$orderid','$barangay','$street','$house')");
-        
 ?>
