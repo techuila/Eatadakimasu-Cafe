@@ -163,6 +163,7 @@ $(document).ready(()=>{
     =============================================*/
 
     $(".guest").click("onclick", function(){
+        // document.getElementsByClassName('button-container').item(0).style = "display: none;";
         document.getElementsByClassName('form-container').item(0).style = "display: initial; animation: come-out 0.5s ease forwards;";
         document.getElementById('title-form').style = "display: block; animation: come-out 0.3s forwards;";
         document.getElementById('sub-title').style = "display: initial; animation: come-out 0.3s forwards;";
@@ -514,15 +515,28 @@ $(document).ready(()=>{
                     data: contents,
                     cache: false,
                     success: function(data){
-                        if(data.exist){
-                            alert(data.message);
+                if(data.check){
+                    alert(data.message);
+                }
+                    else if(data.exist){
+                        if(data.match){
+                            if(data.valid){
+                                alert(data.message);
+                            }else{
+                                alert(data.message);
+                            }                          
                         }else{
                             alert(data.message);
                         }
-                    },
+                    }else{
+                        alert(data.message);
+                    }
+                
+                 },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
+            
                 });
 
             }else{
@@ -537,12 +551,18 @@ $(document).ready(()=>{
                     data: contents,
                     cache: false,
                     success: function(data){
+                        if(data.check){
+                            alert(data.message);
+                        }
+
                         console.log(data);
                     },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
                 });
+                // $scope.showIn = false;
+                // backToMain();
             }
             console.log(localStorage.getItem('success'));
         };

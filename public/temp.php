@@ -280,7 +280,7 @@
             </div>
         </center>
     </div>
-
+    
     <!--Navigation Bar  -->
     <div class="container-body" id="bimbi">    
     <header>
