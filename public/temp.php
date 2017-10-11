@@ -598,11 +598,15 @@
                         <span class="price">₱80.00</span>
                         <div class="action-item" ng-show="showActions"><a href=""><span class="glyphicon glyphicon-pencil"></span></a><a href=""><span class="glyphicon glyphicon-remove"></span></a></div>
                     </li> -->
-                    
+                    <li>
+                        <div class="alert alert-danger" ng-show="notLoggedIn">
+                            <center><strong><span class="glyphicon glyphicon-remove"></span> Cannot Order! </strong> You need to login first before ordering.</center>
+                        </div>
+                    </li>
                     <li class="row footer" id="add-item">
                         <span class="total">Total:</span>
                         <span class="total-price">₱{{ totalPricy }}</span>
-                        <input id="order-btn" type="submit" class="order-button" ng-click="order()" value="ORDER" order-Preview>
+                        <input order-Preview id="order-btn" type="submit" class="order-button" ng-click="order()" value="ORDER">
                     </li>
                     <hr>
                 </ul>
