@@ -158,7 +158,7 @@
                                         <h5>Password*</h5>
                                         <input type="password" name="password">
                                         <h5>Confirm Password*</h5>
-                                        <input type="password" name="password">
+                                        <input type="password" name="cpassword">
                                     </div>
                                     <div class="col-span-3">
                                         <div class="col-3">
@@ -280,7 +280,7 @@
             </div>
         </center>
     </div>
-
+    
     <!--Navigation Bar  -->
     <div class="container-body" id="bimbi">    
     <header>
@@ -288,7 +288,7 @@
             <!-- <h1>eatadakimasu<span>cafe</span></h1> -->
             <div class="logo"></div>
             <nav>
-                <ul>
+                <ul class="basta-waitlang">
                     <strong>
                         <li><a href="" id="nav-home" class="home">home</a></li>
                         <li><a href="#" id="nav-about" class="about">about us</a></li>
@@ -298,10 +298,11 @@
                         <li><a href="" class="sign-in" id="sign-in" ng-click="showIn = true" ng-hide="signedIn">sign in</a>
                         <a href="" id="user" class="user dropdown-toggle" data-toggle="dropdown" ng-show="signedIn"><span class="greetings">Hello, </span>{{ user }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                                <li><a href="" class="o-user">Edit Info</a></li><br>
-                                <hr> 
-                                <li><a href="./php/logout.php" ng-click="logout()" class="o-user" style="color: #f06953;">Logout</a></li>
-                            </ul>
+                        <li><a href="" class="o-user" ng-show="admin">Admin Mode</a></li><br>                            
+                        <li><a href="" class="o-user" ng-hide="guest">Edit Info</a></li><br>
+                            <hr ng-hide="guest"> 
+                            <li><a href="./php/logout.php" ng-click="logout()" class="o-user" style="color: #f06953;">Logout</a></li>
+                        </ul>
                         </li>
                     </strong>
                 </ul>
@@ -359,7 +360,10 @@
 
     <!--About us  -->
     <section class="container" id="about">
-        <img src="./img/menu/sushi.jpg" alt="" class="bg">
+        <div class="something">
+            <img src="./img/menu/sushi.jpg" alt="" class="bg bg-sushi">
+            <input ng-show="admin" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
+        </div>
         <article class="about">
             <h1>Our Story</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima vero, repellat quibusdam voluptas architecto consectetur, illum aliquid incidunt hic corporis soluta, reiciendis. Placeat alias, quasi tenetur quis consequatur explicabo tempora commodi quas, et fuga dolor autem, perferendis? Officia enim veritatis provident, soluta perspiciatis ratione deserunt facere aperiam aliquam ullam quae at facilis nostrum rerum eveniet! Asperiores cupiditate atque accusamus natus, sequi quae nobis dolorum incidunt, iusto ipsa nihil vero alias debitis praesentium velit aliquam excepturi eos sed voluptates enim libero voluptatem deleniti laboriosam. Architecto sunt, nihil facere aperiam! Repellendus asperiores quidem officiis esse dolorum quia laboriosam illo, necessitatibus placeat tenetur! Commodi quae magnam a provident maiores consequatur, molestiae ipsum obcaecati quidem ex aut quas saepe quis! Doloremque et repellendus earum saepe, iste numquam ducimus reiciendis laborum aut reprehenderit natus sed quos sint tempora unde ut porro labore perspiciatis ratione rem, eum velit repellat dignissimos. Nihil, quia corporis! Consequuntur quis excepturi ipsa quia voluptatum. Quis sequi dignissimos laboriosam consequatur quam perspiciatis voluptatibus sit deserunt a et maxime eaque aspernatur esse, nobis amet illo aliquam corrupti natus quia laborum dolore! Quidem vero assumenda doloribus rem labore placeat necessitatibus incidunt sit enim iste. Illum inventore minus vitae maxime id, explicabo consequatur ipsam nulla.</p>
@@ -369,7 +373,11 @@
 
     <!--Menu  -->
     <section id="menu">
-        <div class="menu-background bg"></div>
+        <div class="menu-background bg" style="position: relative;">
+            <form action="" id="menu-form">
+                <input ng-show="admin" name="menu-name" id="menu-file" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
+            </form>
+        </div>
         <article class="art-bg">
             <h1><span>AFFORDABLE</span> PRICING</h1>
         </article>
@@ -563,7 +571,11 @@
 
     <!--Order  -->
     <section id="order">
-        <div class="order-background bg"></div>
+        <div class="order-background bg" style="position: relative;">
+            <form action="" id="order-form">
+                <input ng-show="admin" ng-click="uploadPhoto('order');" type="file" class="change-bg" style="opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            </form>
+        </div>
         <article>
             <h1><span>ORDER</span> NOW</h1>
         </article>

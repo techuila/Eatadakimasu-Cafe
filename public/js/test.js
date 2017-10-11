@@ -36,9 +36,30 @@ $(document).ready(()=>{
     $('#ton').click(function(){
         body.stop().animate({scrollTop: menuLoc+ 20},800,'swing');        
     });
+
     /*=============================================
                         EVENTS
     =============================================*/
+
+    $('#menu-file').change(function(){
+        var f = $('#menu-file').val();
+        f = f.replace(/.*[\/\\]/, '');
+        console.log(f);
+        var menuFile = { "name":f };
+        $.ajax({
+            url: './php/uploadmenu.php',
+            dataType: 'json',
+            type: 'post',
+            data: JSON.stringify(menuFile),
+            cache: false,
+            success: function(data){
+                console.log(data);  
+            },
+            error: function(a,b,c){
+                console.log('Error: ' + a + " " + b + " " + c);
+            }
+        });
+    });
 
 
     $(window).on("scroll", ()=>{
@@ -142,7 +163,7 @@ $(document).ready(()=>{
     =============================================*/
 
     $(".guest").click("onclick", function(){
-        document.getElementsByClassName('button-container').item(0).style = "display: none;";
+        // document.getElementsByClassName('button-container').item(0).style = "display: none;";
         document.getElementsByClassName('form-container').item(0).style = "display: initial; animation: come-out 0.5s ease forwards;";
         document.getElementById('title-form').style = "display: block; animation: come-out 0.3s forwards;";
         document.getElementById('sub-title').style = "display: initial; animation: come-out 0.3s forwards;";
@@ -268,7 +289,14 @@ $(document).ready(()=>{
     //         }
     //     });
     // }
+
+
 });
+
+//=======================================================
+//                   ANGULAR 
+//=======================================================
+
 
 (function() {
     'use strict';
@@ -286,6 +314,7 @@ $(document).ready(()=>{
     var app = angular.module("myApp",['ngAnimate']);
     app.controller('myCtrl', function($scope,$compile){
         $scope.showActions = [];
+        $scope.admin = false;
         $scope.totalPricy = totalPrice;
         $scope.generate = function(){
             $.ajax({
@@ -373,7 +402,10 @@ $(document).ready(()=>{
         $scope.requireLogin = function(){
             if(localStorage.getItem('success') == 'true'||
             localStorage.getItem('guest') == 'true'){ $scope.showOrder =  true; }
-            else{ $scope.showIn = true; }
+            else{ 
+                $scope.showIn = true; 
+                document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";        
+            }
         };
         $scope.checkUser = function(){
             userSignedIn();
@@ -407,6 +439,9 @@ $(document).ready(()=>{
                 cache: false,
                 success: function(data){
                     if(data.success == true){
+                        if(data.user == true){
+                            localStorage.setItem('user', data.user);
+                        }
                         localStorage.setItem('firstname', data.Firstname);
                         localStorage.setItem('success', data.success);
                         $scope.loginSuccess = true;
@@ -431,22 +466,71 @@ $(document).ready(()=>{
                 }
             }); 
         };
+        
+        $scope.uploadPhoto = function(banner){
+            var f = $('#menu-file').val();
+            f = f.replace(/.*[\/\\]/, '');
+            console.log(f);
+            if(banner == 'menu'){
+                // asd();
+            }else if(banner == 'order'){
+                // $('#order-form').submit();                
+            }
+        };
+        function asd(){
+            $.ajax({
+                url: './php/uploadmenu.php',
+                dataType: 'json',
+                type: 'post',
+                data: contents,
+                cache: false,
+                success: function(data){
+                    getData(data);  
+                },
+                error: function(a,b,c){
+                    console.log('Error: ' + a + " " + b + " " + c);
+                }
+            });
+        }
         $scope.saveCustInfo = function(){
-            if(localStorage.getItem('success') == 'true'){
+            if(localStorage.getItem('guest') != 'true'){
+                $('#register').submit(()=>{
+                    return false;
+                });
                 var contents = $('#register').serialize();
+                console.log(contents);
+
                 $.ajax({
-                    url: './php.registerserv.php',
+                    url: './php/registerserv.php',
                     dataType: 'json',
                     type: 'post',
                     data: contents,
                     cache: false,
                     success: function(data){
-                        console.log(data);
-                    },
+                if(data.check){
+                    alert(data.message);
+                }
+                    else if(data.exist){
+                        if(data.match){
+                            if(data.valid){
+                                alert(data.message);
+                            }else{
+                                alert(data.message);
+                            }                          
+                        }else{
+                            alert(data.message);
+                        }
+                    }else{
+                        alert(data.message);
+                    }
+                
+                 },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
+            
                 });
+
             }else{
                 $('#register').submit(()=>{
                     return false;
@@ -459,13 +543,20 @@ $(document).ready(()=>{
                     data: contents,
                     cache: false,
                     success: function(data){
+                        if(data.check){
+                            alert(data.message);
+                        }
+
                         console.log(data);
                     },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
                 });
+                // $scope.showIn = false;
+                // backToMain();
             }
+            console.log(localStorage.getItem('success'));
         };
         $scope.order = function(){
             if(localStorage.getItem('success') == 'true'){
@@ -502,7 +593,6 @@ $(document).ready(()=>{
         function getData(param){
             dats = param;
             if(b == 0){
-                console.log(dats.length);
                 for(var x = 0; x<dats.length; x++){
                     $("#drinks").before($compile(
                     "<div class='box'>"+
@@ -548,10 +638,16 @@ $(document).ready(()=>{
         }
         function userSignedIn(){
             if(localStorage.getItem('success') == 'true'){
+                if(localStorage.getItem('user') == 'true'){
+                    $('.bg-sushi')[0].style = "cursor: pointer;";
+                    $('.menu-background')[0].style = "cursor: pointer;";
+                    $('.order-background')[0].style = "cursor: pointer;";                    
+                }
                 $scope.user = localStorage.getItem('firstname');
                 $scope.signedIn = true;
             }else if(localStorage.getItem('guest') == 'true'){
                 $scope.signedIn = true;
+                $scope.guest = true;
                 $scope.user = 'Guest';
             }else{
                 $scope.signedIn = false;
@@ -561,7 +657,6 @@ $(document).ready(()=>{
             sec = 6000;
             counter > 4? counter = 1: angular.noop();
             $scope.slider(counter++,'auto');
-            console.log('Counter: ' + counter);
             setTimeout(function(){
                 $scope.$apply(startSlider());
             }, sec);
@@ -576,26 +671,22 @@ $(document).ready(()=>{
                 $scope.two = false; 
                 $scope.three = false; 
                 $scope.four = false;
-                console.log('One!');
                 sec = 4000;
             } else if(n == 2){
                 $scope.one = true; 
                 $scope.two = true; 
                 $scope.three = false; 
                 $scope.four = false;
-                console.log('Two!');
             } else if(n == 3){
                 $scope.one = true; 
                 $scope.two = false; 
                 $scope.three = true; 
                 $scope.four = false;
-                console.log('Three!');
             } else if(n == 4){
                 $scope.one = true; 
                 $scope.two = false; 
                 $scope.three = false; 
                 $scope.four = true;
-                console.log('Four');
             }
         }
     });
