@@ -14,7 +14,7 @@ $error=''; //Variable to Store error message;
     $email=$_POST['email'];
     $mobile=$_POST['mobile'];
 
-    if(!preg_match(("/[^[:alnum:]]/"), $username)){
+   // if(!preg_match(("/[^[:alnum:]]/"), $username)){
 
         // Establishing Connection with server by passing server_name, user_id and pass as a patameter
         $conn = mysqli_connect("localhost", "root", "") or die ("Not yet Connected: " . mysql_error);
@@ -35,13 +35,15 @@ $error=''; //Variable to Store error message;
             }
         }else{
             echo '<script>alert("password not matched!")</script>';
+        }
     }else{
         echo 'username already existing';
     }
          
-    }else{
-        echo '<script>alert("contains alphanumeric")</script>';    }
-    }
+    // }else{
+    //     echo '<script>alert("contains alphanumeric")</script>'; 
+    //    }
+    
 
 
 
