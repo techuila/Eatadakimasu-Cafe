@@ -544,18 +544,21 @@ $(document).ready(()=>{
                     return false;
                 });
                 var contents = $("#register").serialize();
-                console.log(contents);                                       
+                console.log(contents);         
+                                              
                 $.ajax({
                     url: './php/orderserv.php',
                     dataType: 'json',
                     type: 'post',
                     data: contents,
                     cache: false,
-                    success: function(data){                        
+                    success: function(data){
+                       
                     if(data.check){
                             alert(data.message);
                     }else if(data.valid){
                             alert(data.message);
+
                             }else{
                                 alert(data.message);
                         }

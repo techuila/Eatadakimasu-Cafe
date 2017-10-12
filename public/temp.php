@@ -145,20 +145,20 @@
                                     <div class="col-span-2">
                                         <div class="col-2">
                                             <h5>First Name*</h5>
-                                            <input type="text" name="first-name" value="">
+                                            <input type="text" name="first-name" value="" maxlength="35">
                                         </div>
                                         <div class="col-2">
                                             <h5>Last Name*</h5>
-                                            <input type="text" name="last-name">
+                                            <input type="text" name="last-name" maxlength="35">
                                         </div>
                                     </div>
                                     <div ng-hide="isGuest">
                                         <h5>Username*</h5>
-                                        <input type="text" name="username">
+                                        <input type="text" name="username" maxlength="15">
                                         <h5>Password*</h5>
-                                        <input type="password" name="password">
+                                        <input type="password" name="password" maxlength="16">
                                         <h5>Confirm Password*</h5>
-                                        <input type="password" name="cpassword">
+                                        <input type="password" name="cpassword" maxlength="16">
                                     </div>
                                     <div class="col-span-3">
                                         <div class="col-3">
@@ -181,11 +181,11 @@
                                         </div>
                                         <div class="col-3">
                                             <h5>Day*</h5>    
-                                            <input type="text" placeholder="Day" class="day" name="day">
+                                            <input type="text" placeholder="Day" class="day" name="day" maxlength="2">
                                         </div>
                                         <div class="col-3">
                                             <h5>Year*</h5>    
-                                            <input type="text" placeholder="Year" class="year" name="year">
+                                            <input type="text" placeholder="Year" class="year" name="year" maxlength="4">
                                         </div>
                                     </div>
                                     <h5>Gender</h5>
@@ -203,23 +203,23 @@
                             
                                 <div class="bill-form" ng-show="showBill">
                                     <h5>Barangay *</h5>
-                                    <input type="text" name="barangay">
+                                    <input type="text" name="barangay" maxlength="20">
 
                                     <div class="col-span-2">
                                         <div class="col-2">
                                             <h5>Street</h5>
-                                            <input type="text" name="street">
+                                            <input type="text" name="street" maxlength="20">
                                         </div>
                                         <div class="col-2">
                                             <h5>House No.</h5>
-                                            <input type="text" name="h-no">
+                                            <input type="text" name="h-no" maxlength="4">
                                         </div>
                                     </div>
 
                                     <h5>Email *</h5>
-                                    <input type="text" name="email">
+                                    <input type="text" name="email" maxlength="255">
                                     <h5>Mobile No. *</h5>
-                                    <input type="text" name="mobile">
+                                    <input type="text" name="mobile" maxlength="11">
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" ng-hide="guest" class="btn btn-warning">Skip</button>
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                                 </div>
@@ -235,7 +235,7 @@
 
                                     <div ng-show="cash">
                                         <h5>Bring change for?</h5>
-                                        <input type="text" name="change">
+                                        <input type="text" name="change" maxlength="35">
 
                                         <h5>Special request for your order?</h5>
                                         <textarea rows="3" cols="5"></textarea>
@@ -252,11 +252,11 @@
                                         <div class="col-span-2">
                                             <div class="col-2">
                                                 <h5>Credit Card Number</h5>
-                                                <input type="text" name = "c-num">
+                                                <input type="text" name = "c-num" maxlength="19">
                                             </div>
                                             <div class="col-2">
                                                 <h5>Security Code</h5>
-                                                <input type="text" name = "s-code">
+                                                <input type="text" name = "s-code" maxlength="3">
                                             </div>
                                         </div>
 
