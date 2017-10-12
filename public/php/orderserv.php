@@ -27,7 +27,6 @@ $orderid = 0;
             $rows = mysqli_num_rows($query2);
         }while($rows > 0);
 
-
 $fname=$_POST['first-name'];
 $lname=$_POST['last-name'];
 $birthday=$_POST['year'] . "-" . $_POST['month'] . "-" . $_POST['day'] ;
@@ -45,7 +44,6 @@ $cardtype=$_POST['card'];
 $credcardnum=$_POST['c-num'];
 $securitycode=$_POST['s-code'];
 $expirationdate=$_POST['exp-start'] . " - " . $_POST['exp-end'];
-
     
         if(trim($fname == '') || trim($lname == '') || trim($month == '') || trim($day == '') || trim($year == '') || trim($barangay == '') || trim($email == '') || trim($mobile == '')){
             $error['message'] = "Please fill out all the required fields!";
