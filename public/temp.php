@@ -70,11 +70,11 @@
                                     </strong>
                                 </li>
 
-                            <li class="row items">
+                            <!-- <li class="row items">
                                 <span class="qty">2</span>
                                 <span class="item-name">Donburi</span>
                                 <span class="price">₱80.00</span>
-                            </li> 
+                            </li>  -->
                             <li class="row boom" id="add-items">
                                 <strong>
                                     <span class="total">TOTAL:</span>

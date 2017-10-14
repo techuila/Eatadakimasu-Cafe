@@ -1601,9 +1601,14 @@ section.order .cart .items .action {
 }
 
 section.order .cart .items .price {
-  margin-right: 90px;
+  margin-right: 45px;
   color: #f06953;
   float: right;
+}
+
+section.order .cart .items .price:hover {
+  text-decoration: none;
+  color: #f06953;
 }
 
 section.order .cart .items .action-item {

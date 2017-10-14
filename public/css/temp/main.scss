@@ -1437,9 +1437,13 @@ section.order{
                 width: 55px;
             }
             .price{
-                margin-right: 90px;
+                margin-right: 45px;
                 color: $flat-red;
-                float: right;
+                float: right;                
+            }
+            .price:hover{
+                text-decoration: none;
+                color: $flat-red;
             }
             .action-item{
                 background-image: url('../../img/actionContainer.png');

@@ -309,11 +309,12 @@ $(document).ready(()=>{
     var expand = false;
     var dats;
     var sec;
-    var c = 0;
+    var c = 1;
     var b = 0;
     var items = 0;
     var app = angular.module("myApp",['ngAnimate']);
-    var orders = [[]];
+    var orders = new Array();
+    var removePrice = 0;    
     app.controller('myCtrl', function($scope,$compile){
         $scope.showActions = [];
         $scope.admin = false;
@@ -387,7 +388,7 @@ $(document).ready(()=>{
             } else{
                 $scope.empty = true;
             }
-            orders.push([$('.food-name').text(),$('#form-qty').text(),($('#form-qty').text() * 30).toFixed(2)]);
+            insert(c,$('.food-name').text(),$('#form-qty').text(),($('#form-qty').text() * 30).toFixed(2));
             qty = $scope.qty;
             items++;
             console.log(orders);
@@ -592,8 +593,29 @@ $(document).ready(()=>{
             $scope.showOrder = true;
             edit = true;
         }
+        $scope.minusPrice = function(id){
+            totalPrice = (parseFloat(totalPrice) - (removePrice)).toFixed(2);
+            console.log(id + ": " + removePrice);
+            $scope.totalPricy = totalPrice;    
+            orders = deleteRow(orders,id)
+            console.log(orders); 
+        }
+
+
 
         //FUNCTIONS
+
+        function deleteRow(arr, row) {
+            delete arr[row];
+            return arr;
+        }
+        function insert(id, name, qty, price) {
+            orders[id] = {
+                "name" : name,
+                "qty" : qty,
+                "price" : price
+            };
+        }
         function displayfood(foodname){
             if(foodname == 'curry'){
                 displayFoodOrder("curry", "Curry Rice", -10);
@@ -736,7 +758,7 @@ $(document).ready(()=>{
                 element.bind('click', function(){
                     console.log(qty);
                     if(qty != 0){
-                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * 30).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ ++c +'] = !showActions['+ c +']"></a><span id="price" class=price><a class="nonPrice">₱'+ ($('#form-qty').text() * 30).toFixed(2) +'</a></span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" remove-Item></span></a></div></li>')(li)
+                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * 30).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ c +'] = !showActions['+ c +']"></a><span class="price">₱<a class="price">' + ($('#form-qty').text() * 30).toFixed(2) +'</a></span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" remove-Item ng-click="minusPrice('+ c++ +')"></span></a></div></li>')(li)
                         $("#cart").children('#add-item').prev().after(newItem);
                     }
                 });
@@ -745,13 +767,13 @@ $(document).ready(()=>{
     });  
     app.directive('removeItem', function($compile){
         return{
-            link: function(li,element){
+            link: function(scope,element,attrs){
                 element.bind('click', function(event){
                     items--;
                     event.preventDefault();
-                    console.log(element.parent().parent().parent().find("a").text());
+                    removePrice = parseFloat(element.parent().parent().parent().find("a").text());
                     element.parent().parent().parent().remove();
-                });
+                });       
             }
         }
     });
@@ -759,8 +781,9 @@ $(document).ready(()=>{
         return{
             link: function(li, element){
                 element.bind('click', function(){
-                    for(var x = 0; x < items; x++){
-                        var newItem = $compile('<li class="row items"><span class="qty">2</span><span class="item-name">Donburi</span><span class="price">₱80.00</span></li>')(li)
+                    $("#p-order").children(".items").remove();
+                    for(var x in orders){
+                        var newItem = $compile('<li class="row items"><span class="qty">'+ orders[x].qty +'</span><span class="item-name">'+ orders[x].name +'</span><span class="price">₱'+ orders[x].price +'</span></li>')(li)
                         $("#p-order").children("#add-items").prev().after(newItem);
                     }
                 });

@@ -24,7 +24,6 @@ header('Content-type: application/json');
         //insert query        
         $query = mysqli_query($conn,"SELECT * FROM login WHERE username='$_POST[username]'");
         $rows = mysqli_num_rows($query);
-<<<<<<< HEAD
         
         //check out fields
     if(trim($username == '') || trim($password == '') || trim($fname == '') || trim($lname == '') || trim($cpassword == '') || trim($month == '') || trim($day == '') || trim($year == '') || trim($barangay == '') || trim($email == '') || trim($mobile == '')){
@@ -62,55 +61,4 @@ header('Content-type: application/json');
             echo json_encode($error);
     }
         
-=======
-
-        if($rows == 0){
-            mysqli_query($conn, "INSERT INTO customerinfo(username,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$username','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')"); 
-            mysqli_query($conn, "INSERT INTO login(Username,Password) VALUES('$username','$password')"); 
-            mysqli_close($conn);
-            $error['message'] = "Register Successful!";
-            $error['exist'] = false;
-            echo json_encode($error);            
-        }else{
-            $error['message'] = "Username already existing";
-            $error['exist'] = true;
-            echo json_encode($error);
-            
-        }
-    // else{
-    // }
-
-
-
-// $fname=strip_tags($_POST['first-name']);
-// $mname=strip_tags($_POST['middle-name']);
-// $lname=strip_tags($_POST['last-name']);
-// $username=$_POST["username"];
-// $password=strip_tags($_POST['password']);
-// $hno=strip_tags($_POST['h-no']);
-// $email=strip_tags($_POST['email']);
-// $street=strip_tags($_POST['street']);
-// $barangay=strip_tags($_POST['barangay']);
-// $mobile=strip_tags($_POST['mobile']);
-
-
-
-// $query = "SELECT * FROM login WHERE username='$username'";
-// $rows = mysqli_num_rows($query);
-// if($rows == 1){
-// echo "username already existing!";
-// }
-// else
-// {
-// mysqli_query($conn, "INSERT INTO customerinfo(Username,fname,mname,lname,houseno,street,barangay,email,contact) VALUES ('$username','$fname','$mname','$lname','$hno', '$street','$barangay','$email','$mobile')");
-// mysqli_query($conn, "INSERT INTO login(Username,Password) VALUES ('$username','$password')");
-
-// }
-// }
-// }else{
-// echo '<script>alert("Username must only contain alpha numeric")</script>';
-
-// }
-// }
->>>>>>> a20ec8ef0f75578ff8c02da53aa547fe40149296
 ?>
