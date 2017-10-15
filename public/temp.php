@@ -1,4 +1,5 @@
 <?php
+
 // include("./php/loginserv.php"); // Include loginserv for checking username and password
 // include("./php/registerserv.php");
 ?>
@@ -114,9 +115,9 @@
                         <form action="" method="post" id="form">                
                             <div class="login-form" ng-hide="showLogin">   
                                 <h4>USERNAME</h4> 
-                                <input type="text" name="user[0]">
+                                <input type="text" name="user">
                                 <h4>PASSWORD</h4> 
-                                <input type="password" name="user[0]"><br><br>   
+                                <input type="password" name="pass"><br><br>   
                                 <div class="alert alert-success" ng-show="loginSuccess">
                                     <center><strong><span class="glyphicon glyphicon-ok"></span> Login Successful! </strong> {{ welcome }}</center>
                                 </div>
@@ -136,7 +137,7 @@
                         <!--==============================================
                                     PERSONAL INFORMATION FORM  
                         ==============================================-->
-                        <form action="" method="post" id="register">
+                        <form action="" method="post" id="register" enctype="multipart/form-data">
                             <div class="register-form">
                                 <!--************************************
                                     NAVIGATION BAR FOR REGISTER FORM  
@@ -179,9 +180,9 @@
                                         <h5>Username*</h5>
                                         <input type="text" name="username" maxlength="15">
                                         <h5>Password*</h5>
-                                        <input type="password" name="password" maxlength="16">
+                                        <input type="password" name="password" id="password" maxlength="16" minlength="8">
                                         <h5>Confirm Password*</h5>
-                                        <input type="password" name="cpassword" maxlength="16">
+                                        <input type="password" name="cpassword" maxlength="16" minlength="8">
                                     </div>
                                     <div class="col-span-3">
                                         <div class="col-3">
@@ -294,7 +295,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save">                            
+                                    <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save" id="save">                            
                                 </div>
                             </div>
                         </form>
@@ -385,26 +386,27 @@
     <section class="container" id="about">
         <div class="something">
             <img src="./img/menu/sushi.jpg" alt="" class="bg bg-sushi">
-            <input ng-show="admin" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
+            <input ng-show="admin" type="file" name="about-file" id="about-file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
         </div>
         <article class="about">
             <h1>Our Story</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima vero, repellat quibusdam voluptas architecto consectetur, illum aliquid incidunt hic corporis soluta, reiciendis. Placeat alias, quasi tenetur quis consequatur explicabo tempora commodi quas, et fuga dolor autem, perferendis? Officia enim veritatis provident, soluta perspiciatis ratione deserunt facere aperiam aliquam ullam quae at facilis nostrum rerum eveniet! Asperiores cupiditate atque accusamus natus, sequi quae nobis dolorum incidunt, iusto ipsa nihil vero alias debitis praesentium velit aliquam excepturi eos sed voluptates enim libero voluptatem deleniti laboriosam. Architecto sunt, nihil facere aperiam! Repellendus asperiores quidem officiis esse dolorum quia laboriosam illo, necessitatibus placeat tenetur! Commodi quae magnam a provident maiores consequatur, molestiae ipsum obcaecati quidem ex aut quas saepe quis! Doloremque et repellendus earum saepe, iste numquam ducimus reiciendis laborum aut reprehenderit natus sed quos sint tempora unde ut porro labore perspiciatis ratione rem, eum velit repellat dignissimos. Nihil, quia corporis! Consequuntur quis excepturi ipsa quia voluptatum. Quis sequi dignissimos laboriosam consequatur quam perspiciatis voluptatibus sit deserunt a et maxime eaque aspernatur esse, nobis amet illo aliquam corrupti natus quia laborum dolore! Quidem vero assumenda doloribus rem labore placeat necessitatibus incidunt sit enim iste. Illum inventore minus vitae maxime id, explicabo consequatur ipsam nulla.</p>
         </article>
     </section>
-    
+
 
     <!--Menu  -->
     <section id="menu">
         <div class="menu-background bg" style="position: relative;">
-            <form action="" id="menu-form">
-                <input ng-show="admin" name="menu-name" id="menu-file" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
-            </form>
+            <form method="POST" action="./php/uploadmenu.php" id="menu-form" name="menu-form" enctype="multipart/form-data">
+            <input ng-show="admin" name="menu-file" id="menu-file" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
         </div>
         <article class="art-bg">
             <h1><span>AFFORDABLE</span> PRICING</h1>
         </article>
     </section>
+    <!-- <input ng-show="admin" type="submit" name="insert_menu" id="insertmenu" value="Update Menu" style="width: 100px;"> -->
+    </form>
     
     <section class="container">
         <article class="menu-sub-title">
@@ -595,8 +597,8 @@
     <!--Order  -->
     <section id="order">
         <div class="order-background bg" style="position: relative;">
-            <form action="" id="order-form">
-                <input ng-show="admin" ng-click="uploadPhoto('order');" type="file" class="change-bg" style="opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <form method="POST" action="./php/uploadorder.php" id="order-form" name="order-form" enctype="multipart/form-data">
+                <input ng-show="admin" type="file" name="order-file" id="order-file" class="change-bg" style="opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
             </form>
         </div>
         <article>
@@ -648,3 +650,97 @@
     
 </body>
 </html>
+
+<script>  
+ $(document).ready(function(){  
+      $('#menu-form').submit(function(){  
+           var image_name = $('#menu-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#menu-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#menu-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>  
+ 
+<script>  
+ $(document).ready(function(){  
+      $('#order-form').submit(function(){  
+           var image_name = $('#order-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#order-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#order-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>
+ 
+ <script>  
+ $(document).ready(function(){  
+      $('#about-form').submit(function(){  
+           var image_name = $('#about-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#about-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#about-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>
+
+  <script>  
+ $(document).ready(function(){  
+      $('#navigation-form').submit(function(){  
+           var image_name = $('#navigation-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#navigation-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#navigation-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>
+  
+ 

@@ -49,6 +49,8 @@ header('Content-type: application/json');
     }
         //check if username is existing
         else if($rows == 0){
+            //check if minimum password is greater than 6
+            if(strlen($password) > 6){
             //check if password and confirm password is the same
             if($_POST['password']==$_POST['cpassword']){
                 //check if valid email address
@@ -57,6 +59,7 @@ header('Content-type: application/json');
                 mysqli_query($conn, "INSERT INTO customerinfo(customerID,username,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$tmpcustid','$username','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')"); 
                 mysqli_query($conn, "INSERT INTO login(Username,Password,Usertype) VALUES('$username','$password','Customer')"); 
                 $error['match'] = true;
+                $error['leng'] = true;
                 $error['valid'] = true;
                 $error['message'] = "Register Successful!";
                 $error['exist'] = true;
@@ -71,10 +74,14 @@ header('Content-type: application/json');
                 $error['match'] = false;
                 echo json_encode($error);
             }
-            
         }else{
-            $error['message'] = "Username already existing";
-            $error['exist'] = false;
+            $error['message'] = "Password is too short! Please enter more than 6 characters";
+            $error['leng'] = false;
             echo json_encode($error);
-    }
+        }
+    }else{
+        $error['message'] = "Username already existing";
+        $error['exist'] = false;
+        echo json_encode($error);
+}
 ?>

@@ -31,7 +31,6 @@ if ($result->num_rows > 0) {
         }
     }
 }
-
     //loadslider.php
     $sql = "SELECT sliderimg,headerslider,paragraphslider FROM loadSlider";
     $result = mysqli_query($conn,$sql);
@@ -39,13 +38,12 @@ if ($result->num_rows > 0) {
     if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            $sliderimg[$counter]["sliderimg"] = $row["sliderimg"];
-            $sliderimg[$counter]["headslider"] = $row["headslider"];
-            $sliderimg[$counter]["paragrahpslider"] = $row["paragrahpslider"];
+            $sliderimg[$counter]["sliderimg"] = $row["slider_img"];
+            $sliderimg[$counter]["headslider"] = $row["slider_head"];
+            $sliderimg[$counter]["paragrahpslider"] = $row["slider_paragraph"];
 
         }    
 }
-
 
 /* $a = 0;
 while($a < 3) {
