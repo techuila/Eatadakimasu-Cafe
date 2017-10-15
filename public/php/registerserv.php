@@ -1,6 +1,8 @@
 <?php
 header('Content-type: application/json'); 
 
+    //CUSTOMER INFO
+
     $username=$_POST['username'];
     $password=$_POST['password'];
     $cpassword=$_POST['cpassword'];
@@ -17,6 +19,12 @@ header('Content-type: application/json');
     $month=$_POST['month'];
     $year=$_POST['year'];
 
+    //ORDER INFO
+
+    
+        
+
+
         // Establishing Connection with server by passing server_name, user_id and pass as a patameter
         $conn = mysqli_connect("localhost", "root", "") or die ("Not yet Connected: " . mysql_error);
         //Selecting Database
@@ -24,6 +32,14 @@ header('Content-type: application/json');
         //insert query        
         $query = mysqli_query($conn,"SELECT * FROM login WHERE username='$_POST[username]'");
         $rows = mysqli_num_rows($query);
+        $tmpcustid = "";
+        $custid = 0;
+        do{
+            $custid +=1;
+            $tmpcustid = "C-" . $custid;
+            $query2 = mysqli_query($conn, "SELECT * FROM customerinfo WHERE customerID='$tmpcustid'");
+            $rows = mysqli_num_rows($query2);
+        }while($rows > 0);
         
         //check out fields
     if(trim($username == '') || trim($password == '') || trim($fname == '') || trim($lname == '') || trim($cpassword == '') || trim($month == '') || trim($day == '') || trim($year == '') || trim($barangay == '') || trim($email == '') || trim($mobile == '')){
@@ -37,8 +53,9 @@ header('Content-type: application/json');
             if($_POST['password']==$_POST['cpassword']){
                 //check if valid email address
                 if(strpos($email, '@') !== false){
-                mysqli_query($conn, "INSERT INTO customerinfo(username,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$username','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')"); 
-                mysqli_query($conn, "INSERT INTO login(Username,Password) VALUES('$username','$password')"); 
+               
+                mysqli_query($conn, "INSERT INTO customerinfo(customerID,username,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$tmpcustid','$username','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')"); 
+                mysqli_query($conn, "INSERT INTO login(Username,Password,Usertype) VALUES('$username','$password','Customer')"); 
                 $error['match'] = true;
                 $error['valid'] = true;
                 $error['message'] = "Register Successful!";
@@ -60,5 +77,4 @@ header('Content-type: application/json');
             $error['exist'] = false;
             echo json_encode($error);
     }
-        
 ?>

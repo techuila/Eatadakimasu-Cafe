@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2017 at 09:44 AM
+-- Generation Time: Oct 12, 2017 at 11:31 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -27,21 +27,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `billinginfo` (
-  `BillingID` varchar(20) NOT NULL,
+  `BillingID` int(255) NOT NULL AUTO_INCREMENT,
   `CustomerID` varchar(20) NOT NULL,
   `OrderID` varchar(255) NOT NULL,
   `Barangay` varchar(255) NOT NULL,
   `Street` varchar(255) NOT NULL,
   `House_No` varchar(255) NOT NULL,
+  `Status` varchar(255) NOT NULL,
   PRIMARY KEY (`BillingID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `billinginfo`
---
-
-INSERT INTO `billinginfo` (`BillingID`, `CustomerID`, `OrderID`, `Barangay`, `Street`, `House_No`) VALUES
-('', 'test', '1', 'asdasdasd', 'dad', '');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 -- --------------------------------------------------------
 
@@ -50,7 +44,7 @@ INSERT INTO `billinginfo` (`BillingID`, `CustomerID`, `OrderID`, `Barangay`, `St
 --
 
 CREATE TABLE IF NOT EXISTS `customerinfo` (
-  `customerID` int(11) NOT NULL AUTO_INCREMENT,
+  `customerID` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `Firstname` varchar(255) NOT NULL,
   `Lastname` varchar(255) NOT NULL,
@@ -62,14 +56,17 @@ CREATE TABLE IF NOT EXISTS `customerinfo` (
   `Email` varchar(255) NOT NULL,
   `Mobile_No` int(255) NOT NULL,
   PRIMARY KEY (`customerID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customerinfo`
 --
 
 INSERT INTO `customerinfo` (`customerID`, `username`, `Firstname`, `Lastname`, `Birthday`, `Gender`, `Barangay`, `Street`, `House_No`, `Email`, `Mobile_No`) VALUES
-(1, 'latina', 'Axl', 'Cuyugan', '1998-02-21', 'Male', 'Tetuan', 'Don Toribio st.', 1, 'axeguns@gmail.com', 2147483647);
+('1', 'latina', 'Axl', 'Cuyugan', '1998-02-21', 'Male', 'Tetuan', 'Don Toribio st.', 1, 'axeguns@gmail.com', 2147483647),
+('32', 'Admin', 'Noriel', 'Francisco', '2017-10-17', 'Male', 'Zambowood', 'Zambowood', 232, 'nlim@gmail.com', 917265384),
+('C-1', 'asds', 'asd', 'ads', '2023-10-23', 'Gender', 'tetuan', 'tetuan', 32, 'sdfsdf@gmail.com', 32323),
+('C-2', 'zeddie', 'latina', 'latino', '0000-00-00', 'Gender', 'tetuan', 'tetuan', 132, 'richard_villano@yahoo.com', 323232);
 
 -- --------------------------------------------------------
 
@@ -111,7 +108,7 @@ INSERT INTO `foodinfos` (`id`, `foodName`, `foodDesc`, `foodPrice`, `foodImg`, `
 --
 
 CREATE TABLE IF NOT EXISTS `guestinfo` (
-  `guestID` int(11) NOT NULL,
+  `guestID` varchar(11) NOT NULL,
   `Firstname` varchar(255) NOT NULL,
   `Lastname` varchar(255) NOT NULL,
   `Birthday` date NOT NULL,
@@ -124,23 +121,6 @@ CREATE TABLE IF NOT EXISTS `guestinfo` (
   PRIMARY KEY (`guestID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `guestinfo`
---
-
-INSERT INTO `guestinfo` (`guestID`, `Firstname`, `Lastname`, `Birthday`, `Gender`, `Barangay`, `Street`, `House_No`, `Email`, `Mobile_No`) VALUES
-(1, 'adasd', 'asda', '2322-05-02', 'Male', 'asdasdasd', 'dad', 0, 'adasdas', 0),
-(2, 'dsad', 'sad', '0232-09-23', 'Male', 'asdsad', '3223', 32232, 'dsadasd', 0),
-(3, 'asd', 'asdq', '0000-00-00', 'Gender', 'qwel', 'kalnd', 0, 'lkner', 0),
-(4, 'rqw', ',.', '0000-00-00', 'Gender', '', '', 0, '', 0),
-(5, 'lskdjf', 'kljsdf', '0000-00-00', 'Gender', '', '', 0, '', 0),
-(6, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
-(7, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
-(8, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
-(9, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
-(10, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0),
-(11, 'sdfk', 'askdfdk', '2023-10-23', 'Male', 'asd', 'asd', 123, 'viladsf', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -151,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `img_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `images`
@@ -160,7 +140,8 @@ CREATE TABLE IF NOT EXISTS `images` (
 INSERT INTO `images` (`id`, `img_name`) VALUES
 (1, '04.jpg'),
 (2, '04.jpg'),
-(3, '04.jpg');
+(3, '04.jpg'),
+(4, '04.jpg');
 
 -- --------------------------------------------------------
 
@@ -171,6 +152,7 @@ INSERT INTO `images` (`id`, `img_name`) VALUES
 CREATE TABLE IF NOT EXISTS `login` (
   `Username` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
+  `Usertype` varchar(255) NOT NULL,
   PRIMARY KEY (`Username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -178,8 +160,11 @@ CREATE TABLE IF NOT EXISTS `login` (
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`Username`, `Password`) VALUES
-('latina', 'bustylatina');
+INSERT INTO `login` (`Username`, `Password`, `Usertype`) VALUES
+('Admin', 'Admin', 'Admin'),
+('asds', '09', 'Customer'),
+('latina', 'bustylatina', ''),
+('zeddie', '123', 'Customer');
 
 -- --------------------------------------------------------
 
@@ -195,26 +180,7 @@ CREATE TABLE IF NOT EXISTS `orderinfo` (
   `quantity` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
-
---
--- Dumping data for table `orderinfo`
---
-
-INSERT INTO `orderinfo` (`id`, `orderid`, `customerID`, `foodName`, `quantity`, `price`) VALUES
-(1, '1', '', 'asd', '21', '2333'),
-(2, '1', '', 'qwe', '13', '155'),
-(3, '1', '', 'zxc', '15', '1567'),
-(4, '2', '', '', '', ''),
-(5, '3', '3', '', '', ''),
-(6, '4', '4', '', '', ''),
-(7, '5', '5', '', '', ''),
-(8, '6', '6', '', '', ''),
-(9, '7', '7', '', '', ''),
-(10, '8', '8', '', '', ''),
-(11, '9', '9', '', '', ''),
-(12, '10', '10', '', '', ''),
-(13, '11', '11', '', '', '');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 -- --------------------------------------------------------
 
@@ -231,24 +197,41 @@ CREATE TABLE IF NOT EXISTS `paymentmethod` (
   `s_num` varchar(255) NOT NULL,
   `exp_date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `paymentmethod`
 --
 
 INSERT INTO `paymentmethod` (`id`, `billingid`, `p_method`, `c_type`, `c_num`, `s_num`, `exp_date`) VALUES
-(4, '1', 'card', 'MasterCard', '23223', '232', '2017-09-07-2017-09-22'),
-(5, '2', 'card', 'MasterCard', '2323', '3223', '2017-09-01-2017-09-20'),
-(6, '3', 'card', 'MasterCard', '', '', '-'),
-(7, '4', 'card', 'MasterCard', '', '', '-'),
-(8, '5', 'card', 'MasterCard', '', '', '-'),
-(9, '6', 'card', 'MasterCard', '', '', '-'),
-(10, '7', 'card', 'MasterCard', '', '', '-'),
-(11, '8', 'card', 'MasterCard', '', '', '-'),
-(12, '9', 'card', 'MasterCard', '', '', '-'),
-(13, '10', 'card', 'MasterCard', '', '', '-'),
-(14, '11', 'card', 'MasterCard', '', '', '-');
+(29, '26', 'card', 'MasterCard', '', '', '-'),
+(30, '27', 'card', 'MasterCard', '', '', '-'),
+(31, '28', 'card', 'MasterCard', '', '', '-'),
+(32, '29', 'card', 'MasterCard', '', '', '-'),
+(33, '30', 'card', 'MasterCard', '', '', '-'),
+(34, '31', 'card', 'MasterCard', '', '', '-'),
+(35, '32', 'card', 'MasterCard', '', '', '-'),
+(36, '33', 'card', 'MasterCard', '', '', '-'),
+(37, '1', 'card', 'MasterCard', '2323', '3232', ' - '),
+(38, '2', 'card', 'MasterCard', '232321', '0505', ' - '),
+(39, '3', 'card', 'VisaCard', '0909', '0505', '2017-10-03 - 2017-10-31'),
+(40, '4', 'card', 'MasterCard', '123', '1233', '2017-10-02 - 2017-10-17'),
+(41, '5', 'card', 'MasterCard', '2323', '222', ' - '),
+(42, '6', 'card', 'MasterCard', '', '', ' - '),
+(43, '7', 'card', 'MasterCard', '', '', ' - '),
+(44, '8', 'card', 'MasterCard', '', '', ' - '),
+(45, '9', 'card', 'MasterCard', '', '', ' - '),
+(46, '10', 'card', 'MasterCard', '', '', ' - '),
+(47, '11', 'card', 'MasterCard', '', '', ' - '),
+(48, '12', 'card', 'MasterCard', '', '', ' - '),
+(49, '13', 'card', 'MasterCard', '', '', ' - '),
+(50, '14', 'card', 'MasterCard', '', '', ' - '),
+(51, '15', 'card', 'MasterCard', '232', '23', ' - '),
+(52, '15', 'card', 'MasterCard', '', '', ' - '),
+(53, '15', 'card', 'MasterCard', '', '', ' - '),
+(54, '15', 'card', 'MasterCard', '', '', ' - '),
+(55, '16', 'card', 'MasterCard', '', '', ' - '),
+(56, '16', 'card', 'MasterCard', '', '', ' - ');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -41,25 +41,7 @@ $(document).ready(()=>{
                         EVENTS
     =============================================*/
 
-    $('#menu-file').change(function(){
-        var f = $('#menu-file').val();
-        f = f.replace(/.*[\/\\]/, '');
-        console.log(f);
-        var menuFile = { "name":f };
-        $.ajax({
-            url: './php/uploadmenu.php',
-            dataType: 'json',
-            type: 'post',
-            data: JSON.stringify(menuFile),
-            cache: false,
-            success: function(data){
-                console.log(data);  
-            },
-            error: function(a,b,c){
-                console.log('Error: ' + a + " " + b + " " + c);
-            }
-        });
-    });
+    
 
 
     $(window).on("scroll", ()=>{
@@ -440,6 +422,7 @@ $(document).ready(()=>{
                 return false;
             });
             var contents = $("#form").serialize();
+            console.log(contents);
             $.ajax({
                 url: './php/loginserv.php',
                 dataType: 'json',
@@ -516,24 +499,24 @@ $(document).ready(()=>{
                     data: contents,
                     cache: false,
                     success: function(data){
-                if(data.check){
-                    alert(data.message);
-                }
-                    else if(data.exist){
-                        if(data.match){
-                            if(data.valid){
-                                alert(data.message);
+                        if(data.check){
+                            alert(data.message);
+                        }
+                        else if(data.exist){
+                            if(data.match){
+                                if(data.valid){
+                                    alert(data.message);
+                                }else{
+                                    alert(data.message);
+                                }                          
                             }else{
                                 alert(data.message);
-                            }                          
+                            }
                         }else{
                             alert(data.message);
                         }
-                    }else{
-                        alert(data.message);
-                    }
-                
-                 },
+                        
+                    },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
@@ -545,18 +528,26 @@ $(document).ready(()=>{
                     return false;
                 });
                 var contents = $("#register").serialize();
+                console.log(orders);         
+                                              
                 $.ajax({
                     url: './php/orderserv.php',
                     dataType: 'json',
                     type: 'post',
-                    data: contents,
+                    data: {datas:contents,data:orders},
                     cache: false,
                     success: function(data){
-                        if(data.check){
-                            alert(data.message);
-                        }
-
-                        console.log(data);
+                        messageBox("Empty Fields!", data.message);
+                        // if(data.check){
+                        //     $scope.modalText = data.message;
+                        //     $("#myModal").modal('show');
+                        // }else if(data.valid){
+                        //     $scope.modalText = data.message;                            
+                        //     $("#myModal").modal('show');
+                        // }else{
+                        //     $scope.modalText = data.message;                            
+                        //     $("#myModal").modal('show');
+                        // }
                     },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
@@ -571,8 +562,12 @@ $(document).ready(()=>{
             if(localStorage.getItem('success') == 'true'){
                 order = true;
             }else if(localStorage.getItem('guest') == 'true'){
-                order = true;
-                showSignIn();
+                if(items != 0){
+                    order = true;
+                    showSignIn();
+                }else{
+                    messageBox("No Order", "Please order first!");
+                }
             }else{
                 $scope.notLoggedIn = true;
             }
@@ -604,6 +599,12 @@ $(document).ready(()=>{
 
 
         //FUNCTIONS
+
+        function messageBox(title,message){
+            $scope.modalTitle = title;
+            $scope.modalText = message;
+            $("#myModal").modal('show');
+        }
 
         function deleteRow(arr, row) {
             delete arr[row];

@@ -24,6 +24,29 @@
     </script> -->
 </head>
 <body ng-app="myApp" ng-controller="myCtrl" ng-init="checkUser();">
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ modalTitle }}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{ modalText }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+
+        </div>
+    </div>
+    
     <!--Order Form  -->
     <div class="containers" id="food-order" ng-init="qty = 0" ng-show="showOrder">
         <center>
@@ -91,9 +114,9 @@
                         <form action="" method="post" id="form">                
                             <div class="login-form" ng-hide="showLogin">   
                                 <h4>USERNAME</h4> 
-                                <input type="text" name="user">
+                                <input type="text" name="user[0]">
                                 <h4>PASSWORD</h4> 
-                                <input type="password" name="pass"><br><br>   
+                                <input type="password" name="user[0]"><br><br>   
                                 <div class="alert alert-success" ng-show="loginSuccess">
                                     <center><strong><span class="glyphicon glyphicon-ok"></span> Login Successful! </strong> {{ welcome }}</center>
                                 </div>
@@ -145,20 +168,20 @@
                                     <div class="col-span-2">
                                         <div class="col-2">
                                             <h5>First Name*</h5>
-                                            <input type="text" name="first-name" value="">
+                                            <input type="text" name="first-name" value="" maxlength="35">
                                         </div>
                                         <div class="col-2">
                                             <h5>Last Name*</h5>
-                                            <input type="text" name="last-name">
+                                            <input type="text" name="last-name" maxlength="35">
                                         </div>
                                     </div>
                                     <div ng-hide="isGuest">
                                         <h5>Username*</h5>
-                                        <input type="text" name="username">
+                                        <input type="text" name="username" maxlength="15">
                                         <h5>Password*</h5>
-                                        <input type="password" name="password">
+                                        <input type="password" name="password" maxlength="16">
                                         <h5>Confirm Password*</h5>
-                                        <input type="password" name="cpassword">
+                                        <input type="password" name="cpassword" maxlength="16">
                                     </div>
                                     <div class="col-span-3">
                                         <div class="col-3">
@@ -181,11 +204,11 @@
                                         </div>
                                         <div class="col-3">
                                             <h5>Day*</h5>    
-                                            <input type="text" placeholder="Day" class="day" name="day">
+                                            <input type="text" placeholder="Day" class="day" name="day" maxlength="2">
                                         </div>
                                         <div class="col-3">
                                             <h5>Year*</h5>    
-                                            <input type="text" placeholder="Year" class="year" name="year">
+                                            <input type="text" placeholder="Year" class="year" name="year" maxlength="4">
                                         </div>
                                     </div>
                                     <h5>Gender</h5>
@@ -203,23 +226,23 @@
                             
                                 <div class="bill-form" ng-show="showBill">
                                     <h5>Barangay *</h5>
-                                    <input type="text" name="barangay">
+                                    <input type="text" name="barangay" maxlength="20">
 
                                     <div class="col-span-2">
                                         <div class="col-2">
                                             <h5>Street</h5>
-                                            <input type="text" name="street">
+                                            <input type="text" name="street" maxlength="20">
                                         </div>
                                         <div class="col-2">
                                             <h5>House No.</h5>
-                                            <input type="text" name="h-no">
+                                            <input type="text" name="h-no" maxlength="4">
                                         </div>
                                     </div>
 
                                     <h5>Email *</h5>
-                                    <input type="text" name="email">
+                                    <input type="text" name="email" maxlength="255">
                                     <h5>Mobile No. *</h5>
-                                    <input type="text" name="mobile">
+                                    <input type="text" name="mobile" maxlength="11">
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" ng-hide="guest" class="btn btn-warning">Skip</button>
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                                 </div>
@@ -235,7 +258,7 @@
 
                                     <div ng-show="cash">
                                         <h5>Bring change for?</h5>
-                                        <input type="text" name="change">
+                                        <input type="text" name="change" maxlength="35">
 
                                         <h5>Special request for your order?</h5>
                                         <textarea rows="3" cols="5"></textarea>
@@ -252,11 +275,11 @@
                                         <div class="col-span-2">
                                             <div class="col-2">
                                                 <h5>Credit Card Number</h5>
-                                                <input type="text" name = "c-num">
+                                                <input type="text" name = "c-num" maxlength="19">
                                             </div>
                                             <div class="col-2">
                                                 <h5>Security Code</h5>
-                                                <input type="text" name = "s-code">
+                                                <input type="text" name = "s-code" maxlength="3">
                                             </div>
                                         </div>
 
@@ -328,7 +351,7 @@
                     Seafood that have been battered and deep <br> fried.
                     Accompanied by shredded <br> cabbage and sauce.
                 </p>
-                <button type="button" id="temp"><span class="glyphicon glyphicon-shopping-cart icon-left"></span><span class="label-right"><strong>Order Now</strong></span></button>
+                <button data-toggle="modal" data-target="#myModal" type="button" id="temp"><span class="glyphicon glyphicon-shopping-cart icon-left"></span><span class="label-right"><strong>Order Now</strong></span></button>
             </article>
             <article class="art-bg pud" ng-show="three">
                 <h1>Chocolate Pudding</h1>
