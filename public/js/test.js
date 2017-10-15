@@ -37,6 +37,235 @@ $(document).ready(()=>{
         body.stop().animate({scrollTop: menuLoc+ 20},800,'swing');        
     });
 
+    //disregard special characters in first-name
+    $('#first-name').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in first-name
+    $("#first-name").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard special characters in last-name
+    $('#last-name').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg1").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in last-name
+    $("#last-name").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg1").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard characters and special characters in day
+    $('#day').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg2").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+    //disregard characters and special characters in year
+    $('#year').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg3").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+        //disregard special characters in barangay
+    $('#barangay').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg4").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in barangay
+    $("#barangay").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg4").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard special characters but allow spaces in street
+    $('#street').on('keypress', function (event) {
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg5").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+     //disregard characters and special characters in house no
+     $('#h-no').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg6").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in mobile no
+     $('#mobile').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg7").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in money change
+     $('#change').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg8").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in credit card number
+     $('#c-num').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg9").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+        //disregard characters and special characters in security code
+     $('#s-code').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg10").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+    
+
+    //menu-file click
+    $('#menu-form').submit(function(){  
+        var image_name = $('#menu-file').val();  
+        if(image_name == '')  
+        {  
+             alert("Please Select Image");  
+             return false;  
+        }  
+        else  
+        {  
+             var extension = $('#menu-file').val().split('.').pop().toLowerCase();  
+             if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+             {  
+                  alert('Invalid Image File');  
+                  $('#menu-file').val('');  
+                  return false;  
+             }  
+        }  
+   });  
+
+   //order-file click
+   $('#order-form').submit(function(){  
+    var image_name = $('#order-file').val();  
+    if(image_name == '')  
+    {  
+         alert("Please Select Image");  
+         return false;  
+    }  
+    else  
+    {  
+         var extension = $('#order-file').val().split('.').pop().toLowerCase();  
+         if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+         {  
+              alert('Invalid Image File');  
+              $('#order-file').val('');  
+              return false;  
+         }  
+    }  
+});  
+
+    //about-file click
+    $('#about-form').submit(function(){  
+        var image_name = $('#about-file').val();  
+        if(image_name == '')  
+        {  
+            alert("Please Select Image");  
+            return false;  
+        }  
+        else  
+        {  
+            var extension = $('#about-file').val().split('.').pop().toLowerCase();  
+            if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+            {  
+                alert('Invalid Image File');  
+                $('#about-file').val('');  
+                return false;  
+            }  
+        }  
+    });  
+
+    //navigation-file click
+    $('#navigation-form').submit(function(){  
+        var image_name = $('#navigation-file').val();  
+        if(image_name == '')  
+        {  
+             alert("Please Select Image");  
+             return false;  
+        }  
+        else  
+        {  
+             var extension = $('#navigation-file').val().split('.').pop().toLowerCase();  
+             if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+             {  
+                  alert('Invalid Image File');  
+                  $('#navigation-file').val('');  
+                  return false;  
+             }  
+        }  
+   });  
+
     /*=============================================
                         EVENTS
     =============================================*/

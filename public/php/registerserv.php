@@ -61,7 +61,7 @@ header('Content-type: application/json');
                 $error['match'] = true;
                 $error['leng'] = true;
                 $error['valid'] = true;
-                $error['message'] = "Register Successful!";
+                $error['message'] = "Register Successful, Thank you for Registering!";
                 $error['exist'] = true;
                 echo json_encode($error);
                 }else{
@@ -70,17 +70,17 @@ header('Content-type: application/json');
                     echo json_encode($error);
                 }
             }else{
-                $error['message'] = "Password doesn't even matched!";
+                $error['message'] = "Please make sure your passwords are match.";
                 $error['match'] = false;
                 echo json_encode($error);
             }
         }else{
-            $error['message'] = "Password is too short! Please enter more than 6 characters";
+            $error['message'] = "Password is too short! Please enter more than 6 characters.";
             $error['leng'] = false;
             echo json_encode($error);
         }
     }else{
-        $error['message'] = "Username already existing";
+        $error['message'] = "Sorry, Username is already existing.";
         $error['exist'] = false;
         echo json_encode($error);
 }
