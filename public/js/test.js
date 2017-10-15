@@ -580,12 +580,13 @@ $(document).ready(()=>{
                         if(data.check){
                             messageBox("Empty Fields!",data.message,true);
                         }else if(data.valid){
-                            messageBox("Invalid Email!",data.message,true);
-                        }else{
-                            messageBox("Order Successful!",data.message,true);
+                            messageBox("Order Success!",data.message,true);
                             backToMain();
-                            $scope.showLogin = true;
-                            $scope.showPayment = true;
+                            $scope.showLogin = false;
+                            $scope.showPayment = false;
+                            $scope.$apply();
+                        }else{
+                            messageBox("Invalid Email!",data.message,true);
                         }
                     },
                     error: function(a,b,c){
