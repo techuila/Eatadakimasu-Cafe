@@ -42,25 +42,37 @@ $(document).ready(()=>{
     =============================================*/
 
     $('#menu-file').change(function(){
-        var f = $('#menu-file').val();
-        f = f.replace(/.*[\/\\]/, '');
-        console.log(f);
-        var menuFile = { "name":f };
-        $.ajax({
-            url: './php/uploadmenu.php',
-            dataType: 'json',
-            type: 'post',
-            data: JSON.stringify(menuFile),
-            cache: false,
-            success: function(data){
-                console.log(data);  
-            },
-            error: function(a,b,c){
-                console.log('Error: ' + a + " " + b + " " + c);
-            }
-        });
+        $('#menu-form').submit();
+    //     // var f = $('#menu-file').val();
+    //     // f = f.replace(/.*[\/\\]/, '');
+    //     // var file ="noriel="+f;
+    //     // console.log(file);
+    //     // $.ajax({
+    //     //     url: './php/uploadmenu.php',
+    //     //     dataType: 'json',
+    //     //     type: 'post',
+    //     //     data: file,
+    //     //     cache: false,
+    //     //     success: function(data){
+    //     //         // console.log(data.message1);
+    //     //         console.log(data.message);  
+    //     //     },
+    //     //     error: function(a,b,c){
+    //     //         console.log('Error: ' + a + " " + b + " " + c);
+    //     //     }
+    //     // });
+    });
+    $('#order-file').change(function(){
+        $('#order-form').submit();
     });
 
+    $('#about-file').change(function(){
+        $('#about-form').submit();
+    });
+
+    $('#navigation-file').change(function(){
+        $('#navigation-form').submit();
+    });
 
     $(window).on("scroll", ()=>{
         scrollNavFunction(false);
@@ -456,6 +468,12 @@ $(document).ready(()=>{
                         $scope.loginFailed = false;
                         $scope.loginGuest = false;
                         $scope.welcome = " Welcome " + data.Firstname + " " + data.Lastname + ".";
+
+                        if (data.Usertype == "Admin"){
+                             localStorage.setItem('admin',  'true');
+                             $scope.admin = true;
+                        } 
+
                         userSignedIn();  
                         $scope.$apply();
                         setTimeout(function(){
@@ -475,31 +493,31 @@ $(document).ready(()=>{
             }); 
         };
         
-        $scope.uploadPhoto = function(banner){
-            var f = $('#menu-file').val();
-            f = f.replace(/.*[\/\\]/, '');
-            console.log(f);
-            if(banner == 'menu'){
-                // asd();
-            }else if(banner == 'order'){
-                // $('#order-form').submit();                
-            }
-        };
-        function asd(){
-            $.ajax({
-                url: './php/uploadmenu.php',
-                dataType: 'json',
-                type: 'post',
-                data: contents,
-                cache: false,
-                success: function(data){
-                    getData(data);  
-                },
-                error: function(a,b,c){
-                    console.log('Error: ' + a + " " + b + " " + c);
-                }
-            });
-        }
+        // $scope.uploadPhoto = function(banner){
+        //     var f = $('#menu-file').val();
+        //     f = f.replace(/.*[\/\\]/, '');         
+        //     console.log(JSON.stringify(f));
+        //     if(banner == 'menu'){
+        //         asd(f);
+        //     }else if(banner == 'order'){
+        //         // $('#order-form').submit();                
+        //     }
+        // };
+        // function asd(f){
+        //     $.ajax({
+        //         url: './php/uploadmenu.php',
+        //         dataType: 'json',
+        //         type: 'post',
+        //         data: JSON.stringify(f),
+        //         cache: false,
+        //         success: function(data){
+                      
+        //         },
+        //         error: function(a,b,c){
+        //             console.log('Error: ' + a + " " + b + " " + c);
+        //         }
+        //     });
+        // }
         $scope.saveCustInfo = function(){
             if(localStorage.getItem('guest') != 'true'){
                 $('#register').submit(()=>{
@@ -518,7 +536,8 @@ $(document).ready(()=>{
                 if(data.check){
                     alert(data.message);
                 }
-                    else if(data.exist){
+                else if(data.exist){
+                    if(data.leng){
                         if(data.match){
                             if(data.valid){
                                 alert(data.message);
@@ -528,6 +547,9 @@ $(document).ready(()=>{
                         }else{
                             alert(data.message);
                         }
+                     }else{
+                        alert(data.message);
+                    }
                     }else{
                         alert(data.message);
                     }
@@ -685,6 +707,9 @@ $(document).ready(()=>{
                     $('.menu-background')[0].style = "cursor: pointer;";
                     $('.order-background')[0].style = "cursor: pointer;";                    
                 }
+                if (localStorage.getItem('admin') == 'true'){
+                    $scope.admin = true;
+                } 
                 $scope.user = localStorage.getItem('firstname');
                 $scope.signedIn = true;
             }else if(localStorage.getItem('guest') == 'true'){

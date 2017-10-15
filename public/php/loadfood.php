@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
         $food[$counter]["position_x"] = $row["position_x"];
         $food[$counter]["class_name"] = $row["class_name"];
         // $foodName[$counter] = $row["foodName"];
-        // $foodDesc[$counter] = $row["foodDesc"];
+        // $foodDesc[$counter] = $row["foodDesc"];  
         // $foodPrice[$counter] = $row["foodPrice"];
         // $foodImg[$counter] = $row["foodImg"];
         $counter += 1;
