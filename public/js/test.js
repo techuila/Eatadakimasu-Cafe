@@ -576,17 +576,17 @@ $(document).ready(()=>{
                     data: {datas:contents,data:orders},
                     cache: false,
                     success: function(data){
-                        messageBox("Empty Fields!", data.message);
-                        // if(data.check){
-                        //     $scope.modalText = data.message;
-                        //     $("#myModal").modal('show');
-                        // }else if(data.valid){
-                        //     $scope.modalText = data.message;                            
-                        //     $("#myModal").modal('show');
-                        // }else{
-                        //     $scope.modalText = data.message;                            
-                        //     $("#myModal").modal('show');
-                        // }
+                        // messageBox("Empty Fields!", data.message,true);
+                        if(data.check){
+                            messageBox("Empty Fields!",data.message,true);
+                        }else if(data.valid){
+                            messageBox("Invalid Email!",data.message,true);
+                        }else{
+                            messageBox("Order Successful!",data.message,true);
+                            backToMain();
+                            $scope.showLogin = true;
+                            $scope.showPayment = true;
+                        }
                     },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
@@ -605,7 +605,7 @@ $(document).ready(()=>{
                     order = true;
                     showSignIn();
                 }else{
-                    messageBox("No Order", "Please order first!");
+                    messageBox("No Order", "Please order first!",true);
                 }
             }else{
                 $scope.notLoggedIn = true;
@@ -639,10 +639,12 @@ $(document).ready(()=>{
 
         //FUNCTIONS
 
-        function messageBox(title,message){
+        function messageBox(title,message,isClose){
             $scope.modalTitle = title;
             $scope.modalText = message;
+            $scope.closeOnly = isClose
             $("#myModal").modal('show');
+            $scope.$apply();
         }
 
         function deleteRow(arr, row) {

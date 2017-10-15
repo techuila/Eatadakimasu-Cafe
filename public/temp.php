@@ -34,14 +34,17 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">{{ modalTitle }}</h4>
+                <h4 class="modal-title"><strong>{{ modalTitle }}</strong></h4>
             </div>
             <div class="modal-body">
                 <p>{{ modalText }}</p>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" ng-hide="closeOnly">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            <div class="modal-footer" ng-show="closeOnly">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
             </div>
             </div>
 
@@ -176,7 +179,7 @@
                                             <input type="text" name="last-name" maxlength="35">
                                         </div>
                                     </div>
-                                    <div ng-hide="isGuest">
+                                    <div ng-hide="guest">
                                         <h5>Username*</h5>
                                         <input type="text" name="username" maxlength="15">
                                         <h5>Password*</h5>
@@ -295,7 +298,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save" id="save">                            
+                                    <input type="submit" ng-click="saveCustInfo()" class="save-info" value="Save Information" name="save" id="save">                            
                                 </div>
                             </div>
                         </form>
