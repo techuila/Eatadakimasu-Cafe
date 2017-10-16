@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="btn-container">
                                     <input type="submit" id="login" ng-click="sign_in()" class="in" value="LOGIN" name="submit">
-                                    <input type="button" class="up" value="REGISTER" ng-click="showLogin= true; showRegister = true; showBack = true"><br>
+                                    <input type="button" class="up" value="REGISTER" ng-click="showLogin= true; showRegister = true; showBack = true; notLoggedIn = false"><br>
                                     <input type="button" class="guest" ng-click="sign_guest()" value="LOGIN AS GUEST" name="submit2">
                                 </div>
                             </div>  
@@ -230,23 +230,23 @@
                             
                                 <div class="bill-form" ng-show="showBill">
                                     <h5>Barangay *</h5>
-                                    <input type="text" name="barangay" maxlength="20">
+                                    <input type="text" ng-model="barangayTxt" name="barangay" maxlength="20">
 
                                     <div class="col-span-2">
                                         <div class="col-2">
                                             <h5>Street</h5>
-                                            <input type="text" name="street" maxlength="20">
+                                            <input type="text" ng-model="streetTxt" name="street" maxlength="20">
                                         </div>
                                         <div class="col-2">
                                             <h5>House No.</h5>
-                                            <input type="text" name="h-no" maxlength="4">
+                                            <input type="text" ng-model="houseTxt" name="h-no" maxlength="4">
                                         </div>
                                     </div>
 
                                     <h5>Email *</h5>
-                                    <input type="text" name="email" maxlength="255">
+                                    <input type="text" ng-model="emailTxt" name="email" maxlength="255">
                                     <h5>Mobile No. *</h5>
-                                    <input type="text" name="mobile" maxlength="11">
+                                    <input type="text" ng-model="mobileTxt" name="mobile" maxlength="11">
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" ng-hide="guest" class="btn btn-warning">Skip</button>
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                                 </div>
@@ -325,7 +325,9 @@
                         <li><a href="" class="sign-in" id="sign-in" ng-click="showIn = true" ng-hide="signedIn">sign in</a>
                         <a href="" id="user" class="user dropdown-toggle" data-toggle="dropdown" ng-show="signedIn"><span class="greetings">Hello, </span>{{ user }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="" class="o-user" ng-show="admin">Admin Mode</a></li><br>                            
+                        <li><a href="" class="o-user" ng-hide="adminMode" ng-click="adminModes();" id="adminMode">Admin Mode</a></li><br>                            
+                        <li><a href="" class="o-user" ng-show="adminMode" ng-click="adminModes();" id="adminModeoff">Admin Mode Off</a></li><br>                                                    
+                        <li><a href="" class="o-user" ng-show="admin">Manage Transactions</a></li><br>                                                    
                         <li><a href="" class="o-user" ng-hide="guest">Edit Info</a></li><br>
                             <hr ng-hide="guest"> 
                             <li><a href="./php/logout.php" ng-click="logout()" class="o-user" style="color: #f06953;">Logout</a></li>
@@ -389,7 +391,7 @@
     <section class="container" id="about">
         <div class="something">
             <img src="./img/menu/sushi.jpg" alt="" class="bg bg-sushi">
-            <input ng-show="admin" type="file" name="about-file" id="about-file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
+            <input ng-show="adminMode" type="file" name="about-file" id="about-file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
         </div>
         <article class="about">
             <h1>Our Story</h1>
@@ -400,15 +402,15 @@
 
     <!--Menu  -->
     <section id="menu">
-        <div class="menu-background bg" style="position: relative;">
-            <form method="POST" action="./php/uploadmenu.php" id="menu-form" name="menu-form" enctype="multipart/form-data">
-            <input ng-show="admin" name="menu-file" id="menu-file" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
+        <form class="form" method="POST" action="./php/uploadmenu.php" id="menu-form" name="menu-forms" enctype="multipart/form-data">
+            <div class="menu-background bg" style="position: relative;">
+            <input ng-show="adminMode" name="menu-file" id="menu-file" type="file" class="change-bg" style="cursor: pointer; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
         </div>
         <article class="art-bg">
             <h1><span>AFFORDABLE</span> PRICING</h1>
         </article>
     </section>
-    <!-- <input ng-show="admin" type="submit" name="insert_menu" id="insertmenu" value="Update Menu" style="width: 100px;"> -->
+    <!-- <input ng-show="adminMode" type="submit" name="insert_menu" id="insertmenu" value="Update Menu" style="width: 100px;"> -->
     </form>
     
     <section class="container">
@@ -599,15 +601,15 @@
 
     <!--Order  -->
     <section id="order">
-        <div class="order-background bg" style="position: relative;">
-            <form method="POST" action="./php/uploadorder.php" id="order-form" name="order-form" enctype="multipart/form-data">
-                <input ng-show="admin" type="file" name="order-file" id="order-file" class="change-bg" style="opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-            </form>
-        </div>
-        <article>
-            <h1><span>ORDER</span> NOW</h1>
-        </article>
-    </section>
+        <form class="form" method="POST" action="./php/uploadorder.php" id="order-form" name="order-form" enctype="multipart/form-data">
+            <div class="order-background bg" style="position: relative;">
+                <input ng-show="adminMode" type="file" name="order-file" id="order-file" class="change-bg" style="cursor: pointer; opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            </div>
+            <article>
+                <h1><span>ORDER</span> NOW</h1>
+            </article>
+        </section>
+    </form>
 
     <section class="container order">
         <form>                

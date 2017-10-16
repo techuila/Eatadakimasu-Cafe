@@ -23,6 +23,7 @@ $error=''; //Variable to Store error message;
         while($rows = mysqli_fetch_assoc($result)){
             $cust_info = array_merge($cust_info, $rows);
             // $usertype = $rows['usertype'];
+            $custid = $rows['customerID'];
         }    
         $cust_info['success'] = true;
         echo json_encode($cust_info);
@@ -31,7 +32,8 @@ $error=''; //Variable to Store error message;
         // }
 
         session_start();
-        $_SESSION['username'] = $user;  
+        $_SESSION['username'] = $user;
+        $_SESSION['custid']   = $custid;
     }else{
         $cust_info['success'] = false;
         echo json_encode($cust_info);

@@ -1059,6 +1059,7 @@ section#about{
 }
 
 section#menu{
+    background-color: black;
     clear: both;
 }
 
@@ -1073,6 +1074,17 @@ section#menu{
         background-image: url('../../img/04.jpg');
         opacity: 0.9;
         height: 80%;
+        transition: opacity 0.3s ease;
+    }
+    .menu-form:hover{
+        background: url('../../img/addbtn.png') center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        z-index: 10;
+        .menu-background, .art-bg{
+            opacity: 0.5;
+        }
     }
 
     .art-bg{
@@ -1278,6 +1290,16 @@ section#order{
         background-image: url('../../img/reservation-seat.jpg');
         opacity: 0.9;
         height: 80%;
+    }
+    .menu-form:hover{
+        background: url('../../img/addbtn.png') center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        z-index: 10;
+        .order-background, article{
+            opacity: 0.5;
+        }
     }
     article{
         top: 35%; right: 0; left: 0;
@@ -1515,3 +1537,5 @@ footer{
     min-height: 15%;
     clear: both;
 }
+
+

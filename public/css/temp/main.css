@@ -1228,6 +1228,7 @@ section#about article.about p {
 }
 
 section#menu {
+  background-color: black;
   clear: both;
 }
 
@@ -1243,6 +1244,19 @@ section#menu .menu-background {
   background-image: url("../../img/04.jpg");
   opacity: 0.9;
   height: 80%;
+  transition: opacity 0.3s ease;
+}
+
+section#menu .menu-form:hover {
+  background: url("../../img/addbtn.png") center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 10;
+}
+
+section#menu .menu-form:hover .menu-background, section#menu .menu-form:hover .art-bg {
+  opacity: 0.5;
 }
 
 section#menu .art-bg h1 {
@@ -1413,6 +1427,18 @@ section#order .order-background {
   background-image: url("../../img/reservation-seat.jpg");
   opacity: 0.9;
   height: 80%;
+}
+
+section#order .menu-form:hover {
+  background: url("../../img/addbtn.png") center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  z-index: 10;
+}
+
+section#order .menu-form:hover .order-background, section#order .menu-form:hover article {
+  opacity: 0.5;
 }
 
 section#order article {

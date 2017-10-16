@@ -37,6 +37,17 @@ $(document).ready(()=>{
         body.stop().animate({scrollTop: menuLoc+ 20},800,'swing');        
     });
 
+
+    //ADMIN MODE
+
+    $("#adminMode").click(()=>{
+        $('.form').toggleClass("menu-form");        
+    });
+
+    $("#adminModeoff").click(()=>{
+        $('.form').toggleClass("menu-form");        
+    });
+
     /*=============================================
                         EVENTS
     =============================================*/
@@ -327,7 +338,16 @@ $(document).ready(()=>{
     var app = angular.module("myApp",['ngAnimate']);
     var orders = new Array();
     var removePrice = 0;    
+
     app.controller('myCtrl', function($scope,$compile){
+        //BILLING INFORMATION TEXTBOX FOR AUTOCOMPLETE
+        $scope.barangayTxt = "";
+        $scope.streetTxt = "";
+        $scope.houseTxt = "";
+        $scope.emailTxt = "";
+        $scope.mobileTxt = "";
+        $scope.adminMode = false;
+
         $scope.showActions = [];
         $scope.admin = false;
         $scope.totalPricy = totalPrice;
@@ -450,6 +470,8 @@ $(document).ready(()=>{
             $('#form').submit(()=>{
                 return false;
             });
+            $scope.notLoggedIn = false;
+            order = false;
             var contents = $("#form").serialize();
             console.log(contents);
             $.ajax({
@@ -493,6 +515,21 @@ $(document).ready(()=>{
                 }
             }); 
         };
+
+        $scope.adminModes = function(){
+            if($scope.adminMode == false){
+                $scope.adminMode = true;
+                messageBox("Admin Mode!","You can now edit sections from the website.",true);
+                // $('#menu-form').toggleClass("menu-form");
+                $scope.$apply();
+            }else{
+                $scope.adminMode = false;      
+                messageBox("Admin Mode Off!","You can now view as customer.",true);   
+                // $('#menu-file').className = "menu-forms";                
+                $scope.$apply();                
+            }
+            
+        }
         
         // $scope.uploadPhoto = function(banner){
         //     var f = $('#menu-file').val();
@@ -520,13 +557,12 @@ $(document).ready(()=>{
         //     });
         // }
         $scope.saveCustInfo = function(){
-            if(localStorage.getItem('guest') != 'true'){
+            if(order != true){
                 $('#register').submit(()=>{
                     return false;
                 });
                 var contents = $('#register').serialize();
                 console.log(contents);
-
                 $.ajax({
                     url: './php/registerserv.php',
                     dataType: 'json',
@@ -567,8 +603,8 @@ $(document).ready(()=>{
                     return false;
                 });
                 var contents = $("#register").serialize();
-                console.log(orders);         
-                                              
+                localStorage.getItem('success') == 'true'? contents += "&user=true" : contents += "&user=false";
+                console.log(contents);                             
                 $.ajax({
                     url: './php/orderserv.php',
                     dataType: 'json',
@@ -576,7 +612,8 @@ $(document).ready(()=>{
                     data: {datas:contents,data:orders},
                     cache: false,
                     success: function(data){
-                        // messageBox("Empty Fields!", data.message,true);
+                        // messageBox("Empty Fields!", "SUCCESS",true);
+                        // console.log(data);
                         if(data.check){
                             messageBox("Empty Fields!",data.message,true);
                         }else if(data.valid){
@@ -600,7 +637,31 @@ $(document).ready(()=>{
         };
         $scope.order = function(){
             if(localStorage.getItem('success') == 'true'){
-                order = true;
+                if(items != 0){
+                    order = true;
+                    $.ajax({
+                        url: './php/autofill.php',
+                        dataType: 'json',
+                        type: 'GET',
+                        cache: false,
+                        success: function(data){
+                            // messageBox("Successful!","SUCESS",true);
+                            // console.log(data);
+                            $scope.barangayTxt = data.barangay;
+                            $scope.streetTxt = data.street;
+                            $scope.houseTxt = data.house;
+                            $scope.emailTxt = data.email;
+                            $scope.mobileTxt = data.mobile;
+                            $scope.$apply();
+                        },
+                        error: function(a,b,c){
+                            console.log('Error: ' + a + " " + b + " " + c);
+                        }
+                    });
+                    showSignIn();
+                }else{
+                    messageBox("No Order", "Please order first!",true);
+                }
             }else if(localStorage.getItem('guest') == 'true'){
                 if(items != 0){
                     order = true;
