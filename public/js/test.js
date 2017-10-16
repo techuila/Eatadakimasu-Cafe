@@ -586,13 +586,36 @@ $(document).ready(()=>{
             userSignedIn();
         }
 
-        $scope.saveMenu = function(){
-            $('#add-menu').submit(()=>{
-                return false;
-            });
-            $scope.showOrder = false;
-            backToMain();
-            clearTextMenu();
+        // $scope.saveMenu = function(){
+        //     $('#insert_img').submit(()=>{
+        //         return false;
+        //     });
+        //     var f = $('#food-photo').val();
+        //     f = f.replace(/.*[\/\\]/, '');  
+        //     var contents = $("#add-menu").serialize();   
+        //     contents += "&photo="+f;
+        //     console.log(contents);         
+        //     $.ajax({
+        //         url: './php/insertfood.php',
+        //         dataType: 'json',
+        //         type: 'post',
+        //         data: contents,
+        //         cache: false,
+        //         success: function(data){
+        //             messageBox("SUCCESS", "SUCCESS",true);
+        //             console.log(data);
+        //             $scope.showOrder = false;
+        //             backToMain();
+        //             clearTextMenu();
+        //             $scope.$apply();
+        //         },
+        //         error: function(a,b,c){
+        //             console.log('Error: ' + a + " " + b + " " + c);
+        //         }
+        //     });
+        // }
+        $scope.showAdmin = function(){
+            return $scope.admin && !$scope.adminMode;
         }
         $scope.navLoc = function(loc, clicked){
             if(loc == 1 && clicked == 'top' && complete1 == false){
@@ -682,6 +705,7 @@ $(document).ready(()=>{
             }
         };
         $scope.checkUser = function(){
+            startSlider();
             userSignedIn();
         }
         $scope.exitForm = function(){
@@ -800,25 +824,8 @@ $(document).ready(()=>{
                     data: contents,
                     cache: false,
                     success: function(data){
-                if(data.check){
-                    messageBox("Empty Fields!",data.message,true);
-                }else if(data.exist){
-                    if(data.leng){
-                        if(data.match){
-                            if(data.valid){
-                                messageBox("Order Success!",data.message,true);
-                            }else{
-                                messageBox("Invalid Email!",data.message,true);
-                            }
-                        }else{
-                            messageBox("Password doesn't match!",data.message,true);
-                        }
-                     }else{
-                        messageBox("Password length is too short!",data.message,true);
-                    }
-                }else{
-                    messageBox("Existing Username!",data.message,true);
-                }
+                        messageBox(data.titi,data.message,true);
+                
                 
                  },
                     error: function(a,b,c){
@@ -1058,13 +1065,9 @@ $(document).ready(()=>{
             document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px); opacity: 0.6;";
         }
         function userSignedIn(){
+            // startSlider();
             if(localStorage.getItem('success') == 'true'){
-                if(localStorage.getItem('user') == 'true'){
-                    startSlider();
-                    $('.bg-sushi')[0].style = "cursor: pointer;";
-                    $('.menu-background')[0].style = "cursor: pointer;";
-                    $('.order-background')[0].style = "cursor: pointer;";                    
-                }
+                // startSlider();
                 if (localStorage.getItem('admin') == 'true'){
                     $scope.admin = true;
                      
@@ -1076,7 +1079,7 @@ $(document).ready(()=>{
                 $scope.user = localStorage.getItem('firstname');
                 $scope.signedIn = true;
             }else if(localStorage.getItem('guest') == 'true'){
-                startSlider();
+                // startSlider();
                 $scope.signedIn = true;
                 $scope.guest = true;
                 $scope.user = 'Guest';
@@ -1085,12 +1088,14 @@ $(document).ready(()=>{
             }
         }
         function startSlider(){
-            sec = 6000;
-            counter > 4? counter = 1: angular.noop();
-            $scope.slider(counter++,'auto');
-            setTimeout(function(){
-                $scope.$apply(startSlider());
-            }, sec);
+            if(localStorage.getItem('admin') != 'true'){
+                sec = 6000;
+                counter > 4? counter = 1: angular.noop();
+                $scope.slider(counter++,'auto');
+                setTimeout(function(){
+                    $scope.$apply(startSlider());
+                }, sec);
+            }
         }
         /*=============================================
                             SLIDER   

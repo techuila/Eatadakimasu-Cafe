@@ -1,5 +1,7 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "", "eatadakicafe");
+    
+   $connect = mysqli_connect("localhost", "root", "", "eatadakicafe");
+   
    $file = addslashes(file_get_contents($_FILES['menu-file']['tmp_name']));
    $query = "UPDATE `loaddisplay` SET `disp_img`='$file' WHERE disp_section = 'menubanner'";  
      if(mysqli_query($connect, $query))  
