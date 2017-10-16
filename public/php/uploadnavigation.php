@@ -6,6 +6,7 @@ $connect = mysqli_connect("localhost", "root", "", "eatadakicafe");
       
      if(mysqli_query($connect, $query2))  
        {  
+            header('Refresh:.5; url=../temp.php');  
             echo '<script>alert("Image Successfully Updated")</script>';  
        }  
        else{

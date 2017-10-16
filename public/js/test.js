@@ -683,6 +683,7 @@ $(document).ready(()=>{
         };
         $scope.checkUser = function(){
             userSignedIn();
+            loadDisplay();
         }
         $scope.exitForm = function(){
             expand == true? hideSign(): angular.noop();
@@ -961,7 +962,6 @@ $(document).ready(()=>{
             $("#myModal").modal('show');
             $scope.$apply();
         }
-
         function deleteRow(arr, row) {
             delete arr[row];
             return arr;
@@ -1036,7 +1036,23 @@ $(document).ready(()=>{
                 }
                 b++;
             }
-        };
+        }
+        function loadDisplay(){
+            $.ajax({
+                url: './php/loadbanner.php',
+                dataType: 'json',
+                type: 'GET',
+                cache: false,
+                success: function(data){
+                    messageBox("Successful!","SUCESS",true);
+                    $('.menu-background').attr('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
+                    $('.order-background').attr('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
+                },
+                error: function(a,b,c){
+                    console.log('Error: ' + a + " " + b + " " + c);
+                }
+            });
+        }
         function hideSign(){
             $(".s-in")[0].style = "width: 40%;";
             $(".p-order")[0].style = "display: none;";            

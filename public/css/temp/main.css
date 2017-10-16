@@ -1275,7 +1275,6 @@ section#menu {
 }
 
 section#menu .menu-background {
-  background-image: url("../../img/04.jpg");
   opacity: 0.9;
   height: 80%;
   transition: opacity 0.3s ease;
@@ -1491,7 +1490,6 @@ section#order {
 }
 
 section#order .order-background {
-  background-image: url("../../img/reservation-seat.jpg");
   opacity: 0.9;
   height: 80%;
 }
