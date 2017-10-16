@@ -48,6 +48,235 @@ $(document).ready(()=>{
         $('.form').toggleClass("menu-form");        
     });
 
+    //disregard special characters in first-name
+    $('#first-name').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in first-name
+    $("#first-name").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard special characters in last-name
+    $('#last-name').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg1").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in last-name
+    $("#last-name").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg1").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard characters and special characters in day
+    $('#day').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg2").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+    //disregard characters and special characters in year
+    $('#year').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg3").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+        //disregard special characters in barangay
+    $('#barangay').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg4").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in barangay
+    $("#barangay").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg4").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard special characters but allow spaces in street
+    $('#street').on('keypress', function (event) {
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg5").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+     //disregard characters and special characters in house no
+     $('#h-no').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg6").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in mobile no
+     $('#mobile').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg7").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in money change
+     $('#change').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg8").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in credit card number
+     $('#c-num').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg9").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+        //disregard characters and special characters in security code
+     $('#s-code').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg10").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+    
+
+    //menu-file click
+    $('#menu-form').submit(function(){  
+        var image_name = $('#menu-file').val();  
+        if(image_name == '')  
+        {  
+             alert("Please Select Image");  
+             return false;  
+        }  
+        else  
+        {  
+             var extension = $('#menu-file').val().split('.').pop().toLowerCase();  
+             if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+             {  
+                  alert('Invalid Image File');  
+                  $('#menu-file').val('');  
+                  return false;  
+             }  
+        }  
+   });  
+
+   //order-file click
+   $('#order-form').submit(function(){  
+    var image_name = $('#order-file').val();  
+    if(image_name == '')  
+    {  
+         alert("Please Select Image");  
+         return false;  
+    }  
+    else  
+    {  
+         var extension = $('#order-file').val().split('.').pop().toLowerCase();  
+         if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+         {  
+              alert('Invalid Image File');  
+              $('#order-file').val('');  
+              return false;  
+         }  
+    }  
+});  
+
+    //about-file click
+    $('#about-form').submit(function(){  
+        var image_name = $('#about-file').val();  
+        if(image_name == '')  
+        {  
+            alert("Please Select Image");  
+            return false;  
+        }  
+        else  
+        {  
+            var extension = $('#about-file').val().split('.').pop().toLowerCase();  
+            if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+            {  
+                alert('Invalid Image File');  
+                $('#about-file').val('');  
+                return false;  
+            }  
+        }  
+    });  
+
+    //navigation-file click
+    $('#navigation-form').submit(function(){  
+        var image_name = $('#navigation-file').val();  
+        if(image_name == '')  
+        {  
+             alert("Please Select Image");  
+             return false;  
+        }  
+        else  
+        {  
+             var extension = $('#navigation-file').val().split('.').pop().toLowerCase();  
+             if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+             {  
+                  alert('Invalid Image File');  
+                  $('#navigation-file').val('');  
+                  return false;  
+             }  
+        }  
+   });  
+
     /*=============================================
                         EVENTS
     =============================================*/
@@ -338,7 +567,8 @@ $(document).ready(()=>{
     var app = angular.module("myApp",['ngAnimate']);
     var orders = new Array();
     var removePrice = 0;    
-
+    var buttonText = "Add to Cart";
+    
     app.controller('myCtrl', function($scope,$compile){
         //BILLING INFORMATION TEXTBOX FOR AUTOCOMPLETE
         $scope.barangayTxt = "";
@@ -352,19 +582,18 @@ $(document).ready(()=>{
         $scope.admin = false;
         $scope.totalPricy = totalPrice;
         $scope.generate = function(){
-            $.ajax({
-                url: './php/loadfood.php',
-                dataType: 'json',
-                type: 'GET',
-                cache: false,
-                success: function(data){
-                    getData(data);  
-                },
-                error: function(a,b,c){
-                    console.log('Error: ' + a + " " + b + " " + c);
-                }
+            loadFood();
+            userSignedIn();
+        }
+
+        $scope.saveMenu = function(){
+            $('#add-menu').submit(()=>{
+                return false;
             });
-        };
+            $scope.showOrder = false;
+            backToMain();
+            clearTextMenu();
+        }
         $scope.navLoc = function(loc, clicked){
             if(loc == 1 && clicked == 'top' && complete1 == false){
                 expand == true? hideSign(): expand = false;
@@ -438,13 +667,17 @@ $(document).ready(()=>{
             }, 1800);
         };
         $scope.requireLogin = function(class_name){
-            if(localStorage.getItem('success') == 'true'||
-            localStorage.getItem('guest') == 'true'){
-                displayfood(class_name);                
-                $scope.showOrder =  true; 
+            if(localStorage.getItem('success') == 'true'|| localStorage.getItem('guest') == 'true'){
+                if(!$scope.adminMode){
+                    displayfood(class_name,$scope.adminMode);                
+                    $scope.showOrder =  true; 
+                }else{
+                    clearTextMenu();
+                    displayfood(class_name,$scope.adminMode);                
+                    $scope.showOrder =  true;                     
                 }
-            else{ 
-                displayfood(class_name);
+            }else{ 
+                displayfood(class_name); 
                 $scope.showIn = true; 
             }
         };
@@ -493,8 +726,8 @@ $(document).ready(()=>{
                         $scope.welcome = " Welcome " + data.Firstname + " " + data.Lastname + ".";
 
                         if (data.Usertype == "Admin"){
-                             localStorage.setItem('admin',  'true');
-                             $scope.admin = true;
+                            $scope.admin = true;
+                             localStorage.setItem('admin',  true);
                         } 
 
                         userSignedIn();  
@@ -520,15 +753,12 @@ $(document).ready(()=>{
             if($scope.adminMode == false){
                 $scope.adminMode = true;
                 messageBox("Admin Mode!","You can now edit sections from the website.",true);
-                // $('#menu-form').toggleClass("menu-form");
                 $scope.$apply();
             }else{
                 $scope.adminMode = false;      
                 messageBox("Admin Mode Off!","You can now view as customer.",true);   
-                // $('#menu-file').className = "menu-forms";                
                 $scope.$apply();                
             }
-            
         }
         
         // $scope.uploadPhoto = function(banner){
@@ -571,25 +801,24 @@ $(document).ready(()=>{
                     cache: false,
                     success: function(data){
                 if(data.check){
-                    alert(data.message);
-                }
-                else if(data.exist){
+                    messageBox("Empty Fields!",data.message,true);
+                }else if(data.exist){
                     if(data.leng){
                         if(data.match){
                             if(data.valid){
-                                alert(data.message);
+                                messageBox("Order Success!",data.message,true);
                             }else{
-                                alert(data.message);
+                                messageBox("Invalid Email!",data.message,true);
                             }
                         }else{
-                            alert(data.message);
+                            messageBox("Password doesn't match!",data.message,true);
                         }
                      }else{
-                        alert(data.message);
+                        messageBox("Password length is too short!",data.message,true);
                     }
-                    }else{
-                        alert(data.message);
-                    }
+                }else{
+                    messageBox("Existing Username!",data.message,true);
+                }
                 
                  },
                     error: function(a,b,c){
@@ -696,11 +925,35 @@ $(document).ready(()=>{
             orders = deleteRow(orders,id)
             console.log(orders); 
         }
+        $scope.showAddMenu = function(){
+            clearTextMenu();
+            document.getElementsByClassName("foody").item(0).style = "background-image: url('./img/upload.png'); background-size: contain;";                            
+            document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                                
+            $scope.showOrder = true;
+        }
 
 
 
         //FUNCTIONS
-
+        function loadFood(){
+            $.ajax({
+                url: './php/loadfood.php',
+                dataType: 'json',
+                type: 'GET',
+                cache: false,
+                success: function(data){
+                    getData(data);  
+                },
+                error: function(a,b,c){
+                    console.log('Error: ' + a + " " + b + " " + c);
+                }
+            });
+        }
+        function clearTextMenu(){
+            $("#food-name-txt").val("");
+            $("#food-desc-txt").val("");
+            $("#food-price-txt").val("");
+        }
         function messageBox(title,message,isClose){
             $scope.modalTitle = title;
             $scope.modalText = message;
@@ -720,43 +973,48 @@ $(document).ready(()=>{
                 "price" : price
             };
         }
-        function displayfood(foodname){
+        function displayfood(foodname,isAdmin){
             if(foodname == 'curry'){
-                displayFoodOrder("curry", "Curry Rice", -10);
+                displayFoodOrder("curry", "Curry Rice", -10, isAdmin);
             }else if(foodname == 'donburi'){
-                displayFoodOrder("donburi", "Donburi", -32);
+                displayFoodOrder("donburi", "Donburi", -32, isAdmin);
             }else if(foodname == 'cakey'){
-                displayFoodOrder("japanesecake", "Japanese Cakey", -10);
+                displayFoodOrder("japanesecake", "Japanese Cakey", -10, isAdmin);
             }else if(foodname == 'karaage'){
-                displayFoodOrder("karaage", "Karaage", 0);
+                displayFoodOrder("karaage", "Karaage", 0), isAdmin;
             }else if(foodname == 'omurice'){
-                displayFoodOrder("omurice", "Omurice", -30);
+                displayFoodOrder("omurice", "Omurice", -30, isAdmin);
             }else if(foodname == 'onigiri'){
-                displayFoodOrder("onigiri", "Onigiri", 0);
+                displayFoodOrder("onigiri", "Onigiri", 0, isAdmin);
             }else if(foodname == 'ramen'){
-                displayFoodOrder("ramen", "Ramen", -15);
+                displayFoodOrder("ramen", "Ramen", -15, isAdmin);
             }else if(foodname == 'pudding'){
-                displayFoodOrder("pudding", "Chocolate Pudding", -35);
+                displayFoodOrder("pudding", "Chocolate Pudding", -35, isAdmin);
             }else if(foodname == 'tempura'){
-                displayFoodOrder("tempura", "Tempura", -50);
+                displayFoodOrder("tempura", "Tempura", -50, isAdmin);
             }else if(foodname == 'tonkatsu'){
-                displayFoodOrder("tonkatsu", "Tonkatsu", -33);
+                displayFoodOrder("tonkatsu", "Tonkatsu", -33, isAdmin);
             }else if(foodname == 'lipton'){
-                displayFoodOrder("lipton", "Lipton Green Tea", 0);
+                displayFoodOrder("lipton", "Lipton Green Tea", 0, isAdmin);
             } else if(foodname == 'iced'){
-                displayFoodOrder("iced", "Iced Tea", 0);
+                displayFoodOrder("iced", "Iced Tea", 0), isAdmin;
             }
         }
-        function displayFoodOrder(food, foodname, x_pos){
-            document.getElementsByClassName("food").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px;";
-            document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
-            document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                    
+        function displayFoodOrder(food, foodname, x_pos,isAdmin){
+            if(!isAdmin){
+                document.getElementsByClassName("food").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px;";
+                document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
+                document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                    
+            }else{
+                document.getElementsByClassName("foody").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px; background-size: cover;";                
+                document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                                    
+            }
         }
         function getData(param){
             dats = param;
             if(b == 0){
                 for(var x = 0; x<dats.length; x++){
-                    $("#drinks").before($compile(
+                    $("#asds").after($compile(
                     "<div class='box'>"+
                     "<div class='frame "+ dats[x].class_name +"'></div>"+
                     "<article>"+
@@ -765,7 +1023,8 @@ $(document).ready(()=>{
                     "</article>"+
                     "<div class='button-cart-container'>"+
                         "<h1>₱"+ dats[x].foodPrice +"</h1>"+
-                        "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart' ng-click='showOrder = true'>Add to Cart</button>"+
+                        "<button id='"+ dats[x].class_name +"-delete' ng-click='deleteMenu();' class='btn btn-danger delete-menu'>Delete</button>"+                        
+                        "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart' ng-click='showOrder = true'>"+ buttonText +"</button>"+
                     "</div>"+
                     "</div>"+
                     "<style>"+
@@ -808,7 +1067,11 @@ $(document).ready(()=>{
                 }
                 if (localStorage.getItem('admin') == 'true'){
                     $scope.admin = true;
-                    
+                     
+                    setTimeout(function() {  
+                        $('.add-to-cart').text("Edit");
+                        $('.delete-menu').css('display', 'initial');     
+                    }, 800);
                 } 
                 $scope.user = localStorage.getItem('firstname');
                 $scope.signedIn = true;

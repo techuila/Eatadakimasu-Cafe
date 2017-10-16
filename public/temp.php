@@ -8,6 +8,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="prevent-special-chars-jquery.js"></script>
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./node_modules/angular-animate/angular-animate.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -57,19 +59,40 @@
             <div class="top-action">
                 <div class="exit" id="exit-order" ng-click="exitForm(); showOrder = false"></div>
             </div>
-            <div class="frame food"></div>
-            <h1 class="food-name">food</h1>
-            <div class="container-qty">
-                <h2>₱{{ qty * 30 }}</h2>
-                <h3 class="qty-label">QTY</h3> <br>
-                <button class="minus" ng-click="0<qty? qty = qty - 1: angular.noop()">-</button>
-                <h3 class="qty" id="form-qty">{{ qty }}</h3>
-                <button class="plus" ng-click="qty = qty + 1">+</button>
-            </div><br>
-            <div class="alert alert-danger width" ng-show="empty">
-                <center><strong><span class="glyphicon glyphicon-remove"></span> Adding Failed! </strong> Please specify how many orders.</center>
+            <!-- CLEINT VIEW -->
+
+            <div ng-hide="adminMode" class="client-container">
+                <div class="frame food"></div>
+                <h1 class="food-name">food</h1>
+                <div class="container-qty">
+                    <h2>₱{{ qty * 30 }}</h2>
+                    <h3 class="qty-label">QTY</h3> <br>
+                    <button class="minus" ng-click="0<qty? qty = qty - 1: angular.noop()">-</button>
+                    <h3 class="qty" id="form-qty">{{ qty }}</h3>
+                    <button class="plus" ng-click="qty = qty + 1">+</button>
+                </div><br>
+                <div class="alert alert-danger width" ng-show="empty">
+                    <center><strong><span class="glyphicon glyphicon-remove"></span> Adding Failed! </strong> Please specify how many orders.</center>
+                </div>
+                <button add-To-Cart class="add-to-cart" ng-click="addPrice();" id="add-to-cart">Add to Cart</button> 
             </div>
-            <button add-To-Cart class="add-to-cart" ng-click="addPrice();" id="add-to-cart">Add to Cart</button> 
+
+            <!-- ADMIN MODE -->
+            <div ng-show="adminMode" class="admin-container">
+                <form action="" id="add-menu">
+                    <div class="frame foody"><div class="img-upload">
+                        <input type="file" style="cursor: pointer; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    </div></div> <br>
+                    <h4 class="qty-label">Food Name</h4> 
+                    <input id="food-name-txt" type="text" class="food-name form-control"><br>
+                    <h4 class="qty-label">Description</h4>                             
+                    <textarea id="food-desc-txt" name="" id="" cols="25" rows="3" class="food-desc form-control"></textarea>
+                    <h4 class="qty-label">Price</h4> 
+                    <input id="food-price-txt" type="text" class="food-price form-control"><br>
+                    <input type="submit" class="btn hover-add" ng-click="saveMenu();" value="Add">
+                    <button class="btn btn-default" style="margin-left: 8px; color: #34495e;">Cancel</button>            
+                </form>
+            </div>
         </center>
     </div>
 
@@ -171,19 +194,19 @@
                                 <div class="person-form" ng-show="showRegister">
                                     <div class="col-span-2">
                                         <div class="col-2">
-                                            <h5>First Name*</h5>
-                                            <input type="text" name="first-name" value="" maxlength="35">
+                                            <h5>First Name* <span id="errmsg" style="color:red;font-size:12px"></span></h5>
+                                            <input type="text" name="first-name" id="first-name" value="" maxlength="35">
                                         </div>
                                         <div class="col-2">
-                                            <h5>Last Name*</h5>
-                                            <input type="text" name="last-name" maxlength="35">
+                                            <h5>Last Name* <span id="errmsg1" style="color:red;font-size:12px"></span></h5>
+                                            <input type="text" name="last-name" id="last-name" maxlength="35">
                                         </div>
                                     </div>
                                     <div ng-hide="guest">
                                         <h5>Username*</h5>
                                         <input type="text" name="username" maxlength="15">
                                         <h5>Password*</h5>
-                                        <input type="password" name="password" id="password" maxlength="16" minlength="8">
+                                        <input type="password" name="password" id="password" maxlength="16" minlength = "8">
                                         <h5>Confirm Password*</h5>
                                         <input type="password" name="cpassword" maxlength="16" minlength="8">
                                     </div>
@@ -207,12 +230,12 @@
                                             </select>   
                                         </div>
                                         <div class="col-3">
-                                            <h5>Day*</h5>    
-                                            <input type="text" placeholder="Day" class="day" name="day" maxlength="2">
+                                            <h5>Day* <span id="errmsg2" style="color:red;font-size:12px"></span></h5>    
+                                            <input type="text" placeholder="Day" class="day" name="day" id="day" maxlength="2" > <span id="errmsg"></span>
                                         </div>
                                         <div class="col-3">
-                                            <h5>Year*</h5>    
-                                            <input type="text" placeholder="Year" class="year" name="year" maxlength="4">
+                                            <h5>Year* <span id="errmsg3" style="color:red;font-size:12px"></span></h5>    
+                                            <input type="text" placeholder="Year" class="year" name="year" id="year" maxlength="4"> <span id="errmsg"></span>
                                         </div>
                                     </div>
                                     <h5>Gender</h5>
@@ -229,24 +252,24 @@
                                 ==============================================-->
                             
                                 <div class="bill-form" ng-show="showBill">
-                                    <h5>Barangay *</h5>
-                                    <input type="text" ng-model="barangayTxt" name="barangay" maxlength="20">
+                                    <h5>Barangay* <span id="errmsg4" style="color:red;font-size:12px"></span></h5>
+                                    <input type="text" name="barangay" id="barangay" maxlength="20">
 
                                     <div class="col-span-2">
                                         <div class="col-2">
-                                            <h5>Street</h5>
-                                            <input type="text" ng-model="streetTxt" name="street" maxlength="20">
+                                            <h5>Street <span id="errmsg5" style="color:red;font-size:12px"></span></h5>
+                                            <input type="text" name="street" id="street" maxlength="20"> 
                                         </div>
                                         <div class="col-2">
-                                            <h5>House No.</h5>
-                                            <input type="text" ng-model="houseTxt" name="h-no" maxlength="4">
+                                            <h5>House No. <span id="errmsg6" style="color:red;font-size:12px"></span></h5>
+                                            <input type="text" name="h-no" id="h-no" maxlength="4"> 
                                         </div>
                                     </div>
 
-                                    <h5>Email *</h5>
-                                    <input type="text" ng-model="emailTxt" name="email" maxlength="255">
-                                    <h5>Mobile No. *</h5>
-                                    <input type="text" ng-model="mobileTxt" name="mobile" maxlength="11">
+                                    <h5>Email*</h5>
+                                    <input type="text" name="email" maxlength="255">
+                                    <h5>Mobile No.* <span id="errmsg7" style="color:red;font-size:12px"></span></h5>
+                                    <input type="text" name="mobile" id="mobile" maxlength="11">
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" ng-hide="guest" class="btn btn-warning">Skip</button>
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                                 </div>
@@ -261,11 +284,11 @@
                                     </select>
 
                                     <div ng-show="cash">
-                                        <h5>Bring change for?</h5>
-                                        <input type="text" name="change" maxlength="35">
+                                        <h5>Bring change for? <span id="errmsg8" style="color:red;font-size:12px"></span></h5>
+                                        <input type="text" name="change" id="change" maxlength="35"> <span id="errmsg"></span>
 
                                         <h5>Special request for your order?</h5>
-                                        <textarea rows="3" cols="5"></textarea>
+                                        <textarea name="s_request" rows="3" cols="5"></textarea>
                                     </div>
 
                                     <div ng-hide="cash">
@@ -278,23 +301,22 @@
 
                                         <div class="col-span-2">
                                             <div class="col-2">
-                                                <h5>Credit Card Number</h5>
-                                                <input type="text" name = "c-num" maxlength="19">
-                                            </div>
+                                                <h5>Credit Card Number <span id="errmsg9" style="color:red;font-size:12px"></span></h5>
+                                                <input type="text" name = "c-num" id="c-num" maxlength="19">                                            </div>
                                             <div class="col-2">
-                                                <h5>Security Code</h5>
-                                                <input type="text" name = "s-code" maxlength="3">
+                                                <h5>Security Code <span id="errmsg10" style="color:red;font-size:12px"></span></h5>
+                                                <input type="text" name = "s-code" id="s-code" maxlength="4"> 
                                             </div>
                                         </div>
 
                                         <div class="col-span-2">
                                             <div class="col-2">
                                                 <h5>Expiration Date</h5>
-                                                <input type="date" name = "exp-start">
+                                                <input type="date" name = "exp-start" id="exp-start"> 
                                             </div>
                                             <div class="col-2">
                                                 <h5 class="invi">asd</h5>
-                                                <input type="date" name = "exp-end">
+                                                <input type="date" name = "exp-end" id="exp-end"> 
                                             </div>
                                         </div>
                                     </div>
@@ -320,7 +342,7 @@
                         <li><a href="" id="nav-home" class="home">home</a></li>
                         <li><a href="#" id="nav-about" class="about">about us</a></li>
                         <li><a href="#" id="nav-menu" class="menu">menu</a></li>
-                        <li><a href="#" id="nav-order" class="order">order</a></li>
+                        <li><a href="#" id="nav-order" ng-hide="admin" class="order">order</a></li>
                         <li><a href="#" id="nav-contact" class="contact">contact</a></li>
                         <li><a href="" class="sign-in" id="sign-in" ng-click="showIn = true" ng-hide="signedIn">sign in</a>
                         <a href="" id="user" class="user dropdown-toggle" data-toggle="dropdown" ng-show="signedIn"><span class="greetings">Hello, </span>{{ user }} <span class="caret"></span></a>
@@ -421,6 +443,7 @@
         </article>
         <div class="box-container" id="asd">
             {{ generate()    }}
+            <div id="asds"></div>
             <!-- <div class="box">
                 <div class="frame curry"></div>
                 <article>
@@ -560,10 +583,25 @@
                 </div>
             </div> 
 
+            
+
             ============================
                           DRINKS
-            ================================
-           --><article class="menu-sub-title" id="drinks">
+            ================================-->
+            <div class="box add-menu green" ng-show="adminMode"> 
+                <div class="frame food"><center><span class="glyphicon glyphicon-plus"></span></center></div>
+                <article>
+                    <h1>Add Menu</h1><br>
+                    <p>
+                        Add menu to database.
+                    </p>
+                </article> 
+                <div class="button-cart-container">
+                    <button id="donburi" ng-click="showAddMenu();" class="add-to-cart" ng-click="showOrder = true">Add Menu</button>
+                </div>
+            </div>
+
+            <article class="menu-sub-title" id="drinks">
                 <br>
                 <h1 class="menu-title">Drinks</h1>
                 <hr>
@@ -600,7 +638,7 @@
     </section>
 
     <!--Order  -->
-    <section id="order">
+    <section id="order" ng-hide="admin">
         <form class="form" method="POST" action="./php/uploadorder.php" id="order-form" name="order-form" enctype="multipart/form-data">
             <div class="order-background bg" style="position: relative;">
                 <input ng-show="adminMode" type="file" name="order-file" id="order-file" class="change-bg" style="cursor: pointer; opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
@@ -611,7 +649,7 @@
         </section>
     </form>
 
-    <section class="container order">
+    <section class="container order" ng-hide="admin">
         <form>                
             <strong>
                 <ul class="cart" id="cart">
@@ -645,7 +683,6 @@
 
     </section>
 
-
     <!--Contract Us  -->
     <footer id="contact">
         <div class="container">
@@ -655,97 +692,3 @@
     
 </body>
 </html>
-
-<script>  
- $(document).ready(function(){  
-      $('#menu-form').submit(function(){  
-           var image_name = $('#menu-file').val();  
-           if(image_name == '')  
-           {  
-                alert("Please Select Image");  
-                return false;  
-           }  
-           else  
-           {  
-                var extension = $('#menu-file').val().split('.').pop().toLowerCase();  
-                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
-                {  
-                     alert('Invalid Image File');  
-                     $('#menu-file').val('');  
-                     return false;  
-                }  
-           }  
-      });  
- });  
- </script>  
- 
-<script>  
- $(document).ready(function(){  
-      $('#order-form').submit(function(){  
-           var image_name = $('#order-file').val();  
-           if(image_name == '')  
-           {  
-                alert("Please Select Image");  
-                return false;  
-           }  
-           else  
-           {  
-                var extension = $('#order-file').val().split('.').pop().toLowerCase();  
-                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
-                {  
-                     alert('Invalid Image File');  
-                     $('#order-file').val('');  
-                     return false;  
-                }  
-           }  
-      });  
- });  
- </script>
- 
- <script>  
- $(document).ready(function(){  
-      $('#about-form').submit(function(){  
-           var image_name = $('#about-file').val();  
-           if(image_name == '')  
-           {  
-                alert("Please Select Image");  
-                return false;  
-           }  
-           else  
-           {  
-                var extension = $('#about-file').val().split('.').pop().toLowerCase();  
-                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
-                {  
-                     alert('Invalid Image File');  
-                     $('#about-file').val('');  
-                     return false;  
-                }  
-           }  
-      });  
- });  
- </script>
-
-  <script>  
- $(document).ready(function(){  
-      $('#navigation-form').submit(function(){  
-           var image_name = $('#navigation-file').val();  
-           if(image_name == '')  
-           {  
-                alert("Please Select Image");  
-                return false;  
-           }  
-           else  
-           {  
-                var extension = $('#navigation-file').val().split('.').pop().toLowerCase();  
-                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
-                {  
-                     alert('Invalid Image File');  
-                     $('#navigation-file').val('');  
-                     return false;  
-                }  
-           }  
-      });  
- });  
- </script>
-  
- 

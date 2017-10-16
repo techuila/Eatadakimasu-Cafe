@@ -657,8 +657,8 @@ p {
 }
 
 .s-in .c-in .right-side .register-form .col-3:nth-child(2) {
-  width: 15%;
-  margin-left: 14%;
+  width: 24%;
+  margin-left: 10%;
 }
 
 .s-in .c-in .right-side .register-form .col-3:last-child {
@@ -748,10 +748,10 @@ p {
 ====================================*/
 #food-order {
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.6);
+  background-color: #fafafa;
   left: 0;
   right: 0;
   top: 5%;
-  background-color: #fafafa;
   padding: 30px 0 20px 0;
   font-family: "roboto";
   border-radius: 5px;
@@ -775,6 +775,21 @@ p {
   height: 130px;
   margin: auto;
   width: 130px;
+  overflow: hidden;
+}
+
+#food-order .foody {
+  background: url("../../img/upload.png") no-repeat center;
+  background-size: contain;
+  position: relative;
+}
+
+#food-order .foody:hover .img-upload {
+  background-color: black;
+  cursor: pointer;
+  opacity: 0.1;
+  height: 100%;
+  width: 100%;
 }
 
 #food-order h1, #food-order h2, #food-order h3 {
@@ -786,21 +801,39 @@ p {
   font-size: 2em;
 }
 
+#food-order .food-name.form-control {
+  width: 50%;
+}
+
+#food-order .food-desc.form-control {
+  width: 50%;
+}
+
+#food-order .food-price.form-control {
+  text-align: center;
+  width: 20%;
+}
+
 #food-order .special {
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
 #food-order button {
-  background-color: #2ecc71;
   color: #fff;
-  border: none;
-  width: 80px;
 }
 
 #food-order .add-to-cart {
+  background-color: #2ecc71;
   border-radius: 4px;
+  border: none;
   height: 35px;
+  width: 90px;
+}
+
+#food-order .btn.hover-add {
+  background-color: #2ecc71;
+  color: #ecf0f1;
 }
 
 #food-order textarea {
@@ -827,7 +860,8 @@ p {
   background-color: #f49282;
 }
 
-#food-order button:hover {
+#food-order .add-to-cart:hover,
+#food-order .btn.hover-add:hover {
   cursor: pointer;
   background-color: #54d98c;
 }
@@ -1313,6 +1347,11 @@ section.container .box-container {
         ==============================================*/
 }
 
+section.container .box-container .addbtn {
+  background-image: url("../../img/addbtnblack.png");
+  background-color: white;
+}
+
 section.container .box-container .box {
   transition: border-color 0.5s ease;
   border: 2px solid #e4e4e4;
@@ -1325,6 +1364,7 @@ section.container .box-container .box {
 section.container .box-container .box .frame {
   box-shadow: 0 0 2px black;
   background-repeat: no-repeat;
+  background-color: white;
   transition: top 0.3s ease;
   border: 5px solid #fff;
   background-size: cover;
@@ -1336,6 +1376,14 @@ section.container .box-container .box .frame {
   margin: auto;
   width: 100px;
   top: 60px;
+}
+
+section.container .box-container .box .frame .glyphicon-plus {
+  display: inline-block;
+  margin-top: 13px;
+  margin-left: 5px;
+  color: #2ecc71;
+  font-size: 60px;
 }
 
 section.container .box-container article {
@@ -1375,18 +1423,27 @@ section.container .box-container .button-cart-container h1 {
   float: left;
 }
 
+section.container .box-container .button-cart-container .delete-menu {
+  display: none;
+}
+
 section.container .box-container button {
+  float: right;
+  margin-top: 5px;
+}
+
+section.container .box-container button.add-to-cart {
   transition: background-color 0.3s ease;
   background-color: #2ecc71;
+  margin-right: 5px;
   border-radius: 4px;
   color: #fff;
   border: none;
-  height: 40px;
-  float: right;
+  height: 34px;
   width: 80px;
 }
 
-section.container .box-container button:hover {
+section.container .box-container button.add-to-cart:hover {
   background-color: #54d98c;
   cursor: pointer;
 }
@@ -1413,6 +1470,16 @@ section.container .box-container .box:hover article p {
 section.container .box-container .box:hover .button-cart-container {
   visibility: visible;
   opacity: 1;
+}
+
+section.container .box-container .box.add-menu:hover {
+  border-color: #2ecc71;
+}
+
+section.container .box-container .box.add-menu:hover .frame {
+  border-color: #2bc06a;
+  border-width: 2px;
+  top: -40px;
 }
 
 /* ====================================

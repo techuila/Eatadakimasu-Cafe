@@ -55,6 +55,7 @@ $foodOrder=$_POST['data'];
             $error['message'] = "Please fill out all the required fields!";
             $error['check'] = true;
             echo json_encode($error);
+<<<<<<< HEAD
         }else if(strpos($email, '@') !== false){
             if($searcharray['user'] == 'true'){
                 session_start();
@@ -90,6 +91,29 @@ $foodOrder=$_POST['data'];
                 }while($counter < count($foodOrder));             
                 mysqli_query($conn, "INSERT INTO `billinginfo`(`CustomerID`, `OrderID`, `Barangay`, `Street`, `House_No`, `Status`) VALUES ('$tmpguestid','$orderid','$barangay','$street','$hno','0')");
             }
+=======
+        }
+        
+        else if(strpos($email, '@') !== false){
+            mysqli_query($conn, "INSERT INTO guestinfo(guestID,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$tmpguestid','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')");
+            mysqli_query($conn, "INSERT INTO paymentmethod(`billingid`, `p_method`, `c_type`, `c_num`, `s_num`, `exp_date`) VALUES ('$orderid','$paymentmethod','$cardtype','$credcardnum','$securitycode','$expirationdate')");
+            $error['message'] = "Please wait until customer service will contact you";
+            $error['valid'] = true;
+            echo json_encode($error);
+            $counter = 1;
+
+        //     do{
+        // //     //if not log in
+        //     mysqli_query($conn, "INSERT INTO `orderinfo`(`orderid`, `customerID`, `foodName`, `quantity`, `price`) VALUES ('$orderid','$tmpguestid','$foodOrder[$counter]['name']','$foodOrder[$counter]['qty']','$foodOrder[$counter]['price']')");
+        //     $counter +=1;
+
+        //     }while($counter < count($foodOrder) + 1);
+        //    //if not log in
+             
+            mysqli_query($conn, "INSERT INTO `billinginfo`(`CustomerID`, `OrderID`, `Barangay`, `Street`, `House_No`, `Status`) VALUES ('$tmpguestid','$orderid','$barangay','$street','$hno','0')");
+        //    //else
+           
+>>>>>>> 8892be797ba23de4224931d18d4e814ccbf0a14c
         }else{
             $error['message'] = "Please enter a valid email address (e.g eatadaki@gmail.com)";
             $error['valid'] = false;
