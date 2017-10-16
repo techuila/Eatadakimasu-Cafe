@@ -1029,7 +1029,7 @@ $(document).ready(()=>{
                     "</div>"+
                     "<style>"+
                         "."+dats[x].class_name+"{"+
-                            "background-image: url('./img/menu/"+ dats[x].foodImg +"');"+
+                            "background-image: url('data:image/jpeg;base64,"+ dats[x].foodImg +"');"+
                             "background-position-x: "+ dats[x].position_x+";"+
                         "}"+
                     "</style>")($scope));
