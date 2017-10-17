@@ -1,0 +1,626 @@
+$text-color: #fff;
+$primary-color: #e74c3c;
+$nav-hover-color: #3498db;
+$flat-green: #2ecc71;
+$flat-red: #e84a5f;
+$header-height: 60px;
+$desc-font: 13px;
+$food-title-size: 2em;
+$title-size: 5em;
+
+$food-width: 180px;
+$food-height: 180px;
+
+@mixin font-face($font-family,$custom-name, $source, $format){
+    @font-face{
+        font-family: $custom-name;
+        font-style: normal;
+        font-weight: 400;
+        src:  local($font-family), url($source) format($format);
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+    }
+}
+
+@include font-face('Blacksword','Blacksword', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/df7684bd/public/fonts/Blacksword.otf','opentype');
+@include font-face('MinionPro-Regular','MinionPro', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/MinionPro-Regular.otf','opentype');
+@include font-face('Gobold Regular','Gobold Reg', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Regular.ttf','truetype');
+@include font-face('Gobold Hollow','Gobold Hol', 'https://cdn.rawgit.com/nerdcorez/eatadakimasu-cafe/3c218496/public/fonts/Gobold%20Hollow.ttf','truetype');
+
+html, body{
+    font-family: 'MinionPro';
+    font-size: 16px;
+    line-height: 1.6em;
+    margin: 0 auto;
+    position: relative;
+    background-color: white;
+}
+
+// GLOBAL 
+
+.container{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+// CHANGE NAVIGATION STYLE ON SCROLL
+
+.on-top{    
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
+.on-scroll{
+    box-shadow: 0 4px 5px rgba(0,0,0,0.4);
+    height: $header-height;
+    background-color: #fff;
+    overflow: hidden;    
+}
+
+.animate-scroll-top{
+    animation: animateTop 0.5s;
+}
+
+.animate-scroll-bottom{
+    animation: animateBottom 0.5s;
+}
+
+@keyframes animateTop{
+    from{
+        top: -300px 
+    }
+
+    to{
+        top: 0;
+    }
+}
+
+@keyframes animateBottom{
+    from{
+        background-color: #fff;
+    }
+
+    to{
+        background-color: none;
+    }
+}
+
+
+// ORDER
+
+.containers{
+    display: none;
+    position: fixed;
+    z-index: 2;
+    width: 600px;
+    height: 600px;
+    border-radius: 5px;
+    box-shadow: 5px 10px 10px rgba(0,0,0,0.5);
+    margin: 50px auto;
+    background-color: #ecf0f1;
+    padding-top: 20px;      
+    left: 0;
+    right: 0;
+
+    .exit{
+        background-image: url('../img/error.png');
+        background-size: cover;
+        filter: opacity(0.6);
+        position: absolute;
+        top: 10;
+        right: 10;
+        height: 25px;
+        width: 25px;
+    }
+
+    .exit:hover{
+        filter: opacity(0.8);
+        cursor: pointer;
+    }
+
+    .frame-foods{
+        height: 150px;
+        width: 150px;
+        background-color: black;
+        border-radius: 100%;
+        border-style: solid;
+        border-color: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .foods{
+        background-image: url('../img/menu/donburi.jpg');
+        width: inherit;
+        height: inherit;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: inherit;
+        background-position-x: -57px;
+    }
+
+    .food-name{
+        font-family: 'Blacksword';
+        font-size: 2em;
+    }
+
+    .qty{
+        width: 50px;
+        border-radius: 5px;
+    }
+}
+
+.check{
+    display: inline-block;
+}
+
+.okay{
+    background-color: $flat-green;
+    border: solid 0px;
+    width: 80px;
+    height: 30px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    cursor: pointer;
+} 
+  
+
+//BACK TO TOP BUTTON
+
+#back-to-top{
+    background-image: url('../img/back-to-top-arrow.png');
+    background-size: cover;
+    background-color: $flat-red;
+    border-radius: 100%;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+    border: none;
+    position: fixed;
+    bottom: 20; right: 20;
+    height: 55px;
+    width: 55px;
+    z-index: 2;
+}
+
+#back-to-top:hover{
+    background-color: lighten($flat-red, 5%);
+    cursor: pointer;
+}
+
+#back-to-top:focus{
+    outline: 0;
+}
+
+.title{
+    display: inline-block;
+    margin: 15px 0 0 5%;
+    font-family: 'Big John';
+    font-size: 2em;
+    color: $primary-color;
+}
+
+nav{
+    display: inline-block;
+    float: right;
+    height: inherit;
+    margin: 0 80px 0 0;
+
+    ul{
+        height: $header-height;
+        margin: 18px 0 0 0;
+        li{
+            display: inline-block;
+            height: inherit;
+            width: 100px;
+            a{
+                font-family: 'Gobold Reg';  
+                font-size: 16px;  
+                text-decoration: none;
+                color: #333;
+                height: inherit;
+                width: 100px;
+                padding: 20px 35px 20px 35px;
+                border: 0;
+            }
+        }
+
+    }
+}
+
+a:hover{
+    background-color: $nav-hover-color;
+    cursor: pointer;
+}
+
+.bg{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+}
+
+.pimg1{
+    margin-top: 0;
+    padding-top: 20%;
+    min-height: 100%;
+    background-image: url('../img/01.jpg');
+}
+
+.pimg2{
+    background-image: url('../img/02.jpg');
+}
+
+.pimg3{
+    background-image: url('../img/04blur.jpg');
+}
+
+.pimg4{
+    background-image: url('../img/03.jpg');
+}
+
+.mainCapbg{
+    background-color: rgba(255,255,255,0.5);    
+    width: inherit;
+    height: 200px;
+    position: relative;
+}
+
+.main{  
+    font-family: 'Blacksword';
+    font-size: $title-size; 
+    color: $text-color;
+    text-shadow: 2px 6px 7px rgba(0,0,0,1);
+    margin: 52px 0 50px 0;
+}
+
+.mainan{
+    font-family:'Gobold Reg';
+    font-size: 1.3em;
+    letter-spacing: 0.65em;
+    color: #fff;
+    text-shadow: 3px 4px 5px rgba(0,0,0,1);
+}
+
+.Cap{
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+}
+
+
+.container-story{
+    width: 90%;
+    margin: auto;
+}
+
+.sub{
+    font-family: 'Blacksword';
+    font-size: $title-size;
+    color: $text-color;
+    text-shadow: 2px 6px 7px rgba(0,0,0,1);
+    margin: 100px 0 80px 0;
+}
+
+.sub2{
+    @extend .sub;
+    margin-top: 250px;
+}
+
+.back{
+    text-align: center;
+}
+
+.subnan{
+    font-size: 1.3em;
+    color: $text-color;
+    line-height: 2.8em;
+}
+
+.container-menu{
+    @extend .container-story;
+    padding-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.container-food{
+    height: 270px;
+    width: 240px;
+    margin: 0 0 150px 0;
+    position: relative;
+
+    .foods{
+        width: $food-width;
+        height: $food-height;
+    }
+
+    .frame{
+        background-color: black;
+        border-radius: 100%;
+        border-style: solid;
+        border-color: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,0.5);
+        display: block;
+        margin: 0 auto;
+        overflow: hidden;
+
+        .food{
+            position: absolute;
+            height: inherit;
+            width: inherit;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: inherit;
+        }
+
+        // BACKGROUND IMAGES 
+        .curry{
+            background-image: url('../img/menu/curry.jpg');
+            background-position-x: -60px;            
+        }
+
+        .donburi{
+            background-image: url('../img/menu/donburi.jpg');
+            background-position-x: -68px;
+        }
+
+        .cakey{
+            background-image: url('../img/menu/japanesecake.jpg');
+            background-position-x: -40px;
+        }
+
+        .karaage{
+            background-image: url('../img/menu/karaage.jpg');
+            background-position-x: -30px;
+        }
+
+        .omurice{
+            background-image: url('../img/menu/omurice.jpg');
+            background-position-x: -40px;
+        }
+
+        .onigiri{
+            background-image: url('../img/menu/onigiri.jpg');
+            background-position-x: -55px;
+        }
+
+        .ramen{
+            background-image: url('../img/menu/ramen.jpg');
+            background-position-x: -30px;
+        }
+
+        .sushi{
+            background-image: url('../img/menu/sushi.jpg');
+            background-position-y: -50px;
+        }
+
+        .tempura{
+            background-image: url('../img/menu/tempura.jpg');
+            background-position-x: -60px;
+        }
+
+        .tonkatsu{
+            background-image: url('../img/menu/tonkatsu.jpg');
+            background-position-x: -45px;
+        }
+
+        .food-desc{
+            display: none;
+            margin-top: 35px;
+            width: 150px;
+            height: 85px;
+            color: #fff;
+            font-size: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .click-food{
+            display: none;
+            margin: 20px 0 0 -35px;
+            height: 150px;
+            width: 250px;
+            background-color: $flat-green;
+            border-radius: 100%;
+            position: relative;
+            z-index: 1;
+            
+            span{
+                font-size: $desc-font - 1;
+                color: #fff;
+            }
+        }
+    }
+
+    p{
+        font-family: 'Blacksword';
+        font-size: $food-title-size;
+        color: #fff;
+        text-shadow: 0px 3px 4px rgba(0,0,0,1);
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+.container-food .click-food:hover, .containers .okay:hover{
+    background-color: lighten($flat-green, 10%);
+}
+
+.container-food .click-food:active, .containers .okay:active{
+    background-color: $flat-green;
+}
+
+.frame:hover{
+
+    .food{
+        opacity: 0.5;
+    }
+
+    .food-desc{
+        display: inline-block;
+    }
+
+    .click-food{
+        display: block;
+        cursor: pointer;
+    }
+}
+
+
+
+.container-order{
+    @extend .container-story;
+    display: flex;
+    align-items: stretch;
+    height: 845px;
+
+    .left{
+        width: 100%;
+        padding: 0;
+
+        .foodspan{
+            height: 80px;
+            width: 668px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            // background-color: lightblue;
+            
+            .frame{
+                margin: 10px 0 10px 10px;
+            }
+            
+            .order{
+                height: 60px;
+                width: 60px;
+                display: inline-block;
+
+                .add{
+                    background-image: url('../img/plus.png');
+                    background-size: cover;
+                    background-color: #fff;
+                }
+                .add:hover{
+                    cursor: pointer;
+                }
+            }
+
+            span{
+                @extend .sub;             
+                margin: 0 0 0 10px; 
+                font-size: 2em;
+            }
+
+            .price{
+                // background-color: white;    
+            }
+        }
+    }
+
+    .right{
+        width: 990px;
+        background-color: lightblue;
+
+        #cart-table{
+            width: 500px;
+
+            #qty{
+                width: 50px;
+            }
+        }
+        #checkout{
+            width: 80px;
+            right: 0;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 914px){
+    header{
+        height: $header-height + 40;  
+    }
+
+    nav{
+        display: flex;
+        justify-content: space-around;
+        height: 50px;
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .bg{
+        background-attachment: scroll;
+    }
+
+    .title{
+        margin: 15px 0 0 0;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .pimg1{
+        .mainCapbg{
+            height: 200px;
+            .main{
+                font-size: 4em;
+                margin-bottom: 30px;
+            }
+            .mainan{
+                font-size: 1em;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 395px){
+    header{
+        height: $header-height + 20;
+    }
+
+    nav{
+        height: 30px;
+    }
+
+    .title{
+        font-size: 1.5em;
+    }
+
+    .nav{
+        font-size: .7em;
+    }
+
+    .pimg1{
+        .mainCapbg{
+            top: 270px;
+            height: 100px;
+            .main{
+                font-size: 1.5em;
+                margin: 20px 0 10px 0;
+            }
+            .mainan{
+                font-size: .5em;
+            }
+        }
+    }
+
+    .pimg2{
+        .container-story{
+            .sub{
+                margin: 45px 0 30px 0;
+            }
+            .subnan{
+                line-height: 1.1em;
+            }
+        }
+    }
+}

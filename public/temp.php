@@ -1,4 +1,5 @@
 <?php
+
 // include("./php/loginserv.php"); // Include loginserv for checking username and password
 // include("./php/registerserv.php");
 ?>
@@ -24,6 +25,29 @@
     </script> -->
 </head>
 <body ng-app="myApp" ng-controller="myCtrl" ng-init="checkUser();">
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ modalTitle }}</h4>
+            </div>
+            <div class="modal-body">
+                <p>{{ modalText }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+
+        </div>
+    </div>
+    
     <!--Order Form  -->
     <div class="containers" id="food-order" ng-init="qty = 0" ng-show="showOrder">
         <center>
@@ -70,11 +94,11 @@
                                     </strong>
                                 </li>
 
-                            <li class="row items">
+                            <!-- <li class="row items">
                                 <span class="qty">2</span>
                                 <span class="item-name">Donburi</span>
                                 <span class="price">₱80.00</span>
-                            </li> 
+                            </li>  -->
                             <li class="row boom" id="add-items">
                                 <strong>
                                     <span class="total">TOTAL:</span>
@@ -113,7 +137,7 @@
                         <!--==============================================
                                     PERSONAL INFORMATION FORM  
                         ==============================================-->
-                        <form action="" method="post" id="register">
+                        <form action="" method="post" id="register" enctype="multipart/form-data">
                             <div class="register-form">
                                 <!--************************************
                                     NAVIGATION BAR FOR REGISTER FORM  
@@ -145,20 +169,20 @@
                                     <div class="col-span-2">
                                         <div class="col-2">
                                             <h5>First Name*</h5>
-                                            <input type="text" name="first-name" value="">
+                                            <input type="text" name="first-name" value="" maxlength="35">
                                         </div>
                                         <div class="col-2">
                                             <h5>Last Name*</h5>
-                                            <input type="text" name="last-name">
+                                            <input type="text" name="last-name" maxlength="35">
                                         </div>
                                     </div>
                                     <div ng-hide="isGuest">
                                         <h5>Username*</h5>
-                                        <input type="text" name="username">
+                                        <input type="text" name="username" maxlength="15">
                                         <h5>Password*</h5>
-                                        <input type="password" name="password">
+                                        <input type="password" name="password" id="password" maxlength="16" minlength="8">
                                         <h5>Confirm Password*</h5>
-                                        <input type="password" name="cpassword">
+                                        <input type="password" name="cpassword" maxlength="16" minlength="8">
                                     </div>
                                     <div class="col-span-3">
                                         <div class="col-3">
@@ -181,11 +205,11 @@
                                         </div>
                                         <div class="col-3">
                                             <h5>Day*</h5>    
-                                            <input type="text" placeholder="Day" class="day" name="day">
+                                            <input type="text" placeholder="Day" class="day" name="day" maxlength="2">
                                         </div>
                                         <div class="col-3">
                                             <h5>Year*</h5>    
-                                            <input type="text" placeholder="Year" class="year" name="year">
+                                            <input type="text" placeholder="Year" class="year" name="year" maxlength="4">
                                         </div>
                                     </div>
                                     <h5>Gender</h5>
@@ -203,23 +227,23 @@
                             
                                 <div class="bill-form" ng-show="showBill">
                                     <h5>Barangay *</h5>
-                                    <input type="text" name="barangay">
+                                    <input type="text" name="barangay" maxlength="20">
 
                                     <div class="col-span-2">
                                         <div class="col-2">
                                             <h5>Street</h5>
-                                            <input type="text" name="street">
+                                            <input type="text" name="street" maxlength="20">
                                         </div>
                                         <div class="col-2">
                                             <h5>House No.</h5>
-                                            <input type="text" name="h-no">
+                                            <input type="text" name="h-no" maxlength="4">
                                         </div>
                                     </div>
 
                                     <h5>Email *</h5>
-                                    <input type="text" name="email">
+                                    <input type="text" name="email" maxlength="255">
                                     <h5>Mobile No. *</h5>
-                                    <input type="text" name="mobile">
+                                    <input type="text" name="mobile" maxlength="11">
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" ng-hide="guest" class="btn btn-warning">Skip</button>
                                     <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                                 </div>
@@ -235,7 +259,7 @@
 
                                     <div ng-show="cash">
                                         <h5>Bring change for?</h5>
-                                        <input type="text" name="change">
+                                        <input type="text" name="change" maxlength="35">
 
                                         <h5>Special request for your order?</h5>
                                         <textarea rows="3" cols="5"></textarea>
@@ -252,11 +276,11 @@
                                         <div class="col-span-2">
                                             <div class="col-2">
                                                 <h5>Credit Card Number</h5>
-                                                <input type="text" name = "c-num">
+                                                <input type="text" name = "c-num" maxlength="19">
                                             </div>
                                             <div class="col-2">
                                                 <h5>Security Code</h5>
-                                                <input type="text" name = "s-code">
+                                                <input type="text" name = "s-code" maxlength="3">
                                             </div>
                                         </div>
 
@@ -271,7 +295,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save">                            
+                                    <input type="submit" ng-click="showLogin = false; showPayment = false; saveCustInfo()" class="save-info" value="Save Information" name="save" id="save">                            
                                 </div>
                             </div>
                         </form>
@@ -328,7 +352,7 @@
                     Seafood that have been battered and deep <br> fried.
                     Accompanied by shredded <br> cabbage and sauce.
                 </p>
-                <button type="button" id="temp"><span class="glyphicon glyphicon-shopping-cart icon-left"></span><span class="label-right"><strong>Order Now</strong></span></button>
+                <button data-toggle="modal" data-target="#myModal" type="button" id="temp"><span class="glyphicon glyphicon-shopping-cart icon-left"></span><span class="label-right"><strong>Order Now</strong></span></button>
             </article>
             <article class="art-bg pud" ng-show="three">
                 <h1>Chocolate Pudding</h1>
@@ -362,26 +386,27 @@
     <section class="container" id="about">
         <div class="something">
             <img src="./img/menu/sushi.jpg" alt="" class="bg bg-sushi">
-            <input ng-show="admin" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
+            <input ng-show="admin" type="file" name="about-file" id="about-file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
         </div>
         <article class="about">
             <h1>Our Story</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima vero, repellat quibusdam voluptas architecto consectetur, illum aliquid incidunt hic corporis soluta, reiciendis. Placeat alias, quasi tenetur quis consequatur explicabo tempora commodi quas, et fuga dolor autem, perferendis? Officia enim veritatis provident, soluta perspiciatis ratione deserunt facere aperiam aliquam ullam quae at facilis nostrum rerum eveniet! Asperiores cupiditate atque accusamus natus, sequi quae nobis dolorum incidunt, iusto ipsa nihil vero alias debitis praesentium velit aliquam excepturi eos sed voluptates enim libero voluptatem deleniti laboriosam. Architecto sunt, nihil facere aperiam! Repellendus asperiores quidem officiis esse dolorum quia laboriosam illo, necessitatibus placeat tenetur! Commodi quae magnam a provident maiores consequatur, molestiae ipsum obcaecati quidem ex aut quas saepe quis! Doloremque et repellendus earum saepe, iste numquam ducimus reiciendis laborum aut reprehenderit natus sed quos sint tempora unde ut porro labore perspiciatis ratione rem, eum velit repellat dignissimos. Nihil, quia corporis! Consequuntur quis excepturi ipsa quia voluptatum. Quis sequi dignissimos laboriosam consequatur quam perspiciatis voluptatibus sit deserunt a et maxime eaque aspernatur esse, nobis amet illo aliquam corrupti natus quia laborum dolore! Quidem vero assumenda doloribus rem labore placeat necessitatibus incidunt sit enim iste. Illum inventore minus vitae maxime id, explicabo consequatur ipsam nulla.</p>
         </article>
     </section>
-    
+
 
     <!--Menu  -->
     <section id="menu">
         <div class="menu-background bg" style="position: relative;">
-            <form action="" id="menu-form">
-                <input ng-show="admin" name="menu-name" id="menu-file" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
-            </form>
+            <form method="POST" action="./php/uploadmenu.php" id="menu-form" name="menu-form" enctype="multipart/form-data">
+            <input ng-show="admin" name="menu-file" id="menu-file" type="file" class="change-bg" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
         </div>
         <article class="art-bg">
             <h1><span>AFFORDABLE</span> PRICING</h1>
         </article>
     </section>
+    <!-- <input ng-show="admin" type="submit" name="insert_menu" id="insertmenu" value="Update Menu" style="width: 100px;"> -->
+    </form>
     
     <section class="container">
         <article class="menu-sub-title">
@@ -572,8 +597,8 @@
     <!--Order  -->
     <section id="order">
         <div class="order-background bg" style="position: relative;">
-            <form action="" id="order-form">
-                <input ng-show="admin" ng-click="uploadPhoto('order');" type="file" class="change-bg" style="opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <form method="POST" action="./php/uploadorder.php" id="order-form" name="order-form" enctype="multipart/form-data">
+                <input ng-show="admin" type="file" name="order-file" id="order-file" class="change-bg" style="opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
             </form>
         </div>
         <article>
@@ -625,3 +650,97 @@
     
 </body>
 </html>
+
+<script>  
+ $(document).ready(function(){  
+      $('#menu-form').submit(function(){  
+           var image_name = $('#menu-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#menu-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#menu-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>  
+ 
+<script>  
+ $(document).ready(function(){  
+      $('#order-form').submit(function(){  
+           var image_name = $('#order-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#order-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#order-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>
+ 
+ <script>  
+ $(document).ready(function(){  
+      $('#about-form').submit(function(){  
+           var image_name = $('#about-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#about-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#about-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>
+
+  <script>  
+ $(document).ready(function(){  
+      $('#navigation-form').submit(function(){  
+           var image_name = $('#navigation-file').val();  
+           if(image_name == '')  
+           {  
+                alert("Please Select Image");  
+                return false;  
+           }  
+           else  
+           {  
+                var extension = $('#navigation-file').val().split('.').pop().toLowerCase();  
+                if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+                {  
+                     alert('Invalid Image File');  
+                     $('#navigation-file').val('');  
+                     return false;  
+                }  
+           }  
+      });  
+ });  
+ </script>
+  
+ 
