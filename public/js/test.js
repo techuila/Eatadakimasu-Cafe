@@ -1045,8 +1045,9 @@ $(document).ready(()=>{
                 cache: false,
                 success: function(data){
                     messageBox("Successful!","SUCESS",true);
-                    $('.menu-background').attr('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
-                    $('.order-background').attr('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
+                    console.log(data[1]);
+                    $('#menu-background').css('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
+                    // $('.order-background').attr('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
                 },
                 error: function(a,b,c){
                     console.log('Error: ' + a + " " + b + " " + c);

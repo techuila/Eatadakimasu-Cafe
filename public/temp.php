@@ -425,7 +425,7 @@
     <!--Menu  -->
     <section id="menu">
         <form class="form" method="POST" action="./php/uploadmenu.php" id="menu-form" name="menu-forms" enctype="multipart/form-data">
-            <div class="menu-background bg" style="position: relative;">
+            <div id="menu-background" class="menu-background bg" style="position: relative;">
             <input ng-show="adminMode" name="menu-file" id="menu-file" type="file" class="change-bg" style="cursor: pointer; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">            
         </div>
         <article class="art-bg">

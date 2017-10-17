@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         //echo "vr1: " . $row["vr1"]. " - vr2: " . $row["vr2"]. "<br>";
-        $banner[$counter] = base64_encode($row["disp_section"]);
+        $banner[$counter] = base64_encode($row["disp_img"]);
         $counter += 1;
     }
     echo json_encode($banner);
