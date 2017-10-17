@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2017 at 06:14 PM
+-- Generation Time: Oct 16, 2017 at 10:31 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -58,6 +58,16 @@ CREATE TABLE IF NOT EXISTS `customerinfo` (
   PRIMARY KEY (`customerID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `customerinfo`
+--
+
+INSERT INTO `customerinfo` (`customerID`, `username`, `Firstname`, `Lastname`, `Birthday`, `Gender`, `Barangay`, `Street`, `House_No`, `Email`, `Mobile_No`) VALUES
+('', 'Admin', 'Noriel', 'Lim', '2017-10-04', 'Male', 'Zambowood', 'Zambowood', 123, 'lim@gmail.com', 90909099),
+('C-1', 'Latina', 'Axl', 'Cuyugan', '1999-11-23', 'Male', 'tetuan', 'tetuan', 3231, 'axl@gmail.com', 2147483647),
+('C-2', 'latina', 'asdfl', 'sdfl', '1232-09-12', 'Male', 'tetuan', 'tetuan', 2132, 'tan1@gmail.com', 2147483647),
+('C-3', 'hjkh', 'asdqwe', 'hkjkjhk', '1999-02-21', 'Male', 'yasyd', 'asdas', 0, 'hkjhkj@', 23423542);
+
 -- --------------------------------------------------------
 
 --
@@ -73,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `foodinfos` (
   `position_x` varchar(255) NOT NULL,
   `class_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `foodinfos`
@@ -140,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `images` (
 
 CREATE TABLE IF NOT EXISTS `loaddisplay` (
   `ID` int(255) NOT NULL AUTO_INCREMENT,
-  `disp_img` blob NOT NULL,
+  `disp_img` longblob NOT NULL,
   `disp_header` varchar(255) NOT NULL,
   `disp_paragraph` varchar(255) NOT NULL,
   `disp_section` varchar(255) NOT NULL,
@@ -191,7 +201,10 @@ CREATE TABLE IF NOT EXISTS `login` (
 --
 
 INSERT INTO `login` (`Username`, `Password`, `Usertype`) VALUES
-('Admin', 'Admin', 'Admin');
+('Admin', 'Admin', 'Admin'),
+('hjkh', 'popopopopo', 'Customer'),
+('Latina', 'bustylatina', 'Customer'),
+('latina123', '1234567', 'Customer');
 
 -- --------------------------------------------------------
 

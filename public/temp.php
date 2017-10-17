@@ -79,17 +79,17 @@
 
             <!-- ADMIN MODE -->
             <div ng-show="adminMode" class="admin-container">
-                <form action="" id="add-menu">
+                <form class="form" method="POST" action="./php/insertfood.php" id="add-menu" name="add-menu" enctype="multipart/form-data">
                     <div class="frame foody"><div class="img-upload">
-                        <input type="file" style="cursor: pointer; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    <input name="photo" id="photo" type="file" style="cursor: pointer; opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     </div></div> <br>
-                    <h4 class="qty-label">Food Name</h4> 
-                    <input id="food-name-txt" type="text" class="food-name form-control"><br>
-                    <h4 class="qty-label">Description</h4>                             
-                    <textarea id="food-desc-txt" name="" id="" cols="25" rows="3" class="food-desc form-control"></textarea>
-                    <h4 class="qty-label">Price</h4> 
-                    <input id="food-price-txt" type="text" class="food-price form-control"><br>
-                    <input type="submit" class="btn hover-add" ng-click="saveMenu();" value="Add">
+                    <h4 class="qty-label">Food Name <span id="errmsg11" style="color:red;font-size:12px"></span></h4> 
+                    <input name="food-name" id="food-name-txt" type="text" class="food-name form-control"><br>
+                    <h4 class="qty-label">Description <span id="errmsg12" style="color:red;font-size:12px"></span></h4>                             
+                    <textarea name="food-desc" id="food-desc-txt" cols="25" rows="3" class="food-desc form-control"></textarea>
+                    <h4 class="qty-label">Price <span id="errmsg13  " style="color:red;font-size:12px"></span></h4> 
+                    <input name="food-qty" id="food-price-txt" type="text" class="food-price form-control"><br>
+                    <input name="insert_menu"type="submit" class="btn hover-add" ng-click="saveMenu();" value="Add">
                     <button class="btn btn-default" style="margin-left: 8px; color: #34495e;">Cancel</button>            
                 </form>
             </div>
@@ -347,7 +347,7 @@
                         <li><a href="" class="sign-in" id="sign-in" ng-click="showIn = true" ng-hide="signedIn">sign in</a>
                         <a href="" id="user" class="user dropdown-toggle" data-toggle="dropdown" ng-show="signedIn"><span class="greetings">Hello, </span>{{ user }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="" class="o-user" ng-hide="adminMode" ng-click="adminModes();" id="adminMode">Admin Mode</a></li><br>                            
+                        <li><a href="" class="o-user" ng-show="showAdmin();" ng-click="adminModes();" id="adminMode">Admin Mode</a></li><br>                            
                         <li><a href="" class="o-user" ng-show="adminMode" ng-click="adminModes();" id="adminModeoff">Admin Mode Off</a></li><br>                                                    
                         <li><a href="" class="o-user" ng-show="admin">Manage Transactions</a></li><br>                                                    
                         <li><a href="" class="o-user" ng-hide="guest">Edit Info</a></li><br>
@@ -597,11 +597,11 @@
                     </p>
                 </article> 
                 <div class="button-cart-container">
-                    <button id="donburi" ng-click="showAddMenu();" class="add-to-cart" ng-click="showOrder = true">Add Menu</button>
+                    <button id="donburi" ng-click="showAddMenu();" class="btn btn-success" ng-click="showOrder = true">Add Menu</button>
                 </div>
             </div>
 
-            <article class="menu-sub-title" id="drinks">
+            <article class="menu-sub-title" id="drinks" ng-hide="admin">
                 <br>
                 <h1 class="menu-title">Drinks</h1>
                 <hr>
@@ -638,7 +638,7 @@
     </section>
 
     <!--Order  -->
-    <section id="order" ng-hide="admin">
+    <section id="order">
         <form class="form" method="POST" action="./php/uploadorder.php" id="order-form" name="order-form" enctype="multipart/form-data">
             <div class="order-background bg" style="position: relative;">
                 <input ng-show="adminMode" type="file" name="order-file" id="order-file" class="change-bg" style="cursor: pointer; opacity: 0; z-index: 5; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">

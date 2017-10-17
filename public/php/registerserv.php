@@ -38,11 +38,12 @@ header('Content-type: application/json');
             $custid +=1;
             $tmpcustid = "C-" . $custid;
             $query2 = mysqli_query($conn, "SELECT * FROM customerinfo WHERE customerID='$tmpcustid'");
-            $rows = mysqli_num_rows($query2);
-        }while($rows > 0);
+            $rows2 = mysqli_num_rows($query2);
+        }while($rows2 > 0);
         
         //check out fields
     if(trim($username == '') || trim($password == '') || trim($fname == '') || trim($lname == '') || trim($cpassword == '') || trim($month == '') || trim($day == '') || trim($year == '') || trim($barangay == '') || trim($email == '') || trim($mobile == '')){
+        $error['titi'] = "Empty Fields!";
         $error['message'] = "Please fill out all the required fields!";
         $error['check'] = true;
         echo json_encode($error);
@@ -61,25 +62,30 @@ header('Content-type: application/json');
                 $error['match'] = true;
                 $error['leng'] = true;
                 $error['valid'] = true;
-                $error['message'] = "Register Successful, Thank you for Registering!";
+                $error['titi'] = "Register Successful" ;
+                $error['message'] = "Thank you for Registering!";
                 $error['exist'] = true;
                 echo json_encode($error);
                 }else{
+                    $error['titi'] = "Invalid Email!";
                     $error['message'] = "Please enter a valid email address (e.g eatadaki@gmail.com)";
                     $error['valid'] = false;
                     echo json_encode($error);
                 }
             }else{
+                $error['titi'] = "Password doesn't match!";
                 $error['message'] = "Please make sure your passwords are match.";
                 $error['match'] = false;
                 echo json_encode($error);
             }
         }else{
+            $error['titi'] = "Password length is too short!";
             $error['message'] = "Please enter more than 6 characters.";
             $error['leng'] = false;
             echo json_encode($error);
         }
     }else{
+        $error['titi'] = "Existing Username!";
         $error['message'] = "Sorry, Username is already existing.";
         $error['exist'] = false;
         echo json_encode($error);
