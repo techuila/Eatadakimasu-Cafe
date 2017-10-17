@@ -781,10 +781,12 @@ $(document).ready(()=>{
             }
         };
         $scope.checkUser = function(){
-            if($scope.adminMode != true){
-                setTimeout(function() {
-                    $('.lubut').css('display', 'none');                
-                }, 500);
+            if(localStorage.getItem('admin') == 'true'){
+                if($scope.adminMode != true){
+                    setTimeout(function() {
+                        $('.lubut').css('display', 'none');                
+                    }, 600);
+                }
             }
             startSlider();
             userSignedIn();
@@ -848,8 +850,11 @@ $(document).ready(()=>{
 
                         if (data.Usertype == "Admin"){
                             $scope.admin = true;
-                             localStorage.setItem('admin',  true);
-                        } 
+                            localStorage.setItem('admin',  true);
+                            $('.add-to-cart').css('display', 'none');      
+                        }else{
+                            $('.add-to-cart').css('display', 'initial');                                    
+                        }
 
                         userSignedIn();  
                         $scope.$apply();
@@ -1110,7 +1115,7 @@ $(document).ready(()=>{
             }else if(foodname == 'cakey'){
                 displayFoodOrder("japanesecake", "Japanese Cakey", -10, isAdmin);
             }else if(foodname == 'karaage'){
-                displayFoodOrder("karaage", "Karaage", 0), isAdmin;
+                displayFoodOrder("karaage", "Karaage", 0, isAdmin);
             }else if(foodname == 'omurice'){
                 displayFoodOrder("omurice", "Omurice", -30, isAdmin);
             }else if(foodname == 'onigiri'){
@@ -1126,7 +1131,9 @@ $(document).ready(()=>{
             }else if(foodname == 'lipton'){
                 displayFoodOrder("lipton", "Lipton Green Tea", 0, isAdmin);
             } else if(foodname == 'iced'){
-                displayFoodOrder("iced", "Iced Tea", 0), isAdmin;
+                displayFoodOrder("iced", "Iced Tea", 0, isAdmin);
+            }else{
+                displayFoodOrder(foodname, "Iced Tea", 0, isAdmin);                
             }
         }
         function displayFoodOrder(food, foodname, x_pos,isAdmin){
@@ -1193,7 +1200,6 @@ $(document).ready(()=>{
                 // startSlider();
                 if (localStorage.getItem('admin') == 'true'){
                     $scope.admin = true;
-                     
                     setTimeout(function() {  
                         if ($scope.adminMode){
                             $('.add-to-cart').text("Edit");
