@@ -37,6 +37,322 @@ $(document).ready(()=>{
         body.stop().animate({scrollTop: menuLoc+ 20},800,'swing');        
     });
 
+
+    //ADMIN MODE
+
+    $("#adminMode").click(()=>{
+        $('.form').toggleClass("menu-form");       
+        $('.lubut').css("display","initial"); 
+    });
+
+    $("#adminModeoff").click(()=>{
+        $('.form').toggleClass("menu-form");    
+        $('.lubut').css("display","none"); 
+    });
+
+    //disregard special characters in first-name
+    $('#first-name').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in first-name
+    $("#first-name").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard special characters in last-name
+    $('#last-name').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg1").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in last-name
+    $("#last-name").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg1").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard characters and special characters in day
+    $('#day').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg2").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+    //disregard characters and special characters in year
+    $('#year').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg3").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+        //disregard special characters but allow spaces in street
+    $('#barangay').on('keypress', function (event) {
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg4").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in barangay
+    $("#barangay").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg4").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard special characters but allow spaces in street
+    $('#street').on('keypress', function (event) {
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg5").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+     //disregard characters and special characters in house no
+     $('#h-no').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg6").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in mobile no
+     $('#mobile').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg7").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in money change
+     $('#change').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg8").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+      //disregard characters and special characters in credit card number
+     $('#c-num').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg9").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+        //disregard characters and special characters in security code
+     $('#s-code').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg10").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+    
+      //disregard special characters but allow spaces in food name
+    $('#food-name-txt').on('keypress', function (event) {
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg11").html("Characters Only").show().fadeOut("slow");
+                   return false;
+           event.preventDefault();
+           return false;
+        }
+    });
+
+    //disregard digits in food name
+    $("#food-name-txt").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg11").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard special characters but allow spaces in food desc
+    $('#food-desc-txt').on('keypress', function (event) {
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (!regex.test(key)) {
+            $("#errmsg12").html("Characters Only").show().fadeOut("slow");
+                return false;
+        event.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard digits in food desc
+    $("#food-desc-txt").keypress(function (e) {
+        if (e.which > 48 && e.which < 57){
+        $("#errmsg12").html("Characters Only").show().fadeOut("slow");
+            return false;
+        e.preventDefault();
+        return false;
+        }
+    });
+
+    //disregard characters and special characters in food price
+    $('#food-price-txt').keypress(function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+           //display error message
+           $("#errmsg13").html("Digits Only").show().fadeOut("slow");
+                  return false;
+          }
+      });
+
+
+    //menu-file click
+    $('#menu-form').submit(function(){  
+        var image_name = $('#menu-file').val();  
+        if(image_name == '')  
+        {  
+             alert("Please Select Image");  
+             return false;  
+        }  
+        else  
+        {  
+             var extension = $('#menu-file').val().split('.').pop().toLowerCase();  
+             if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+             {  
+                  alert('Invalid Image File');  
+                  $('#menu-file').val('');  
+                  return false;  
+             }  
+        }  
+   });  
+
+   //order-file click
+   $('#order-form').submit(function(){  
+    var image_name = $('#order-file').val();  
+    if(image_name == '')  
+    {  
+         alert("Please Select Image");  
+         return false;  
+    }  
+    else  
+    {  
+         var extension = $('#order-file').val().split('.').pop().toLowerCase();  
+         if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+         {  
+              alert('Invalid Image File');  
+              $('#order-file').val('');  
+              return false;  
+         }  
+    }  
+});  
+
+    //about-file click
+    $('#about-form').submit(function(){  
+        var image_name = $('#about-file').val();  
+        if(image_name == '')  
+        {  
+            alert("Please Select Image");  
+            return false;  
+        }  
+        else  
+        {  
+            var extension = $('#about-file').val().split('.').pop().toLowerCase();  
+            if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+            {  
+                alert('Invalid Image File');  
+                $('#about-file').val('');  
+                return false;  
+            }  
+        }  
+    });  
+
+    //navigation-file click
+    $('#navigation-form').submit(function(){  
+        var image_name = $('#navigation-file').val();  
+        if(image_name == '')  
+        {  
+             alert("Please Select Image");  
+             return false;  
+        }  
+        else  
+        {  
+             var extension = $('#navigation-file').val().split('.').pop().toLowerCase();  
+             if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+             {  
+                  alert('Invalid Image File');  
+                  $('#navigation-file').val('');  
+                  return false;  
+             }  
+        }  
+   });  
+
+     //add food-file click
+     $('#add-menu').submit(function(){  
+        var image_name = $('#photo').val();  
+        if(image_name == '')  
+        {  
+             alert("Please Select Image");  
+             return false;  
+        }  
+        else  
+        {  
+             var extension = $('#photo').val().split('.').pop().toLowerCase();  
+             if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)  
+             {  
+                  alert('Invalid Image File');  
+                  $('#photo').val('');  
+                  return false;  
+             }  
+        }  
+   });  
+
     /*=============================================
                         EVENTS
     =============================================*/
@@ -327,24 +643,56 @@ $(document).ready(()=>{
     var app = angular.module("myApp",['ngAnimate']);
     var orders = new Array();
     var removePrice = 0;    
+    var buttonText = "Add to Cart";
+    
     app.controller('myCtrl', function($scope,$compile){
+        //BILLING INFORMATION TEXTBOX FOR AUTOCOMPLETE
+        $scope.barangayTxt = "";
+        $scope.streetTxt = "";
+        $scope.houseTxt = "";
+        $scope.emailTxt = "";
+        $scope.mobileTxt = "";
+        $scope.adminMode = false;
+
         $scope.showActions = [];
         $scope.admin = false;
         $scope.totalPricy = totalPrice;
         $scope.generate = function(){
-            $.ajax({
-                url: './php/loadfood.php',
-                dataType: 'json',
-                type: 'GET',
-                cache: false,
-                success: function(data){
-                    getData(data);  
-                },
-                error: function(a,b,c){
-                    console.log('Error: ' + a + " " + b + " " + c);
-                }
-            });
-        };
+            loadFood();
+            userSignedIn();
+        }
+
+        // $scope.saveMenu = function(){
+        //     $('#insert_img').submit(()=>{
+        //         return false;
+        //     });
+        //     var f = $('#food-photo').val();
+        //     f = f.replace(/.*[\/\\]/, '');  
+        //     var contents = $("#add-menu").serialize();   
+        //     contents += "&photo="+f;
+        //     console.log(contents);         
+        //     $.ajax({
+        //         url: './php/insertfood.php',
+        //         dataType: 'json',
+        //         type: 'post',
+        //         data: contents,
+        //         cache: false,
+        //         success: function(data){
+        //             messageBox("SUCCESS", "SUCCESS",true);
+        //             console.log(data);
+        //             $scope.showOrder = false;
+        //             backToMain();
+        //             clearTextMenu();
+        //             $scope.$apply();
+        //         },
+        //         error: function(a,b,c){
+        //             console.log('Error: ' + a + " " + b + " " + c);
+        //         }
+        //     });
+        // }
+        $scope.showAdmin = function(){
+            return $scope.admin && !$scope.adminMode;
+        }
         $scope.navLoc = function(loc, clicked){
             if(loc == 1 && clicked == 'top' && complete1 == false){
                 expand == true? hideSign(): expand = false;
@@ -418,18 +766,31 @@ $(document).ready(()=>{
             }, 1800);
         };
         $scope.requireLogin = function(class_name){
-            if(localStorage.getItem('success') == 'true'||
-            localStorage.getItem('guest') == 'true'){
-                displayfood(class_name);                
-                $scope.showOrder =  true; 
+            if(localStorage.getItem('success') == 'true'|| localStorage.getItem('guest') == 'true'){
+                if(!$scope.adminMode){
+                    displayfood(class_name,$scope.adminMode);                
+                    $scope.showOrder =  true; 
+                }else{
+                    clearTextMenu();
+                    displayfood(class_name,$scope.adminMode);                
+                    $scope.showOrder =  true;                     
                 }
-            else{ 
-                displayfood(class_name);
+            }else{ 
+                displayfood(class_name); 
                 $scope.showIn = true; 
             }
         };
         $scope.checkUser = function(){
+            if(localStorage.getItem('admin') == 'true'){
+                if($scope.adminMode != true){
+                    setTimeout(function() {
+                        $('.lubut').css('display', 'none');                
+                    }, 600);
+                }
+            }
+            startSlider();
             userSignedIn();
+            loadDisplay();
         }
         $scope.exitForm = function(){
             expand == true? hideSign(): angular.noop();
@@ -444,12 +805,30 @@ $(document).ready(()=>{
         $scope.logout = function(){
             localStorage.clear();
         }
+        $scope.deleteMenu = function($event,class_name){
+            $.ajax({
+                url: './php/deletefood.php',
+                dataType: 'json',
+                type: 'post',
+                data: {data:class_name},
+                cache: false,
+                success: function(data){
+                    messageBox("Menu Deleted!","Menu successfully deleted.",true);
+                    angular.element($event.currentTarget).parent().parent().remove();
+                },
+                error: function(a,b,c){
+                    console.log('Error: ' + a + " " + b + " " + c);
+                }
+            });
+        }
         
         //PHP TO JAVASCRIPT
         $scope.sign_in = function(){
             $('#form').submit(()=>{
                 return false;
             });
+            $scope.notLoggedIn = false;
+            order = false;
             var contents = $("#form").serialize();
             console.log(contents);
             $.ajax({
@@ -471,9 +850,12 @@ $(document).ready(()=>{
                         $scope.welcome = " Welcome " + data.Firstname + " " + data.Lastname + ".";
 
                         if (data.Usertype == "Admin"){
-                             localStorage.setItem('admin',  'true');
-                             $scope.admin = true;
-                        } 
+                            $scope.admin = true;
+                            localStorage.setItem('admin',  true);
+                            $('.add-to-cart').css('display', 'none');      
+                        }else{
+                            $('.add-to-cart').css('display', 'initial');                                    
+                        }
 
                         userSignedIn();  
                         $scope.$apply();
@@ -493,6 +875,19 @@ $(document).ready(()=>{
                 }
             }); 
         };
+
+        $scope.adminModes = function(){
+            if($scope.adminMode == false){
+                $scope.adminMode = true;                      
+                messageBox("Admin Mode!","You can now edit sections from the website.",true);
+                $scope.$apply();
+            }else{
+                $scope.adminMode = false; 
+                $('.add-to-cart').text("Add to Cart");
+                messageBox("Admin Mode Off!","You can now view as customer.",true);   
+                $scope.$apply();                
+            }
+        }
         
         // $scope.uploadPhoto = function(banner){
         //     var f = $('#menu-file').val();
@@ -520,13 +915,12 @@ $(document).ready(()=>{
         //     });
         // }
         $scope.saveCustInfo = function(){
-            if(localStorage.getItem('guest') != 'true'){
+            if(order != true){
                 $('#register').submit(()=>{
                     return false;
                 });
                 var contents = $('#register').serialize();
                 console.log(contents);
-
                 $.ajax({
                     url: './php/registerserv.php',
                     dataType: 'json',
@@ -534,26 +928,8 @@ $(document).ready(()=>{
                     data: contents,
                     cache: false,
                     success: function(data){
-                if(data.check){
-                    alert(data.message);
-                }
-                else if(data.exist){
-                    if(data.leng){
-                        if(data.match){
-                            if(data.valid){
-                                alert(data.message);
-                            }else{
-                                alert(data.message);
-                            }
-                        }else{
-                            alert(data.message);
-                        }
-                     }else{
-                        alert(data.message);
-                    }
-                    }else{
-                        alert(data.message);
-                    }
+                        messageBox(data.titi,data.message,true);
+                
                 
                  },
                     error: function(a,b,c){
@@ -567,8 +943,8 @@ $(document).ready(()=>{
                     return false;
                 });
                 var contents = $("#register").serialize();
-                console.log(orders);         
-                                              
+                localStorage.getItem('success') == 'true'? contents += "&user=true" : contents += "&user=false";
+                console.log(contents);                             
                 $.ajax({
                     url: './php/orderserv.php',
                     dataType: 'json',
@@ -576,17 +952,19 @@ $(document).ready(()=>{
                     data: {datas:contents,data:orders},
                     cache: false,
                     success: function(data){
-                        messageBox("Empty Fields!", data.message);
-                        // if(data.check){
-                        //     $scope.modalText = data.message;
-                        //     $("#myModal").modal('show');
-                        // }else if(data.valid){
-                        //     $scope.modalText = data.message;                            
-                        //     $("#myModal").modal('show');
-                        // }else{
-                        //     $scope.modalText = data.message;                            
-                        //     $("#myModal").modal('show');
-                        // }
+                        // messageBox("Empty Fields!", "SUCCESS",true);
+                        // console.log(data);
+                        if(data.check){
+                            messageBox("Empty Fields!",data.message,true);
+                        }else if(data.valid){
+                            messageBox("Order Success!",data.message,true);
+                            backToMain();
+                            $scope.showLogin = false;
+                            $scope.showPayment = false;
+                            $scope.$apply();
+                        }else{
+                            messageBox("Invalid Email!",data.message,true);
+                        }
                     },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
@@ -599,13 +977,37 @@ $(document).ready(()=>{
         };
         $scope.order = function(){
             if(localStorage.getItem('success') == 'true'){
-                order = true;
+                if(items != 0){
+                    order = true;
+                    $.ajax({
+                        url: './php/autofill.php',
+                        dataType: 'json',
+                        type: 'GET',
+                        cache: false,
+                        success: function(data){
+                            // messageBox("Successful!","SUCESS",true);
+                            // console.log(data);
+                            $scope.barangayTxt = data.barangay;
+                            $scope.streetTxt = data.street;
+                            $scope.houseTxt = data.house;
+                            $scope.emailTxt = data.email;
+                            $scope.mobileTxt = data.mobile;
+                            $scope.$apply();
+                        },
+                        error: function(a,b,c){
+                            console.log('Error: ' + a + " " + b + " " + c);
+                        }
+                    });
+                    showSignIn();
+                }else{
+                    messageBox("No Order", "Please order first!",true);
+                }
             }else if(localStorage.getItem('guest') == 'true'){
                 if(items != 0){
                     order = true;
                     showSignIn();
                 }else{
-                    messageBox("No Order", "Please order first!");
+                    messageBox("No Order", "Please order first!",true);
                 }
             }else{
                 $scope.notLoggedIn = true;
@@ -634,17 +1036,66 @@ $(document).ready(()=>{
             orders = deleteRow(orders,id)
             console.log(orders); 
         }
+        $scope.showAddMenu = function(){
+            clearTextMenu();
+            document.getElementsByClassName("foody").item(0).style = "background-image: url('./img/upload.png'); background-size: contain;";                            
+            document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                                
+            $scope.showOrder = true;
+        }
 
 
 
         //FUNCTIONS
-
-        function messageBox(title,message){
+        function loadFood(){
+            $.ajax({
+                url: './php/loadfood.php',
+                dataType: 'json',
+                type: 'GET',
+                cache: false,
+                success: function(data){
+                    if(b == 0){
+                        dats = data;
+                        for(var x = 0; x<dats.length; x++){
+                            $("#asds").after($compile(
+                            "<div class='box'>"+
+                            "<div class='frame "+ dats[x].class_name +"'></div>"+
+                            "<article>"+
+                                "<h1>"+ dats[x].foodName +"</h1>"+
+                                "<p>"+ dats[x].foodDesc +"</p>"+
+                            "</article>"+
+                            "<div class='button-cart-container'>"+
+                                "<h1 class='foodPrice'>₱"+ dats[x].foodPrice +"</h1>"+
+                                "<button id='"+ dats[x].class_name +"-delete' ng-click=deleteMenu($event,'"+ dats[x].class_name +"') class='btn btn-danger delete-menu lubut'>Delete</button>"+                        
+                                "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart lubut' ng-click='showOrder = true'>"+ buttonText +"</button>"+
+                            "</div>"+
+                            "</div>"+
+                            "<style>"+
+                                "."+dats[x].class_name+"{"+
+                                    "background-image: url('data:image/jpeg;base64,"+ dats[x].foodImg +"');"+
+                                    "background-position-x: "+ dats[x].position_x+";"+
+                                "}"+
+                            "</style>")($scope));
+                        }
+                        b++;
+                    } 
+                },
+                error: function(a,b,c){
+                    console.log('Error: ' + a + " " + b + " " + c);
+                }
+            });
+        }
+        function clearTextMenu(){
+            $("#food-name-txt").val("");
+            $("#food-desc-txt").val("");
+            $("#food-price-txt").val("");
+        }
+        function messageBox(title,message,isClose){
             $scope.modalTitle = title;
             $scope.modalText = message;
+            $scope.closeOnly = isClose
             $("#myModal").modal('show');
+            $scope.$apply();
         }
-
         function deleteRow(arr, row) {
             delete arr[row];
             return arr;
@@ -656,43 +1107,51 @@ $(document).ready(()=>{
                 "price" : price
             };
         }
-        function displayfood(foodname){
+        function displayfood(foodname,isAdmin){
             if(foodname == 'curry'){
-                displayFoodOrder("curry", "Curry Rice", -10);
+                displayFoodOrder("curry", "Curry Rice", -10, isAdmin);
             }else if(foodname == 'donburi'){
-                displayFoodOrder("donburi", "Donburi", -32);
+                displayFoodOrder("donburi", "Donburi", -32, isAdmin);
             }else if(foodname == 'cakey'){
-                displayFoodOrder("japanesecake", "Japanese Cakey", -10);
+                displayFoodOrder("japanesecake", "Japanese Cakey", -10, isAdmin);
             }else if(foodname == 'karaage'){
-                displayFoodOrder("karaage", "Karaage", 0);
+                displayFoodOrder("karaage", "Karaage", 0, isAdmin);
             }else if(foodname == 'omurice'){
-                displayFoodOrder("omurice", "Omurice", -30);
+                displayFoodOrder("omurice", "Omurice", -30, isAdmin);
             }else if(foodname == 'onigiri'){
-                displayFoodOrder("onigiri", "Onigiri", 0);
+                displayFoodOrder("onigiri", "Onigiri", 0, isAdmin);
             }else if(foodname == 'ramen'){
-                displayFoodOrder("ramen", "Ramen", -15);
+                displayFoodOrder("ramen", "Ramen", -15, isAdmin);
             }else if(foodname == 'pudding'){
-                displayFoodOrder("pudding", "Chocolate Pudding", -35);
+                displayFoodOrder("pudding", "Chocolate Pudding", -35, isAdmin);
             }else if(foodname == 'tempura'){
-                displayFoodOrder("tempura", "Tempura", -50);
+                displayFoodOrder("tempura", "Tempura", -50, isAdmin);
             }else if(foodname == 'tonkatsu'){
-                displayFoodOrder("tonkatsu", "Tonkatsu", -33);
+                displayFoodOrder("tonkatsu", "Tonkatsu", -33, isAdmin);
             }else if(foodname == 'lipton'){
-                displayFoodOrder("lipton", "Lipton Green Tea", 0);
+                displayFoodOrder("lipton", "Lipton Green Tea", 0, isAdmin);
             } else if(foodname == 'iced'){
-                displayFoodOrder("iced", "Iced Tea", 0);
+                displayFoodOrder("iced", "Iced Tea", 0, isAdmin);
+            }else{
+                displayFoodOrder(foodname, "Iced Tea", 0, isAdmin);                
             }
         }
-        function displayFoodOrder(food, foodname, x_pos){
-            document.getElementsByClassName("food").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px;";
-            document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
-            document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                    
+        function displayFoodOrder(food, foodname, x_pos,isAdmin){
+            if(!isAdmin){
+                document.getElementsByClassName("food").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px;";
+                document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
+                document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                    
+            }else{
+                document.getElementsByClassName("foody").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px; background-size: cover;";                
+                document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                                    
+            }
         }
         function getData(param){
+            alert('asdas');
             dats = param;
             if(b == 0){
                 for(var x = 0; x<dats.length; x++){
-                    $("#drinks").before($compile(
+                    $("#asds").after($compile(
                     "<div class='box'>"+
                     "<div class='frame "+ dats[x].class_name +"'></div>"+
                     "<article>"+
@@ -700,20 +1159,38 @@ $(document).ready(()=>{
                         "<p>"+ dats[x].foodDesc +"</p>"+
                     "</article>"+
                     "<div class='button-cart-container'>"+
-                        "<h1>₱"+ dats[x].foodPrice +"</h1>"+
-                        "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart' ng-click='showOrder = true'>Add to Cart</button>"+
+                        "<h1 class='foodPrice'>₱"+ dats[x].foodPrice +"</h1>"+
+                        "<button id='"+ dats[x].class_name +"-delete' ng-click=deleteMenu($event,'"+ dats[x].class_name +"') class='btn btn-danger delete-menu lubut'>Delete</button>"+                        
+                        "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart lubut' ng-click='showOrder = true'>"+ buttonText +"</button>"+
                     "</div>"+
                     "</div>"+
                     "<style>"+
                         "."+dats[x].class_name+"{"+
-                            "background-image: url('./img/menu/"+ dats[x].foodImg +"');"+
+                            "background-image: url('data:image/jpeg;base64,"+ dats[x].foodImg +"');"+
                             "background-position-x: "+ dats[x].position_x+";"+
                         "}"+
                     "</style>")($scope));
                 }
                 b++;
             }
-        };
+        }
+        function loadDisplay(){
+            $.ajax({
+                url: './php/loadbanner.php',
+                dataType: 'json',
+                type: 'GET',
+                cache: false,
+                success: function(data){
+                    // messageBox("Successful!","SUCESS",true);
+                    console.log(data[1]);
+                    $('#menu-background').css('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
+                    // $('.order-background').attr('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
+                },
+                error: function(a,b,c){
+                    console.log('Error: ' + a + " " + b + " " + c);
+                }
+            });
+        }
         function hideSign(){
             $(".s-in")[0].style = "width: 40%;";
             $(".p-order")[0].style = "display: none;";            
@@ -735,21 +1212,23 @@ $(document).ready(()=>{
             document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px); opacity: 0.6;";
         }
         function userSignedIn(){
+            // startSlider();
             if(localStorage.getItem('success') == 'true'){
-                if(localStorage.getItem('user') == 'true'){
-                    startSlider();
-                    $('.bg-sushi')[0].style = "cursor: pointer;";
-                    $('.menu-background')[0].style = "cursor: pointer;";
-                    $('.order-background')[0].style = "cursor: pointer;";                    
-                }
+                // startSlider();
                 if (localStorage.getItem('admin') == 'true'){
                     $scope.admin = true;
-                    
+                    setTimeout(function() {  
+                        if ($scope.adminMode){
+                            $('.add-to-cart').text("Edit");
+                        }
+                        // $('.delete-menu').css('display', 'initial');   
+                        $('.foodPrice').css('display', 'initial');
+                    }, 800);
                 } 
                 $scope.user = localStorage.getItem('firstname');
                 $scope.signedIn = true;
             }else if(localStorage.getItem('guest') == 'true'){
-                startSlider();
+                // startSlider();
                 $scope.signedIn = true;
                 $scope.guest = true;
                 $scope.user = 'Guest';
@@ -758,12 +1237,14 @@ $(document).ready(()=>{
             }
         }
         function startSlider(){
-            sec = 6000;
-            counter > 4? counter = 1: angular.noop();
-            $scope.slider(counter++,'auto');
-            setTimeout(function(){
-                $scope.$apply(startSlider());
-            }, sec);
+            if(localStorage.getItem('admin') != 'true'){
+                sec = 6000;
+                counter > 4? counter = 1: angular.noop();
+                $scope.slider(counter++,'auto');
+                setTimeout(function(){
+                    $scope.$apply(startSlider());
+                }, sec);
+            }
         }
         /*=============================================
                             SLIDER   

@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
         $food[$counter]["foodName"] = $row["foodName"];
         $food[$counter]["foodDesc"] = $row["foodDesc"];
         $food[$counter]["foodPrice"] = $row["foodPrice"];
-        $food[$counter]["foodImg"] = $row["foodImg"];
+        $food[$counter]["foodImg"] = base64_encode($row["foodImg"]);
         $food[$counter]["position_x"] = $row["position_x"];
         $food[$counter]["class_name"] = $row["class_name"];
         // $foodName[$counter] = $row["foodName"];

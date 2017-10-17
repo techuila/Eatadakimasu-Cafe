@@ -644,8 +644,8 @@ p{
                     width: 28%;
                 }
                 .col-3:nth-child(2){
-                    width: 15%;
-                    margin-left: 14%;
+                    width: 24%;
+                    margin-left: 10%;
                 }
                 .col-3:last-child{
                     float: right;
@@ -735,8 +735,8 @@ p{
 
 #food-order{
     box-shadow: 3px 5px 5px rgba(0,0,0,0.6);
-    left: 0; right: 0; top: 5%;
     background-color: #fafafa;
+    left: 0; right: 0; top: 5%;
     padding: 30px 0 20px 0;
     font-family: "roboto";
     border-radius: 5px;
@@ -757,6 +757,21 @@ p{
         height: 130px;
         margin: auto;
         width: 130px;
+        overflow: hidden;
+    }
+    .foody{
+        background: url('../../img/upload.png') no-repeat center;
+        background-size: contain;
+        position: relative;
+    }
+    .foody:hover{
+        .img-upload{
+            background-color: black;
+            cursor: pointer;
+            opacity: 0.1;
+            height: 100%;
+            width: 100%;
+        }
     }
     h1,h2,h3{
         text-align: center;
@@ -765,19 +780,33 @@ p{
     h1{
         font-size: 2em;
     }
+    .food-name.form-control{
+        width: 50%;
+    }
+    .food-desc.form-control{
+        width: 50%;
+    }
+    .food-price.form-control{
+        text-align: center;
+        width: 20%;
+    }
     .special{
         margin-bottom: 20px;
         margin-top: 20px;
     }
     button{
-        background-color: $flat-green;
         color: #fff;
-        border: none;
-        width: 80px;
     }
     .add-to-cart{
+        background-color: $flat-green;
         border-radius: 4px;
+        border: none;
         height: 35px;
+        width: 90px;
+    }
+    .btn.hover-add{
+        background-color: $flat-green;
+        color: $custom-white;
     }
     textarea{
         margin-bottom: 20px;
@@ -798,7 +827,8 @@ p{
     .minus:hover{
         background-color: lighten($flat-red, 10%);
     }
-    button:hover{
+    .add-to-cart:hover,
+    .btn.hover-add:hover{
         cursor: pointer;
         background-color: lighten($flat-green,10%);
     }
@@ -1059,6 +1089,7 @@ section#about{
 }
 
 section#menu{
+    background-color: black;
     clear: both;
 }
 
@@ -1070,9 +1101,20 @@ section#menu{
     position: relative;
     margin-top: 10%;
     .menu-background{
-        background-image: url('../../img/04.jpg');
+        // background-image: url('../../img/04.jpg');
         opacity: 0.9;
         height: 80%;
+        transition: opacity 0.3s ease;
+    }
+    .menu-form:hover{
+        background: url('../../img/addbtn.png') center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        z-index: 10;
+        .menu-background, .art-bg{
+            opacity: 0.5;
+        }
     }
 
     .art-bg{
@@ -1121,6 +1163,10 @@ section.container{
         /* ====================================================
              FOOOOOOOOOOD WADAFAK NUMA MAN BUYUNG BUNANI
         ====================================================*/
+        .addbtn{
+            background-image: url('../../img/addbtnblack.png');
+            background-color: white;
+        }
         // .curry{
         //     background-image: url('../../img/menu/curry.jpg');
         //     background-position-x: -10px;
@@ -1183,6 +1229,7 @@ section.container{
             .frame{
                 box-shadow: 0 0 2px rgba(0,0,0,1);
                 background-repeat: no-repeat;
+                background-color: white;
                 transition: top 0.3s ease;
                 border: 5px solid #fff;
                 background-size: cover;
@@ -1193,6 +1240,13 @@ section.container{
                 margin: auto;
                 width: 100px;
                 top: 60px;
+                .glyphicon-plus{
+                    display: inline-block;
+                    margin-top: 13px;
+                    margin-left: 5px;
+                    color: $flat-green;
+                    font-size: 60px;
+                }
             }
         }
         article{
@@ -1224,20 +1278,36 @@ section.container{
                 font-size: 2em;
                 float: left;
             }
-            
+            .delete-menu{
+                display: none;
+            }
+            .display-button{
+                display: initial;
+            }
+            .btn-success{
+                background-color: $flat-green;
+                border-color: white;
+            }
+            .btn-success:hover{
+                background-color: lighten($flat-green, 10%);
+            }
         }
 
         button{
+            float: right;
+            margin-top: 5px;
+        }
+        button.add-to-cart{
             transition: background-color 0.3s ease;
             background-color: $flat-green;
+            margin-right: 5px;
             border-radius: 4px;
             color: #fff;
             border: none;
-            height: 40px;
-            float: right;
+            height: 34px;
             width: 80px;
         }
-        button:hover{
+        button.add-to-cart:hover{
             background-color: lighten($flat-green, 10%);
             cursor: pointer;
         }
@@ -1264,6 +1334,14 @@ section.container{
                 opacity: 1;
             }
         }
+        .box.add-menu:hover{
+            border-color: $flat-green;
+            .frame{
+                border-color: darken($flat-green, 3%);
+                border-width: 2px;
+                top: -40px;
+            }
+        }
     }   
 }
 
@@ -1275,9 +1353,19 @@ section#order{
     position: relative;
     background-color: #000;
     .order-background{
-        background-image: url('../../img/reservation-seat.jpg');
+        // background-image: url('../../img/reservation-seat.jpg');
         opacity: 0.9;
         height: 80%;
+    }
+    .menu-form:hover{
+        background: url('../../img/addbtn.png') center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        z-index: 10;
+        .order-background, article{
+            opacity: 0.5;
+        }
     }
     article{
         top: 35%; right: 0; left: 0;
@@ -1515,3 +1603,5 @@ footer{
     min-height: 15%;
     clear: both;
 }
+
+
