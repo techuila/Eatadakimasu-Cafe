@@ -7,6 +7,7 @@
         $foodprice = $_POST['food-qty'];
         $class_name = strtok($foodname,' ');  
         $file = addslashes(file_get_contents($_FILES['photo']['tmp_name']));
+        
         if($_POST["insert_menu"] == "Add"){
             
             // $query3 = "INSERT INTO foodinfos (foodName,foodDesc,foodPrice,foodImg,position_x,class_name) VALUES ('$foodname','$fooddesc','$foodprice','$file',-10,'$class_name')";
