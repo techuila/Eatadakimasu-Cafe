@@ -114,9 +114,9 @@ $(document).ready(()=>{
           }
       });
 
-        //disregard special characters in barangay
+        //disregard special characters but allow spaces in street
     $('#barangay').on('keypress', function (event) {
-        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
         if (!regex.test(key)) {
             $("#errmsg4").html("Characters Only").show().fadeOut("slow");
@@ -1181,7 +1181,7 @@ $(document).ready(()=>{
                 type: 'GET',
                 cache: false,
                 success: function(data){
-                    messageBox("Successful!","SUCESS",true);
+                    // messageBox("Successful!","SUCESS",true);
                     console.log(data[1]);
                     $('#menu-background').css('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
                     // $('.order-background').attr('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
