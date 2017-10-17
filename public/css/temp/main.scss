@@ -1281,6 +1281,16 @@ section.container{
             .delete-menu{
                 display: none;
             }
+            .display-button{
+                display: initial;
+            }
+            .btn-success{
+                background-color: $flat-green;
+                border-color: white;
+            }
+            .btn-success:hover{
+                background-color: lighten($flat-green, 10%);
+            }
         }
 
         button{

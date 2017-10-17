@@ -1427,6 +1427,19 @@ section.container .box-container .button-cart-container .delete-menu {
   display: none;
 }
 
+section.container .box-container .button-cart-container .display-button {
+  display: initial;
+}
+
+section.container .box-container .button-cart-container .btn-success {
+  background-color: #2ecc71;
+  border-color: white;
+}
+
+section.container .box-container .button-cart-container .btn-success:hover {
+  background-color: #54d98c;
+}
+
 section.container .box-container button {
   float: right;
   margin-top: 5px;
