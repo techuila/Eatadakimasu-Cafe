@@ -291,7 +291,7 @@ $(document).ready(()=>{
               return false;  
          }  
     }  
-});  
+    });  
 
     //about-file click
     $('#about-form').submit(function(){  
