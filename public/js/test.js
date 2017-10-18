@@ -935,7 +935,6 @@ $(document).ready(()=>{
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
-            
                 });
 
             }else{
