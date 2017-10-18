@@ -969,6 +969,14 @@ header .container nav .basta-waitlang {
   text-decoration: none;
 }
 
+header .container nav .basta-waitlang .waranai {
+  display: inline;
+}
+
+header .container nav .basta-waitlang .glyphicon {
+  margin-right: 10px;
+}
+
 header .container nav .basta-waitlang li {
   text-decoration: none;
   display: inline-block;
@@ -1229,6 +1237,19 @@ section#about {
   width: 80%;
 }
 
+section#about .menu-form:hover {
+  background: url("../../img/addbtn.png") center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: black;
+}
+
+section#about .menu-form:hover .bg-sushi {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
 section#about .something {
   display: inline-block;
   height: 650px;
@@ -1424,6 +1445,7 @@ section.container .box-container .button-cart-container h1 {
 
 section.container .box-container .button-cart-container .delete-menu {
   display: none;
+  width: 80px;
 }
 
 section.container .box-container .button-cart-container .display-button {
@@ -1437,6 +1459,11 @@ section.container .box-container .button-cart-container .btn-success {
 
 section.container .box-container .button-cart-container .btn-success:hover {
   background-color: #54d98c;
+}
+
+section.container .box-container .glyphicon {
+  margin-right: 7px;
+  margin-left: -5px;
 }
 
 section.container .box-container button {
@@ -1781,11 +1808,16 @@ section.order .cart hr {
 /* ====================================
         FOOTER SECTION MUDA FUKA
 ====================================*/
-footer {
+footer#contact {
   background-color: #34495e;
   color: #ecf0f1;
   text-align: center;
   padding-top: 3%;
   min-height: 15%;
-  clear: both;
+  width: 100%;
+}
+
+.stay-bottom {
+  position: absolute;
+  bottom: 0;
 }
