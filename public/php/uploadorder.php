@@ -10,6 +10,7 @@ $connect = mysqli_connect("localhost", "root", "", "eatadakicafe");
             echo '<script>alert("Image Successfully Updated")</script>';  
        }  
        else{
+           header('Refresh:.5; url=../temp.php');
            echo '<script>alert("There was a problem inserting the image")</script>';
        }
 ?>

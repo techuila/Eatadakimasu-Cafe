@@ -652,6 +652,7 @@ $(document).ready(()=>{
         $scope.houseTxt = "";
         $scope.emailTxt = "";
         $scope.mobileTxt = "";
+        $scope.transaction = false;
         $scope.adminMode = false;
 
         $scope.showActions = [];
@@ -821,6 +822,17 @@ $(document).ready(()=>{
                 }
             });
         }
+        $scope.transactionClick = function(){
+            if(!$scope.transaction){
+                $scope.transaction = true;
+                document.getElementsByTagName('header').item(0).className = 'animate-scroll-bottom';
+            } 
+            else {
+                $scope.transaction = false;
+                document.getElementsByTagName('header').item(0).className = 'animate-scroll-top';                
+            }
+            $('footer').toggleClass('stay-bottom');
+        }
         
         //PHP TO JAVASCRIPT
         $scope.sign_in = function(){
@@ -889,31 +901,6 @@ $(document).ready(()=>{
             }
         }
         
-        // $scope.uploadPhoto = function(banner){
-        //     var f = $('#menu-file').val();
-        //     f = f.replace(/.*[\/\\]/, '');         
-        //     console.log(JSON.stringify(f));
-        //     if(banner == 'menu'){
-        //         asd(f);
-        //     }else if(banner == 'order'){
-        //         // $('#order-form').submit();                
-        //     }
-        // };
-        // function asd(f){
-        //     $.ajax({
-        //         url: './php/uploadmenu.php',
-        //         dataType: 'json',
-        //         type: 'post',
-        //         data: JSON.stringify(f),
-        //         cache: false,
-        //         success: function(data){
-                      
-        //         },
-        //         error: function(a,b,c){
-        //             console.log('Error: ' + a + " " + b + " " + c);
-        //         }
-        //     });
-        // }
         $scope.saveCustInfo = function(){
             if(order != true){
                 $('#register').submit(()=>{
@@ -1064,7 +1051,7 @@ $(document).ready(()=>{
                             "</article>"+
                             "<div class='button-cart-container'>"+
                                 "<h1 class='foodPrice'>₱"+ dats[x].foodPrice +"</h1>"+
-                                "<button id='"+ dats[x].class_name +"-delete' ng-click=deleteMenu($event,'"+ dats[x].class_name +"') class='btn btn-danger delete-menu lubut'>Delete</button>"+                        
+                                "<button id='"+ dats[x].class_name +"-delete' ng-click=deleteMenu($event,'"+ dats[x].class_name +"') class='btn btn-danger delete-menu lubut'><span class='glyphicon glyphicon-remove'></span>Delete</button>"+                        
                                 "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart lubut' ng-click='showOrder = true'>"+ buttonText +"</button>"+
                             "</div>"+
                             "</div>"+
@@ -1181,9 +1168,8 @@ $(document).ready(()=>{
                 cache: false,
                 success: function(data){
                     // messageBox("Successful!","SUCESS",true);
-                    console.log(data[1]);
                     $('#menu-background').css('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
-                    // $('.order-background').attr('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
+                    $('.order-background').css('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
                 },
                 error: function(a,b,c){
                     console.log('Error: ' + a + " " + b + " " + c);
