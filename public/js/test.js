@@ -1074,6 +1074,14 @@ $(document).ready(()=>{
             return true;
         }  
 
+        //input of year must be 0-2018 only
+        document.getElementById("year").onkeyup=function(){
+            var input=parseInt(this.value);
+            if(input<0 || input>2018)
+            messageBox("Invalid Input","Input number from 0-2018 only",true);
+            return true;
+        }  
+
         //MODAL ORDER INFO
         function showOrder(){
             // $('.modal-header').css('background-color','black');
