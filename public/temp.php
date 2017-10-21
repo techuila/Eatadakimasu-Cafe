@@ -459,7 +459,7 @@
             <!--About us  -->
             <section class="container" id="about">
                 <form class="something form" method="POST" action="./php/uploadabout.php" id="about-form" name="about-form" enctype="multipart/form-data" style="position: relative;">
-                    <img src="./img/menu/sushi.jpg" id="about-background" alt="" class="bg bg-sushi">
+                    <img id="about-background" alt="" class="bg bg-sushi">
                     <input ng-show="adminMode" type="file" name="about-file" id="about-file" class="change-bg" style="cursor: pointer;opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
                 </form>
                 <article class="about">
@@ -728,7 +728,7 @@
                     </strong>
                 </form>
             </section>
-        </div>
+        </img>
     </div>
 
     <!--Contract Us  -->

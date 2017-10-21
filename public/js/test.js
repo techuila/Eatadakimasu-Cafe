@@ -257,6 +257,10 @@ $(document).ready(()=>{
       });
 
 
+        
+      
+
+
     //menu-file click
     $('#menu-form').submit(function(){  
         var image_name = $('#menu-file').val();  
@@ -1061,6 +1065,14 @@ $(document).ready(()=>{
 
             }
         });
+        
+        //input of day must be 1-31 only
+        document.getElementById("day").onkeyup=function(){
+            var input=parseInt(this.value);
+            if(input<0 || input>31)
+            messageBox("Invalid Input","Input number from 1-31 only",true);
+            return true;
+        }  
 
         //MODAL ORDER INFO
         function showOrder(){
@@ -1261,7 +1273,7 @@ $(document).ready(()=>{
                     
                     $('#menu-background').css('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
                     $('.order-background').css('background-image','url(data:image/jpeg;base64,'+ data[1] +')');
-                    $('#about-background').css('background-image','url(data:image/jpeg;base64,'+ data[2] +')');
+                    document.getElementById('about-background').src = 'data:image/jpeg;base64,'+ data[2];
                 },
                 error: function(a,b,c){
                     console.log('Error: ' + a + " " + b + " " + c);
