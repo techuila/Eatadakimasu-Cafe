@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
                 $send['house'] = $row['House_No'];
                 $send['email'] = $row['Email'];
                 $send['mobile'] = $row['Mobile_No'];
-            } 
+        } 
         echo json_encode($send);
 }
 ?>

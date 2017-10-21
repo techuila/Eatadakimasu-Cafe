@@ -239,28 +239,28 @@
                                     </div>
                             
                                     <!--==============================================
-                                                BILLING INFORMATION FORM  
+                                                BILLING INFORMATION FORM  $
                                     ==============================================-->
                                 
                                     <div class="bill-form" ng-show="showBill">
                                         <h5>Barangay* <span id="errmsg4" style="color:red;font-size:12px"></span></h5>
-                                        <input type="text" name="barangay" id="barangay" maxlength="20">
+                                        <input type="text" ng-model="barangayTxt" name="barangay" id="barangay" maxlength="20">
 
                                         <div class="col-span-2">
                                             <div class="col-2">
                                                 <h5>Street <span id="errmsg5" style="color:red;font-size:12px"></span></h5>
-                                                <input type="text" name="street" id="street" maxlength="20"> 
+                                                <input type="text" ng-model="streetTxt" name="street" id="street" maxlength="20"> 
                                             </div>
                                             <div class="col-2">
                                                 <h5>House No. <span id="errmsg6" style="color:red;font-size:12px"></span></h5>
-                                                <input type="text" name="h-no" id="h-no" maxlength="4"> 
+                                                <input type="text" ng-model="houseTxt" name="h-no" id="h-no" maxlength="4"> 
                                             </div>
                                         </div>
 
                                         <h5>Email*</h5>
-                                        <input type="text" name="email" maxlength="255">
+                                        <input type="text" ng-model="emailTxt" name="email" maxlength="255">
                                         <h5>Mobile No.* <span id="errmsg7" style="color:red;font-size:12px"></span></h5>
-                                        <input type="text" name="mobile" id="mobile" maxlength="11">
+                                        <input type="text" ng-model="mobileTxt" name="mobile" id="mobile" maxlength="11">
                                         <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" ng-hide="guest" class="btn btn-warning">Skip</button>
                                         <button type="button" ng-click="navLoc(3,'btn'); showBill = false; showPayment = true;" class="btn btn-success">Next Step</button>
                                     </div>
