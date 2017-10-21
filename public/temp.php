@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> -->
-    <script type="text/javascript" src="prevent-special-chars-jquery.js"></script>
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./node_modules/angular-animate/angular-animate.js"></script>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -18,13 +17,6 @@
     <link rel="stylesheet" type="text/css" href="./css/temp/main.css">
     <script src="./js/test.js"></script>
     <title>Welcome | Eatadakimasu Cafe</title>
-
-    <!-- <script>
-        var app = angular.module('myApp', []);
-        app.controller('myController', function($scope){
-            $scope.name = "hello world";
-        });
-    </script> -->
 </head>
 <body ng-app="myApp" ng-controller="myCtrl" ng-init="checkUser();">
 
@@ -137,7 +129,7 @@
                                         LOGIN FORM  
                     ==============================================-->
                         <div class="right-side">
-                            <form action="" method="post" id="form">                
+                            <form action="loginserv.php" method="post" id="form">                
                                 <div class="login-form" ng-hide="showLogin">   
                                     <h4>USERNAME</h4> 
                                     <input type="text" name="user">
@@ -351,7 +343,7 @@
                             <ul class="dropdown-menu">
                             <li><a href="" class="o-user" ng-show="showAdmin();" ng-click="adminModes();" id="adminMode"><span class="glyphicon glyphicon-user"></span> Admin Mode</a></li><br>                            
                             <li><a href="" class="o-user" ng-show="adminMode" ng-click="adminModes();" id="adminModeoff"><span class="glyphicon glyphicon-user"></span> Admin Mode Off</a></li><br>                                                    
-                            <li><a href="" class="o-user" ng-show="admin" ng-click="transactionClick();"><span class="glyphicon glyphicon-list-alt"></span> Manage Transactions</a></li><br>                                                    
+                            <li><a href="" class="o-user" ng-show="admin" ng-click="transactionClick();" id="transaction"><span class="glyphicon glyphicon-list-alt"></span> Manage Transactions</a></li><br>                                                    
                             <li><a href="" class="o-user" ng-hide="guest"><span class="glyphicon glyphicon-edit"></span> Edit Info</a></li><br>
                                 <hr ng-hide="guest"> 
                                 <li><a href="./php/logout.php" ng-click="logout()" class="o-user" style="color: #f06953;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -362,6 +354,57 @@
                 </nav>
             </div>
         </header>
+
+        <!-- ==========================================================
+                                ADMIN MODE TRANSACTIONS
+             ==========================================================-->
+
+        <div class="container" ng-show="transaction">
+            <div class="marginTop">
+                <div class="table-responsive">
+                    <div class="jumbotron">
+                        <center><h1 style="font-size: 3em;">ORDER TRANSACTIONS</h1></center>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1" style="font-size: 16px;"><strong>Filter:</strong></label>
+                        <select class="form-control" id="sel1">
+                            <option value="pending">All</option>                        
+                            <option value="pending">Pending</option>
+                            <option value="orders">Orders</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>BILLING NO.</th>
+                                <th>CUSTOMER</th>
+                                <th>ADDRESS</th>
+                                <th>TOTAL PRICE</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1002</td>
+                                <td>ALDOMIN TAN</td>
+                                <td>STA. MARIA BELLO DRIVE</td>
+                                <td>₱1,203.00</td>
+                                <td>PENDING</td>
+                                <td><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- ==========================================================
+                                CLIENT VIEW
+             ==========================================================-->
         <div ng-hide="transaction">
             <!--Home  -->
             <section id="home"> 
@@ -689,7 +732,7 @@
     <!--Contract Us  -->
     <footer id="contact">
         <div class="container">
-            <p></p>Designed by <a style="color: white;" href="https://www.facebook.com/ZeddieSantos">ISIS</a>, Copyright &copy; 2017</p>
+            <p></p>Designed by <a href="https://www.facebook.com/ZeddieSantos">ISIS</a>, Copyright &copy; 2017</p>
         </div>  
     </footer>
     

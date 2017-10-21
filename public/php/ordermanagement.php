@@ -6,12 +6,25 @@ $conn = mysqli_connect("localhost", "root", "") or die ("Not yet connected");
 $db = mysqli_select_db($conn, "eatadakicafe") or die ("cannot select database");
 //=============================================================================================
 
-//if button pending is pressed
-$query = mysqli_query($conn, "SELECT * FROM billinginfo WHERE status=0");
-//elseif button confirmed is pressed
-$query = mysqli_query($conn, "SELECT * FROM billinginfo WHERE status=1");
-//elseif button delivered is pressed
-$query = mysqli_query($conn, "SELECT * FROM billinginfo WHERE status=2");
+
+//if combobox is 'all'
+if($_POST['data'] == 0){
+    $query = mysqli_query($conn, "SELECT * FROM billinginfo");
+}
+//elseif combobox is 'pending'
+elseif($_POST['data'] == 1){
+    $query = mysqli_query($conn, "SELECT * FROM billinginfo WHERE status=0");    
+}
+//elseif combobox is 'orders'
+elseif($_POST['data'] == 1){
+    $query = mysqli_query($conn, "SELECT * FROM billinginfo WHERE status=1");
+
+}
+//elseif combobox is 'delivered'
+elseif($_POST['data'] == 1){
+    $query = mysqli_query($conn, "SELECT * FROM billinginfo WHERE status=2");
+}
+
 //========================================================================
 
 $billingid[] = "";
