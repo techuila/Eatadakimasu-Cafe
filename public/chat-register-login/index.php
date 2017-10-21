@@ -50,6 +50,11 @@ if(!isset($_SESSION['username'])) {
 exit;
 }
 
+if($_POST){
+	$textcode = array(':)');
+	$smiley = array('<img src="sm1.png">');
+	echo str_replace($textcode,$smiley,$_POST['chatlogs']);
+};
 ?>
 
 <html>
@@ -94,7 +99,7 @@ $(document).ready(function(e){
 
 </head>
 <body>
-<form name="form1">
+<form method="POST" name="form1">
 Your Chatname: <b><?php echo $_SESSION['username']; ?></b> <br />
 Your Message: <br />
 <textarea name="msg"></textarea><br />
@@ -103,7 +108,7 @@ Your Message: <br />
 <a href="logout.php">Logout</a><br /><br />
 
 </form>
-<div id="chatlogs">
+<div name="chatlogs" id="chatlogs">
 LOADING CHATLOG...
 </div>
 

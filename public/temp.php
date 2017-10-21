@@ -78,7 +78,7 @@
                         <input name="food-name" id="food-name-txt" type="text" class="food-name form-control"><br>
                         <h4 class="qty-label">Description <span id="errmsg12" style="color:red;font-size:12px"></span></h4>                             
                         <textarea name="food-desc" id="food-desc-txt" cols="25" rows="3" class="food-desc form-control"></textarea>
-                        <h4 class="qty-label">Price <span id="errmsg13  " style="color:red;font-size:12px"></span></h4> 
+                        <h4 class="qty-label">Price <span id="errmsg13" style="color:red;font-size:12px"></span></h4> 
                         <input name="food-qty" id="food-price-txt" type="text" class="food-price form-control"><br>
                         <input name="insert_menu"type="submit" class="btn hover-add" ng-click="saveMenu();" value="Add">
                         <button class="btn btn-default" style="margin-left: 8px; color: #34495e;">Cancel</button>            
