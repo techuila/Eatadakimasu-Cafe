@@ -931,8 +931,6 @@ $(document).ready(()=>{
                     cache: false,
                     success: function(data){
                         messageBox(data.titi,data.message,true);
-                
-                
                  },
                     error: function(a,b,c){
                         console.log('Error: ' + a + " " + b + " " + c);
@@ -959,9 +957,11 @@ $(document).ready(()=>{
                             messageBox("Empty Fields!",data.message,true);
                         }else if(data.valid){
                             messageBox("Order Success!",data.message,true);
-                            backToMain();
-                            $scope.showLogin = false;
+                            expand == true? hideSign(): angular.noop(); 
                             $scope.showPayment = false;
+                            $scope.showBill = false;
+                            backToMain();
+                            order = false;                           
                             $scope.$apply();
                             restartCart();                                        
                         }else{
