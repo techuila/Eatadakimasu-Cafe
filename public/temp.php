@@ -34,8 +34,8 @@
                 <p>{{ modalText }}</p>
             </div>
             <div class="modal-footer" ng-hide="closeOnly">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-click="ok = true" type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                <button ng-click="ok = false" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
             <div class="modal-footer" ng-show="closeOnly">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
@@ -367,32 +367,34 @@
                     </div>
                     <div class="form-group">
                         <label for="sel1" style="font-size: 16px;"><strong>Filter:</strong></label>
-                        <select class="form-control" id="sel1">
-                            <option value="pending">All</option>                        
-                            <option value="pending">Pending</option>
-                            <option value="orders">Orders</option>
-                            <option value="delivered">Delivered</option>
+                        <select ng-model="filter" ng-init="filter = '3'" value="All" class="form-control" id="sel1">
+                            <option value="3">All</option>                        
+                            <option value="0">Pending</option>
+                            <option value="1">Confirmed</option>
+                            <option value="2">Delivered</option>
                         </select>
                     </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>BILLING NO.</th>
                                 <th>CUSTOMER</th>
                                 <th>ADDRESS</th>
+                                <th>CONTACT</th>
                                 <th>TOTAL PRICE</th>
-                                <th>STATUS</th>
+                                <th>TYPE</th>
+                                <th>STATUS</th>                                
                                 <th>ACTION</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1002</td>
+                        <tbody id="body-table">
+                            <tr id="addme">
+                                <!-- <td>1002</td>
                                 <td>ALDOMIN TAN</td>
                                 <td>STA. MARIA BELLO DRIVE</td>
                                 <td>₱1,203.00</td>
+                                <td>type</td>
                                 <td>PENDING</td>
-                                <td><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+                                <td><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td> -->
                             </tr>
                         </tbody>
                     </table>
@@ -457,7 +459,7 @@
             <!--About us  -->
             <section class="container" id="about">
                 <form class="something form" method="POST" action="./php/uploadabout.php" id="about-form" name="about-form" enctype="multipart/form-data" style="position: relative;">
-                    <img src="./img/menu/sushi.jpg" alt="" class="bg bg-sushi">
+                    <img src="./img/menu/sushi.jpg" id="about-background" alt="" class="bg bg-sushi">
                     <input ng-show="adminMode" type="file" name="about-file" id="about-file" class="change-bg" style="cursor: pointer;opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
                 </form>
                 <article class="about">

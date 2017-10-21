@@ -987,11 +987,27 @@ header{
     border: 1px solid rgba(0,0,0,0.1);
     font-family: "Open Sans";
     border-radius: 3px;
-    margin-top: 100px;
+    margin: 100px 0 ;
     display: block;
     .table-responsive{
         width: 96%;
         margin: 0 auto;
+        table{
+            margin-top: 30px;
+            th,td{
+                text-align: center;
+            }
+            .tabtab:hover{
+                cursor: pointer;
+            }
+            .tabtab:active{
+                background: none;
+            }
+            button{
+                padding-top: 5px;
+                margin: 0 6px;
+            }
+        }
     }
     .jumbotron{
         margin: 20px auto 50px auto;
@@ -1002,16 +1018,6 @@ header{
     .form-group{
         margin-left: 5px;
         width: 130px;
-    }
-    table{
-        margin-top: 30px;
-        th,td{
-            text-align: center;
-        }
-        button{
-            padding-top: 5px;
-            margin: 0 6px;
-        }
     }
 }
 

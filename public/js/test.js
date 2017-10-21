@@ -35,8 +35,7 @@ $(document).ready(()=>{
     });
     $('#ton').click(function(){
         body.stop().animate({scrollTop: menuLoc+ 20},800,'swing');        
-    });
-
+    });    
 
     //ADMIN MODE
 
@@ -657,8 +656,10 @@ $(document).ready(()=>{
         $scope.houseTxt = "";
         $scope.emailTxt = "";
         $scope.mobileTxt = "";
+        $scope.filter = "All";        
         $scope.transaction = false;
         $scope.adminMode = false;
+        $scope.ok = false;
 
         $scope.showActions = [];
         $scope.admin = false;
@@ -787,6 +788,8 @@ $(document).ready(()=>{
             }
         };
         $scope.checkUser = function(){
+        $('[data-toggle="tooltip"]').tooltip();       
+            
             if(localStorage.getItem('admin') == 'true'){
                 if($scope.adminMode != true){
                     setTimeout(function() {
@@ -829,24 +832,13 @@ $(document).ready(()=>{
         }
         $scope.transactionClick = function(){
             if(!$scope.transaction){
-               $.ajax({
-                    url:'./php/ordermanagemnt.php',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: {data: 0},
-                    success: function(data){
-                        messageBox("Successful", "SUCCESS", true);
-                    },
-                    error: function(a,b,c){
-                        console.log("Error: " + a + " " + b + " " + c);
-                    }
-               });
+                displayTable(3);
+                headerRestart();
             } 
             else {
                 $scope.transaction = false;
                 document.getElementsByTagName('header').item(0).className = 'animate-scroll-top';                
             }
-            $('footer').toggleClass('stay-bottom');
         }
         
         //PHP TO JAVASCRIPT
@@ -1044,10 +1036,80 @@ $(document).ready(()=>{
             document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                                
             $scope.showOrder = true;
         }
+        $scope.showOrderInfo = function($event){
+            var id = angular.element($event.currentTarget).find('span').text();
+            console.log(id);
+            showOrder();
+        };
+        $scope.messageRemove = function(){
+            messageBox('Delete Order','Are you sure you want to delete this order?',false);
+        }
+        $scope.messageConfirm = function(){
+            messageBox('Confirm Order','Are you sure you want to accept this order?',false);
+        }
+        $scope.messageSend = function(){
+            messageBox('Deliver Order','Is the order has been delivered?',false);
+        }
 
+
+        //WATCHER
+        $scope.$watch("filter", function(newValue,oldValue){
+            displayTable($scope.filter);
+        }); 
+        $scope.$watch("ok", function(newValue,oldValue){
+            if($scope.ok){
+
+            }
+        });
+
+        //MODAL ORDER INFO
+        function showOrder(){
+            // $('.modal-header').css('background-color','black');
+            $("#myModal").modal('show');            
+        }
 
 
         //FUNCTIONS
+        function displayTable(num){
+            var button = "";
+            $("#body-table").children(".tabtab").remove();   
+            $.ajax({
+                url:'./php/ordermanagement.php',
+                dataType: 'json',
+                type: 'POST',
+                data: {data: num},
+                success: function(data){
+                    for(var x = 0; x < data.length; x++){
+                        if(data[x].stats == 'PENDING'){
+                            button = "<td><button ng-click='messageConfirm()' class='btn btn-success'><span class='glyphicon glyphicon-ok'></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";
+                        }else if(data[x].stats == 'CONFIRMED'){
+                            button = "<td><button ng-click='messageSend()' class='btn btn-primary'><span class='glyphicon glyphicon-send '></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";                            
+                        }else{
+                            button = "<td><span class='glyphicon glyphicon-ok-circle' style='color: #2ecc71; font-size: 22px;'></span></td>";                                                        
+                        }
+                        $('#addme').after($compile(
+                            "<tr class='tabtab' data-toggle='tooltip' data-placement='top' title='Hooray!'>" +
+                                "<td style='display: none'><span class='boom'>billing="+ data[x].billing +"&order="+ data[x].order +"</span></td>" +                            
+                                "<td ng-click='showOrderInfo($event);'>"+ data[x].customer +"</td>" +
+                                "<td ng-click='showOrderInfo($event);'>"+ data[x].address +"</td>" +
+                                "<td ng-click='showOrderInfo($event);'>"+ data[x].contact +"</td>" +
+                                "<td ng-click='showOrderInfo($event);'>₱"+ data[x].price +"</td>" +
+                                "<td ng-click='showOrderInfo($event);'>"+ data[x].type +"</td>" +
+                                "<td ng-click='showOrderInfo($event);'>"+ data[x].stats +"</td>" +
+                                button +
+                            "</tr>"
+                        )($scope));
+                    }
+                    console.log(data);
+                },
+                error: function(a,b,c){
+                    console.log("Error: " + a + " " + b + " " + c);
+                }
+           });
+        }
+        function sendsend(){
+            console.log('ASKDJAKSJDKASJD');
+        }
         function loadFood(){
             $.ajax({
                 url: './php/loadfood.php',
@@ -1196,8 +1258,10 @@ $(document).ready(()=>{
                 cache: false,
                 success: function(data){
                     // messageBox("Successful!","SUCESS",true);
+                    
                     $('#menu-background').css('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
-                    $('.order-background').css('background-image','url(data:image/jpeg;base64,'+ data[1] +')');            
+                    $('.order-background').css('background-image','url(data:image/jpeg;base64,'+ data[1] +')');
+                    $('#about-background').css('background-image','url(data:image/jpeg;base64,'+ data[2] +')');
                 },
                 error: function(a,b,c){
                     console.log('Error: ' + a + " " + b + " " + c);

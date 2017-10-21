@@ -10,10 +10,10 @@
         
         if($_POST["insert_menu"] == "Add"){
             
-            // $query3 = "INSERT INTO foodinfos (foodName,foodDesc,foodPrice,foodImg,position_x,class_name) VALUES ('$foodname','$fooddesc','$foodprice','$file',-10,'$class_name')";
+            $query3 = "INSERT INTO foodinfos (foodName,foodDesc,foodPrice,foodImg,position_x,class_name) VALUES ('$foodname','$fooddesc','$foodprice','$file',-10,'$class_name')";
             
          // }else{
-                $query3 =  "UPDATE `foodinfos` SET `foodName`='$foodname',`foodDesc`='$fooddesc',`foodPrice`='$foodprice',`foodImg`='$file',`position_x`=10,`class_name`='$class_name' WHERE id = 45";
+                // $query3 =  "UPDATE `foodinfos` SET `foodName`='$foodname',`foodDesc`='$fooddesc',`foodPrice`='$foodprice',`foodImg`='$file',`position_x`=10,`class_name`='$class_name' WHERE id = 45";
     }
 
         $query1 = mysqli_query($connect, "SELECT * FROM foodinfos WHERE foodName='$foodname'");
