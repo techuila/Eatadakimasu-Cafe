@@ -22,7 +22,7 @@
        if($rows == 0) {
         if(mysqli_query($connect, $query3))
             {  
-                header('Refresh:.5; url=../temp.php');
+                // header('Refresh:.5; url=../temp.php');
                 echo '<script>alert("Food Successfully added")</script>';  
             }  
             else{
@@ -30,7 +30,7 @@
                 echo '<script>alert("There was a problem adding")</script>';
             }
         }else{
-                header('Refresh:.5; url=../temp.php');
+                // header('Refresh:.5; url=../temp.php');
                 echo '<script>alert("Food name is already existing, please specfity another food name")</script>';
         }
     }  
