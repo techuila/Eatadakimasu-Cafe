@@ -50,6 +50,11 @@ $(document).ready(()=>{
         $('.lubut').css("display","none"); 
     });
 
+    // $('#transaction').click(()=>{
+    //     if($('header').css("background-color").valueOf() != 'rgb(255, 255, 255)'.valueOf()){
+    //     }
+    // });
+
     //disregard special characters in first-name
     $('#first-name').on('keypress', function (event) {
         var regex = new RegExp("^[a-zA-Z0-9]+$");
@@ -645,7 +650,7 @@ $(document).ready(()=>{
     var removePrice = 0;    
     var buttonText = "Add to Cart";
     
-    app.controller('myCtrl', function($scope,$compile){
+    app.controller('myCtrl', function($scope,$compile,$timeout){
         //BILLING INFORMATION TEXTBOX FOR AUTOCOMPLETE
         $scope.barangayTxt = "";
         $scope.streetTxt = "";
@@ -824,8 +829,18 @@ $(document).ready(()=>{
         }
         $scope.transactionClick = function(){
             if(!$scope.transaction){
-                $scope.transaction = true;
-                document.getElementsByTagName('header').item(0).className = 'animate-scroll-bottom';
+               $.ajax({
+                    url:'./php/ordermanagemnt.php',
+                    dataType: 'json',
+                    type: 'POST',
+                    data: {data: 0},
+                    success: function(data){
+                        messageBox("Successful", "SUCCESS", true);
+                    },
+                    error: function(a,b,c){
+                        console.log("Error: " + a + " " + b + " " + c);
+                    }
+               });
             } 
             else {
                 $scope.transaction = false;
@@ -948,6 +963,7 @@ $(document).ready(()=>{
                             $scope.showLogin = false;
                             $scope.showPayment = false;
                             $scope.$apply();
+                            restartCart();                                        
                         }else{
                             messageBox("Invalid Email!",data.message,true);
                         }
@@ -1069,6 +1085,18 @@ $(document).ready(()=>{
                     console.log('Error: ' + a + " " + b + " " + c);
                 }
             });
+        }
+        function restartCart(){
+            $("#cart").children(".items").remove();
+            $scope.totalPricy = 0;
+        }
+        function headerRestart(){
+            $scope.transaction = true;
+            var div = document.getElementsByTagName('header').item(0);
+            div.classList.remove("animate-scroll-bottom");
+            setTimeout(function() {
+                document.getElementsByTagName('header').item(0).className = 'animate-scroll-bottom';                                            
+            }, 70);
         }
         function clearTextMenu(){
             $("#food-name-txt").val("");
