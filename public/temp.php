@@ -26,21 +26,90 @@
 
             <!-- Modal content-->
             <div class="modal-content">
+                <div ng-hide="orderInfo">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><strong>{{ modalTitle }}</strong></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ modalText }}</p>
+                    </div>
+                    <div class="modal-footer" ng-hide="closeOnly">
+                        <button ng-click="processOrder(); orderInfo = false;" type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                        <button ng-click="orderInfo = false" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                    <div class="modal-footer" ng-show="closeOnly">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+                <!-- ORDER INFO -->
+
+                <div ng-show="orderInfo" class="orderinfo-body">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="logo-container">
+                            <div class="logo-order"></div>                            
+                            <h4><strong>Eatadakimasu Cafe!</strong></h4>
+                            <p>Don Alfaro St., Tetuan, Zamboanga City, 7000</p>      
+                            <p>+639173146076</p>                                  
+                        </div>
+                        <h4 class="modal-title"><strong>{{ modalTitle }}</strong></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsivee">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>NAME</th>
+                                        <th>QTY</th>
+                                        <th>UNIT PRICE</th>
+                                        <th>AMOUNT</th>
+                                        <th><center>ACTION</center></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="order-table">
+                                    <tr id="addhere">
+                                        <!-- <td>Japanese Cakey</td>
+                                        <td>5</td>
+                                        <td>₱100</td>
+                                        <td>₱500</td>
+                                        <td><button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button><button class="btn btn-danger"><span class="glyphicon glyphicon-remove" style="font-size: 13px; margin-top: -2px; padding-right: 2px;"></span></button></td> -->
+                                    </tr>
+                                    <tr id="addLine">
+                                        <td colspan="2"><button class="btn btn-primary" ng-click="addFood();" id="add-food"><span class="glyphicon glyphicon-plus"></span> Add Food</button></td>
+                                        <td><strong>Total</strong></td>
+                                        <td colspan="2"><strong>₱{{totalAmount}}</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="orderInfo" class="modal-footer" ng-show="true">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content" style='top: 100'>
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><strong>{{ modalTitle }}</strong></h4>
+                <h4 class="modal-title">{{ modelTitle }}}</h4>
             </div>
             <div class="modal-body">
-                <p>{{ modalText }}</p>
+                <p>{{ modelText }}</p>
             </div>
-            <div class="modal-footer" ng-hide="closeOnly">
-                <button ng-click="ok = true" type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
-                <button ng-click="ok = false" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-            <div class="modal-footer" ng-show="closeOnly">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            <div class="modal-footer">
+                <button ng-click="displayOrder();" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
             </div>
+
         </div>
     </div>
 
@@ -359,7 +428,7 @@
                                 ADMIN MODE TRANSACTIONS
              ==========================================================-->
 
-        <div class="container" ng-show="transaction">
+        <div class="container" ng-show="transaction" id="transaction-section">
             <div class="marginTop">
                 <div class="table-responsive">
                     <div class="jumbotron">
@@ -407,7 +476,7 @@
         <!-- ==========================================================
                                 CLIENT VIEW
              ==========================================================-->
-        <div ng-hide="transaction">
+        <div ng-hide="transaction" class="change-view">
             <!--Home  -->
             <section id="home"> 
                 <div class="slider">

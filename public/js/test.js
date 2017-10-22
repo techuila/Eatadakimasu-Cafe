@@ -648,6 +648,11 @@ $(document).ready(()=>{
     var orders = new Array();
     var removePrice = 0;    
     var buttonText = "Add to Cart";
+    var status = 0;
+    var id = 0;
+    var foods = "";
+    var food = [];
+    var a = 0;
     
     app.controller('myCtrl', function($scope,$compile,$timeout){
         //BILLING INFORMATION TEXTBOX FOR AUTOCOMPLETE
@@ -656,10 +661,12 @@ $(document).ready(()=>{
         $scope.houseTxt = "";
         $scope.emailTxt = "";
         $scope.mobileTxt = "";
+        $scope.unit_price = 0;
         $scope.filter = "All";        
         $scope.transaction = false;
         $scope.adminMode = false;
         $scope.ok = false;
+        $scope.food = "";
 
         $scope.showActions = [];
         $scope.admin = false;
@@ -669,6 +676,12 @@ $(document).ready(()=>{
             userSignedIn();
         }
 
+
+
+
+        /*=============================================
+                SAMPLE MODAL
+        =============================================*/
         // $scope.saveMenu = function(){
         //     $('#insert_img').submit(()=>{
         //         return false;
@@ -832,6 +845,7 @@ $(document).ready(()=>{
         }
         $scope.transactionClick = function(){
             if(!$scope.transaction){
+                $scope.adminMode = false;
                 displayTable(3);
                 headerRestart();
             } 
@@ -1037,18 +1051,102 @@ $(document).ready(()=>{
             $scope.showOrder = true;
         }
         $scope.showOrderInfo = function($event){
-            var id = angular.element($event.currentTarget).find('span').text();
+            id = angular.element($event.currentTarget).parent().find('span').text();
             console.log(id);
-            showOrder();
+            $("#myModal").modal('show');
+            $scope.orderInfo = true;
+            $scope.modalTitle = "Order Information";
+            $('#add-food').removeClass('disabled'); 
+            $('#add-food').addClass('disabled');             
+            displayOrder();
         };
-        $scope.messageRemove = function(){
-            messageBox('Delete Order','Are you sure you want to delete this order?',false);
+        $scope.messageRemove = function($event){
+            id = angular.element($event.currentTarget).parent().parent().find('span').text();            
+            console.log("REMOVE: " + id);
+            status = 3;
+            $scope.orderInfo = false;
+            $timeout(function(){
+                messageBox('Delete Order','Are you sure you want to delete this order?',false);
+            },50);
         }
-        $scope.messageConfirm = function(){
-            messageBox('Confirm Order','Are you sure you want to accept this order?',false);
+        $scope.messageConfirm = function($event){
+            id = angular.element($event.currentTarget).parent().parent().find('span').text();            
+            console.log("CONFIRM: " + id);
+            status = 1;
+            $scope.orderInfo = false;
+            $timeout(function(){
+                messageBox('Confirm Order','Are you sure you want to accept this order?',false)
+            },50);
         }
-        $scope.messageSend = function(){
-            messageBox('Deliver Order','Is the order has been delivered?',false);
+        $scope.messageSend = function($event){
+            id = angular.element($event.currentTarget).parent().parent().find('span').text();            
+            console.log("SEND: " + id);
+            status = 2;
+            $scope.orderInfo = false;
+            $timeout(function(){
+                messageBox('Deliver Order','Is the order has been delivered?',false);
+            },50);
+        }
+        $scope.processOrder = function(){
+            console.log(id+"&status=" + status);
+            $.ajax({
+                url: './php/processOrder.php',
+                dataType: 'json',
+                type: 'POST',
+                data: id + "&status=" + status,
+                success: function(data){
+                    displayTable(3);
+                },
+                error: function(a,b,c){
+                    console.log("Error: " + a + " " + b + " " + c);
+                }
+            });
+        }
+        $scope.addFood = function(){
+            $('#add-food').toggleClass('disabled'); 
+            $('#addLine').before($compile(
+                "<tr class='gords'>" +
+                    "<td>" +
+                        "<select id='food-item' ng-model='food' ng-change='foodchange()'>" +
+                            foods + 
+                        "</select>" +
+                    "</td>" +
+                    "<td><input ng-model='q' ng-init='q = 0' type='number' value='1' id='foodQty' style='width: 50px;'></td>" + 
+                    "<td>₱{{ unit_price }}</td>" +
+                    "<td>₱{{ q * unit_price }}</td>" +
+                    "<td style='text-align: center;'><button id='add-order' ng-click='addOrder();' class='btn btn-success' style='margin-right: 5px;'><span class='glyphicon glyphicon-ok' style='font-size: 13px; margin-top: -2px; padding-right: 2px;'></span></button><button ng-click='removeItemOrder($event);' class='btn btn-danger'><span class='glyphicon glyphicon-remove' style='font-size: 13px; margin-top: -2px; padding-right: 2px;'></span></button></td>" +                   
+                "</tr>"
+            )($scope));
+        }
+        $scope.foodchange = function(){
+            var result = $.grep(food,function(v){
+                return v.name == $('#food-item').val();
+            });
+            $scope.unit_price = result[0].value
+        }
+        $scope.addOrder = function(){
+            // messageBox2("Food Added!", "Food is now added to the order.");
+            // console.log(id+"&foodName="+$scope.food+"&qty="+$('#foodQty').val()+"&price="+($('#foodQty').val()*$scope.unit_price));
+            $.ajax({
+                url: './php/addOrder.php',
+                dataType: 'json',
+                type: 'POST',
+                data: id+"&foodName="+$scope.food+"&qty="+$('#foodQty').val()+"&price="+($('#foodQty').val()*$scope.unit_price),
+                success: function(date){
+                    messageBox2("Food Added!", "Food is now added to the order.");
+                    $('#add-food').toggleClass('disabled');             
+                },
+                error: function(a,b,c){
+                    console.log("Error: " + a + " " + b + " " + c);
+                }
+            });
+        }
+        $scope.displayOrder = function(){
+            displayOrder();
+        };
+        $scope.removeItemOrder = function($event){
+            angular.element($event.currentTarget).parent().parent().remove();
+            $('#add-food').toggleClass('disabled');                         
         }
 
 
@@ -1056,11 +1154,6 @@ $(document).ready(()=>{
         $scope.$watch("filter", function(newValue,oldValue){
             displayTable($scope.filter);
         }); 
-        $scope.$watch("ok", function(newValue,oldValue){
-            if($scope.ok){
-
-            }
-        });
         
         //input of day must be 1-31 only
         document.getElementById("day").onkeyup=function(){
@@ -1078,14 +1171,46 @@ $(document).ready(()=>{
             return true;
         }  
 
-        //MODAL ORDER INFO
-        function showOrder(){
-            // $('.modal-header').css('background-color','black');
-            $("#myModal").modal('show');            
+        function messageBox2(title,message){
+            $scope.modelTitle = title;
+            $scope.modelText = message;
+            $("#myModel").modal('show');
+            $scope.$apply();
         }
 
 
+
         //FUNCTIONS
+        function displayOrder(){
+            var total = 0;
+            $("#order-table").children(".gords").remove();  
+            $.ajax({
+                url: './php/showOrder.php',
+                dataType: 'json',
+                type: 'POST',
+                data: id,
+                success: function(data){
+                    for(var x = 0; x < data.length; x++){
+                        total = parseFloat(total) + parseFloat(data[x].amount);
+                        $('#addhere').after($compile(
+                            "<tr class='gords'>" +
+                                "<td><span>"+ data[x].foodName +"</span></td>" +
+                                "<td>"+ data[x].qty +"</td>" + 
+                                "<td>₱"+ data[x].unitPrice +"</td>" +
+                                "<td>₱"+ data[x].amount +"</td>" +
+                                "<td style='text-align: center;'><button class='btn btn-danger'><span class='glyphicon glyphicon-trash' style='font-size: 13px; margin-top: -2px; padding-right: 2px;'></span></button></td>" +
+                            "</tr>"
+                        )($scope));
+                    }    
+                    $scope.totalAmount = total.toFixed(2);
+                    $scope.$apply();            
+                },
+                error: function(a,b,c){
+                    console.log('Error: ' + a + ' ' + b + ' ' + c)
+                }
+            });
+            $("#order-table").hide().fadeIn(500);              
+        }
         function displayTable(num){
             var button = "";
             $("#body-table").children(".tabtab").remove();   
@@ -1095,33 +1220,35 @@ $(document).ready(()=>{
                 type: 'POST',
                 data: {data: num},
                 success: function(data){
-                    for(var x = 0; x < data.length; x++){
-                        if(data[x].stats == 'PENDING'){
-                            button = "<td><button ng-click='messageConfirm()' class='btn btn-success'><span class='glyphicon glyphicon-ok'></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";
-                        }else if(data[x].stats == 'CONFIRMED'){
-                            button = "<td><button ng-click='messageSend()' class='btn btn-primary'><span class='glyphicon glyphicon-send '></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";                            
-                        }else{
-                            button = "<td><span class='glyphicon glyphicon-ok-circle' style='color: #2ecc71; font-size: 22px;'></span></td>";                                                        
+                    if(!data[0].error){
+                        for(var x = 0; x < data.length; x++){
+                            if(data[x].stats == 'PENDING'){
+                                button = "<td><button ng-click='messageConfirm($event);' class='btn btn-success'><span class='glyphicon glyphicon-ok'></span></button><button class='btn btn-danger' ng-click='messageRemove($event);'><span class='glyphicon glyphicon-remove'></span></button></td>";
+                            }else if(data[x].stats == 'CONFIRMED'){
+                                button = "<td><button ng-click='messageSend($event)' class='btn btn-primary'><span class='glyphicon glyphicon-send '></span></button><button class='btn btn-danger' ng-click='messageRemove($event);'><span class='glyphicon glyphicon-remove'></span></button></td>";                            
+                            }else{
+                                button = "<td><span class='glyphicon glyphicon-ok-circle' style='color: #2ecc71; font-size: 22px;'></span></td>";                                                        
+                            }
+                            $('#addme').after($compile(
+                                "<tr class='tabtab' data-toggle='tooltip' data-placement='top' title='Hooray!'>" +
+                                    "<td style='display: none'><span class='boom'>billing="+ data[x].billing +"&order="+ data[x].order +"&custid="+ data[x].custid +"</span></td>" +                            
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].customer +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].address +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].contact +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>₱"+ data[x].price +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].type +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].stats +"</td>" +
+                                    button +
+                                "</tr>"
+                            )($scope));
                         }
-                        $('#addme').after($compile(
-                            "<tr class='tabtab' data-toggle='tooltip' data-placement='top' title='Hooray!'>" +
-                                "<td style='display: none'><span class='boom'>billing="+ data[x].billing +"&order="+ data[x].order +"</span></td>" +                            
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].customer +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].address +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].contact +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>₱"+ data[x].price +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].type +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].stats +"</td>" +
-                                button +
-                            "</tr>"
-                        )($scope));
                     }
-                    console.log(data);
                 },
                 error: function(a,b,c){
                     console.log("Error: " + a + " " + b + " " + c);
                 }
            });
+           $("#body-table").hide().fadeIn(500);                          
         }
         function sendsend(){
             console.log('ASKDJAKSJDKASJD');
@@ -1135,7 +1262,12 @@ $(document).ready(()=>{
                 success: function(data){
                     if(b == 0){
                         dats = data;
+                        foods = "";
                         for(var x = 0; x<dats.length; x++){
+                            x == 0 ? ($scope.food = dats[x].foodName, $scope.unit_price = dats[x].foodPrice): angular.noop();
+                            var obj = {name: dats[x].foodName, value:dats[x].foodPrice};
+                            food.push(obj);
+                            foods += "<option value='"+ dats[x].foodName+"'>"+ dats[x].foodName +"</option> ";
                             $("#asds").after($compile(
                             "<div class='box'>"+
                             "<div class='frame "+ dats[x].class_name +"'></div>"+
@@ -1157,7 +1289,7 @@ $(document).ready(()=>{
                             "</style>")($scope));
                         }
                         b++;
-                    } 
+                    }
                 },
                 error: function(a,b,c){
                     console.log('Error: ' + a + " " + b + " " + c);
@@ -1172,6 +1304,7 @@ $(document).ready(()=>{
             $scope.transaction = true;
             var div = document.getElementsByTagName('header').item(0);
             div.classList.remove("animate-scroll-bottom");
+            document.body.scrollTop = 0;    
             setTimeout(function() {
                 document.getElementsByTagName('header').item(0).className = 'animate-scroll-bottom';                                            
             }, 70);
