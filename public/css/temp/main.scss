@@ -280,6 +280,15 @@ $flat-red: #f06953;
            AGULAR ANIMATION
 ====================================*/
 
+.change-view.ng-hide-remove,
+#transaction-section.ng-hide-remove{
+    animation: 0.3s come-out ease-out;
+}
+
+.change-view.ng-hide-add{
+    animation: 0.3s come-in ease-out;
+}
+
 #s-in.ng-hide-remove,
 #food-order.ng-hide-remove{
     animation: 0.6s animateBottomIn ease-out;

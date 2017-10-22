@@ -359,7 +359,7 @@
                                 ADMIN MODE TRANSACTIONS
              ==========================================================-->
 
-        <div class="container" ng-show="transaction">
+        <div class="container" ng-show="transaction" id="transaction-section">
             <div class="marginTop">
                 <div class="table-responsive">
                     <div class="jumbotron">
@@ -407,7 +407,7 @@
         <!-- ==========================================================
                                 CLIENT VIEW
              ==========================================================-->
-        <div ng-hide="transaction">
+        <div ng-hide="transaction" class="change-view">
             <!--Home  -->
             <section id="home"> 
                 <div class="slider">

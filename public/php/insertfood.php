@@ -23,7 +23,7 @@
         if(mysqli_query($connect, $query3))
             {  
                 // header('Refresh:.5; url=../temp.php');
-                echo '<script>alert("Food Successfully added")</script>';  
+                echo     '<script>alert("Food Successfully added")</script>';  
             }  
             else{
                 // header('Refresh:.5; url=../temp.php');

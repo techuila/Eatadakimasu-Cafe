@@ -1079,33 +1079,35 @@ $(document).ready(()=>{
                 type: 'POST',
                 data: {data: num},
                 success: function(data){
-                    for(var x = 0; x < data.length; x++){
-                        if(data[x].stats == 'PENDING'){
-                            button = "<td><button ng-click='messageConfirm()' class='btn btn-success'><span class='glyphicon glyphicon-ok'></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";
-                        }else if(data[x].stats == 'CONFIRMED'){
-                            button = "<td><button ng-click='messageSend()' class='btn btn-primary'><span class='glyphicon glyphicon-send '></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";                            
-                        }else{
-                            button = "<td><span class='glyphicon glyphicon-ok-circle' style='color: #2ecc71; font-size: 22px;'></span></td>";                                                        
+                    if(!data[0].error){
+                        for(var x = 0; x < data.length; x++){
+                            if(data[x].stats == 'PENDING'){
+                                button = "<td><button ng-click='messageConfirm()' class='btn btn-success'><span class='glyphicon glyphicon-ok'></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";
+                            }else if(data[x].stats == 'CONFIRMED'){
+                                button = "<td><button ng-click='messageSend()' class='btn btn-primary'><span class='glyphicon glyphicon-send '></span></button><button class='btn btn-danger' ng-click='messageRemove();'><span class='glyphicon glyphicon-remove'></span></button></td>";                            
+                            }else{
+                                button = "<td><span class='glyphicon glyphicon-ok-circle' style='color: #2ecc71; font-size: 22px;'></span></td>";                                                        
+                            }
+                            $('#addme').after($compile(
+                                "<tr class='tabtab' data-toggle='tooltip' data-placement='top' title='Hooray!'>" +
+                                    "<td style='display: none'><span class='boom'>billing="+ data[x].billing +"&order="+ data[x].order +"</span></td>" +                            
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].customer +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].address +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].contact +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>₱"+ data[x].price +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].type +"</td>" +
+                                    "<td ng-click='showOrderInfo($event);'>"+ data[x].stats +"</td>" +
+                                    button +
+                                "</tr>"
+                            )($scope));
                         }
-                        $('#addme').after($compile(
-                            "<tr class='tabtab' data-toggle='tooltip' data-placement='top' title='Hooray!'>" +
-                                "<td style='display: none'><span class='boom'>billing="+ data[x].billing +"&order="+ data[x].order +"</span></td>" +                            
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].customer +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].address +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].contact +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>₱"+ data[x].price +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].type +"</td>" +
-                                "<td ng-click='showOrderInfo($event);'>"+ data[x].stats +"</td>" +
-                                button +
-                            "</tr>"
-                        )($scope));
                     }
-                    console.log(data);
                 },
                 error: function(a,b,c){
                     console.log("Error: " + a + " " + b + " " + c);
                 }
            });
+           $("#body-table").hide().fadeIn(500);                          
         }
         function sendsend(){
             console.log('ASKDJAKSJDKASJD');
@@ -1156,6 +1158,7 @@ $(document).ready(()=>{
             $scope.transaction = true;
             var div = document.getElementsByTagName('header').item(0);
             div.classList.remove("animate-scroll-bottom");
+            document.body.scrollTop = 0;    
             setTimeout(function() {
                 document.getElementsByTagName('header').item(0).className = 'animate-scroll-bottom';                                            
             }, 70);

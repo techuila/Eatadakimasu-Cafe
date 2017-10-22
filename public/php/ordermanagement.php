@@ -66,13 +66,14 @@ if ($result->num_rows > 0) {
         $send[$x]["price"] = $row["total_price"];
         $send[$x]["type"] = $row["type"];
         $send[$x]["stats"] = $row["stats"];
+        $send[0]["error"] = false;    
         $x += 1;
     }
     echo json_encode($send);
 }
 else{
-    echo json_encode("nothing");
-    
+    $send[0]["error"] = true;
+    echo json_encode($send);
 }
 
 ?>
