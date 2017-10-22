@@ -7,7 +7,7 @@ $conn = mysqli_connect("localhost", "root", "") or die ("Not yet connected");
 $db = mysqli_select_db($conn, "eatadakicafe") or die ("cannot select database");
 //=============================================================================================
 
-$bitch = "SELECT (IFNULL(customerinfo.Mobile_No, guestinfo.Mobile_No)) AS contact, BillingID,OrderID,(IFNULL( CONCAT(customerinfo.Lastname, CONCAT(', ', customerinfo.Firstname)), CONCAT(guestinfo.Lastname, CONCAT(', ', guestinfo.Firstname)))) AS customer,
+$bitch = "SELECT billinginfo.CustomerID,(IFNULL(customerinfo.Mobile_No, guestinfo.Mobile_No)) AS contact, BillingID,OrderID,(IFNULL( CONCAT(customerinfo.Lastname, CONCAT(', ', customerinfo.Firstname)), CONCAT(guestinfo.Lastname, CONCAT(', ', guestinfo.Firstname)))) AS customer,
 (CONCAT(billinginfo.Barangay, 
 	(CASE
      	WHEN billinginfo.Street > '' THEN 
@@ -66,6 +66,7 @@ if ($result->num_rows > 0) {
         $send[$x]["price"] = $row["total_price"];
         $send[$x]["type"] = $row["type"];
         $send[$x]["stats"] = $row["stats"];
+        $send[$x]["custid"] = $row["CustomerID"];
         $send[0]["error"] = false;    
         $x += 1;
     }
