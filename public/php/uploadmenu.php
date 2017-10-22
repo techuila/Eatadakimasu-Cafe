@@ -11,7 +11,7 @@
      }  
     
      else{
-         header('Refresh:.5; url=../temp.php');
+         header('Refresh:4; url=../temp.php');
          echo '<script>alert("There was a problem inserting the image")</script>';
      }
     //  sleep(3);
