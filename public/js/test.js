@@ -256,11 +256,6 @@ $(document).ready(()=>{
           }
       });
 
-
-        
-      
-
-
     //menu-file click
     $('#menu-form').submit(function(){  
         var image_name = $('#menu-file').val();  
@@ -281,6 +276,7 @@ $(document).ready(()=>{
         }  
    });  
 
+   
    //order-file click
    $('#order-form').submit(function(){  
     var image_name = $('#order-file').val();  
