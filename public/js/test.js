@@ -1060,6 +1060,8 @@ $(document).ready(()=>{
             $("#myModal").modal('show');
             $scope.orderInfo = true;
             $scope.modalTitle = "Order Information";
+            $('#add-food').removeClass('disabled'); 
+            $('#add-food').addClass('disabled');             
             displayOrder();
         };
         $scope.messageRemove = function($event){
