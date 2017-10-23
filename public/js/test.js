@@ -54,15 +54,15 @@ $(document).ready(()=>{
     //     }
     // });
 
-    //disregard special characters in first-name
+    //disregard special characters but allow spaces in first-name
     $('#first-name').on('keypress', function (event) {
-        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
         if (!regex.test(key)) {
             $("#errmsg").html("Characters Only").show().fadeOut("slow");
-                   return false;
-           event.preventDefault();
-           return false;
+                return false;
+        event.preventDefault();
+        return false;
         }
     });
 
@@ -76,15 +76,15 @@ $(document).ready(()=>{
         }
     });
 
-    //disregard special characters in last-name
+    //disregard special characters but allow spaces in last-name
     $('#last-name').on('keypress', function (event) {
-        var regex = new RegExp("^[a-zA-Z0-9]+$");
+        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
         var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
         if (!regex.test(key)) {
             $("#errmsg1").html("Characters Only").show().fadeOut("slow");
-                   return false;
-           event.preventDefault();
-           return false;
+                return false;
+        event.preventDefault();
+        return false;
         }
     });
 
@@ -182,15 +182,28 @@ $(document).ready(()=>{
           }
       });
 
-      //disregard characters and special characters in credit card number
-     $('#c-num').keypress(function (e) {
+    //   //disregard special characters but allow spaces in credit card number
+    // $('#c-num').on('keypress', function (event) {
+    //     var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+    //     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    //     if (!regex.test(key)) {
+    //         $("#errmsg9").html("Characters Only").show().fadeOut("slow");
+    //                return false;
+    //        event.preventDefault();
+    //        return false;
+    //     }
+    // });
+
+      //disregard characters and special characters but allow spaces in credit card number
+      $('#c-num').keypress(function (e) {
         //if the letter is not digit then display error and don't type anything
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        if (e.which != 8 && e.which != 0 && e.which !== 32 && (e.which < 48 || e.which > 57)) {
            //display error message
            $("#errmsg9").html("Digits Only").show().fadeOut("slow");
                   return false;
           }
       });
+
 
         //disregard characters and special characters in security code
      $('#s-code').keypress(function (e) {
@@ -1230,7 +1243,7 @@ $(document).ready(()=>{
                                 button = "<td><span class='glyphicon glyphicon-ok-circle' style='color: #2ecc71; font-size: 22px;'></span></td>";                                                        
                             }
                             $('#addme').after($compile(
-                                "<tr class='tabtab' data-toggle='tooltip' data-placement='top' title='Hooray!'>" +
+                                "<tr class='tabtab' data-toggle='tooltip' data-placement='top' title='Click here to see Order Info!'>" +
                                     "<td style='display: none'><span class='boom'>billing="+ data[x].billing +"&order="+ data[x].order +"&custid="+ data[x].custid +"</span></td>" +                            
                                     "<td ng-click='showOrderInfo($event);'>"+ data[x].customer +"</td>" +
                                     "<td ng-click='showOrderInfo($event);'>"+ data[x].address +"</td>" +
