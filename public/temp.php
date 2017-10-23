@@ -484,6 +484,11 @@
                     <img class="home-background slider-1 bg" src="./img/menu/slider/slide1.jpg" ng-show="two"></img>
                     <img class="home-background slider-2 bg" src="./img/menu/slider/slide2.jpg" ng-show="three"></img>
                     <img class="home-background slider-3 bg" src="./img/menu/slider/slide3.jpg" ng-show="four"></img>
+                    <video id="ad" class="home-background" ng-show="five">
+                        <source src="./img/boom.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
                     <article class="art-bg main-bg" ng-hide="one">
                         <h1>Every Dish is a Specialty</h1>
                         <hr>
@@ -520,6 +525,7 @@
                             <span class="circle" ng-click="slider(2,'click')"><span class="inner two" ng-show="two"></span></span>
                             <span class="circle" ng-click="slider(3,'click')"><span class="inner three" ng-show="three"></span></span>
                             <span class="circle" ng-click="slider(4,'click')"><span class="inner four" ng-show="four"></span></span>
+                            <span class="circle" ng-click="slider(5,'click')"><span class="inner five" ng-show="five"></span></span>                            
                         </center>
                     </div>
                 </div>        
