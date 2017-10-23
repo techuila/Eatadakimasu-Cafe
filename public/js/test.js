@@ -1469,7 +1469,7 @@ $(document).ready(()=>{
         function startSlider(){
             if(localStorage.getItem('admin') != 'true'){
                 sec = 6000;
-                counter > 4? counter = 1: angular.noop();
+                counter > 5? counter = 1: angular.noop();
                 $scope.slider(counter++,'auto');
                 setTimeout(function(){
                     $scope.$apply(startSlider());
@@ -1480,28 +1480,57 @@ $(document).ready(()=>{
                             SLIDER   
         =============================================*/
         $scope.slider = function slider(n,func){
+            var video = document.getElementById("ad");
             if(func == 'click') counter = n + 1;
             if(n == 1){
+                if(!video.paused){
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 $scope.one = false; 
                 $scope.two = false; 
                 $scope.three = false; 
                 $scope.four = false;
+                $scope.five = false;
                 sec = 4000;
             } else if(n == 2){
+                if(!video.paused){
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 $scope.one = true; 
                 $scope.two = true; 
                 $scope.three = false; 
                 $scope.four = false;
+                $scope.five = false;
             } else if(n == 3){
+                if(!video.paused){
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 $scope.one = true; 
                 $scope.two = false; 
                 $scope.three = true; 
                 $scope.four = false;
+                $scope.five = false;
             } else if(n == 4){
+                if(!video.paused){
+                    video.pause();
+                    video.currentTime = 0;
+                }
                 $scope.one = true; 
                 $scope.two = false; 
                 $scope.three = false; 
                 $scope.four = true;
+                $scope.five = false;
+            } else if(n == 5){
+                video.play();
+                sec = 65000;
+                $scope.one = true; 
+                $scope.two = false; 
+                $scope.three = false; 
+                $scope.four = false;
+                $scope.five = true;
             }
         }
     });
