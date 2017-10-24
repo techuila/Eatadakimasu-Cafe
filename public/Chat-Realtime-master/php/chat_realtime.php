@@ -31,8 +31,8 @@ class Chat_realtime {
 			$upd=$this->dbh->prepare("INSERT INTO login (username,avatar,login,status) VALUES (?,?,NOW(),?)");
 			$upd->execute(array($name,$avatar ,'online'));
 		}else{
-			$upd=$upd=$this->dbh->prepare("UPDATE login SET login=NOW(), status=? WHERE username=?");
-			$upd->execute(array('online', $name));
+			$upd=$upd=$this->dbh->prepare("UPDATE login SET avatar=?,login=NOW(), status=? WHERE username=?");
+			$upd->execute(array($avatar,'online', $name));
 		}
 		$data['status'] = 'success';
 		return $data;

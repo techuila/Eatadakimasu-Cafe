@@ -888,6 +888,7 @@ $(document).ready(()=>{
                         if(data.user == true){
                             localStorage.setItem('user', data.user);
                         }
+                        localStorage.setItem('username', data.username);
                         localStorage.setItem('firstname', data.Firstname);
                         localStorage.setItem('success', data.success);
                         $scope.loginSuccess = true;

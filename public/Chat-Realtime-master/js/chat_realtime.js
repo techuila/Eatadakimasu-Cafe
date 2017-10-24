@@ -121,7 +121,7 @@ var chat_realtime = function(j, k, l, m, n) {
             document.querySelector('#message').value = '';
 			document.querySelector('.emoji-wysiwyg-editor').innerHTML = '';
         } else {
-            alert('Please fill atlease message!')
+            alert('Please fill some messages!')
         }
     }, false);
 

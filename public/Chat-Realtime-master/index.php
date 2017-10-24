@@ -1,3 +1,6 @@
+<?php
+// session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,9 +21,11 @@
 		<link href="//onesignal.github.io/emoji-picker/lib/css/emoji.css" rel="stylesheet">
 		<!-- chat_realtime -->
 		<link href="css/chat_realtime.css" rel="stylesheet">
+
+
 		
 	</head>
-	<body>
+	<body ng-app="myApp" ng-controller="myCtrl">
 		<div class="container">
 			<div id="chat-realtime">
 				<div class="row">
@@ -29,11 +34,11 @@
 							<form id="loginform">
 								<div class="input-group">
 									<span class="input-group-addon" style="width:10%">Name:</span>
-									<input  class="form-control border no-shadow no-rounded" style="width:103.5%" id="username" placeholder="username" required>
+									<input  class="form-control border no-shadow no-rounded" style="width:103.5%" ng-model="firstname" id="username" disabled placeholder="username" required>
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon" style="width:4%">Avatar</span>
-									<input class="form-control border no-shadow no-rounded" id="avatar" placeholder="http://img.com/anu.jpg" value="http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-background_123830656_275.jpeg" required>
+									<input class="form-control border no-shadow no-rounded" name="avatar" id="avatar" placeholder="http://img.com/anu.jpg" value="http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-background_123830656_275.jpeg" required>
 									<span class="input-group-btn">
 									<button class="btn btn-primary no-rounded" type="submit">Login</button>
 									</span>
@@ -45,7 +50,7 @@
 					</div>
 					<!-- selected chat -->
 					<div class="col-md-12" id="main">
-						<h3><img id="avatarlogin" src=""/> <span id="userlogin"></span><a href="#" style="float: right" id="logout" class="btn btn-danger no-rounded">Logout</a></h3>
+						<h3><img id="avatarlogin" src=""/> <span id="userlogin"></span><a  style="float: right" id="logout" class="btn btn-danger no-rounded">Go back to home page</a></h3>
 						<div class="col-md-4 bg-white">
 							<h4>Users</h4>
 							<!-- users list -->
@@ -107,11 +112,21 @@
 		<!-- chat_realtime -->
 		<script type="text/javascript" src="js/config.js"></script>
 		<script type="text/javascript" src="js/chat_realtime.js"></script>
+		<script src="../node_modules/angular/angular.min.js"></script>
+    	<script src="../node_modules/angular-animate/angular-animate.js"></script>
 		<script>
-		$(function(){
-		
-			var userlogin = false;
+		(function() {
+			'use strict';
+			var app = angular.module("myApp",[]);
+    		app.controller('myCtrl', function($scope,$compile,$timeout){
+				$scope.firstname = localStorage.getItem('username');
+			});
 
+		})();
+		$(function(){
+			
+			var userlogin = false;
+			
 			// cek user	session
 			$.ajax({
 				url: apis,
@@ -186,12 +201,12 @@
 								userRef.push(h);
 								window.location.reload()
 							} else {
-								$('#status').html("<div class='alert alert-danger'>Username sudah di pakai.</div>")
+								$('#status').html("<div class='alert alert-danger'>Username didn't logged in to chat.</div>")
 							}
 						}
 					})
 				} else {
-					alert('Form input ada yang belum di isi')
+					alert('Form')
 				}
 			});
 			
@@ -213,6 +228,7 @@
 								tipe: 'logout'
 							};
 							userRef.push(b);
+							window.location = "../temp.php";
 							setTimeout( function() {
 								window.location.reload();
 							}, 1500 );
