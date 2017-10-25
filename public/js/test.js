@@ -238,16 +238,16 @@ $(document).ready(()=>{
     });
 
     //disregard special characters but allow spaces in food desc
-    $('#food-desc-txt').on('keypress', function (event) {
-        var regex = new RegExp("^[0-9a-zA-Z \b]+$");
-        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-        if (!regex.test(key)) {
-            $("#errmsg12").html("Characters Only").show().fadeOut("slow");
-                return false;
-        event.preventDefault();
-        return false;
-        }
-    });
+        // $('#food-desc-txt').on('keypress', function (event) {
+        //     var regex = new RegExp("^[0-9a-zA-Z \b]+$");
+        //     var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        //     if (!regex.test(key)) {
+        //         $("#errmsg12").html("Characters Only").show().fadeOut("slow");
+        //             return false;
+        //     event.preventDefault();
+        //     return false;
+        //     }
+        // });
 
     //disregard digits in food desc
     $("#food-desc-txt").keypress(function (e) {
