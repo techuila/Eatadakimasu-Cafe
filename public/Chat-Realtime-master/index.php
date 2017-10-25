@@ -1,3 +1,6 @@
+<?php
+// session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		
 		<!-- Title -->
-		<title>Chat Realtime - Bachors</title>
+		<title>Realtime Chat - EatadakiCafe</title>
 		
 		<!-- CSS -->
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -18,9 +21,11 @@
 		<link href="//onesignal.github.io/emoji-picker/lib/css/emoji.css" rel="stylesheet">
 		<!-- chat_realtime -->
 		<link href="css/chat_realtime.css" rel="stylesheet">
+
+
 		
 	</head>
-	<body>
+	<body ng-app="myApp" ng-controller="myCtrl">
 		<div class="container">
 			<div id="chat-realtime">
 				<div class="row">
@@ -28,12 +33,12 @@
 						<div class="login">
 							<form id="loginform">
 								<div class="input-group">
-									<span class="input-group-addon">@</span>
-									<input class="form-control border no-shadow no-rounded" id="username" placeholder="username" required>
+									<span class="input-group-addon" style="width:10%">Name:</span>
+									<input  class="form-control border no-shadow no-rounded" style="width:103.5%" ng-model="firstname" id="username" disabled placeholder="username" required>
 								</div>
 								<div class="input-group">
-									<span class="input-group-addon">Avatar</span>
-									<input class="form-control border no-shadow no-rounded" id="avatar" placeholder="http://img.com/anu.jpg" value="http://3.bp.blogspot.com/-c8O1QI1Ty24/UikpRn-WYLI/AAAAAAAAJ0Y/hCd3SVMejGQ/s1600/1cc767a412f68bc6ff6f26b526c4ecfd.jpeg" required>
+									<span class="input-group-addon" style="width:4%">Avatar</span>
+									<input class="form-control border no-shadow no-rounded" name="avatar" id="avatar" placeholder="http://img.com/anu.jpg" value="http://s1.picswalls.com/wallpapers/2015/09/27/anonymous-background_123830656_275.jpeg" required>
 									<span class="input-group-btn">
 									<button class="btn btn-primary no-rounded" type="submit">Login</button>
 									</span>
@@ -45,7 +50,7 @@
 					</div>
 					<!-- selected chat -->
 					<div class="col-md-12" id="main">
-						<h3><img id="avatarlogin" src=""/> <span id="userlogin"></span><a href="#" style="float: right" id="logout" class="btn btn-danger no-rounded">Logout</a></h3>
+						<h3><img id="avatarlogin" src=""/> <span id="userlogin"></span><a  style="float: right" id="logout" class="btn btn-danger no-rounded">Go back to home page</a></h3>
 						<div class="col-md-4 bg-white">
 							<h4>Users</h4>
 							<!-- users list -->
@@ -86,7 +91,7 @@
 					</div>
 					<div class="col-md-12">
 						<p align="center">
-							© <a href="http://bachors.com">Bachors.com</a> 2016-2017. Made with <span class="fa fa-heartbeat" style="color:#f66767"></span> in Garut, Indonesia.
+							© <a href="https://www.facebook.com/ECJapanese/">EatadakiCafe</a> 2016-2017. Made with <span class="fa fa-heartbeat" style="color:#f66767"></span> in Zamboanga, Philippines.
 						</p>
 					</div>
 				</div>
@@ -107,11 +112,21 @@
 		<!-- chat_realtime -->
 		<script type="text/javascript" src="js/config.js"></script>
 		<script type="text/javascript" src="js/chat_realtime.js"></script>
+		<script src="../node_modules/angular/angular.min.js"></script>
+    	<script src="../node_modules/angular-animate/angular-animate.js"></script>
 		<script>
-		$(function(){
-		
-			var userlogin = false;
+		(function() {
+			'use strict';
+			var app = angular.module("myApp",[]);
+    		app.controller('myCtrl', function($scope,$compile,$timeout){
+				$scope.firstname = localStorage.getItem('username');
+			});
 
+		})();
+		$(function(){
+			
+			var userlogin = false;
+			
 			// cek user	session
 			$.ajax({
 				url: apis,
@@ -186,12 +201,12 @@
 								userRef.push(h);
 								window.location.reload()
 							} else {
-								$('#status').html("<div class='alert alert-danger'>Username sudah di pakai.</div>")
+								$('#status').html("<div class='alert alert-danger'>Username didn't logged in to chat.</div>")
 							}
 						}
 					})
 				} else {
-					alert('Form input ada yang belum di isi')
+					alert('Form')
 				}
 			});
 			
@@ -213,6 +228,7 @@
 								tipe: 'logout'
 							};
 							userRef.push(b);
+							window.location = "../temp.php";
 							setTimeout( function() {
 								window.location.reload();
 							}, 1500 );

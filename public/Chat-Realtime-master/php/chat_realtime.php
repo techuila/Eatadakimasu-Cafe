@@ -25,14 +25,14 @@ class Chat_realtime {
 	function user_login($user, $avatar){
 		$name = htmlspecialchars($user);
 		$data = array();
-		$sql=$this->dbh->prepare("SELECT name FROM users WHERE name=?");
+		$sql=$this->dbh->prepare("SELECT username FROM login WHERE username=?");
 		$sql->execute(array($name));
 		if($sql->rowCount() == 0){
-			$upd=$this->dbh->prepare("INSERT INTO users (name,avatar,login,status) VALUES (?,?,NOW(),?)");
-			$upd->execute(array($name, $avatar, 'online'));
+			$upd=$this->dbh->prepare("INSERT INTO login (username,avatar,login,status) VALUES (?,?,NOW(),?)");
+			$upd->execute(array($name,$avatar ,'online'));
 		}else{
-			$upd=$upd=$this->dbh->prepare("UPDATE users SET login=NOW(), status=? WHERE name=?");
-			$upd->execute(array('online', $name));
+			$upd=$upd=$this->dbh->prepare("UPDATE login SET avatar=?,login=NOW(), status=? WHERE username=?");
+			$upd->execute(array($avatar,'online', $name));
 		}
 		$data['status'] = 'success';
 		return $data;
@@ -82,19 +82,19 @@ class Chat_realtime {
 	
 	function get_user($user){
 		if(isset($user)){
-			$sqlm=$this->dbh->prepare("SELECT name FROM users WHERE name=?");
+			$sqlm=$this->dbh->prepare("SELECT username FROM login WHERE username=?");
 			$sqlm->execute(array($user));
 			if($sqlm->rowCount() > 0){
-				$upd=$this->dbh->prepare("UPDATE users SET login=NOW() WHERE name=?");
+				$upd=$this->dbh->prepare("UPDATE login SET login=NOW() WHERE username=?");
 				$upd->execute(array($user));
 			}
 		}
 		$data = array();
-		$sql=$this->dbh->prepare("SELECT * FROM users");
+		$sql=$this->dbh->prepare("SELECT * FROM login");
 		$sql->execute();
 		while($r = $sql->fetch()){
 			$data[] = array(
-				'name' => $r['name'],
+				'name' => $r['Username'],
 				'avatar' => $r['avatar'],
 				'login' => $r['login'],
 				'status' => $r['status']
@@ -113,7 +113,7 @@ class Chat_realtime {
 	
 	function user_logout($name){
 		$data = array();
-		$user = $this->dbh->prepare("UPDATE users SET status=? WHERE name=?");
+		$user = $this->dbh->prepare("UPDATE login SET status=? WHERE username=?");
 		$user->execute(array('offline',$name));
 		$data['status'] = 'success';
 		return $data;

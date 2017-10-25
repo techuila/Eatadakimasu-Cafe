@@ -3,4 +3,4 @@
 $username 	= "root";
 $password 	= "";
 $host  		= "localhost";
-$name    	= "chat_realtime";
+$name    	= "eatadakicafe";

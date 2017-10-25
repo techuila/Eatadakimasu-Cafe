@@ -414,7 +414,8 @@
                             <li><a href="" class="o-user" ng-show="adminMode" ng-click="adminModes();" id="adminModeoff"><span class="glyphicon glyphicon-user"></span> Admin Mode Off</a></li><br>                                                    
                             <li><a href="" class="o-user" ng-show="admin" ng-click="transactionClick();" id="transaction"><span class="glyphicon glyphicon-list-alt"></span> Manage Transactions</a></li><br>                                                    
                             <li><a href="" class="o-user" ng-hide="guest"><span class="glyphicon glyphicon-edit"></span> Edit Info</a></li><br>
-                                <hr ng-hide="guest"> 
+                            <li><a href="./Chat-Realtime-master/index.php" class="o-user" ng-hide="guest"><span class="glyphicon glyphicon-edit"></span>Go to Chat</a></li><br>
+                                <hr ng-hide="guest">  
                                 <li><a href="./php/logout.php" ng-click="logout()" class="o-user" style="color: #f06953;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                             </ul>
                             </li>
@@ -534,7 +535,7 @@
             <!--About us  -->
             <section class="container" id="about">
                 <form class="something form" method="POST" action="./php/uploadabout.php" id="about-form" name="about-form" enctype="multipart/form-data" style="position: relative;">
-                    <img id="about-background" alt="" class="bg bg-sushi">
+                    <img id="about-background" alt="" class="bg bg-sushi" style="width:100%; ">
                     <input ng-show="adminMode" type="file" name="about-file" id="about-file" class="change-bg" style="cursor: pointer;opacity: 0; position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;">        
                 </form>
                 <article class="about">
