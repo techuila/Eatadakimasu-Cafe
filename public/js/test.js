@@ -946,7 +946,6 @@ $(document).ready(()=>{
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
                 });
-
             }else{
                 $('#register').submit(()=>{
                     return false;
