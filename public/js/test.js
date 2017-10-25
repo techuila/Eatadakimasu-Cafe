@@ -537,7 +537,8 @@ $(document).ready(()=>{
 
     function scrollNavFunction(onload){
         var navbar = document.getElementsByTagName('header').item(0);
-
+        var video = document.getElementById("ad");
+        
         /*=============================================
              NAVIGATION BAR CHANGE STYLE ON SCROLL  
         =============================================*/
@@ -572,7 +573,8 @@ $(document).ready(()=>{
         document.documentElement.scrollTop > aboutLoc && document.documentElement.scrollTop < menuLoc){
             if($('.about').css('color') != '#00a8ff'){
                 document.getElementsByClassName('about').item(0).style = "color: #00a8ff; animation: in-loc-nav 0.5s forwards;";
-                
+                video.currentTime = 0;
+                video.pause();
             }
         }else{
                 document.getElementsByClassName('about').item(0).style = "animation: out-loc-nav 0.5s forwards;";
@@ -956,7 +958,6 @@ $(document).ready(()=>{
                         console.log('Error: ' + a + " " + b + " " + c);
                     }
                 });
-
             }else{
                 $('#register').submit(()=>{
                     return false;
@@ -1162,6 +1163,22 @@ $(document).ready(()=>{
             angular.element($event.currentTarget).parent().parent().remove();
             $('#add-food').toggleClass('disabled');                         
         }
+        $scope.trashit = function($event){
+            var send = id + "&foodname=" + angular.element($event.currentTarget).parent().parent().find('span').text();
+            console.log(send);
+            $.ajax({
+                url: './php/deleteItem.php',
+                dataType: 'json',
+                type: 'POST',
+                data: send,
+                success: function(date){
+                    messageBox2("Deleted!", "Food is now deleted from the order.");
+                },
+                error: function(a,b,c){
+                    console.log("Error: " + a + " " + b + " " + c);
+                }
+            });
+        }
 
 
         //WATCHER
@@ -1212,7 +1229,7 @@ $(document).ready(()=>{
                                 "<td>"+ data[x].qty +"</td>" + 
                                 "<td>₱"+ data[x].unitPrice +"</td>" +
                                 "<td>₱"+ data[x].amount +"</td>" +
-                                "<td style='text-align: center;'><button class='btn btn-danger'><span class='glyphicon glyphicon-trash' style='font-size: 13px; margin-top: -2px; padding-right: 2px;'></span></button></td>" +
+                                "<td style='text-align: center;'><button class='btn btn-danger' ng-click='trashit($event);'><span class='glyphicon glyphicon-trash' style='font-size: 13px; margin-top: -2px; padding-right: 2px;'></span></button></td>" +
                             "</tr>"
                         )($scope));
                     }    
@@ -1332,6 +1349,7 @@ $(document).ready(()=>{
             $scope.modalTitle = title;
             $scope.modalText = message;
             $scope.closeOnly = isClose
+            $scope.orderInfo = false;
             $("#myModal").modal('show');
             $scope.$apply();
         }
@@ -1415,7 +1433,7 @@ $(document).ready(()=>{
         }
         function loadDisplay(){
             $.ajax({
-                url: './php/loadbanner.php',
+                url: '.`/php/loadbanner.php',
                 dataType: 'json',
                 type: 'GET',
                 cache: false,
@@ -1534,8 +1552,10 @@ $(document).ready(()=>{
                 $scope.four = true;
                 $scope.five = false;
             } else if(n == 5){
-                video.play();
-                sec = 65000;
+                if(document.body.scrollTop < 585){
+                    video.play();
+                    sec = 65000;
+                }
                 $scope.one = true; 
                 $scope.two = false; 
                 $scope.three = false; 
