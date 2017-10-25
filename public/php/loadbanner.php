@@ -18,8 +18,8 @@ if ($result->num_rows > 0) {
         $banner[$counter] = base64_encode($row["disp_img"]);
         $counter += 1;
     }
-    echo json_encode($banner);
     // print_r($food);
 }
+    echo json_encode($banner);
 
  ?>

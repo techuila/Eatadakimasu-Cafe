@@ -537,7 +537,7 @@ $(document).ready(()=>{
 
     function scrollNavFunction(onload){
         var navbar = document.getElementsByTagName('header').item(0);
-        var video = document.getElementById("ad");
+        // var video = document.getElementById("ad");
         
         /*=============================================
              NAVIGATION BAR CHANGE STYLE ON SCROLL  
@@ -573,8 +573,8 @@ $(document).ready(()=>{
         document.documentElement.scrollTop > aboutLoc && document.documentElement.scrollTop < menuLoc){
             if($('.about').css('color') != '#00a8ff'){
                 document.getElementsByClassName('about').item(0).style = "color: #00a8ff; animation: in-loc-nav 0.5s forwards;";
-                video.currentTime = 0;
-                video.pause();
+                // video.currentTime = 0;
+                // video.pause();
             }
         }else{
                 document.getElementsByClassName('about').item(0).style = "animation: out-loc-nav 0.5s forwards;";
@@ -667,6 +667,7 @@ $(document).ready(()=>{
     var id = 0;
     var foods = "";
     var food = [];
+    var foodfood = [];
     var a = 0;
     
     app.controller('myCtrl', function($scope,$compile,$timeout){
@@ -769,7 +770,7 @@ $(document).ready(()=>{
             if($scope.qty != 0){
                 $scope.empty = false;
                 if(edit == false){
-                    totalPrice = (parseFloat(totalPrice) + ($scope.qty * 30)).toFixed(2);
+                    totalPrice = (parseFloat(totalPrice) + ($scope.qty * $scope.lami)).toFixed(2);
                     $scope.totalPricy = totalPrice;
                     $scope.showActions[c] = true;
                 }else{
@@ -783,7 +784,7 @@ $(document).ready(()=>{
             } else{
                 $scope.empty = true;
             }
-            insert(c,$('.food-name').text(),$('#form-qty').text(),($('#form-qty').text() * 30).toFixed(2));
+            insert(c,$('.food-name').text(),$('#form-qty').text(),($('#form-qty').text() * $scope.lami).toFixed(2));
             qty = $scope.qty;
             items++;
             console.log(orders);
@@ -800,15 +801,17 @@ $(document).ready(()=>{
                 $scope.$apply();
             }, 1800);
         };
-        $scope.requireLogin = function(class_name){
+        $scope.requireLogin = function(class_name,$event){
             if(localStorage.getItem('success') == 'true'|| localStorage.getItem('guest') == 'true'){
                 if(!$scope.adminMode){
                     displayfood(class_name,$scope.adminMode);                
+                    $scope.lami = angular.element($event.currentTarget).parent().find('span').text();
                     $scope.showOrder =  true; 
+                    console.log($scope.lami);
                 }else{
                     clearTextMenu();
-                    displayfood(class_name,$scope.adminMode);                
-                    $scope.showOrder =  true;                     
+                    displayfood(class_name,$scope.adminMode); 
+                    $scope.showOrder =  true;             
                 }
             }else{ 
                 displayfood(class_name); 
@@ -816,7 +819,7 @@ $(document).ready(()=>{
             }
         };
         $scope.checkUser = function(){
-        $('[data-toggle="tooltip"]').tooltip();       
+            $('[data-toggle="tooltip"]').tooltip();       
             
             if(localStorage.getItem('admin') == 'true'){
                 if($scope.adminMode != true){
@@ -825,9 +828,9 @@ $(document).ready(()=>{
                     }, 600);
                 }
             }
+            loadDisplay();
             startSlider();
             userSignedIn();
-            loadDisplay();
         }
         $scope.exitForm = function(){
             expand == true? hideSign(): angular.noop();
@@ -964,7 +967,7 @@ $(document).ready(()=>{
                 });
                 var contents = $("#register").serialize();
                 localStorage.getItem('success') == 'true'? contents += "&user=true" : contents += "&user=false";
-                console.log(contents);                             
+                console.log(orders);                             
                 $.ajax({
                     url: './php/orderserv.php',
                     dataType: 'json',
@@ -981,10 +984,13 @@ $(document).ready(()=>{
                             expand == true? hideSign(): angular.noop(); 
                             $scope.showPayment = false;
                             $scope.showBill = false;
+                            orders = [];
+                            totalPrice = 0;
                             backToMain();
                             order = false;                           
-                            $scope.$apply();
                             restartCart();                                        
+                            $scope.$apply();
+                            console.log($scope.totalPricy);
                         }else{
                             messageBox("Invalid Email!",data.message,true);
                         }
@@ -1015,6 +1021,13 @@ $(document).ready(()=>{
                             $scope.houseTxt = data.house;
                             $scope.emailTxt = data.email;
                             $scope.mobileTxt = data.mobile;
+                            $scope.fname = data.fname;
+                            $scope.lname = data.lname;
+                            $scope.month = '10';                            
+                            $scope.day = '21';                            
+                            $scope.year = '1998';
+                            $scope.gender = 'Male';
+                            
                             $scope.$apply();
                         },
                         error: function(a,b,c){
@@ -1294,23 +1307,28 @@ $(document).ready(()=>{
                     if(b == 0){
                         dats = data;
                         foods = "";
+                        foodfood = [];            
                         for(var x = 0; x<dats.length; x++){
+                            foodfood.push({
+                                "food": data[x].class_name,
+                                "img": 'data:image/jpeg;base64,'+dats[x].foodImg
+                            });
                             x == 0 ? ($scope.food = dats[x].foodName, $scope.unit_price = dats[x].foodPrice): angular.noop();
                             var obj = {name: dats[x].foodName, value:dats[x].foodPrice};
                             food.push(obj);
                             foods += "<option value='"+ dats[x].foodName+"'>"+ dats[x].foodName +"</option> ";
                             $("#asds").after($compile(
                             "<div class='box'>"+
-                            "<div class='frame "+ dats[x].class_name +"'></div>"+
-                            "<article>"+
-                                "<h1>"+ dats[x].foodName +"</h1>"+
-                                "<p>"+ dats[x].foodDesc +"</p>"+
-                            "</article>"+
-                            "<div class='button-cart-container'>"+
-                                "<h1 class='foodPrice'>₱"+ dats[x].foodPrice +"</h1>"+
-                                "<button id='"+ dats[x].class_name +"-delete' ng-click=deleteMenu($event,'"+ dats[x].class_name +"') class='btn btn-danger delete-menu lubut'><span class='glyphicon glyphicon-remove'></span>Delete</button>"+                        
-                                "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart lubut' ng-click='showOrder = true'>"+ buttonText +"</button>"+
-                            "</div>"+
+                                "<div class='frame "+ dats[x].class_name +"'></div>"+
+                                "<article>"+
+                                    "<h1>"+ dats[x].foodName +"</h1>"+
+                                    "<p>"+ dats[x].foodDesc +"</p>"+
+                                "</article>"+
+                                "<div class='button-cart-container'>"+
+                                    "<h1 class='foodPrice'>₱<span class='pricey'>"+ dats[x].foodPrice +"</span></h1>"+
+                                    "<button id='"+ dats[x].class_name +"-delete' ng-click=deleteMenu($event,'"+ dats[x].class_name +"') class='btn btn-danger delete-menu lubut'><span class='glyphicon glyphicon-remove'></span>Delete</button>"+                        
+                                    "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"',$event) class='add-to-cart lubut' ng-click='showOrder = true'>"+ buttonText +"</button>"+
+                                "</div>"+
                             "</div>"+
                             "<style>"+
                                 "."+dats[x].class_name+"{"+
@@ -1321,6 +1339,7 @@ $(document).ready(()=>{
                         }
                         b++;
                     }
+                    console.log(foodfood);
                 },
                 error: function(a,b,c){
                     console.log('Error: ' + a + " " + b + " " + c);
@@ -1330,6 +1349,7 @@ $(document).ready(()=>{
         function restartCart(){
             $("#cart").children(".items").remove();
             $scope.totalPricy = 0;
+            $scope.$apply();
         }
         function headerRestart(){
             $scope.transaction = true;
@@ -1370,7 +1390,7 @@ $(document).ready(()=>{
             }else if(foodname == 'donburi'){
                 displayFoodOrder("donburi", "Donburi", -32, isAdmin);
             }else if(foodname == 'cakey'){
-                displayFoodOrder("japanesecake", "Japanese Cakey", -10, isAdmin);
+                displayFoodOrder("cakey", "Japanese Cakey", -10, isAdmin);
             }else if(foodname == 'karaage'){
                 displayFoodOrder("karaage", "Karaage", 0, isAdmin);
             }else if(foodname == 'omurice'){
@@ -1394,12 +1414,16 @@ $(document).ready(()=>{
             }
         }
         function displayFoodOrder(food, foodname, x_pos,isAdmin){
+            var result = $.grep(foodfood,function(v){
+                return v.food == food;
+            });
+            console.log(foodfood);
             if(!isAdmin){
-                document.getElementsByClassName("food").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px;";
+                document.getElementsByClassName("food").item(0).style = "background-image: url('"+result[0].img+"'); background-position-x: "+ x_pos + "px;";
                 document.getElementsByClassName("food-name").item(0).innerHTML = foodname;
                 document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                    
             }else{
-                document.getElementsByClassName("foody").item(0).style = "background-image: url('./img/menu/" + food + ".jpg'); background-position-x: "+ x_pos + "px; background-size: cover;";                
+                document.getElementsByClassName("foody").item(0).style = "background-image: url('"+result[0].img+"'); background-position-x: "+ x_pos + "px; background-size: cover;";                
                 document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px);opacity: 0.6;";                                    
             }
         }
@@ -1418,7 +1442,7 @@ $(document).ready(()=>{
                     "<div class='button-cart-container'>"+
                         "<h1 class='foodPrice'>₱"+ dats[x].foodPrice +"</h1>"+
                         "<button id='"+ dats[x].class_name +"-delete' ng-click=deleteMenu($event,'"+ dats[x].class_name +"') class='btn btn-danger delete-menu lubut'>Delete</button>"+                        
-                        "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"') class='add-to-cart lubut' ng-click='showOrder = true'>"+ buttonText +"</button>"+
+                        "<button id='"+ dats[x].class_name +"' ng-click=requireLogin('"+ dats[x].class_name +"',$event) class='add-to-cart lubut' ng-click='showOrder = true'>"+ buttonText +"</button>"+
                     "</div>"+
                     "</div>"+
                     "<style>"+
@@ -1433,7 +1457,7 @@ $(document).ready(()=>{
         }
         function loadDisplay(){
             $.ajax({
-                url: '.`/php/loadbanner.php',
+                url: './php/loadbanner.php',
                 dataType: 'json',
                 type: 'GET',
                 cache: false,
@@ -1441,8 +1465,8 @@ $(document).ready(()=>{
                     // messageBox("Successful!","SUCESS",true);
                     
                     $('#menu-background').css('background-image','url(data:image/jpeg;base64,'+ data[0] +')');
-                    $('.order-background').css('background-image','url(data:image/jpeg;base64,'+ data[1] +')');
-                    document.getElementById('about-background').src = 'data:image/jpeg;base64,'+ data[2];
+                    $('.order-background').css('background-image','url(data:image/jpeg;base64,'+ data[2] +')');
+                    document.getElementById('about-background').src = 'data:image/jpeg;base64,'+ data[1];
                 },
                 error: function(a,b,c){
                     console.log('Error: ' + a + " " + b + " " + c);
@@ -1462,9 +1486,9 @@ $(document).ready(()=>{
         }
         function showSignIn(){
             $scope.guest = true;
-            $scope.showRegister = true;
+            $scope.showRegister = false;
             $scope.showIn = true;          
-            $scope.showBill = false;
+            $scope.showBill = true;
             $scope.showBack = false;  
             $scope.showLogin = true;
             document.getElementsByClassName("container-body").item(0).style = "filter: blur(10px); opacity: 0.6;";
@@ -1497,7 +1521,7 @@ $(document).ready(()=>{
         function startSlider(){
             if(localStorage.getItem('admin') != 'true'){
                 sec = 6000;
-                counter > 5? counter = 1: angular.noop();
+                counter > 4? counter = 1: angular.noop();
                 $scope.slider(counter++,'auto');
                 setTimeout(function(){
                     $scope.$apply(startSlider());
@@ -1508,60 +1532,61 @@ $(document).ready(()=>{
                             SLIDER   
         =============================================*/
         $scope.slider = function slider(n,func){
-            var video = document.getElementById("ad");
+            // var video = document.getElementById("ad");
             if(func == 'click') counter = n + 1;
             if(n == 1){
-                if(!video.paused){
-                    video.pause();
-                    video.currentTime = 0;
-                }
+                // if(!video.paused){
+                //     video.pause();
+                //     video.currentTime = 0;
+                // }
                 $scope.one = false; 
                 $scope.two = false; 
                 $scope.three = false; 
                 $scope.four = false;
-                $scope.five = false;
+                // $scope.five = false;
                 sec = 4000;
             } else if(n == 2){
-                if(!video.paused){
-                    video.pause();
-                    video.currentTime = 0;
-                }
+                // if(!video.paused){
+                //     video.pause();
+                //     video.currentTime = 0;
+                // }
                 $scope.one = true; 
                 $scope.two = true; 
                 $scope.three = false; 
                 $scope.four = false;
-                $scope.five = false;
+                // $scope.five = false;
             } else if(n == 3){
-                if(!video.paused){
-                    video.pause();
-                    video.currentTime = 0;
-                }
+                // if(!video.paused){
+                //     video.pause();
+                //     video.currentTime = 0;
+                // }
                 $scope.one = true; 
                 $scope.two = false; 
                 $scope.three = true; 
                 $scope.four = false;
-                $scope.five = false;
+                // $scope.five = false;
             } else if(n == 4){
-                if(!video.paused){
-                    video.pause();
-                    video.currentTime = 0;
-                }
+                // if(!video.paused){
+                //     video.pause();
+                //     video.currentTime = 0;
+                // }
                 $scope.one = true; 
                 $scope.two = false; 
                 $scope.three = false; 
                 $scope.four = true;
-                $scope.five = false;
-            } else if(n == 5){
-                if(document.body.scrollTop < 585){
-                    video.play();
-                    sec = 65000;
-                }
-                $scope.one = true; 
-                $scope.two = false; 
-                $scope.three = false; 
-                $scope.four = false;
-                $scope.five = true;
-            }
+                // $scope.five = false;
+            } 
+            // else if(n == 5){
+            //     // if(document.body.scrollTop < 585){
+            //     //     video.play();
+            //     //     sec = 65000;
+            //     // }
+            //     $scope.one = true; 
+            //     $scope.two = false; 
+            //     $scope.three = false; 
+            //     $scope.four = false;
+            //     $scope.five = true;
+            // }
         }
     });
 
@@ -1574,7 +1599,7 @@ $(document).ready(()=>{
                 element.bind('click', function(){
                     console.log(qty);
                     if(qty != 0){
-                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * 30).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ c +'] = !showActions['+ c +']"></a><span class="price">₱<a class="price">' + ($('#form-qty').text() * 30).toFixed(2) +'</a></span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-pencil" ng-click="editItem()"></span></a><a href=""><span class="glyphicon glyphicon-remove" remove-Item ng-click="minusPrice('+ c++ +')"></span></a></div></li>')(li)
+                        var newItem = $compile('<li class="row items"><input type="text" name="qty[]" value="'+ $('#form-qty').text() +'" style="display:none"><input type="text" name="food[]" value="'+ $('.food-name').text() +'" style="display:none"><input type="text" name="price[]" value="'+ ($('#form-qty').text() * $('#magic').text()).toFixed(2) +'" style="display:none"><span class="qty">'+ $('#form-qty').text() +'</span><span class="item-name">'+ $('.food-name').text() +'</span><a href="" class="action" ng-click="clickAction(); showActions['+ c +'] = !showActions['+ c +']"></a><span class="price">₱<a class="price">' + ($('#form-qty').text() * $('#magic').text()).toFixed(2) +'</a></span><div class="action-item" ng-hide="showActions['+ c +']"><a href=""><span class="glyphicon glyphicon-remove" remove-Item ng-click="minusPrice('+ c++ +')"></span></a></div></li>')(li)
                         $("#cart").children('#add-item').prev().after(newItem);
                     }
                 });

@@ -11,7 +11,7 @@ header('Content-type: application/json');
 //IF LOGIN LE insert if condition here
 session_start();
 $custid = $_SESSION["custid"];
-$sql = "SELECT `Barangay`, `Street`, `House_No`, `Email`, `Mobile_No` FROM `customerinfo` WHERE customerID = '$custid'";
+$sql = "SELECT * FROM `customerinfo` WHERE customerID = '$custid'";
 $result = mysqli_query($conn,$sql);
 if ($result->num_rows > 0) {
         // output data of each row
@@ -21,6 +21,8 @@ if ($result->num_rows > 0) {
                 $send['house'] = $row['House_No'];
                 $send['email'] = $row['Email'];
                 $send['mobile'] = $row['Mobile_No'];
+                $send['fname'] = $row['Firstname'];
+                $send['lname'] = $row['Lastname'];
         } 
         echo json_encode($send);
 }

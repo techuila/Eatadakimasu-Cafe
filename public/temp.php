@@ -125,7 +125,7 @@
                     <div class="frame food"></div>
                     <h1 class="food-name">food</h1>
                     <div class="container-qty">
-                        <h2>₱{{ qty * 30 }}</h2>
+                        <h2>₱{{ qty * lami }}<span id="magic" style="display: none">{{lami}}</span></h2>
                         <h3 class="qty-label">QTY</h3> <br>
                         <button class="minus" ng-click="0<qty? qty = qty - 1: angular.noop()">-</button>
                         <h3 class="qty" id="form-qty">{{ qty }}</h3>
@@ -188,7 +188,7 @@
                                 <li class="row boom" id="add-items">
                                     <strong>
                                         <span class="total">TOTAL:</span>
-                                        <span class="total-price">₱ 201</span>
+                                        <span class="total-price">₱ {{totalPricy}}</span>
                                     </strong>
                                 </li>
                                 <hr>
@@ -234,7 +234,7 @@
                                             <div class="c-nav">
                                                 <span>
                                                     <strong>
-                                                    <button type="button" class="nav-form nav-1" ng-click="navLoc(1,'top'); showRegister = true; showBill = false; showPayment = false">1</button>
+                                                    <button type="button" class="nav-form nav-1 disabled"  ng-click="navLoc(1,'top'); showRegister = true; showBill = false; showPayment = false">1</button>
                                                     <button class="invi"></button>
                                                     <button type="button" class="nav-form nav-2" ng-click="navLoc(2,'top'); showRegister = false; showBill = true; showPayment = false">2</button>
                                                     <button class="invi"></button>
@@ -255,11 +255,11 @@
                                         <div class="col-span-2">
                                             <div class="col-2">
                                                 <h5>First Name* <span id="errmsg" style="color:red;font-size:12px"></span></h5>
-                                                <input type="text" name="first-name" id="first-name" value="" maxlength="35">
+                                                <input ng-model="fname" type="text" name="first-name" id="first-name" value="" maxlength="35">
                                             </div>
                                             <div class="col-2">
                                                 <h5>Last Name* <span id="errmsg1" style="color:red;font-size:12px"></span></h5>
-                                                <input type="text" name="last-name" id="last-name" maxlength="35">
+                                                <input ng-model="lname" type="text" name="last-name" id="last-name" maxlength="35">
                                             </div>
                                         </div>
                                         <div ng-hide="guest">
@@ -273,7 +273,7 @@
                                         <div class="col-span-3">
                                             <div class="col-3">
                                                 <h5>Birth Month*</h5>
-                                                <select name="month">
+                                                <select ng-model="month" name="month">
                                                     <option value="00" ng-hide="true">Month</option>
                                                     <option value="01">January</option>
                                                     <option value="02">February</option>
@@ -291,15 +291,15 @@
                                             </div>
                                             <div class="col-3">
                                                 <h5>Day* <span id="errmsg2" style="color:red;font-size:12px"></span></h5>    
-                                                <input type="text" placeholder="Day" class="day" name="day" id="day" maxlength="2" > <span id="errmsg"></span>
+                                                <input ng-model="day" type="text" placeholder="Day" class="day" name="day" id="day" maxlength="2" > <span id="errmsg"></span>
                                             </div>
                                             <div class="col-3">
                                                 <h5>Year* <span id="errmsg3" style="color:red;font-size:12px"></span></h5>    
-                                                <input type="text" placeholder="Year" class="year" name="year" id="year" maxlength="4"> <span id="errmsg"></span>
+                                                <input ng-model="year" type="text" placeholder="Year" class="year" name="year" id="year" maxlength="4"> <span id="errmsg"></span>
                                             </div>
                                         </div>
                                         <h5>Gender</h5>
-                                        <select name="gender">
+                                        <select ng-model="gender" name="gender">
                                             <option value="Gender" ng-hide="true">Gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
@@ -339,11 +339,11 @@
                                     <div class="payment-form" ng-show="showPayment">
                                         <h5 ng-show="guest">Payment Method</h5>
                                         <select name="p-method" id="p_method" ng-show="guest" ng-click="check();">
-                                            <option value="card">Credit card / Debit Card</option>
+                                            <!-- <option value="card">Credit card / Debit Card</option> -->
                                             <option value="cash">Cash on Delivery</option>
                                         </select>
 
-                                        <div ng-show="cash">
+                                        <div >
                                             <h5>Bring change for? <span id="errmsg8" style="color:red;font-size:12px"></span></h5>
                                             <input type="text" name="change" id="change" maxlength="35"> <span id="errmsg"></span>
 
@@ -351,7 +351,7 @@
                                             <textarea name="s_request" rows="3" cols="5"></textarea>
                                         </div>
 
-                                        <div ng-hide="cash">
+                                        <div ng-hide="true">
                                             <h5>Card Type</h5>
                                             <select name="card">
                                                 <option value="MasterCard">MasterCard</option>
@@ -485,10 +485,10 @@
                     <img class="home-background slider-1 bg" src="./img/menu/slider/slide1.jpg" ng-show="two"></img>
                     <img class="home-background slider-2 bg" src="./img/menu/slider/slide2.jpg" ng-show="three"></img>
                     <img class="home-background slider-3 bg" src="./img/menu/slider/slide3.jpg" ng-show="four"></img>
-                    <video id="ad" class="home-background" ng-show="five">
+                    <!-- <video id="ad" class="home-background" ng-show="five">
                         <source src="./img/boom.mp4" type="video/mp4">
                         Your browser does not support the video tag.
-                    </video>
+                    </video> -->
 
                     <article class="art-bg main-bg" ng-hide="one">
                         <h1>Every Dish is a Specialty</h1>
@@ -526,7 +526,7 @@
                             <span class="circle" ng-click="slider(2,'click')"><span class="inner two" ng-show="two"></span></span>
                             <span class="circle" ng-click="slider(3,'click')"><span class="inner three" ng-show="three"></span></span>
                             <span class="circle" ng-click="slider(4,'click')"><span class="inner four" ng-show="four"></span></span>
-                            <span class="circle" ng-click="slider(5,'click')"><span class="inner five" ng-show="five"></span></span>                            
+                            <!-- <span class="circle" ng-click="slider(5,'click')"><span class="inner five" ng-show="five"></span></span>                             -->
                         </center>
                     </div>
                 </div>        
@@ -726,7 +726,7 @@
 
                     <article class="menu-sub-title" id="drinks" ng-hide="admin">
                         <br>
-                        <h1 class="menu-title">Drinks</h1>
+                        <h1 class="menu-title"></h1>
                         <hr>
                     </article>
                     <!-- <div class="box">
@@ -810,7 +810,7 @@
     <!--Contract Us  -->
     <footer id="contact">
         <div class="container">
-            <p></p>Designed by <a href="https://www.facebook.com/ZeddieSantos">ISIS</a>, Copyright &copy; 2017</p>
+            <p></p>Designed by <a href="https://www.facebook.com/ECJapanese/?ref=bookmarks">EATADAKIMASU</a>, Copyright &copy; 2017</p>
         </div>  
     </footer>
     

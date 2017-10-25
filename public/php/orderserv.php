@@ -42,11 +42,7 @@ $mobile=$searcharray['mobile'];
 $day=$searcharray['day'];
 $month=$searcharray['month'];
 $year=$searcharray['year'];
-$paymentmethod=$searcharray['p-method'];
-$cardtype=$searcharray['card'];
-$credcardnum=$searcharray['c-num'];
-$securitycode=$searcharray['s-code'];
-$expirationdate=$searcharray['exp-start'] . " - " . $searcharray['exp-end'];
+
 
 $foodOrder=$_POST['data'];
 
@@ -59,7 +55,7 @@ $foodOrder=$_POST['data'];
             if($searcharray['user'] == 'true'){
                 session_start();
                 $custid = $_SESSION["custid"];
-                mysqli_query($conn, "INSERT INTO paymentmethod(`billingid`, `p_method`, `c_type`, `c_num`, `s_num`, `exp_date`) VALUES ('$orderid','$paymentmethod','$cardtype','$credcardnum','$securitycode','$expirationdate')");
+                // mysqli_query($conn, "INSERT INTO paymentmethod(`billingid`, `p_method`, `c_type`, `c_num`, `s_num`, `exp_date`) VALUES ('$orderid','$paymentmethod','$cardtype','$credcardnum','$securitycode','$expirationdate')");
                 $error['message'] = "Please wait for customer service";
                 $error['valid'] = true;
                 echo json_encode($error);
@@ -75,7 +71,7 @@ $foodOrder=$_POST['data'];
                 mysqli_query($conn, "INSERT INTO `billinginfo`(`CustomerID`, `OrderID`, `Barangay`, `Street`, `House_No`, `Status`) VALUES ('$custid','$orderid','$barangay','$street','$hno','0')");
             }else{
                 mysqli_query($conn, "INSERT INTO guestinfo(guestID,Firstname,Lastname,Birthday,Gender,Barangay,Street,House_No,Email,Mobile_No) VALUES('$tmpguestid','$fname','$lname','$birthday','$gender','$barangay','$street','$hno','$email','$mobile')");
-                mysqli_query($conn, "INSERT INTO paymentmethod(`billingid`, `p_method`, `c_type`, `c_num`, `s_num`, `exp_date`) VALUES ('$orderid','$paymentmethod','$cardtype','$credcardnum','$securitycode','$expirationdate')");
+                // mysqli_query($conn, "INSERT INTO paymentmethod(`billingid`, `p_method`, `c_type`, `c_num`, `s_num`, `exp_date`) VALUES ('$orderid','$paymentmethod','$cardtype','$credcardnum','$securitycode','$expirationdate')");
                 $error['message'] = "Please wait for customer service";
                 $error['valid'] = true;
                 echo json_encode($error);
