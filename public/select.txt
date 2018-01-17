@@ -1,0 +1,16 @@
+<?php
+
+$connect = mysqli_connect("localhost", "root", "", "eatadakicafe");  
+
+
+$query = mysqli_query($connect,"SELECT * FROM login");
+$rows = mysqli_num_rows($query);
+    if($rows > 0){
+        while($rows = mysqli_fetch_array($query)){
+        
+            echo "<br> " . $rows['Username'] . " " . $rows['Password'] . " </th>" ;
+        }
+    }else{
+        echo "You got 0 results in database";
+    }
+?>

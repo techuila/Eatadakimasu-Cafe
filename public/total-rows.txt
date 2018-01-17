@@ -1,0 +1,18 @@
+<?php
+
+$connect = mysqli_connect(localhost, root, , eatadakicafe);  
+
+
+$result = mysqli_query($connect, SELECT count() FROM guestinfo);
+$num_rows = mysqli_fetch_array($result);
+$total = $num_rows[0];
+
+
+$result2 = mysqli_query($connect, SELECT count() FROM customerinfo);
+$num_rows2 = mysqli_fetch_array($result2);
+$total2 = $num_rows2[0];
+
+$sum_total = $total + $total2;
+echo 'total number of visitors'  . $sum_total;
+
+?>

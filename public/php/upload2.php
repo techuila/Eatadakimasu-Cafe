@@ -6,10 +6,11 @@
    
       // $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"]));  
     //   $name = $_POST["textname"];
-      $fileDestination = "../img/menu/".basename($_FILES['image']['name']);
-      $name = $_FILES['image']['name'];
-      $query = "UPDATE `images` SET `img_name`='$name'"; 
-       $filetmp = $_FILES['image']['tmp_name'];
+      $fileDestination = "../img/menu/".basename($_FILES['image1']['name']);
+      $name = $_FILES['image1']['name'];
+      // $query = "UPDATE `images` SET `img_name`='$name'"; 
+       $filetmp = $_FILES['image1']['tmp_name'];
+      
       move_uploaded_file($filetmp,$fileDestination);
       
       $query2 = mysqli_query($connect,"SELECT * FROM images ");
@@ -29,7 +30,7 @@
         if(mysqli_query($connect,$query)) 
         {  
           echo '<script>alert("Image Inserted into Database")</script>';  
-
+          echo $name;
           //        if (move_uploaded_file($_FILES["image"]["tmp_name"], $fileDestination)) {
             
     //            echo "<script type='text/javascript'>alert('Image successfully uploaded!')</script>";
@@ -57,7 +58,7 @@
                background-image: url(<?php echo $disp_img; ?>);
                background-repeat: no-repeat;
                background-size: cover;
-               color: white;
+               color: black;
              }
 
            </style>
@@ -68,7 +69,7 @@
                 <h3 align="center">Insert and Display Images From Mysql Database in PHP</h3>  
                 <br />  
                 <form method="post" enctype="multipart/form-data">  
-                     <input type="file" name="image" id="image" />  
+                     <input type="file" name="image1" id="image1" />  
                      <br />  
                      <!-- <textarea name="textname" rows="4" cols="50" placeholder="Name the image"></textarea>
                      <br /> -->
